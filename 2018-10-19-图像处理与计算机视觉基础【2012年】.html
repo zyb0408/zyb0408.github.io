@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Computer Siencise, OpenCV, TensorFlow">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="图像处理与计算机视觉基础，经典以及最近发展 By xdyang（杨晓冬xdyang.ustc@gmail.com） 文末附上word版本。 一、 绪论 为什么要写这篇文章  从2002年到现在，接触图像快十年了。虽然没有做出什么很出色的工作，不过在这个领域摸爬滚打了十年之后，发现自己对图像处理和计算机视觉的感情越来越深厚。下班之后看看相关的书籍和文献是一件很惬意的事情。平常的一大业余爱好就是收集一">
+<meta name="keywords" content="TensorFlow OpenCV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像处理与计算机视觉基础【2012年】">
+<meta property="og:url" content="https://zyb0408.github.io/2018-10-19-图像处理与计算机视觉基础【2012年】.html">
+<meta property="og:site_name" content="小蜜蜂">
+<meta property="og:description" content="图像处理与计算机视觉基础，经典以及最近发展 By xdyang（杨晓冬xdyang.ustc@gmail.com） 文末附上word版本。 一、 绪论 为什么要写这篇文章  从2002年到现在，接触图像快十年了。虽然没有做出什么很出色的工作，不过在这个领域摸爬滚打了十年之后，发现自己对图像处理和计算机视觉的感情越来越深厚。下班之后看看相关的书籍和文献是一件很惬意的事情。平常的一大业余爱好就是收集一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-19T12:49:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图像处理与计算机视觉基础【2012年】">
+<meta name="twitter:description" content="图像处理与计算机视觉基础，经典以及最近发展 By xdyang（杨晓冬xdyang.ustc@gmail.com） 文末附上word版本。 一、 绪论 为什么要写这篇文章  从2002年到现在，接触图像快十年了。虽然没有做出什么很出色的工作，不过在这个领域摸爬滚打了十年之后，发现自己对图像处理和计算机视觉的感情越来越深厚。下班之后看看相关的书籍和文献是一件很惬意的事情。平常的一大业余爱好就是收集一">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zyb0408.github.io/2018-10-19-图像处理与计算机视觉基础【2012年】.html">
+
+
+
+
+
+  <title>图像处理与计算机视觉基础【2012年】 | 小蜜蜂</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小蜜蜂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Don't Hack Me</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zyb0408.github.io/2018-10-19-图像处理与计算机视觉基础【2012年】.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小蜜蜂">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-32x32-next.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小蜜蜂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图像处理与计算机视觉基础【2012年】</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-19T20:49:21+08:00">
+                2018-10-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-19T20:49:21+08:00">
+                2018-10-19
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  14.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  59
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+		<div>
+		
+			<div>
+    
+        <div style="text-align:center;color: #636363;font-size:14px;letter-spacing: 10px">���Ľ�����<i class="fa fa-bell"></i>��л�����Ķ�</div>
+    
+</div>
+		
+	</div>
+      
+      
+
+      
+        <p><strong>图像处理与计算机视觉基础，经典以及最近发展</strong> By xdyang（杨晓冬<a href="mailto:xdyang.ustc@gmail.com" target="_blank" rel="noopener">xdyang.ustc@gmail.com</a>） 文末附上word版本。</p>
+<h1 id="一、-绪论"><a href="#一、-绪论" class="headerlink" title="一、 绪论"></a><strong>一、</strong> <strong>绪论</strong></h1><ol>
+<li><h2 id="为什么要写这篇文章"><a href="#为什么要写这篇文章" class="headerlink" title="为什么要写这篇文章"></a><strong>为什么要写这篇文章</strong></h2></li>
+</ol>
+<p>从2002年到现在，接触图像快十年了。虽然没有做出什么很出色的工作，不过在这个领域摸爬滚打了十年之后，发现自己对图像处理和计算机视觉的感情越来越深厚。下班之后看看相关的书籍和文献是一件很惬意的事情。平常的一大业余爱好就是收集一些相关的文章，尤其是经典的文章，到现在我的电脑里面已经有了几十G的文章。写这个文档的想法源于我前一段时间整理文献时的一个突发奇想，既然有这个多文献，何不整理出其中的经典，抓住重点来阅读，同时也可以共享给大家。于是当时即兴写了一个《图像处理与计算机视觉中的经典论文》。现在来看，那个文档写得很一般，所共享的论文也非常之有限。就算如此，还是得到了一些网友的夸奖，心里感激不尽。因此，一直想下定决心把这个工作给完善，力求做到尽量全面。 本文是对现有的图像处理和计算机视觉的经典书籍（后面会有推荐）的一个补充。一般的图像处理书籍都是介绍性的介绍某个方法，在每个领域内都会引用几十上百篇参考文献。有时候想深入研究这个领域的时候却发现文献太多，不知如何选择。但实际上在每个领域都有那么三五篇抑或更多是非读不可的经典文献。这些文献除了提出了很经典的算法，同时他们的Introduction和Related work也是对所在的领域很好的总结。读通了这几篇文献也就等于深入了解了这个领域，比单纯的看书收获要多很多。写本文的目的就是想把自己所了解到的各个领域的经典文章整理出来,不用迷失在参考文献的汪洋大海里。</p>
+<ol start="2">
+<li><h2 id="图像处理和计算机视觉的分类"><a href="#图像处理和计算机视觉的分类" class="headerlink" title="图像处理和计算机视觉的分类"></a><strong>图像处理和计算机视觉的分类</strong></h2></li>
+</ol>
+<p>按照当前流行的分类方法，可以分为以下三部分： A.图像处理：对输入的图像做某种变换，输出仍然是图像，基本不涉及或者很少涉及图像内容的分析。比较典型的有图像变换，图像增强，图像去噪，图像压缩，图像恢复，二值图像处理等等。基于阈值的图像分割也属于图像处理的范畴。一般处理的是单幅图像。 B.图像分析：对图像的内容进行分析，提取有意义的特征，以便于后续的处理。处理的仍然是单幅图像。 C.计算机视觉：对图像分析得到的特征进行分析，提取场景的语义表示，让计算机具有人眼和人脑的能力。这时处理的是多幅图像或者序列图像，当然也包括部分单幅图像。 关于图像处理，图像分析和计算机视觉的划分并没有一个很统一的标准。一般的来说，图像处理的书籍总会或多或少的介绍一些图像分析和计算机视觉的知识，比如冈萨雷斯的数字图像处理。而计算机视觉的书籍基本上都会包括图像处理和图像分析，只是不会介绍的太详细。其实图像处理，图像分析和计算机视觉都可以纳入到计算机视觉的范畴：<strong>图像处理**</strong>-&gt;<strong><strong>低层视觉（</strong></strong>low level vision<strong><strong>），图像分析</strong></strong>-&gt;<strong><strong>中间层视觉（</strong></strong>middle level vision<strong><strong>），计算机视觉</strong></strong>-&gt;<strong><strong>高层视觉（</strong></strong>high level vision<strong>**）</strong>。这是一般的计算机视觉或者机器视觉的划分方法。在本文中，仍然按照传统的方法把这个领域划分为图像处理，图像分析和计算机视觉。</p>
+<ol start="3">
+<li><h2 id="图像处理和计算机视觉开源库以及编程语言选择"><a href="#图像处理和计算机视觉开源库以及编程语言选择" class="headerlink" title="图像处理和计算机视觉开源库以及编程语言选择"></a><strong>图像处理和计算机视觉开源库以及编程语言选择</strong></h2></li>
+</ol>
+<p>目前在图像处理中有两种最重要的语言：c/c++和matlab。它们各有优点：c/c++比较适合大型的工程，效率较高，而且容易转成硬件语言，是工业界的默认语言之一。而matlab实现起来比较方便，适用于算法的快速验证，而且matlab有成熟的工具箱可以使用，比如图像处理工具箱，信号处理工具箱。它们有一个共同的特点：开源的资源非常多。在学术界matlab使用的非常多，很多作者给出的源代码都是matlab版本。最近由于OpenCV的兴起和不断完善，c/c++在图像处理中的作用越来越大。总的来说，c/c++和matlab都必须掌握，最好是精通，当然侧重在c/c++上对找工作会有很大帮助。 计算机视觉/图像算法/模式识别 工程师们使用的主流编程语言  </p>
+<h3 id="1-重中之重：编程语言之C-C"><a href="#1-重中之重：编程语言之C-C" class="headerlink" title="1) 重中之重：编程语言之C/C++"></a>1) 重中之重：编程语言之C/C++</h3><p>公司面试除了考查应聘者的图像处理基础知识、思维逻辑和个人品性之外，在个人能力之中最重要的一条就是C/C 的功底，很多学生朋友们在学校求学阶段并不重视C/C++的学习，导致找工作时处处碰壁(不过对于来参加面试的朋友，如果有较强的逻辑思维或图像理论功底，即使C/C++ 功底弱些，企业还是会偏爱的，毕竟C/C++ 只是一个工具，只要给些时间去钻研还是可以调高的，但是逻辑思维能力和图像理论功底却不是短时期就能提高的。不过一般逻辑思维和图像理论比较强的人，其C/C 水平也是不错的)。   为啥要这么重视C/C++ 呢?答案很简单，与绝大多数其它开发语言相比：C/C++ 的应用领域无法被超越、程序运行效率无法匹敌(当然汇编语言除外)，是使用人数最多、跨平台最广的语言工具(适用于windows/linux/dsp/arm/单片机，当然还有其它一些平台)。简单的说，对于多数应用，其它语言能做的事情C/C++ 几乎都能做，其它语言不能做的事情C/C++ 也可以做。  </p>
+<h3 id="2-辅助工具之：MATLAB"><a href="#2-辅助工具之：MATLAB" class="headerlink" title="2) 辅助工具之：MATLAB"></a>2) 辅助工具之：MATLAB</h3><p>百度百科中是这么说的：“MATLAB是美国MathWorks公司出品的商业数学软件，用于算法开发、数据可视化、数据分析以及数值计算的高级技术计算语言和交互式环境，主要包括MATLAB和Simulink两大部分。”  MATLAB本身是一个不错的仿真、建模工具，但不适用于应用级项目的开发，原因很简单：效率与C/C++ 无法匹敌、不夸平台。(虽然后来出来了codegen可以将MATLAB部分代码转换为C++，但自动生成的还是无法与我们自己写的并优化的C++代码相比;还有MATLAB 的mex接口能够将C++与MABLAB接口对接，既然使用了MATLAB编程，那在应用级的领域还是无法与纯C++相比)  <em>简短说说多年前做学生时的部分学习经历</em>： 记得多年前上大学阶段大嘴起初只跟着学校的课程学习了MATLAB的图像处理相关模块(后来才学的C/C++ ),一开始觉得很兴奋，因为只需要编写很少量的代码就可以实现很强大的效果。后来大嘴进一家计算机视觉类的公司实习，发现公司主要用的是C/C++ ,因为MATLAB效率比起C/C++ 相差几倍、十几倍、甚至几十倍，而且要命的是不跨平台，只能用于windows上，后来逼的自己去学了C/C++ ,也正因如此那以后一直到现在特别是当初找工作的时候让我受益匪浅。   对于企业，特别是私企，公司除非给你充足的时间先使用MATLAB做完算法功能，然后再用C/C++ 慢慢改写，而且了解的朋友们都知道，MATLAB的精度与封装的函数标准与C/C++ 有很多不一样，改写起来相对麻烦一些，这样太慢太慢太慢了，项目不等人啊。试问人家成手能够用短时间写出C/C++ 做图像算法并马上可以投入应用，而自己却在那边慢慢磨MATLAB,然后再费老大劲改成纯C(比如需要警觉MATLAB与C++精度不一样的问题、图像处理基础函数标准不一样的问题),那么老板会比较喜欢谁呢？   如果大家从最初就使用C/C++ ，虽然一开始不数量会写的很慢，但是随着知识量和自各种库（比如图像处理库）的积累，那么总有一天开发速度会快起来的，量的积累，质的飞跃。   说了不少，本人并不否认MATLAB，MATLAB做为建模、仿真以及一些验证的工作(比如图形分析和处理、图表显示、图像仿真、语音仿真等)还是不错的，这方面大嘴绝对力挺MATLAB,目前本人也还在使用中。   一句话：对于多数普通人来讲，如果你的目标是想进企业做为一个实力派工程师，那么大嘴建议您以C/C++ 为主、MATLAB为辅助工具做开发。  </p>
+<h3 id="3-辅助工具之：OPENCV"><a href="#3-辅助工具之：OPENCV" class="headerlink" title="3) 辅助工具之：OPENCV"></a>3) 辅助工具之：OPENCV</h3><p>随着opencv的问世，图像算法/计算机视觉/模式识别行业的门槛儿变低了，原因有以下几点：(1)opencv是以C/C ++为基础开发出来的，适用性强，windows下适用opencv开发的图像算法应用效率足够快(2)封装了很多基础图像处理函数和视觉算法，可谓“拿来即可用”。 (3)与嵌入式接口的统一趋势，如前几年大牛们人物搞出来的EMCV(基于C/C++ )，其基础架构和接口与opencv基本一致，但个人认为EMCV很多函数功能尚不完善，目前暂时无法与opencv相比。今后很多人在windows下基于opencv开发后，可以较为轻松的移植到DSP上，这种开发模式会是一种趋势。   说了opencv几条优点,但本人并不赞同只依赖opencv做开发，无论是图像算法行业还是其它很多行业，最重要的不是用什么工具，而是自己的基础知识和逻辑思维方式，opencv封装了很多基础函数，如果朋友们未搞懂其基础原理便加以使用，这种方式并不利于锻炼自己，抽空自己实现一下opencv和MATLAB的封装好的那些基础函数吧，久而久之，你会发现自己站的高度会越来越高的。 说到这里，改写一下评述MATLAB时的一句话：”对于多数普通人来讲，如果你的目标是想进企业做为一个实力派工程师，那么大嘴建议您以C/C ++为主、OPENCV和MATLAB为辅助工具做开发。”  </p>
+<h3 id="4-简单说说其它语言"><a href="#4-简单说说其它语言" class="headerlink" title="4) 简单说说其它语言"></a>4) 简单说说其它语言</h3><p>其它开发语言，比如：C#,JAVA等(还有很多很多语言，不一一举例了)都是不错的开发语言，各自有各自的主应用领域和优势，也有很多很多牛人在使用，不过做图像处理嘛，如果不偏向企业级应用(如嵌入式中)，虽然也可以用，但是了解的朋友做出来的算法效率实在不敢恭维…,又无法夸平台，在一些不要求效率的场合还是可以用的，所以请学生朋友们慎重选择开发语言，因为这与自己以后的择业以及职位方向有很大关系。  </p>
+<ol start="4">
+<li><h2 id="本文的特点和结构，以及适合的对象"><a href="#本文的特点和结构，以及适合的对象" class="headerlink" title="本文的特点和结构，以及适合的对象"></a><strong>本文的特点和结构，以及适合的对象</strong></h2></li>
+</ol>
+<p>在本文面向的对象是即将进入或者刚刚进入图像处理和计算机视觉领域的童鞋，可以在阅读书籍的同时参阅这些文献，能对书中提到的算法有比较深刻的理解。由于本文涉及到的范围比较广，如果能对计算机视觉的资深从业者也有一定的帮助，我将倍感欣慰。为了不至太误人子弟，每一篇文章都或多或少的看了一下，最不济也看了摘要(这句话实在整理之前写的，实际上由于精力有限，好多文献都只是大概扫了一眼，然后看了看google的引用数，一般在1000以上就放上来了，把这些文章细细品味一遍也是我近一两年之内的目标)。在成文的过程中，我本人也受益匪浅，希望能对大家也有所帮助。   由于个人精力和视野的关系，有一些我未涉足过的领域不敢斗胆推荐，只是列出了一些引用率比较高的文章，比如摄像机标定和立体视觉。不过将来，由于工作或者其他原因，这些领域也会接触到，我会逐步增减这些领域的文章。尽管如此，仍然会有疏漏，忘见谅。同时文章的挑选也夹带了一些个人的喜好，比如我个人比较喜欢low level方向的，尤其是IJCV和PAMI上面的文章，因此这方面也稍微多点，希望不要引起您的反感。如果有什么意见或者建议，欢迎mail我。文章和资源我都会在我的csdn blog和sina ishare同步更新。   本文的安排如下。第一部分是绪论。第二部分是图像处理中所需要用到的理论基础，主要是这个领域所涉及到的一些比较好的参考书籍。第三部分是计算机视觉中所涉及到的信号处理和模式识别文章。由于图像处理与图像分析太难区分了，第四部分集中讨论了它们。第五部分是计算机视觉部分。最后是小结。    </p>
+<h1 id="二、-图像处理与计算机视觉相关的书籍"><a href="#二、-图像处理与计算机视觉相关的书籍" class="headerlink" title="二、 图像处理与计算机视觉相关的书籍"></a><strong>二、</strong> <strong>图像处理与计算机视觉相关的书籍</strong></h1><ol>
+<li><h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a><strong>数学</strong></h2></li>
+</ol>
+<p>我们所说的图像处理实际上就是数字图像处理，是把真实世界中的连续三维随机信号投影到传感器的二维平面上，采样并量化后得到二维矩阵。数字图像处理就是二维矩阵的处理，而从二维图像中恢复出三维场景就是计算机视觉的主要任务之一。这里面就涉及到了图像处理所涉及到的三个重要属性：连续性，二维矩阵，随机性。所对应的数学知识是高等数学（微积分），线性代数（矩阵论），概率论和随机过程。这三门课也是考研数学的三个组成部分，构成了图像处理和计算机视觉最基础的数学基础。如果想要更进一步，就要到网上搜搜<strong>林达华推荐的数学书目</strong>了。</p>
+<ol start="2">
+<li><h2 id="信号处理"><a href="#信号处理" class="headerlink" title="信号处理"></a><strong>信号处理</strong></h2></li>
+</ol>
+<p>图像处理其实就是二维和三维信号处理，而处理的信号又有一定的随机性，因此经典信号处理和随机信号处理都是图像处理和计算机视觉中必备的理论基础。</p>
+<h3 id="2-1-经典信号处理"><a href="#2-1-经典信号处理" class="headerlink" title="2.1**经典信号处理**"></a><strong>2.1**</strong>经典信号处理**</h3><p>信号与系统(第2版) Alan V.Oppenheim等著 刘树棠译 离散时间信号处理(第2版) A.V.奥本海姆等著 刘树棠译 数字信号处理:理论算法与实现 胡广书 (编者)</p>
+<h3 id="2-2-随机信号处理"><a href="#2-2-随机信号处理" class="headerlink" title="2.2**随机信号处理**"></a><strong>2.2**</strong>随机信号处理**</h3><p>现代信号处理 张贤达著 统计信号处理基础:估计与检测理论 Steven M.Kay等著 罗鹏飞等译 自适应滤波器原理(第4版) Simon Haykin著 郑宝玉等译</p>
+<h3 id="2-3-小波变换"><a href="#2-3-小波变换" class="headerlink" title="2.3 小波变换"></a><strong>2.3</strong> <strong>小波变换</strong></h3><p>信号处理的小波导引:稀疏方法(原书第3版) tephane Malla著, 戴道清等译</p>
+<h3 id="2-4-信息论"><a href="#2-4-信息论" class="headerlink" title="2.4 信息论"></a><strong>2.4</strong> <strong>信息论</strong></h3><p>信息论基础(原书第2版) Thomas M.Cover等著 阮吉寿等译</p>
+<ol start="3">
+<li><h2 id="模式识别"><a href="#模式识别" class="headerlink" title="模式识别"></a><strong>模式识别</strong></h2></li>
+</ol>
+<p>Pattern Recognition and Machine Learning Bishop, Christopher M. Springer 模式识别(英文版)(第4版) 西奥多里德斯著 Pattern Classification (2nd Edition) Richard O. Duda等著 Statistical Pattern Recognition, 3rd Edition Andrew R. Webb等著 模式识别(第3版) 张学工著</p>
+<ol start="4">
+<li><h2 id="图像处理与计算机视觉的书籍推荐"><a href="#图像处理与计算机视觉的书籍推荐" class="headerlink" title="图像处理与计算机视觉的书籍推荐"></a><strong>图像处理与计算机视觉的书籍推荐</strong></h2></li>
+</ol>
+<p>图像处理，分析与机器视觉 第三版 Sonka等著 艾海舟等译 Image Processing, Analysis and Machine Vision (附：这本书是图像处理与计算机视觉里面比较全的一本书了，几乎涵盖了图像视觉领域的各个方面。中文版的个人感觉也还可以，值得一看。)   数字图像处理 第三版 冈萨雷斯等著 Digital Image Processing (附：数字图像处理永远的经典，现在已经出到了第三版，相当给力。我的导师曾经说过，这本书写的很优美，对写英文论文也很有帮助，建议购买英文版的。)   计算机视觉：理论与算法 Richard Szeliski著 Computer Vision: Theory and Algorithm (附：微软的Szeliski写的一本最新的计算机视觉著作。内容非常丰富，尤其包括了作者的研究兴趣，比如一般的书里面都没有的Image Stitching和 Image Matting等。这也从另一个侧面说明这本书的通用性不如Sonka的那本。不过作者开放了这本书的电子版，可以有选择性的阅读。 计算机视觉：一种现代方法 DA Forsyth等著 Computer Vision: A Modern Approach MIT的经典教材。虽然已经过去十年了，还是值得一读。期待第二版   Machine vision: theory, algorithms, practicalities 第三版 Davies著 (附：为数不多的英国人写的书，偏向于工业应用。) 数字图像处理 第四版 Pratt著 Digital Image Processing (附：写作风格独树一帜，也是图像处理领域很不错的一本书。网上也可以找到非常清晰的电子版。)  </p>
+<ol start="5">
+<li><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a><strong>小结</strong></h2></li>
+</ol>
+<p>罗嗦了这么多，实际上就是几个建议： （1）基础书千万不可以扔，也不能低价处理给同学或者师弟师妹。不然到时候还得一本本从书店再买回来的。钱是一方面的问题，对着全新的书看完全没有看自己当年上过的课本有感觉。 （2）遇到有相关的课，果断选修或者蹭之，比如随机过程，小波分析，模式识别，机器学习，数据挖掘，现代信号处理甚至泛函。多一些理论积累对将来科研和工作都有好处。 （3）资金允许的话可以多囤一些经典的书，有的时候从牙缝里面省一点都可以买一本好书。不过千万不要像我一样只囤不看。    </p>
+<h1 id="三、-计算机视觉中的信号处理与模式识别"><a href="#三、-计算机视觉中的信号处理与模式识别" class="headerlink" title="三、 计算机视觉中的信号处理与模式识别"></a><strong>三、</strong> <strong>计算机视觉中的信号处理与模式识别</strong></h1><p>从本章开始，进入本文的核心章节。一共分三章，分别讲述信号处理与模式识别，图像处理与分析以及计算机视觉。与其说是讲述，不如说是一些经典文章的罗列以及自己的简单点评。与前一个版本不同的是，这次把所有的文章按类别归了类，并且增加了很多文献。分类的时候并没有按照传统的分类方法，而是划分成了一个个小的门类，比如SIFT，Harris都作为了单独的一类，虽然它们都可以划分到特征提取里面去。这样做的目的是希望能突出这些比较实用且比较流行的方法。为了以后维护的方便，按照字母顺序排的序。</p>
+<ol>
+<li><h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a><strong>Boosting</strong></h2></li>
+</ol>
+<p>Boosting是最近十来年来最成功的一种模式识别方法之一，个人认为可以和SVM并称为模式识别双子星。它真正实现了“三个臭皮匠，赛过诸葛亮”。只要保证每个基本分类器的正确率超过50%，就可以实现组合成任意精度的分类器。这样就可以使用最简单的线性分类器。Boosting在计算机视觉中的最成功的应用无疑就是Viola-Jones提出的基于Haar特征的人脸检测方案。听起来似乎不可思议，但Haar+Adaboost确实在人脸检测上取得了巨大的成功，已经成了工业界的事实标准，并且逐步推广到其他物体的检测。 Rainer Lienhart在2002 ICIP发表的这篇文章是Haar+Adaboost的最好的扩展，他把原始的两个方向的Haar特征扩展到了四个方向，他本人是OpenCV积极的参与者。现在OpenCV的库里面实现的Cascade Classification就包含了他的方法。这也说明了盛会（如ICIP，ICPR，ICASSP）也有好文章啊，只要用心去发掘。 [1997] A Decision-Theoretic Generalization of on-Line Learning and an Application to Boosting [1998] Boosting the margin A new explanation for the effectiveness of voting methods [2002 ICIP TR] Empirical Analysis of Detection Cascades of Boosted Classifiers for Rapid Object Detection [2003] The Boosting Approach to Machine Learning An Overview [2004 IJCV] Robust Real-time Face Detection  </p>
+<ol start="2">
+<li><h2 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a><strong>Clustering</strong></h2></li>
+</ol>
+<p>聚类主要有K均值聚类，谱聚类和模糊聚类。在聚类的时候如果自动确定聚类中心的数目是一个一直没有解决的问题。不过这也很正常，评价标准不同，得到的聚类中心数目也不一样。不过这方面还是有一些可以参考的文献，在使用的时候可以基于这些方法设计自己的准则。关于聚类，一般的模式识别书籍都介绍的比较详细，不过关于cluster validity讲的比较少，可以参考下面的文章看看。 [1989 PAMI] Unsupervised Optimal Fuzzy Clustering [1991 PAMI] A validity measure for fuzzy clustering [1995 PAMI] On cluster validity for the fuzzy c-means model [1998] Some New Indexes of Cluster Validity [1999 ACM] Data Clustering A Review [1999 JIIS] On Clustering Validation Techniques [2001] Estimating the number of clusters in a dataset via the Gap statistic [2001 NIPS] On Spectral Clustering [2002] A stability based method for discovering structure in clustered data [2007] A tutorial on spectral clustering</p>
+<ol start="3">
+<li><h2 id="Compressive-Sensing"><a href="#Compressive-Sensing" class="headerlink" title="Compressive Sensing"></a><strong>Compressive Sensing</strong></h2></li>
+</ol>
+<p>最近大红大紫的压缩感知理论。 [2006 TIT] Compressed Sensing [2008 SPM] An Introduction to Compressive Sampling [2011 TSP] Structured Compressed Sensing From Theory to Applications</p>
+<ol start="4">
+<li><h2 id="Decision-Trees"><a href="#Decision-Trees" class="headerlink" title="Decision Trees"></a><strong>Decision Trees</strong></h2></li>
+</ol>
+<p>对决策树感兴趣的同学这篇文章是非看不可的了。 [1986] Introduction to Decision Trees</p>
+<ol start="5">
+<li><h2 id="Dynamical-Programming"><a href="#Dynamical-Programming" class="headerlink" title="Dynamical Programming"></a><strong>Dynamical Programming</strong></h2></li>
+</ol>
+<p>动态规划也是一个比较使用的方法，这里挑选了一篇PAMI的文章以及一篇Book Chapter [1990 PAMI] using dynamic programming for solving variational problems in vision [Book Chapter] Dynamic Programming</p>
+<ol start="6">
+<li><h2 id="Expectation-Maximization"><a href="#Expectation-Maximization" class="headerlink" title="Expectation Maximization"></a><strong>Expectation Maximization</strong></h2></li>
+</ol>
+<p>EM是计算机视觉中非常常见的一种方法，尤其是对参数的估计和拟合，比如高斯混合模型。EM和GMM在Bishop的PRML里单独的作为一章，讲的很不错。关于EM的tutorial，网上也可以搜到很多。 [1977] Maximum likelihood from incomplete data via the EM algorithm [1996 SPM] The Expectation-Maximzation Algorithm</p>
+<ol start="7">
+<li><h2 id="Graphical-Models"><a href="#Graphical-Models" class="headerlink" title="Graphical Models"></a><strong>Graphical Models</strong></h2></li>
+</ol>
+<p>伯克利的乔丹大师的Graphical Model，可以配合这Bishop的PRML一起看。 [1999 ML] An Introduction to Variational Methods for Graphical Models</p>
+<ol start="8">
+<li><h2 id="Hidden-Markov-Model"><a href="#Hidden-Markov-Model" class="headerlink" title="Hidden Markov Model"></a><strong>Hidden Markov Model</strong></h2></li>
+</ol>
+<p>HMM在语音识别中发挥着巨大的作用。在信号处理和图像处理中也有一定的应用。最早接触它是跟小波和检索相关的，用HMM来描述小波系数之间的相互关系，并用来做检索。这里提供一篇1989年的经典综述，几篇HMM在小波，分割，检索和纹理上的应用以及一本比较早的中文电子书，现在也不知道作者是谁，在这里对作者表示感谢。 [1989 ] A tutorial on hidden markov models and selected applications in speech recognition [1998 TSP] Wavelet-based statistical signal processing using hidden Markov models [2001 TIP] Multiscale image segmentation using wavelet-domain hidden Markov models [2002 TMM] Rotation invariant texture characterization and retrieval using steerable wavelet-domain hidden Markov models [2003 TIP] Wavelet-based texture analysis and synthesis using hidden Markov models Hmm Chinese book.pdf</p>
+<ol start="9">
+<li><h2 id="Independent-Component-Analysis"><a href="#Independent-Component-Analysis" class="headerlink" title="Independent Component Analysis"></a><strong>Independent Component Analysis</strong></h2></li>
+</ol>
+<p>同PCA一样，独立成分分析在计算机视觉中也发挥着重要的作用。这里介绍两篇综述性的文章，最后一篇是第二篇的TR版本，内容差不多，但比较清楚一些。 [1999] Independent Component Analysis A Tutorial [2000 NN] Independent component analysis algorithms and applications [2000] Independent Component Analysis Algorithms and Applications</p>
+<ol start="10">
+<li><h2 id="Information-Theory"><a href="#Information-Theory" class="headerlink" title="Information Theory"></a><strong>Information Theory</strong></h2></li>
+</ol>
+<p>计算机视觉中的信息论。这方面有一本很不错的书Information Theory in Computer Vision and Pattern Recognition。这本书有电子版，如果需要用到的话，也可以参考这本书。 [1995 NC] An Information-Maximization Approach to Blind Separation and Blind Deconvolution [2010] An information theory perspective on computational vision</p>
+<ol start="11">
+<li><h2 id="Kalman-Filter"><a href="#Kalman-Filter" class="headerlink" title="Kalman Filter"></a><strong>Kalman Filter</strong></h2></li>
+</ol>
+<p>这个话题在张贤达老师的现代信号处理里面讲的比较深入，还给出了一个有趣的例子。这里列出了Kalman的最早的论文以及几篇综述，还有Unscented Kalman Filter。同时也有一篇Kalman Filter在跟踪中的应用以及两本电子书。 [1960 Kalman] A New Approach to Linear Filtering and Prediction Problems Kalman [1970] Least-squares estimation_from Gauss to Kalman [1997 SPIE] A New Extension of the Kalman Filter to Nonlinear System [2000] The Unscented Kalman Filter for Nonlinear Estimation [2001 Siggraph] An Introduction to the Kalman Filter_full [2003] A Study of the Kalman Filter applied to Visual Tracking</p>
+<ol start="12">
+<li><h2 id="Pattern-Recognition-and-Machine-Learning"><a href="#Pattern-Recognition-and-Machine-Learning" class="headerlink" title="Pattern Recognition and Machine Learning"></a><strong>Pattern Recognition and Machine Learning</strong></h2></li>
+</ol>
+<p>模式识别名气比较大的几篇综述 [2000 PAMI] Statistical pattern recognition a review [2004 CSVT] An Introduction to Biometric Recognition [2010 SPM] Machine Learning in Medical Imaging</p>
+<ol start="13">
+<li><h2 id="Principal-Component-Analysis"><a href="#Principal-Component-Analysis" class="headerlink" title="Principal Component Analysis"></a><strong>Principal Component Analysis</strong></h2></li>
+</ol>
+<p>著名的PCA，在特征的表示和特征降维上非常有用。 [2001 PAMI] PCA versus LDA [2001] Nonlinear component analysis as a kernel eigenvalue problem [2002] A Tutorial on Principal Component Analysis [2009] A Tutorial on Principal Component Analysis [2011] Robust Principal Component Analysis [Book Chapter] Singular Value Decomposition and Principal Component Analysis</p>
+<ol start="14">
+<li><h2 id="Random-Forest"><a href="#Random-Forest" class="headerlink" title="Random Forest"></a><strong>Random Forest</strong></h2></li>
+</ol>
+<p>随机森林 [2001 ML] Random Forests</p>
+<ol start="15">
+<li><h2 id="RANSAC"><a href="#RANSAC" class="headerlink" title="RANSAC"></a><strong>RANSAC</strong></h2></li>
+</ol>
+<p>随机抽样一致性方法，与传统的最小均方误差等完全是两个路子。在Sonka的书里面也有提到。 [2009 BMVC] Performance Evaluation of RANSAC Family</p>
+<ol start="16">
+<li><h2 id="Singular-Value-Decomposition"><a href="#Singular-Value-Decomposition" class="headerlink" title="Singular Value Decomposition"></a><strong>Singular Value Decomposition</strong></h2></li>
+</ol>
+<p>对于非方阵来说，就是SVD发挥作用的时刻了。一般的模式识别书都会介绍到SVD。这里列出了K-SVD以及一篇Book Chapter [2006 TSP] K-SVD An Algorithm for Designing Overcomplete Dictionaries for Sparse Representation [Book Chapter] Singular Value Decomposition and Principal Component Analysis</p>
+<ol start="17">
+<li><h2 id="Sparse-Representation"><a href="#Sparse-Representation" class="headerlink" title="Sparse Representation"></a><strong>Sparse Representation</strong></h2></li>
+</ol>
+<p>这里主要是Proceeding of IEEE上的几篇文章 [2009 PAMI] Robust Face Recognition via Sparse Representation [2009 PIEEE] Image Decomposition and Separation Using Sparse Representations An Overview [2010 PIEEE] Dictionaries for Sparse Representation Modeling [2010 PIEEE] It’s All About the Data [2010 PIEEE] Matrix Completion With Noise [2010 PIEEE] On the Role of Sparse and Redundant Representations in Image Processing [2010 PIEEE] Sparse Representation for Computer Vision and Pattern Recognition [2011 SPM] Directionary Learning</p>
+<ol start="18">
+<li><h2 id="Support-Vector-Machines"><a href="#Support-Vector-Machines" class="headerlink" title="Support Vector Machines"></a>Support Vector Machines</h2></li>
+</ol>
+<p>[1998] A Tutorial on Support Vector Machines for Pattern Recognition [2004] LIBSVM A Library for Support Vector Machines</p>
+<ol start="19">
+<li><h2 id="Wavelet"><a href="#Wavelet" class="headerlink" title="Wavelet"></a><strong>Wavelet</strong></h2></li>
+</ol>
+<p>在小波变换之前，时频分析的工具只有傅立叶变换。众所周知，傅立叶变换在时域没有分辨率，不能捕捉局部频域信息。虽然短时傅立叶变换克服了这个缺点，但只能刻画恒定窗口的频率特性，并且不能很好的扩展到二维。小波变换的出现很好的解决了时频分析的问题，作为一种多分辨率分析工具，在图像处理中得到了极大的发展和应用。在小波变换的发展过程中，有几个人是不得不提的，Mallat， Daubechies，Vetteri， M.N.Do， Swelden，Donoho。Mallat和Daubechies奠定了第一代小波的框架，他们的著作更是小波变换的必读之作，相对来说，小波十讲太偏数学了，比较难懂。而Mallat的信号处理的小波导引更偏应用一点。Swelden提出了第二代小波，使小波变换能够快速方便的实现，他的功劳有点类似于FFT。而Donoho，Vetteri，Mallat及其学生们提出了Ridgelet, Curvelet, Bandelet,Contourlet等几何小波变换，让小波变换有了方向性，更便于压缩，去噪等任务。尤其要提的是M.N.Do，他是一个越南人，得过IMO的银牌，在这个领域著作颇丰。我们国家每年都有5个左右的IMO金牌，希望也有一两个进入这个领域，能够也让我等也敬仰一下。而不是一股脑的都进入金融，管理这种跟数学没有多大关系的行业，呵呵。很希望能看到中国的陶哲轩，中国的M.N.Do。 说到小波，就不得不提JPEG2000。在JPEG2000中使用了Swelden和Daubechies提出的用提升算法实现的9/7小波和5/3小波。如果对比JPEG和JPEG2000，就会发现JPEG2000比JPEG在性能方面有太多的提升。本来我以为JPEG2000的普及只是时间的问题。但现在看来，这个想法太Naive了。现在已经过去十几年了，JPEG2000依然没有任何出头的迹象。不得不说，工业界的惯性力量太强大了。如果以前的东西没有什么硬伤的话，想改变太难了。不巧的是，JPEG2000的种种优点在最近的硬件上已经有了很大的提升。压缩率？现在动辄1T，2T的硬盘，没人太在意压缩率。渐进传输？现在的网速包括无线传输的速度已经相当快了，渐进传输也不是什么优势。感觉现在做图像压缩越来越没有前途了，从最近的会议和期刊文档也可以看出这个趋势。不管怎么说，JPEG2000的Overview还是可以看看的。 [1989 PAMI] A theory for multiresolution signal decomposition__the wavelet representation [1996 PAMI] Image Representation using 2D Gabor Wavelet [1998 ] FACTORING WAVELET TRANSFORMS INTO LIFTING STEPS [1998] The Lifting Scheme_ A Construction Of Second Generation Wavelets [2000 TCE] The JPEG2000 still image coding system_ an overview [2002 TIP] The curvelet transform for image denoising [2003 TIP] Gray and color image contrast enhancement by the curvelet transform [2003 TIP] Mathematical Properties of the jpeg2000 wavelet filters [2003 TIP] The finite ridgelet transform for image representation [2005 TIP] Sparse Geometric Image Representations With Bandelets [2005 TIP] The Contourlet Transform_ An Efficient Directional Multiresolution Image Representation [2010 SPM] The Curvelet Transform    </p>
+<h1 id="四、-图像处理与分析"><a href="#四、-图像处理与分析" class="headerlink" title="四、 图像处理与分析"></a><strong>四、</strong> <strong>图像处理与分析</strong></h1><p>本章主要讨论图像处理与分析。虽然后面计算机视觉部分的有些内容比如特征提取等也可以归结到图像分析中来，但鉴于它们与计算机视觉的紧密联系，以及它们的出处，没有把它们纳入到图像处理与分析中来。同样，这里面也有一些也可以划归到计算机视觉中去。这都不重要，只要知道有这么个方法，能为自己所用，或者从中得到灵感，这就够了。</p>
+<ol>
+<li><h2 id="Bilateral-Filter"><a href="#Bilateral-Filter" class="headerlink" title="Bilateral Filter"></a><strong>Bilateral Filter</strong></h2></li>
+</ol>
+<p>Bilateral Filter俗称双边滤波器是一种简单实用的具有保持边缘作用的平缓滤波器，由Tomasi等在1998年提出。它现在已经发挥着重大作用，尤其是在HDR领域。 [1998 ICCV] Bilateral Filtering for Gray and Color Images [2008 TIP] Adaptive Bilateral Filter for Sharpness Enhancement and Noise Removal</p>
+<ol start="2">
+<li><h2 id="Color"><a href="#Color" class="headerlink" title="Color"></a><strong>Color</strong></h2></li>
+</ol>
+<p>如果对颜色的形成有一定的了解，能比较深刻的理解一些算法。这方面推荐冈萨雷斯的数字图像处理中的相关章节以及Sharma在Digital Color Imaging Handbook中的第一章“Color fundamentals for digital imaging”。跟颜色相关的知识包括Gamma，颜色空间转换，颜色索引以及肤色模型等，这其中也包括著名的EMD。 [1991 IJCV] Color Indexing [2000 IJCV] The Earth Mover’s Distance as a Metric for Image Retrieval [2001 PAMI] Color invariance [2002 IJCV] Statistical Color Models with Application to Skin Detection [2003] A review of RGB color spaces [2007 PR]A survey of skin-color modeling and detection methods Gamma.pdf GammaFAQ.pdf</p>
+<ol start="3">
+<li><h2 id="Compression-and-Encoding"><a href="#Compression-and-Encoding" class="headerlink" title="Compression and Encoding"></a><strong>Compression and Encoding</strong></h2></li>
+</ol>
+<p>个人以为图像压缩编码并不是当前很热的一个话题，原因前面已经提到过。这里可以看看一篇对编码方面的展望文章 [2005 IEEE] Trends and perspectives in image and video coding</p>
+<ol start="4">
+<li><h2 id="Contrast-Enhancement"><a href="#Contrast-Enhancement" class="headerlink" title="Contrast Enhancement"></a><strong>Contrast Enhancement</strong></h2></li>
+</ol>
+<p>对比度增强一直是图像处理中的一个恒久话题，一般来说都是基于直方图的，比如直方图均衡化。冈萨雷斯的书里面对这个话题讲的比较透彻。这里推荐几篇个人认为不错的文章。 [2002 IJCV] Vision and the Atmosphere [2003 TIP] Gray and color image contrast enhancement by the curvelet transform [2006 TIP] Gray-level grouping (GLG) an automatic method for optimized image contrast enhancement-part II [2006 TIP] Gray-level grouping (GLG) an automatic method for optimized image contrast Enhancement-part I [2007 TIP] Transform Coefficient Histogram-Based Image Enhancement Algorithms Using Contrast Entropy [2009 TIP] A Histogram Modification Framework and Its Application for Image Contrast Enhancement</p>
+<ol start="5">
+<li><h2 id="Deblur-Restoration"><a href="#Deblur-Restoration" class="headerlink" title="Deblur (Restoration)"></a><strong>Deblur (Restoration)</strong></h2></li>
+</ol>
+<p>图像恢复或者图像去模糊一直是一个非常难的问题，尤其是盲图像恢复。港中文的jiaya jia老师在这方面做的不错，他在主页也给出了可执行文件。这方面的内容也建议看冈萨雷斯的书。这里列出了几篇口碑比较好的文献，包括古老的Richardson-Lucy方法，几篇盲图像恢复的综述以及最近的几篇文章，尤以Fergus和Jiaya Jia的为经典。 [1972] Bayesian-Based Iterative Method of Image Restoration [1974] an iterative technique for the rectification of observed distributions [1990 IEEE] Iterative methods for image deblurring [1996 SPM] Blind Image Deconvolution [1997 SPM] Digital image restoration [2005] Digital Image Reconstruction - Deblurring and Denoising [2006 Siggraph] Removing Camera Shake from a Single Photograph [2008 Siggraph] High-quality Motion Deblurring from a Single Image [2011 PAMI] Richardson-Lucy Deblurring for Scenes under a Projective Motion Path</p>
+<ol start="6">
+<li><h2 id="Dehazing-and-Defog"><a href="#Dehazing-and-Defog" class="headerlink" title="Dehazing and Defog"></a><strong>Dehazing and Defog</strong></h2></li>
+</ol>
+<p>严格来说去雾化也算是图像对比度增强的一种。这方面最近比较好的工作就是He kaiming等提出的Dark Channel方法。这篇论文也获得了2009的CVPR 最佳论文奖。2这位003年的广东高考状元已经于2011年从港中文博士毕业加入MSRA（估计当时也就二十五六岁吧），相当了不起。 [2008 Siggraph] Single Image Dehazing [2009 CVPR] Single Image Haze Removal Using Dark Channel Prior [2011 PAMI] Single Image Haze Removal Using Dark Channel Prior</p>
+<ol start="7">
+<li><h2 id="Denoising"><a href="#Denoising" class="headerlink" title="Denoising"></a><strong>Denoising</strong></h2></li>
+</ol>
+<p>图像去噪也是图像处理中的一个经典问题，在数码摄影中尤其重要。主要的方法有基于小波的方法和基于偏微分方程的方法。 [1992 SIAM] Image selective smoothing and edge detection by nonlinear diffusion. II [1992 SIAM] Image selective smoothing and edge detection by nonlinear diffusion [1992] Nonlinear total variation based noise removal algorithms [1994 SIAM] Signal and image restoration using shock filters and anisotropic diffusion [1995 TIT] De-noising by soft-thresholding [1998 TIP] Orientation diffusions [2000 TIP] Adaptive wavelet thresholding for image denoising and compression [2000 TIP] Fourth-order partial differential equations for noise removal [2001] Denoising through wavelet shrinkage [2002 TIP] The Curvelet Transform for Image Denoising [2003 TIP] Noise removal using fourth-order partial differential equation with applications to medical magnetic resonance images in space and time [2008 PAMI] Automatic Estimation and Removal of Noise from a Single Image [2009 TIP] Is Denoising Dead</p>
+<ol start="8">
+<li><h2 id="Edge-Detection"><a href="#Edge-Detection" class="headerlink" title="Edge Detection"></a><strong>Edge Detection</strong></h2></li>
+</ol>
+<p>边缘检测也是图像处理中的一个基本任务。传统的边缘检测方法有基于梯度算子，尤其是Sobel算子，以及经典的Canny边缘检测。到现在，Canny边缘检测及其思想仍在广泛使用。关于Canny算法的具体细节可以在Sonka的书以及canny自己的论文中找到，网上也可以搜到。最快最直接的方法就是看OpenCV的源代码，非常好懂。在边缘检测方面，Berkeley的大牛J Malik和他的学生在2004年的PAMI提出的方法效果非常好，当然也比较复杂。在复杂度要求不高的情况下，还是值得一试的。MIT的Bill Freeman早期的代表作Steerable Filter在边缘检测方面效果也非常好，并且便于实现。这里给出了几篇比较好的文献，包括一篇最新的综述。边缘检测是图像处理和计算机视觉中任何方向都无法逃避的一个问题，这方面研究多深都不为过。 [1980] theory of edge detection [1983 Canny Thesis] find edge [1986 PAMI] A Computational Approach to Edge Detection [1990 PAMI] Scale-space and edge detection using anisotropic diffusion [1991 PAMI] The design and use of steerable filters [1995 PR] Multiresolution edge detection techniques [1996 TIP] Optimal edge detection in two-dimensional images [1998 PAMI] Local Scale Control for Edge Detection and Blur Estimation [2003 PAMI] Statistical edge detection_ learning and evaluating edge cues [2004 IEEE] Edge Detection Revisited [2004 PAMI] Design of steerable filters for feature detection using canny-like criteria [2004 PAMI] Learning to Detect Natural Image Boundaries Using Local Brightness, Color, and Texture Cues [2011 IVC] Edge and line oriented contour detection State of the art</p>
+<ol start="9">
+<li><h2 id="Graph-Cut"><a href="#Graph-Cut" class="headerlink" title="Graph Cut"></a><strong>Graph Cut</strong></h2></li>
+</ol>
+<p>基于图割的图像分割算法。在这方面没有研究，仅仅列出几篇引用比较高的文献。这里又见J Malik，当然还有华人杰出学者Jianbo Shi，他的主页非常搞笑，在醒目的位置标注Do not fly China Eastern Airlines … 看来是被坑过，而且坑的比较厉害。这个领域，俄罗斯人比较厉害。 [2000 PAMI] Normalized cuts and image segmentation [2001 PAMI] Fast approximate energy minimization via graph cuts [2004 PAMI] What energy functions can be minimized via graph cuts</p>
+<ol start="10">
+<li><h2 id="Hough-Transform"><a href="#Hough-Transform" class="headerlink" title="Hough Transform"></a><strong>Hough Transform</strong></h2></li>
+</ol>
+<p>虽然霍夫变换可以扩展到广义霍夫变换，但最常用的还是检测圆和直线。这方面同样推荐看OpenCV的源代码，一目了然。Matas在2000年提出的PPHT已经集成到OpenCV中去了。 [1986 CVGIU] A Survey of the Hough Transform [1989] A Comparative study of Hough transform methods for circle finding [1992 PAMI] Shapes recognition using the straight line Hough transform_ theory and generalization [1997 PR] Extraction of line features in a noisy image [2000 CVIU] Robust Detection of Lines Using the Progressive Probabilistic Hough Transform</p>
+<ol start="11">
+<li><h2 id="Image-Interpolation"><a href="#Image-Interpolation" class="headerlink" title="Image Interpolation"></a><strong>Image Interpolation</strong></h2></li>
+</ol>
+<p>图像插值，偶尔也用得上。一般来说，双三次也就够了 [2000 TMI] Interpolation revisited</p>
+<ol start="12">
+<li><h2 id="Image-Matting"><a href="#Image-Matting" class="headerlink" title="Image Matting"></a><strong>Image Matting</strong></h2></li>
+</ol>
+<p>也就是最近，我才知道这个词翻译成中文是抠图，比较难听，不知道是谁开始这么翻译的。没有研究，请看文章以及Richard Szeliski的相关章节。以色列美女Levin在这方面有两篇PAMI。 [2008 Fnd] Image and Video Matting A Survey [2008 PAMI] A Closed-Form Solution to Natural Image Matting [2008 PAMI] Spectral Matting</p>
+<ol start="13">
+<li><h2 id="Image-Modeling"><a href="#Image-Modeling" class="headerlink" title="Image Modeling"></a><strong>Image Modeling</strong></h2></li>
+</ol>
+<p>图像的统计模型。这方面有一本专门的著作Natural Image Statistics [1994] The statistics of natural images [2003 JMIV] On Advances in Statistical Modeling of Natural Images [2009 IJCV] Fields of Experts [2009 PAMI] Modeling multiscale subbands of photographic images with fields of Gaussian scale mixtures</p>
+<ol start="14">
+<li><h2 id="Image-Quality-Assessment"><a href="#Image-Quality-Assessment" class="headerlink" title="Image Quality Assessment"></a><strong>Image Quality Assessment</strong></h2></li>
+</ol>
+<p>在图像质量评价方面，Bovik是首屈一指的。这位老师也很有意思，作为编辑出版了很多书。他也是IEEE的Fellow [2004 TIP] Image quality assessment from error visibility to structural similarity [2011 TIP] blind image quality assessment From Natural Scene Statistics to Perceptual Quality</p>
+<ol start="15">
+<li><h2 id="Image-Registration"><a href="#Image-Registration" class="headerlink" title="Image Registration"></a><strong>Image Registration</strong></h2></li>
+</ol>
+<p>图像配准最早的应用在医学图像上，在图像融合之前需要对图像进行配准。在现在的计算机视觉中，配准也是一个需要理解的概念，比如跟踪，拼接等。在KLT中，也会涉及到配准。这里主要是综述文献。 [1992 MIA] Image matching as a diffusion process [1992 PAMI] A Method for Registration of 3-D shapes [1992] a survey of image registration techniques [1998 MIA] A survey of medical image registration [2003 IVC] Image registration methods a survey [2003 TMI] Mutual-Information-Based Registration of Medical Survey [2011 TIP] Hairis registration</p>
+<ol start="16">
+<li><h2 id="Image-Retrieval"><a href="#Image-Retrieval" class="headerlink" title="Image Retrieval"></a><strong>Image Retrieval</strong></h2></li>
+</ol>
+<p>图像检索曾经很热，在2000年之后似乎消停了一段时间。最近各种图像的不变性特征提出来之后，再加上互联网搜索的商业需求，这个方向似乎又要火起来了，尤其是在商业界，比如淘淘搜。这仍然是一个非常值得关注的方面。而且图像检索与目标识别具有相通之处，比如特征提取和特征降维。这方面的文章值得一读。在最后给出了两篇Book chapter，其中一篇还是中文的。 [2000 PAMI] Content-based image retrieval at the end of the early years [2000 TIP] PicToSeek Combining Color and Shape Invariant Features for Image Retrieval [2002] Content-Based Image Retrieval Systems A Survey [2008] Content-Based Image Retrieval-Literature Survey [2010] Plant Image Retrieval Using Color,Shape and Texture Features [2012 PAMI] A Multimedia Retrieval Framework Based on Semi-Supervised Ranking and Relevance Feedback CBIR Chinese fundament of cbir</p>
+<ol start="17">
+<li><h2 id="Image-Segmentation"><a href="#Image-Segmentation" class="headerlink" title="Image Segmentation"></a><strong>Image Segmentation</strong></h2></li>
+</ol>
+<p>图像分割，非常基本但又非常难的一个问题。建议看Sonka和冈萨雷斯的书。这里给出几篇比较好的文章，再次看到了J Malik。他们给出了源代码和测试集，有兴趣的话可以试试。 [2004 IJCV] Efficient Graph-Based Image Segmentation [2008 CVIU] Image segmentation evaluation A survey of unsupervised methods [2011 PAMI] Contour Detection and Hierarchical Image Segmentation</p>
+<ol start="18">
+<li><h2 id="Level-Set"><a href="#Level-Set" class="headerlink" title="Level Set"></a><strong>Level Set</strong></h2></li>
+</ol>
+<p>大名鼎鼎的水平集，解决了Snake固有的缺点。Level set的两位提出者Sethian和Osher最后反目，实在让人遗憾。个人以为，这种方法除了迭代比较费时，在真实场景中的表现让人生疑。不过，2008年ECCV上的PWP方法在结果上很吸引人。在重初始化方面，Chunming Li给出了比较好的解决方案 [1995 PAMI] Shape modeling with front propagation_ a level set approach [2001 JCP] Level Set Methods_ An Overview and Some Recent Results [2005 CVIU] Geodesic active regions and level set methods for motion estimation and tracking [2007 IJCV] A Review of Statistical Approaches to Level Set Segmentation [2008 ECCV] Robust Real-Time Visual Tracking using Pixel-Wise Posteriors [2010 TIP] Distance Regularized Level Set Evolution and its Application to Image Segmentation</p>
+<ol start="19">
+<li><h2 id="Pyramid"><a href="#Pyramid" class="headerlink" title="Pyramid"></a><strong>Pyramid</strong></h2></li>
+</ol>
+<p>其实小波变换就是一种金字塔分解算法，而且具有无失真重构和非冗余的优点。Adelson在1983年提出的Pyramid优点是比较简单，实现起来比较方便。 [1983] The Laplacian Pyramid as a Compact Image Code</p>
+<ol start="20">
+<li><h2 id="Radon-Transform"><a href="#Radon-Transform" class="headerlink" title="Radon Transform"></a><strong>Radon Transform</strong></h2></li>
+</ol>
+<p>Radon变换也是一种很重要的变换，它构成了图像重建的基础。关于图像重建和radon变换，可以参考章毓晋老师的书，讲的比较清楚。 [1993 PAMI] Image representation via a finite Radon transform [1993 TIP] The fast discrete radon transform I theory [2007 IVC] Generalised finite radon transform for N×N images</p>
+<ol start="21">
+<li><h2 id="Scale-Space"><a href="#Scale-Space" class="headerlink" title="Scale Space"></a><strong>Scale Space</strong></h2></li>
+</ol>
+<p>尺度空间滤波在现代不变特征中是一个非常重要的概念，有人说SIFT的提出者Lowe是不变特征之父，而Linderburg是不变特征之母。虽然尺度空间滤波是Witkin最早提出的，但其理论体系的完善和应用还是Linderburg的功劳。其在1998年IJCV上的两篇文章值得一读，不管是特征提取方面还是边缘检测方面。 [1987] Scale-space filtering [1990 PAMI] Scale-Space for Discrete Signals [1994] Scale-space theory A basic tool for analysing structures at different scales [1998 IJCV] Edge Detection and Ridge Detection with Automatic Scale Selection [1998 IJCV] Feature Detection with Automatic Scale Selection</p>
+<ol start="22">
+<li><h2 id="Snake"><a href="#Snake" class="headerlink" title="Snake"></a><strong>Snake</strong></h2></li>
+</ol>
+<p>活动轮廓模型，改变了传统的图像分割的方法，用能量收缩的方法得到一个统计意义上的能量最小（最大）的边缘。 [1987 IJCV] Snakes Active Contour Models [1996 ] deformable model in medical image A Survey [1997 IJCV] geodesic active contour [1998 TIP] Snakes, shapes, and gradient vector flow [2000 PAMI] Geodesic active contours and level sets for the detection and tracking of moving objects [2001 TIP] Active contours without edges</p>
+<ol start="23">
+<li><h2 id="Super-Resolution"><a href="#Super-Resolution" class="headerlink" title="Super Resolution"></a><strong>Super Resolution</strong></h2></li>
+</ol>
+<p>超分辨率分析。对这个方向没有研究，简单列几篇文章。其中Yang Jianchao的那篇在IEEE上的下载率一直居高不下。 [2002] Example-Based Super-Resolution [2009 ICCV] Super-Resolution from a Single Image [2010 TIP] Image Super-Resolution Via Sparse Representation</p>
+<ol start="24">
+<li><h2 id="Thresholding"><a href="#Thresholding" class="headerlink" title="Thresholding"></a><strong>Thresholding</strong></h2></li>
+</ol>
+<p>阈值分割是一种简单有效的图像分割算法。这个topic在冈萨雷斯的书里面讲的比较多。这里列出OTSU的原始文章以及一篇不错的综述。 [1979 IEEE] OTSU A threshold selection method from gray-level histograms [2001 JISE] A Fast Algorithm for Multilevel Thresholding [2004 JEI] Survey over image thresholding techniques and quantitative performance evaluation</p>
+<ol start="25">
+<li><h2 id="Watershed"><a href="#Watershed" class="headerlink" title="Watershed"></a><strong>Watershed</strong></h2></li>
+</ol>
+<p>分水岭算法是一种非常有效的图像分割算法，它克服了传统的阈值分割方法的缺点，尤其是Marker-Controlled Watershed，值得关注。Watershed在冈萨雷斯的书里面讲的比较详细。 [1991 PAMI] Watersheds in digital spaces an efficient algorithm based on immersion simulations [2001]The Watershed Transform Definitions, Algorithms and Parallelizat on Strategies  </p>
+<h1 id="五、-计算机视觉"><a href="#五、-计算机视觉" class="headerlink" title="五、 计算机视觉"></a><strong>五、</strong> <strong>计算机视觉</strong></h1><p>这一章是计算机视觉部分，主要侧重在底层特征提取，视频分析，跟踪，目标检测和识别方面等方面。对于自己不太熟悉的领域比如摄像机标定和立体视觉，仅仅列出上google上引用次数比较多的文献。有一些刚刚出版的文章，个人非常喜欢，也列出来了。</p>
+<ol>
+<li><h2 id="Active-Appearance-Models"><a href="#Active-Appearance-Models" class="headerlink" title="Active Appearance Models"></a><strong>Active Appearance Models</strong></h2></li>
+</ol>
+<p>活动表观模型和活动轮廓模型基本思想来源Snake，现在在人脸三维建模方面得到了很成功的应用，这里列出了三篇最早最经典的文章。对这个领域有兴趣的可以从这三篇文章开始入手。 [1998 ECCV] Active Appearance Models [2001 PAMI] Active Appearance Models</p>
+<ol start="2">
+<li><h2 id="Active-Shape-Models"><a href="#Active-Shape-Models" class="headerlink" title="Active Shape Models"></a><strong>Active Shape Models</strong></h2></li>
+</ol>
+<p>[1995 CVIU]Active Shape Models-Their Training and Application</p>
+<ol start="3">
+<li><h2 id="Background-modeling-and-subtraction"><a href="#Background-modeling-and-subtraction" class="headerlink" title="Background modeling and subtraction"></a><strong>Background modeling and subtraction</strong></h2></li>
+</ol>
+<p>背景建模一直是视频分析尤其是目标检测中的一项关键技术。虽然最近一直有一些新技术的产生，demo效果也很好，比如基于dynamical texture的方法。但最经典的还是Stauffer等在1999年和2000年提出的GMM方法，他们最大的贡献在于不用EM去做高斯拟合，而是采用了一种迭代的算法，这样就不需要保存很多帧的数据，节省了buffer。Zivkovic在2004年的ICPR和PAMI上提出了动态确定高斯数目的方法，把混合高斯模型做到了极致。这种方法效果也很好，而且易于实现。在OpenCV中有现成的函数可以调用。在背景建模大家族里，无参数方法（2000 ECCV）和Vibe方法也值得关注。 [1997 PAMI] Pfinder Real-Time Tracking of the Human Body [1999 CVPR] Adaptive background mixture models for real-time tracking [1999 ICCV] Wallflower Principles and Practice of Background Maintenance [2000 ECCV] Non-parametric Model for Background Subtraction [2000 PAMI] Learning Patterns of Activity Using Real-Time Tracking [2002 PIEEE] Background and foreground modeling using nonparametric kernel density estimation for visual surveillance [2004 ICPR] Improved adaptive Gaussian mixture model for background subtraction [2004 PAMI] Recursive unsupervised learning of finite mixture models [2006 PRL] Efficient adaptive density estimation per image pixel for the task of background subtraction [2011 TIP] ViBe A Universal Background Subtraction Algorithm for Video Sequences</p>
+<ol start="4">
+<li><h2 id="Bag-of-Words"><a href="#Bag-of-Words" class="headerlink" title="Bag of Words"></a><strong>Bag of Words</strong></h2></li>
+</ol>
+<p>词袋，在这方面暂时没有什么研究。列出三篇引用率很高的文章，以后逐步解剖之。 [2003 ICCV] Video Google A Text Retrieval Approach to Object Matching in Videos [2004 ECCV] Visual Categorization with Bags of Keypoints [2006 CVPR] Beyond bags of features Spatial pyramid matching for recognizing natural scene categories</p>
+<ol start="5">
+<li><h2 id="BRIEF"><a href="#BRIEF" class="headerlink" title="BRIEF"></a><strong>BRIEF</strong></h2></li>
+</ol>
+<p>BRIEF是Binary Robust Independent Elementary Features的简称，是近年来比较受关注的特征描述的方法。ORB也是基于BRIEF的。 [2010 ECCV] BRIEF Binary Robust Independent Elementary Features [2011 ICCV] ORB an efficient alternative to SIFT or SURF [2012 PAMI] BRIEF Computing a Local Binary Descriptor Very Fast</p>
+<ol start="6">
+<li><h2 id="Camera-Calibration-and-Stereo-Vision"><a href="#Camera-Calibration-and-Stereo-Vision" class="headerlink" title="Camera Calibration and Stereo Vision"></a><strong>Camera Calibration and Stereo Vision</strong></h2></li>
+</ol>
+<p>非常不熟悉的领域。仅仅列出了十来篇重要的文献，供以后学习。 [1979 Marr] A Computational Theory of Human Stereo Vision [1985] Computational vision and regularization theory [1987 IEEE] A versatile camera calibration technique for high-accuracy 3D machine vision metrology using off-the-shelf TV cameras and lenses [1987] Probabilistic Solution of Ill-Posed Problems in Computational Vision [1988 PIEEE] Ill-Posed Problems in Early Vision [1989 IJCV] Kalman Filter-based Algorithms for Estimating Depth from Image Sequences [1990 IJCV] Relative Orientation [1990 IJCV] Using vanishing points for camera calibration [1992 ECCV] Camera self-calibration Theory and experiments [1992 IJCV] A theory of self-calibration of a moving camera [1992 PAMI] Camera calibration with distortion models and accuracy evaluation [1994 IJCV] The Fundamental Matrix Theory, Algorithms, and Stability Analysis [1994 PAMI] a stereo matching algorithm with an adaptive window theory and experiment [1999 ICCV] Flexible camera calibration by viewing a plane from unknown orientations [1999 IWAR] Marker tracking and hmd calibration for a video-based augmented reality conferencing system [2000 PAMI] A flexible new technique for camera calibration</p>
+<ol start="7">
+<li><h2 id="Color-and-Histogram-Feature"><a href="#Color-and-Histogram-Feature" class="headerlink" title="Color and Histogram Feature"></a><strong>Color and Histogram Feature</strong></h2></li>
+</ol>
+<p>这里面主要来源于图像检索，早期的图像检测基本基于全局的特征，其中最显著的就是颜色特征。这一部分可以和前面的Color知识放在一起的。 [1995 SPIE] Similarity of color images [1996 PR] IMAGE RETRIEVAL USING COLOR AND SHAPE [1996] comparing images using color coherence vectors [1997 ] Image Indexing Using Color Correlograms [2001 TIP] An Efficient Color Representation for Image Retrieval [2009 CVIU] Performance evaluation of local colour invariants</p>
+<ol start="8">
+<li><h2 id="Deformable-Part-Model"><a href="#Deformable-Part-Model" class="headerlink" title="Deformable Part Model"></a><strong>Deformable Part Model</strong></h2></li>
+</ol>
+<p>大红大热的DPM，在OpenCV中有一个专门的topic讲DPM和latent svm [2008 CVPR] A Discriminatively Trained, Multiscale, Deformable Part Model [2010 CVPR] Cascade Object Detection with Deformable Part Models [2010 PAMI] Object Detection with Discriminatively Trained Part-Based Models</p>
+<ol start="9">
+<li><h2 id="Distance-Transformations"><a href="#Distance-Transformations" class="headerlink" title="Distance Transformations"></a><strong>Distance Transformations</strong></h2></li>
+</ol>
+<p>距离变换，在OpenCV中也有实现。用来在二值图像中寻找种子点非常方便。 [1986 CVGIP] Distance Transformations in Digital Images [2008 ACM] 2D Euclidean Distance Transform Algorithms A Comparative Survey</p>
+<ol start="10">
+<li><h2 id="Face-Detection"><a href="#Face-Detection" class="headerlink" title="Face Detection"></a><strong>Face Detection</strong></h2></li>
+</ol>
+<p>最成熟最有名的当属Haar+Adaboost [1998 PAMI] Neural Network-Based Face Detection [2002 PAMI] Detecting faces in images a survey [2002 PAMI] Face Detection in Color Images [2004 IJCV] Robust Real-Time Face Detection</p>
+<ol start="11">
+<li><h2 id="Face-Recognition"><a href="#Face-Recognition" class="headerlink" title="Face Recognition"></a><strong>Face Recognition</strong></h2></li>
+</ol>
+<p>不熟悉，简单罗列之。 [1991] Face Recognition Using Eigenfaces [2000 PAMI] Automatic Analysis of Facial Expressions The State of the Art [2000] Face Recognition A Literature Survey [2006 PR] Face recognition from a single image per person A survey [2009 PAMI] Robust Face Recognition via Sparse Representation</p>
+<ol start="12">
+<li><h2 id="FAST"><a href="#FAST" class="headerlink" title="FAST"></a><strong>FAST</strong></h2></li>
+</ol>
+<p>用机器学习的方法来提取角点，号称很快很好。 [2006 ECCV] Machine learning for high-speed corner detection [2010 PAMI] Faster and Better A Machine Learning Approach to Corner Detection</p>
+<ol start="13">
+<li><h2 id="Feature-Extraction"><a href="#Feature-Extraction" class="headerlink" title="Feature Extraction"></a><strong>Feature Extraction</strong></h2></li>
+</ol>
+<p>这里的特征主要都是各种不变性特征，SIFT，Harris，MSER等也属于这一类。把它们单独列出来是因为这些方法更流行一点。关于不变性特征，王永明与王贵锦合著的《图像局部不变性特征与描述》写的还不错。Mikolajczyk在2005年的PAMI上的文章以及2007年的综述是不错的学习材料。 [1989 PAMI] On the detection of dominant points on digital curves [1997 IJCV] SUSAN—A New Approach to Low Level Image Processing [2004 IJCV] Matching Widely Separated Views Based on Affine Invariant Regions [2004 IJCV] Scale &amp; Affine Invariant Interest Point Detectors [2005 PAMI] A performance evaluation of local descriptors [2006 IJCV] A Comparison of Affine Region Detectors [2007 FAT] Local Invariant Feature Detectors - A Survey [2011 IJCV] Evaluation of Interest Point Detectors and Feature Descriptors</p>
+<ol start="14">
+<li><h2 id="Feature-Matching"><a href="#Feature-Matching" class="headerlink" title="Feature Matching"></a><strong>Feature Matching</strong></h2></li>
+</ol>
+<p>Fua课题组在今年PAMI上的一篇文章，感觉还不错 [2012 PAMI] LDAHash Improved Matching with Smaller Descriptors</p>
+<ol start="15">
+<li><h2 id="Harris"><a href="#Harris" class="headerlink" title="Harris"></a><strong>Harris</strong></h2></li>
+</ol>
+<p>虽然过去了很多年，Harris角点检测仍然广泛使用，而且基于它有很多变形。如果仔细看了这种方法，从直观也可以感觉到这是一种很稳健的方法。 [1988 Harris] A combined corner and edge detector</p>
+<ol start="16">
+<li><strong>Histograms of Oriented Gradients</strong></li>
+</ol>
+<p>HoG方法也在OpenCV中实现了：HOGDescriptor。 [2005 CVPR] Histograms of Oriented Gradients for Human Detection NavneetDalalThesis.pdf</p>
+<ol start="17">
+<li><strong>Image Distance</strong></li>
+</ol>
+<p>[1993 PAMI] Comparing Images Using the Hausdorff Distance</p>
+<ol start="18">
+<li><strong>Image Stitching</strong></li>
+</ol>
+<p>图像拼接，另一个相关的词是Panoramic。在Computer Vision: Algorithms and Applications一书中，有专门一章是讨论这个问题。这里的两面文章一篇是综述，一篇是这方面很经典的文章。 [2006 Fnd] Image Alignment and Stitching A Tutorial [2007 IJCV] Automatic Panoramic Image Stitching using Invariant Features</p>
+<ol start="19">
+<li><strong>KLT</strong></li>
+</ol>
+<p>KLT跟踪算法，基于Lucas-Kanade提出的配准算法。除了三篇很经典的文章，最后一篇给出了OpenCV实现KLT的细节。 [1981] An Iterative Image Registration Technique with an Application to Stereo Vision full version [1994 CVPR] Good Features to Track [2004 IJCV] Lucas-Kanade 20 Years On A Unifying Framework Pyramidal Implementation of the Lucas Kanade Feature Tracker OpenCV</p>
+<ol start="20">
+<li><strong>Local Binary Pattern</strong></li>
+</ol>
+<p>LBP。OpenCV的Cascade分类器也支持LBP，用来取代Haar特征。 [2002 PAMI] Multiresolution gray-scale and rotation Invariant Texture Classification with Local Binary Patterns [2004 ECCV] Face Recognition with Local Binary Patterns [2006 PAMI] Face Description with Local Binary Patterns [2011 TIP] Rotation-Invariant Image and Video Description With Local Binary Pattern Features</p>
+<ol start="21">
+<li><strong>Low-Level Vision</strong></li>
+</ol>
+<p>关于Low level vision的两篇很不错的文章 [1998 TIP] A general framework for low level vision [2000 IJCV] Learning Low-Level Vision</p>
+<ol start="22">
+<li><strong>Mean Shift</strong></li>
+</ol>
+<p>均值漂移算法，在跟踪中非常流行的方法。Comaniciu在这个方面做出了重要的贡献。最后三篇，一篇是CVIU上的top download文章，一篇是最新的PAMI上关于Mean Shift的文章，一篇是OpenCV实现的文章。 [1995 PAMI] Mean shift, mode seeking, and clustering [2002 PAMI] Mean shift a robust approach toward feature space analysis [2003 CVPR] Mean-shift blob tracking through scale space [2009 CVIU] Object tracking using SIFT features and mean shift [2012 PAMI] Mean Shift Trackers with Cross-Bin Metrics OpenCV Computer Vision Face Tracking For Use in a Perceptual User Interface</p>
+<ol start="23">
+<li><strong>MSER</strong></li>
+</ol>
+<p>这篇文章发表在2002年的BMVC上，后来直接录用到2004年的IVC上，内容差不多。MSER在Sonka的书里面也有提到。 [2002 BMVC] Robust Wide Baseline Stereo from Maximally Stable Extremal Regions [2003] MSER Author Presentation [2004 IVC] Robust wide-baseline stereo from maximally stable extremal regions [2011 PAMI] Are MSER Features Really Interesting</p>
+<ol start="24">
+<li><strong>Object Detection</strong></li>
+</ol>
+<p>首先要说的是第一篇文章的作者，Kah-Kay Sung。他是MIT的博士，后来到新加坡国立任教，极具潜力的一个老师。不幸的是，他和他的妻子都在2000年的新加坡空难中遇难，让人唏嘘不已。 <a href="http://en.wikipedia.org/wiki/Singapore\_Airlines\_Flight_006" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Singapore\_Airlines\_Flight_006</a> 最后一篇文章也是Fua课题组的，作者给出的demo效果相当好。 [1998 PAMI] Example-based learning for view-based human face detection [2003 IJCV] Learning the Statistics of People in Images and Video [2011 PAMI] Learning to Detect a Salient Object [2012 PAMI] A Real-Time Deformable Detector</p>
+<ol start="25">
+<li><h2 id="Object-Tracking"><a href="#Object-Tracking" class="headerlink" title="Object Tracking"></a><strong>Object Tracking</strong></h2></li>
+</ol>
+<p>跟踪也是计算机视觉中的经典问题。粒子滤波，卡尔曼滤波，KLT，mean shift，光流都跟它有关系。这里列出的是传统意义上的跟踪，尤其值得一看的是2008的Survey和2003年的Kernel based tracking。 [2003 PAMI] Kernel-based object tracking [2007 PAMI] Tracking People by Learning Their Appearance [2008 ACM] Object Tracking A Survey [2008 PAMI] Segmentation and Tracking of Multiple Humans in Crowded Environments [2011 PAMI] Hough Forests for Object Detection, Tracking, and Action Recognition [2011 PAMI] Robust Object Tracking with Online Multiple Instance Learning [2012 IJCV] PWP3D Real-Time Segmentation and Tracking of 3D Objects</p>
+<ol start="26">
+<li><h2 id="OCR"><a href="#OCR" class="headerlink" title="OCR"></a><strong>OCR</strong></h2></li>
+</ol>
+<p>一个非常成熟的领域，已经很好的商业化了。 [1992 IEEE] Historical review of OCR research and development Video OCR A Survey and Practitioner’s Guide</p>
+<ol start="27">
+<li><h2 id="Optical-Flow"><a href="#Optical-Flow" class="headerlink" title="Optical Flow"></a><strong>Optical Flow</strong></h2></li>
+</ol>
+<p>光流法，视频分析所必需掌握的一种算法。 [1981 AI] Determine Optical Flow [1994 IJCV] Performance of optical flow techniques [1995 ACM] The Computation of Optical Flow [2004 TR] Tutorial Computing 2D and 3D Optical Flow [2005 BOOK] Optical Flow Estimation [2008 ECCV] Learning Optical Flow [2011 IJCV] A Database and Evaluation Methodology for Optical Flow</p>
+<ol start="28">
+<li><h2 id="Particle-Filter"><a href="#Particle-Filter" class="headerlink" title="Particle Filter"></a><strong>Particle Filter</strong></h2></li>
+</ol>
+<p>粒子滤波，主要给出的是综述以及1998 IJCV上的关于粒子滤波发展早期的经典文章。 [1998 IJCV] CONDENSATION—Conditional Density Propagation for Visual Tracking [2002 TSP] A tutorial on particle filters for online nonlinear non-Gaussian Bayesian tracking [2002 TSP] Particle filters for positioning, navigation, and tracking [2003 SPM] particle filter</p>
+<ol start="29">
+<li><h2 id="Pedestrian-and-Human-detection"><a href="#Pedestrian-and-Human-detection" class="headerlink" title="Pedestrian and Human detection"></a><strong>Pedestrian and Human detection</strong></h2></li>
+</ol>
+<p>仍然是综述类，关于行人和人体的运动检测和动作识别。 [1999 CVIU] Visual analysis of human movement_ A survey [2001 CVIU] A Survey of Computer Vision-Based Human Motion Capture [2005 TIP] Image change detection algorithms a systematic survey [2006 CVIU] a survey of avdances in vision based human motion capture [2007 CVIU] Vision-based human motion analysis An overview [2007 IJCV] Pedestrian Detection via Periodic Motion Analysis [2007 PR] A survey of skin-color modeling and detection methods [2010 IVC] A survey on vision-based human action recognition [2012 PAMI] Pedestrian Detection An Evaluation of the State of the Art</p>
+<ol start="30">
+<li><h2 id="Scene-Classification"><a href="#Scene-Classification" class="headerlink" title="Scene Classification"></a><strong>Scene Classification</strong></h2></li>
+</ol>
+<p>当相机越来越傻瓜化的时候，自动场景识别就非常重要。这是比拼谁家的Auto功能做的比较好的时候了。 [2001 IJCV] Modeling the Shape of the Scene A Holistic Representation of the Spatial Envelope [2001 PAMI] Visual Word Ambiguity [2007 PAMI] A Thousand Words in a Scene [2010 PAMI] Evaluating Color Descriptors for Object and Scene Recognition [2011 PAMI] CENTRIST A Visual Descriptor for Scene Categorization</p>
+<ol start="31">
+<li><h2 id="Shadow-Detection"><a href="#Shadow-Detection" class="headerlink" title="Shadow Detection"></a><strong>Shadow Detection</strong></h2></li>
+</ol>
+<p>[2003 PAMI] Detecting moving shadows– algorithms and evaluation</p>
+<ol start="32">
+<li><h2 id="Shape"><a href="#Shape" class="headerlink" title="Shape"></a><strong>Shape</strong></h2></li>
+</ol>
+<p>关于形状，主要是两个方面：形状的表示和形状的识别。形状的表示主要是从边缘或者区域当中提取不变性特征，用来做检索或者识别。这方面Sonka的书讲的比较系统。2008年的那篇综述在这方面也讲的不错。至于形状识别，最牛的当属J Malik等提出的Shape Context。 [1993 PR] IMPROVED MOMENT INVARIANTS FOR SHAPE DISCRIMINATION [1993 PR] Pattern Recognition by Affine Moment Invariants [1996 PR] IMAGE RETRIEVAL USING COLOR AND SHAPE [2001 SMI] Shape matching similarity measures and algorithms [2002 PAMI] Shape matching and object recognition using shape contexts [2004 PR] Review of shape representation and description techniques [2006 PAMI] Integral Invariants for Shape Matching [2008] A Survey of Shape Feature Extraction Techniques</p>
+<ol start="33">
+<li><h2 id="SIFT"><a href="#SIFT" class="headerlink" title="SIFT"></a><strong>SIFT</strong></h2></li>
+</ol>
+<p>关于SIFT，实在不需要介绍太多，一万多次的引用已经说明问题了。SURF和PCA-SIFT也是属于这个系列。后面列出了几篇跟SIFT有关的问题。 [1999 ICCV] Object recognition from local scale-invariant features [2000 IJCV] Evaluation of Interest Point Detectors [2003 CVIU] Speeded-Up Robust Features (SURF) [2004 CVPR] PCA-SIFT A More Distinctive Representation for Local Image Descriptors [2004 IJCV] Distinctive Image Features from Scale-Invariant Keypoints [2010 IJCV] Improving Bag-of-Features for Large Scale Image Search [2011 PAMI] SIFTflow Dense Correspondence across Scenes and its Applications</p>
+<ol start="34">
+<li><h2 id="SLAM"><a href="#SLAM" class="headerlink" title="SLAM"></a><strong>SLAM</strong></h2></li>
+</ol>
+<p>Simultaneous Localization and Mapping, 同步定位与建图。 SLAM问题可以描述为: 机器人在未知环境中从一个未知位置开始移动,在移动过程中根据位置估计和地图进行自身定位,同时在自身定位的基础上建造增量式地图，实现机器人的自主定位和导航。 [2002 PAMI] Simultaneous Localization and Map-Building Using Active Vision [2007 PAMI] MonoSLAM Real-Time Single Camera SLAM</p>
+<ol start="35">
+<li><h2 id="Texture-Feature"><a href="#Texture-Feature" class="headerlink" title="Texture Feature"></a><strong>Texture Feature</strong></h2></li>
+</ol>
+<p>纹理特征也是物体识别和检索的一个重要特征集。 [1973] Textural features for image classification [1979 ] Statistical and structural approaches to texture [1996 PAMI] Texture features for browsing and retrieval of image data [2002 PR] Brief review of invariant texture analysis methods [2012 TIP] Color Local Texture Features for Color Face Recognition</p>
+<ol start="36">
+<li><h2 id="TLD"><a href="#TLD" class="headerlink" title="TLD"></a><strong>TLD</strong></h2></li>
+</ol>
+<p>Kadal创立了TLD，跟踪学习检测同步进行，达到稳健跟踪的目的。他的两个导师也是大名鼎鼎，一个是发明MSER的Matas，一个是Mikolajczyk。他还创立了一个公司TLD Vision s.r.o. 这里给出了他的系列文章，最后一篇是刚出来的PAMI。 [2009] Online learning of robust object detectors during unstable tracking [2010 CVPR] P-N Learning Bootstrapping Binary Classifiers by Structural Constraints [2010 ICIP] FACE-TLD TRACKING-LEARNING-DETECTION APPLIED TO FACES [2012 PAMI] Tracking-Learning-Detection</p>
+<ol start="37">
+<li><h2 id="Video-Surveillance"><a href="#Video-Surveillance" class="headerlink" title="Video Surveillance"></a><strong>Video Surveillance</strong></h2></li>
+</ol>
+<p>前两篇是两个很有名的视频监控系统，里面包含了很丰富的信息量，比如CMU的那个系统里面的背景建模算法也是相当简单有效的。最后一篇是比较近的综述。 [2000 CMU TR] A System for Video Surveillance and Monitoring [2000 PAMI] W4– real-time surveillance of people and their activities [2008 MVA] The evolution of video surveillance an overview</p>
+<ol start="38">
+<li><h2 id="Viola-Jones"><a href="#Viola-Jones" class="headerlink" title="Viola-Jones"></a><strong>Viola-Jones</strong></h2></li>
+</ol>
+<p>Haar+Adaboost的弱弱联手，组成了最强大的利器。在OpenCV里面有它的实现，也可以选择用LBP来代替Haar特征。 [2001 CVPR] Rapid object detection using a boosted cascade of simple features [2004 IJCV] Robust Real-time Face Detection</p>
+<h1 id="六、-结束语"><a href="#六、-结束语" class="headerlink" title="六、 结束语"></a><strong>六、</strong> <strong>结束语</strong></h1><p>历时一个多月，终于用业余时间把这些资料整理出来了，总算了却了一块心病，也不至于再看着一堆资料发愁了。以后可能会有些小修小补，但不会有太大的变化了。万里长征走完了第一步，剩下的就是理解和消化了。借新浪ishare共享出来，希望能够对你的科研也有一定的帮助。最后简单统计一下各个年份出现的频率。 文章总数：372 2012年： 10 2011年： 20 2010年： 20 2009年： 14 2008年： 18 2007年： 13 2006年： 14 2005年： 9 2004年： 24 2003年： 22 2002年： 21 2001年： 21 2000年： 23 1999年： 10 1998年： 22 1997年： 8 1996年： 9 1995年： 9 1994年： 7 1993年： 5 1992年： 11 1991年： 5 1990年： 6 1980-1989： 22 1960-1979： 9 <a href="http://www.dhu021.top/wp-content/uploads/2018/10/截至2012年-图像处理与计算机视觉基础总结.docx" target="_blank" rel="noopener">截至2012年-图像处理与计算机视觉基础总结</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    小蜜蜂
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zyb0408.github.io/2018-10-19-图像处理与计算机视觉基础【2012年】.html" title="图像处理与计算机视觉基础【2012年】">https://zyb0408.github.io/2018-10-19-图像处理与计算机视觉基础【2012年】.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018-10-16-C++中的多重继承.html" rel="next" title="C++中的多重继承">
+                <i class="fa fa-chevron-left"></i> C++中的多重继承
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018-10-20-第一节OpenCV基础.html" rel="prev" title="【第一节OpenCV基础】">
+                【第一节OpenCV基础】 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon-32x32-next.png" alt="小蜜蜂">
+            
+              <p class="site-author-name" itemprop="name">小蜜蜂</p>
+              <p class="site-description motion-element" itemprop="description">小蜜蜂学计算机</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-绪论"><span class="nav-number">1.</span> <span class="nav-text">一、 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要写这篇文章"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要写这篇文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像处理和计算机视觉的分类"><span class="nav-number">1.2.</span> <span class="nav-text">图像处理和计算机视觉的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像处理和计算机视觉开源库以及编程语言选择"><span class="nav-number">1.3.</span> <span class="nav-text">图像处理和计算机视觉开源库以及编程语言选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-重中之重：编程语言之C-C"><span class="nav-number">1.3.1.</span> <span class="nav-text">1) 重中之重：编程语言之C/C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-辅助工具之：MATLAB"><span class="nav-number">1.3.2.</span> <span class="nav-text">2) 辅助工具之：MATLAB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-辅助工具之：OPENCV"><span class="nav-number">1.3.3.</span> <span class="nav-text">3) 辅助工具之：OPENCV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-简单说说其它语言"><span class="nav-number">1.3.4.</span> <span class="nav-text">4) 简单说说其它语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本文的特点和结构，以及适合的对象"><span class="nav-number">1.4.</span> <span class="nav-text">本文的特点和结构，以及适合的对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-图像处理与计算机视觉相关的书籍"><span class="nav-number">2.</span> <span class="nav-text">二、 图像处理与计算机视觉相关的书籍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数学"><span class="nav-number">2.1.</span> <span class="nav-text">数学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信号处理"><span class="nav-number">2.2.</span> <span class="nav-text">信号处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-经典信号处理"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1**经典信号处理**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-随机信号处理"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2**随机信号处理**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-小波变换"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3 小波变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-信息论"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.4 信息论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式识别"><span class="nav-number">2.3.</span> <span class="nav-text">模式识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像处理与计算机视觉的书籍推荐"><span class="nav-number">2.4.</span> <span class="nav-text">图像处理与计算机视觉的书籍推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">2.5.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-计算机视觉中的信号处理与模式识别"><span class="nav-number">3.</span> <span class="nav-text">三、 计算机视觉中的信号处理与模式识别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Boosting"><span class="nav-number">3.1.</span> <span class="nav-text">Boosting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clustering"><span class="nav-number">3.2.</span> <span class="nav-text">Clustering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compressive-Sensing"><span class="nav-number">3.3.</span> <span class="nav-text">Compressive Sensing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Trees"><span class="nav-number">3.4.</span> <span class="nav-text">Decision Trees</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamical-Programming"><span class="nav-number">3.5.</span> <span class="nav-text">Dynamical Programming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Expectation-Maximization"><span class="nav-number">3.6.</span> <span class="nav-text">Expectation Maximization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphical-Models"><span class="nav-number">3.7.</span> <span class="nav-text">Graphical Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hidden-Markov-Model"><span class="nav-number">3.8.</span> <span class="nav-text">Hidden Markov Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Independent-Component-Analysis"><span class="nav-number">3.9.</span> <span class="nav-text">Independent Component Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Information-Theory"><span class="nav-number">3.10.</span> <span class="nav-text">Information Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kalman-Filter"><span class="nav-number">3.11.</span> <span class="nav-text">Kalman Filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pattern-Recognition-and-Machine-Learning"><span class="nav-number">3.12.</span> <span class="nav-text">Pattern Recognition and Machine Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Principal-Component-Analysis"><span class="nav-number">3.13.</span> <span class="nav-text">Principal Component Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Random-Forest"><span class="nav-number">3.14.</span> <span class="nav-text">Random Forest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RANSAC"><span class="nav-number">3.15.</span> <span class="nav-text">RANSAC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Singular-Value-Decomposition"><span class="nav-number">3.16.</span> <span class="nav-text">Singular Value Decomposition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sparse-Representation"><span class="nav-number">3.17.</span> <span class="nav-text">Sparse Representation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Support-Vector-Machines"><span class="nav-number">3.18.</span> <span class="nav-text">Support Vector Machines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wavelet"><span class="nav-number">3.19.</span> <span class="nav-text">Wavelet</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-图像处理与分析"><span class="nav-number">4.</span> <span class="nav-text">四、 图像处理与分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bilateral-Filter"><span class="nav-number">4.1.</span> <span class="nav-text">Bilateral Filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Color"><span class="nav-number">4.2.</span> <span class="nav-text">Color</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compression-and-Encoding"><span class="nav-number">4.3.</span> <span class="nav-text">Compression and Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Contrast-Enhancement"><span class="nav-number">4.4.</span> <span class="nav-text">Contrast Enhancement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deblur-Restoration"><span class="nav-number">4.5.</span> <span class="nav-text">Deblur (Restoration)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dehazing-and-Defog"><span class="nav-number">4.6.</span> <span class="nav-text">Dehazing and Defog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Denoising"><span class="nav-number">4.7.</span> <span class="nav-text">Denoising</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Edge-Detection"><span class="nav-number">4.8.</span> <span class="nav-text">Edge Detection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Cut"><span class="nav-number">4.9.</span> <span class="nav-text">Graph Cut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hough-Transform"><span class="nav-number">4.10.</span> <span class="nav-text">Hough Transform</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Interpolation"><span class="nav-number">4.11.</span> <span class="nav-text">Image Interpolation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Matting"><span class="nav-number">4.12.</span> <span class="nav-text">Image Matting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Modeling"><span class="nav-number">4.13.</span> <span class="nav-text">Image Modeling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Quality-Assessment"><span class="nav-number">4.14.</span> <span class="nav-text">Image Quality Assessment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Registration"><span class="nav-number">4.15.</span> <span class="nav-text">Image Registration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Retrieval"><span class="nav-number">4.16.</span> <span class="nav-text">Image Retrieval</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Segmentation"><span class="nav-number">4.17.</span> <span class="nav-text">Image Segmentation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-Set"><span class="nav-number">4.18.</span> <span class="nav-text">Level Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pyramid"><span class="nav-number">4.19.</span> <span class="nav-text">Pyramid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Radon-Transform"><span class="nav-number">4.20.</span> <span class="nav-text">Radon Transform</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scale-Space"><span class="nav-number">4.21.</span> <span class="nav-text">Scale Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Snake"><span class="nav-number">4.22.</span> <span class="nav-text">Snake</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Super-Resolution"><span class="nav-number">4.23.</span> <span class="nav-text">Super Resolution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thresholding"><span class="nav-number">4.24.</span> <span class="nav-text">Thresholding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Watershed"><span class="nav-number">4.25.</span> <span class="nav-text">Watershed</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-计算机视觉"><span class="nav-number">5.</span> <span class="nav-text">五、 计算机视觉</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Active-Appearance-Models"><span class="nav-number">5.1.</span> <span class="nav-text">Active Appearance Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Active-Shape-Models"><span class="nav-number">5.2.</span> <span class="nav-text">Active Shape Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background-modeling-and-subtraction"><span class="nav-number">5.3.</span> <span class="nav-text">Background modeling and subtraction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bag-of-Words"><span class="nav-number">5.4.</span> <span class="nav-text">Bag of Words</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BRIEF"><span class="nav-number">5.5.</span> <span class="nav-text">BRIEF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Camera-Calibration-and-Stereo-Vision"><span class="nav-number">5.6.</span> <span class="nav-text">Camera Calibration and Stereo Vision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Color-and-Histogram-Feature"><span class="nav-number">5.7.</span> <span class="nav-text">Color and Histogram Feature</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deformable-Part-Model"><span class="nav-number">5.8.</span> <span class="nav-text">Deformable Part Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Distance-Transformations"><span class="nav-number">5.9.</span> <span class="nav-text">Distance Transformations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Face-Detection"><span class="nav-number">5.10.</span> <span class="nav-text">Face Detection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Face-Recognition"><span class="nav-number">5.11.</span> <span class="nav-text">Face Recognition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAST"><span class="nav-number">5.12.</span> <span class="nav-text">FAST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-Extraction"><span class="nav-number">5.13.</span> <span class="nav-text">Feature Extraction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-Matching"><span class="nav-number">5.14.</span> <span class="nav-text">Feature Matching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Harris"><span class="nav-number">5.15.</span> <span class="nav-text">Harris</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-Tracking"><span class="nav-number">5.16.</span> <span class="nav-text">Object Tracking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OCR"><span class="nav-number">5.17.</span> <span class="nav-text">OCR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optical-Flow"><span class="nav-number">5.18.</span> <span class="nav-text">Optical Flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Particle-Filter"><span class="nav-number">5.19.</span> <span class="nav-text">Particle Filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pedestrian-and-Human-detection"><span class="nav-number">5.20.</span> <span class="nav-text">Pedestrian and Human detection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scene-Classification"><span class="nav-number">5.21.</span> <span class="nav-text">Scene Classification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shadow-Detection"><span class="nav-number">5.22.</span> <span class="nav-text">Shadow Detection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shape"><span class="nav-number">5.23.</span> <span class="nav-text">Shape</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SIFT"><span class="nav-number">5.24.</span> <span class="nav-text">SIFT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SLAM"><span class="nav-number">5.25.</span> <span class="nav-text">SLAM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Texture-Feature"><span class="nav-number">5.26.</span> <span class="nav-text">Texture Feature</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TLD"><span class="nav-number">5.27.</span> <span class="nav-text">TLD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Video-Surveillance"><span class="nav-number">5.28.</span> <span class="nav-text">Video Surveillance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Viola-Jones"><span class="nav-number">5.29.</span> <span class="nav-text">Viola-Jones</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、-结束语"><span class="nav-number">6.</span> <span class="nav-text">六、 结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小蜜蜂</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">83.4k</span>
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2017,09,17,00,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('100');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

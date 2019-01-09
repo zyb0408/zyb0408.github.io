@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Computer Siencise, OpenCV, TensorFlow">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="尽管大多数应用程序都使用单个基类的公用继承，但有些时候单继承是不够用的，因为可能无法为问题域建模或对模型带来不必要的复杂性。在这种情况下，多重继承可以更直接地为应用程序建模。 一、基本概念========== 多重继承是从多于一个直接基类派生类的能力，多重继承的派生类继承其父类的属性。12345678class ZooAnimal&amp;#123;&amp;#125;;class Bear : public Z">
+<meta name="keywords" content="TensorFlow OpenCV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++中的多重继承">
+<meta property="og:url" content="https://zyb0408.github.io/2018-10-16-C++中的多重继承.html">
+<meta property="og:site_name" content="小蜜蜂">
+<meta property="og:description" content="尽管大多数应用程序都使用单个基类的公用继承，但有些时候单继承是不够用的，因为可能无法为问题域建模或对模型带来不必要的复杂性。在这种情况下，多重继承可以更直接地为应用程序建模。 一、基本概念========== 多重继承是从多于一个直接基类派生类的能力，多重继承的派生类继承其父类的属性。12345678class ZooAnimal&amp;#123;&amp;#125;;class Bear : public Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222136-300x178.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog2015/697266/201503/291038273955451.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog2015/697266/201503/291355344892762.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222149-300x105.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog2015/697266/201503/291356509745460.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222154.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog2015/697266/201503/291400403179160.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222157.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog2015/697266/201503/291407428646917.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222202.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog2015/697266/201503/291411454741468.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222209.png">
+<meta property="og:updated_time" content="2018-10-16T13:34:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++中的多重继承">
+<meta name="twitter:description" content="尽管大多数应用程序都使用单个基类的公用继承，但有些时候单继承是不够用的，因为可能无法为问题域建模或对模型带来不必要的复杂性。在这种情况下，多重继承可以更直接地为应用程序建模。 一、基本概念========== 多重继承是从多于一个直接基类派生类的能力，多重继承的派生类继承其父类的属性。12345678class ZooAnimal&amp;#123;&amp;#125;;class Bear : public Z">
+<meta name="twitter:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222136-300x178.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zyb0408.github.io/2018-10-16-C++中的多重继承.html">
+
+
+
+
+
+  <title>C++中的多重继承 | 小蜜蜂</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小蜜蜂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Don't Hack Me</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zyb0408.github.io/2018-10-16-C++中的多重继承.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小蜜蜂">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-32x32-next.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小蜜蜂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++中的多重继承</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T21:34:11+08:00">
+                2018-10-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-16T21:34:11+08:00">
+                2018-10-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+		<div>
+		
+			<div>
+    
+        <div style="text-align:center;color: #636363;font-size:14px;letter-spacing: 10px">���Ľ�����<i class="fa fa-bell"></i>��л�����Ķ�</div>
+    
+</div>
+		
+	</div>
+      
+      
+
+      
+        <p>尽管大多数应用程序都使用单个基类的公用继承，但有些时候单继承是不够用的，因为可能无法为问题域建模或对模型带来不必要的复杂性。在这种情况下，多重继承可以更直接地为应用程序建模。</p>
+<h2 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h2><p>==========</p>
+<p>多重继承是从多于一个直接基类派生类的能力，多重继承的派生类继承其父类的属性。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZooAnimal</span>&#123;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bear</span> :</span> <span class="keyword">public</span> ZooAnimal&#123;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Endangered</span>&#123;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Panda</span> :</span> <span class="keyword">public</span> Bear, <span class="keyword">public</span> Endangered&#123;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong> <strong>（1）</strong>与单继承一样，只有在定义之后，类才可以用作多重继承的基类。 <strong>（2）</strong>对于类可以继承的基类的数目，没有语言强加的限制，但在一个给定派生列表中，一个基类只能出现一次。</p>
+<h2 id="1、多重继承的派生类从每个基类中继承状态"><a href="#1、多重继承的派生类从每个基类中继承状态" class="headerlink" title="1、多重继承的派生类从每个基类中继承状态"></a><strong>1、</strong>多重继承的派生类从每个基类中继承状态</h2><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Panda ying_yang(<span class="string">"ying_yang"</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>对象ying_yang包含一个Bear子类对象、一个Endangered子类对象以及Panda类中声明的非static数据成员。如下图所示： <img src="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222136-300x178.png" alt=""> <img src="https://images0.cnblogs.com/blog2015/697266/201503/291038273955451.png" alt=""></p>
+<h2 id="2、派生类构造函数初始化所有基类"><a href="#2、派生类构造函数初始化所有基类" class="headerlink" title="2、派生类构造函数初始化所有基类"></a><strong>2、</strong>派生类构造函数初始化所有基类</h2><p>派生类构造函数可以早构造函数初始化式中给零个或多个基类传递值。<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Panda::Panda(<span class="built_in">string</span> <span class="built_in">name</span>, bool onExhibit)</span><br><span class="line">    : Bear(<span class="built_in">name</span>, onExhibit, <span class="string">"Panda"</span>),</span><br><span class="line">    Endangered(Endangered::critical)&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>构造函数初始化式只能控制用于初始化基类的值，不能控制基类的构造次序。基类构造函数按照基类构造函数在类派生列表中的出现次序调用。对于Panda，基类初始化次序是： （1）ZooAnimal。 （2）Bear，第一个直接基类。 （3）Endangered，第二个直接基类，它本身没有基类。 （4）Panda，初始化本身成员，然后运行它的构造函数的函数体。 <strong>注意：</strong>构造函数调用次序既不受构造函数初始化列表中出现的基类的影响，也不受基类在构造函数初始化列表中的出现次序的影响。例如：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Panda</span><span class="selector-pseudo">::Panda()</span> : <span class="selector-tag">Endangered</span>(<span class="selector-tag">Endangered</span><span class="selector-pseudo">::critical)</span>&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个构造函数将隐式调用Bear的默认构造函数，尽管它不出现在构造函数初始化列表中，但仍然在Endangered类构造函数之前调用。</p>
+<h2 id="3、析构的次序"><a href="#3、析构的次序" class="headerlink" title="3、析构的次序"></a><strong>3、</strong>析构的次序</h2><p>按照构造函数运行的逆序调用析构函数。Panda、Endangered、Bear，ZooAnimal。</p>
+<h1 id="二、转换与多个基类"><a href="#二、转换与多个基类" class="headerlink" title="二、转换与多个基类"></a><strong>二、转换与多个基类</strong></h1><p>单个基类情况下，派生类的指针或引用可自动转换为基类的指针或引用。对于多重继承，派生类的指针或引用可以转换为其任意基类的指针或引用。 <strong>注意：</strong>在多重继承情况下，遇到二义性转换的可能性更大。编译器不会试图根据派生类转换来区别基类间的转换，转换到每个基类都一样好。例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> Bear&amp;)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">const</span> Endangered&amp;)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>通过Panda对象调用print时，会导致一个编译时错误。</p>
+<h2 id="1、基于指针或引用类型的查找"><a href="#1、基于指针或引用类型的查找" class="headerlink" title="1、基于指针或引用类型的查找"></a><strong>1、</strong>基于指针或引用类型的查找</h2><p>与单继承一样，用基类的指针或引用只能访问基类中定义（或继承）的成员，不能访问派生类中引入的成员。当一个类派生于多个基类的时候，那些基类之间没有隐含的关系，不允许使用一个基类的指针访问其他基类的成员。例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZooAnimal</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~ZooAnimal()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bear</span> :</span> <span class="keyword">public</span> ZooAnimal</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Bear"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">toes</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Endangered</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">highlight</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Endangered.highlight"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~Endangered()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Panda</span> :</span> <span class="keyword">public</span> Bear, <span class="keyword">public</span> Endangered</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Panda"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">highlight</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Panda.highlight"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">toes</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">cuddle</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~Panda()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Goodby Panda"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>当有如下调用发生时：<br><figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    Bear *pb = <span class="keyword">new</span> Panda();</span><br><span class="line">    pb-&gt;<span class="built_in">print</span>();            //ok: Panda::<span class="built_in">print</span></span><br><span class="line">//    pb-&gt;cuddle();            //<span class="built_in">error</span>: <span class="keyword">not</span> part of Bear <span class="class"><span class="keyword">interface</span></span></span><br><span class="line">//    pb-&gt;highlight();        //<span class="built_in">error</span>: <span class="keyword">not</span> part of Bear <span class="class"><span class="keyword">interface</span></span></span><br><span class="line">    delete pb;                //Panda::~Panda</span><br><span class="line"></span><br><span class="line">    Endangered *pe = <span class="keyword">new</span> Panda();</span><br><span class="line">    pe-&gt;<span class="built_in">print</span>();            //ok: Panda::<span class="built_in">print</span></span><br><span class="line">//    pe-&gt;toes();                //<span class="built_in">error</span>: <span class="keyword">not</span> part of Endangered <span class="class"><span class="keyword">interface</span></span></span><br><span class="line">//    pe-&gt;cuddle();            //<span class="built_in">error</span>: <span class="keyword">not</span> part of Endangered <span class="class"><span class="keyword">interface</span></span></span><br><span class="line">    pe-&gt;highlight();        //ok: Panda::highlight</span><br><span class="line">    delete pe;                //Panda::~Panda</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2、确定使用哪个虚析构函数"><a href="#2、确定使用哪个虚析构函数" class="headerlink" title="2、确定使用哪个虚析构函数"></a><strong>2、</strong>确定使用哪个虚析构函数</h2><p>我们假定所有根基类都将它们的析构函数定义为虚函数，那么通过下面几种删除指针方法，虚析构函数处理都是一致的。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> pz;            <span class="comment">//pz is a ZooAnimal*</span></span><br><span class="line"><span class="keyword">delete</span> pb;            <span class="comment">//pb is a Bear*</span></span><br><span class="line"><span class="keyword">delete</span> pp;            <span class="comment">//pp is a Panda*</span></span><br><span class="line"><span class="keyword">delete</span> pe;            <span class="comment">//pe is a Endangered*</span></span><br></pre></td></tr></table></figure></p>
+<p>假定上面四个指针都指向Panda对象，则每种情况发生完全相同的析构函数调用次序，即与构造次序是逆序的：通过虚机制调用Panda析构函数，再依次调用Endangered、Bear，ZooAnimal的析构函数。</p>
+<h1 id="三、多重继承派生类的复制控制"><a href="#三、多重继承派生类的复制控制" class="headerlink" title="三、多重继承派生类的复制控制"></a><strong>三、多重继承派生类的复制控制</strong></h1><p>多重继承的派生类使用基类自己的复制构造函数、赋值操作符，析构函数隐式构造、赋值或撤销每个基类。下面我们做几个小实验：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ZooAnimal</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ZooAnimal()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am ZooAnimal default constructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ZooAnimal(<span class="keyword">const</span> ZooAnimal&amp;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am ZooAnimal copy constructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~ZooAnimal()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am ZooAnimal destructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ZooAnimal&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> ZooAnimal&amp;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am ZooAnimal copy operator="</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bear</span> :</span> <span class="keyword">public</span> ZooAnimal</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Bear()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Bear default constructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Bear(<span class="keyword">const</span> Bear&amp;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Bear copy constructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~Bear()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Bear destructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Bear&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Bear&amp;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Bear copy operator="</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Endangered</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Endangered()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Endangered default constructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Endangered(<span class="keyword">const</span> Endangered&amp;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Endangered copy constructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~Endangered()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Endangered destructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Endangered&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Endangered&amp;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Endangered copy operator="</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Panda</span> :</span> <span class="keyword">public</span> Bear, <span class="keyword">public</span> Endangered</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Panda()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Panda default constructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Panda(<span class="keyword">const</span> Panda&amp;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Panda copy constructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~Panda()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Panda destructor"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Panda&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Panda&amp;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"I am Panda copy operator="</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>还是前面的类，只不过我将没有必要的虚函数去掉了。下面我执行以下操作：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"TEST 1"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    Panda ying_ying;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"TEST 2"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    Panda zing_zing = ying_ying;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"TEST 3"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    zing_zing = ying_ying;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面我们先来看TEST1的结果： <img src="https://images0.cnblogs.com/blog2015/697266/201503/291355344892762.png" alt=""><img src="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222149-300x105.png" alt=""> 这个结果是毫无疑问的，先调用基类构造函数，再调用派生类。 接着，我们来看TEST2的结果： <img src="https://images0.cnblogs.com/blog2015/697266/201503/291356509745460.png" alt=""><img src="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222154.png" alt=""> 首先调用默认构造函数构造一个zing_zing对象，然后调用拷贝构造函数，将ying_ying拷贝至zing_zing。<strong>注意：这里用的是拷贝构造函数，而不是赋值操作符，那什么时候用赋值操作符呢？</strong>我们接着看TEST3的结果： <img src="https://images0.cnblogs.com/blog2015/697266/201503/291400403179160.png" alt=""><img src="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222157.png" alt=""> 这种情况才调用赋值操作符：就是两个对象都已经分配内存后，再进行赋值。这里有个疑问，基类也定义了operator=了，为什么不调用基类的operator=呢？我们将Panda类的operator=注释掉，重新来做TEST3，好玩的结果出现了： <img src="https://images0.cnblogs.com/blog2015/697266/201503/291407428646917.png" alt=""><img src="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222202.png" alt=""> Panda的合成赋值操作符调用了两个基类的operator=。 <strong>我们得出以下结论：如果派生类定义了自己的复制构造函数或赋值操作符，则负责复制（赋值）所有的基类子部分，而不再调用基类相应函数。只有派生类使用合成版本的复制构造函数或赋值操作符，才自动调用基类部分相应的函数。</strong> 最后我们来看一下析构函数的表现： <strong><img src="https://images0.cnblogs.com/blog2015/697266/201503/291411454741468.png" alt=""><img src="http://www.dhu021.top/wp-content/uploads/2018/10/微信图片_20181016222209.png" alt=""></strong> 析构函数的行为是符合我们预期的，这里有一点我没有体现出来就是zing_zing是ying_ying之后定义的对象，所以zing_zing的构造函数先执行（前4行），后4行代表ying_ying构造函数的执行。<strong>如果具有多个基类的类定义了自己的析构函数，则该析构函数只负责清除派生类。</strong></p>
+<h1 id="四、多重继承下的类作用域"><a href="#四、多重继承下的类作用域" class="headerlink" title="四、多重继承下的类作用域"></a><strong>四、多重继承下的类作用域</strong></h1><p>在多重继承下，多个基类作用域可以包围派生类作用域。查找时，同时检查所有基类继承子树，例如：并行查找Endangered和Bear/ ZooAnimal子树。如果在多个子树上找到该名字，那个名字必须显式指定使用哪个基类。否则，该名字的使用是二义性的。 例如：Endangered类和Bear类都有print函数，则ying_ying.print()将导致编译时错误。 <strong>注意：</strong> <strong>（1）</strong>Panda类的派生导致有两个名为print的成员是合法的。派生只是导致潜在的二义性，如果没有Panda对象调用print，就可避免这个二义性。你可以Bear::print或Endangered::print来调用。 <strong>（2）</strong>当然，如果只在一个基类子树上找到声明是不会出错的。 下面仍然有个小实验要做：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">ZooAnimal</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="attribute">public</span>:</span><br><span class="line">    //void <span class="built_in">print</span>(int x)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">Bear</span> : <span class="selector-tag">public</span> <span class="selector-tag">ZooAnimal</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="attribute">public</span>:</span><br><span class="line">    void <span class="built_in">print</span>(int x)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">Endangered</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="attribute">public</span>:</span><br><span class="line">    void <span class="built_in">print</span>()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">Panda</span> : <span class="selector-tag">public</span> <span class="selector-tag">Bear</span>, <span class="selector-tag">public</span> <span class="selector-tag">Endangered</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="attribute">public</span>:</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  <strong>TEST1：</strong>将两个基类Bear和Endangered两个print的形参表设为不同。 <strong>TEST2：</strong>将Bear中的print去掉，在ZooAnimal中增加print。 <strong>TEST3：</strong>将Endangered中print设置为private访问。 以上三种情况下，当我这样调用ying_ying.print()或ying_ying.print(1)时，都显示编译时错误（二义性）。 我们的得出这样的结论：名字查找的过程是这样的，首先编译器找到一个匹配的声明（找到两个匹配的声明，这导致二义性），然后编译器才确定所找到的声明是否合法。 所以说，当我们调用这样的函数时，应该这样ying_ying.Bear::print()。   main.cpp<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"CircleWithText.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">CircleWithText <span class="title">cm</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="string">"Hello!"</span>)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>Point.h</code><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">#<span class="meta-keyword">ifndef</span> POINT_H_INCLUDED</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> POINT_H_INCLUDED</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line">    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">int</span> x,y;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Point(<span class="keyword">int</span> x1=<span class="number">0</span>,<span class="keyword">int</span> y1=<span class="number">0</span>):x(x1),y(y1)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"调用Point类对象成员的构造函数！"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ~Point()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"调用Point类对象成员的析构函数！"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// POINT_H_INCLUDED</span></span></span><br><span class="line"> ```   </span><br><span class="line"></span><br><span class="line">`Text.h`</span><br></pre></td></tr></table></figure></p>
+<pre><code>#ifndef TEXT_H_INCLUDED
+#define TEXT_H_INCLUDED
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include &lt;string.h&gt;
+using namespace std;
+class Text
+{
+    char text[100];
+public:
+    Text(char *str)
+    {
+        strcpy(text,str);
+        cout&lt;&lt;&quot;调用基类Text的构造函数！&quot;&lt;&lt;endl;
+    }
+    ~Text()
+    {
+        cout&lt;&lt;&quot;调用基类Text的析构函数！&quot;&lt;&lt;endl;
+    }
+};
+#endif // TEXT_H_INCLUDED
+</code></pre><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`Circle.h`</span><br></pre></td></tr></table></figure>
+<pre><code>#ifndef CIRCLE_H_INCLUDED
+#define CIRCLE_H_INCLUDED
+
+#include&quot;Point.h&quot;
+class Circle
+{
+    Point center;
+    int radius;
+public :
+    Circle(int cx,int cy,int r):center(cx,cy),radius(r)
+    {
+        cout&lt;&lt;&quot;调用基类Circle的构造函数！&quot;&lt;&lt;endl;
+    }
+    ~Circle()
+    {
+        cout&lt;&lt;&quot;调用基类Circle的析构函数！&quot;&lt;&lt;endl;
+    }
+};
+#endif // CIRCLE_H_INCLUDED
+</code></pre> <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">`CircleWithText.h`</span><br></pre></td></tr></table></figure>
+<pre><code>#ifndef CIRCLEWITHTEXT_H_INCLUDED
+#define CIRCLEWITHTEXT_H_INCLUDED
+#include &quot;Text.h&quot;
+#include &quot;Circle.h&quot;
+class CircleWithText:public Text,public Circle
+{
+    Point textPosition;
+public:
+    CircleWithText(int cx,int cy,int r,char *msg):Circle(cx,cy,r),Text(msg)
+    {
+        cout&lt;&lt;&quot;调用派生类CircleWithText的构造函数！&quot;&lt;&lt;endl;
+    }
+    ~CircleWithText()
+    {
+        cout&lt;&lt;&quot;调用CircleWithText的析构函数！&quot;&lt;&lt;endl;
+    }
+};
+#endif // CIRCLEWITHTEXT_H_INCLUDED
+</code></pre><p><code>`</code><br>打印如下：</p>
+<pre><code>调用基类Text的构造函数！
+调用Point类对象成员的构造函数！
+调用基类Circle的构造函数！
+调用Point类对象成员的构造函数！
+调用派生类CircleWithText的构造函数！
+调用CircleWithText的析构函数！
+调用Point类对象成员的析构函数！
+调用基类Circle的析构函数！
+调用Point类对象成员的析构函数！
+调用基类Text的析构函数！
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    小蜜蜂
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zyb0408.github.io/2018-10-16-C++中的多重继承.html" title="C++中的多重继承">https://zyb0408.github.io/2018-10-16-C++中的多重继承.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018-10-15-C++函数重载.html" rel="next" title="C++函数重载">
+                <i class="fa fa-chevron-left"></i> C++函数重载
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018-10-19-图像处理与计算机视觉基础【2012年】.html" rel="prev" title="图像处理与计算机视觉基础【2012年】">
+                图像处理与计算机视觉基础【2012年】 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon-32x32-next.png" alt="小蜜蜂">
+            
+              <p class="site-author-name" itemprop="name">小蜜蜂</p>
+              <p class="site-description motion-element" itemprop="description">小蜜蜂学计算机</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基本概念"><span class="nav-number">1.</span> <span class="nav-text">一、基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、多重继承的派生类从每个基类中继承状态"><span class="nav-number">2.</span> <span class="nav-text">1、多重继承的派生类从每个基类中继承状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、派生类构造函数初始化所有基类"><span class="nav-number">3.</span> <span class="nav-text">2、派生类构造函数初始化所有基类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、析构的次序"><span class="nav-number">4.</span> <span class="nav-text">3、析构的次序</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#二、转换与多个基类"><span class="nav-number"></span> <span class="nav-text">二、转换与多个基类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、基于指针或引用类型的查找"><span class="nav-number">1.</span> <span class="nav-text">1、基于指针或引用类型的查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、确定使用哪个虚析构函数"><span class="nav-number">2.</span> <span class="nav-text">2、确定使用哪个虚析构函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、多重继承派生类的复制控制"><span class="nav-number"></span> <span class="nav-text">三、多重继承派生类的复制控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、多重继承下的类作用域"><span class="nav-number"></span> <span class="nav-text">四、多重继承下的类作用域</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小蜜蜂</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">83.4k</span>
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2017,09,17,00,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('100');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Nginx,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、nginx常用命令=========== 1.Nginx启动 1234567    nginx   -c /etc/nginx/nginx.conf```   其中参数-c指定nginx启动时加载的配置文件，当然也可以不指定配置文件，省略-c，也可以启动，表示使用默认的配置文件。### 2.nginx停止--------- nginx -s stop 或者 nginx -s quit 或者 p">
+<meta name="keywords" content="Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx学习">
+<meta property="og:url" content="https://zyb0408.github.io/2016-03-02-Nginx学习.html">
+<meta property="og:site_name" content="小蜜蜂">
+<meta property="og:description" content="一、nginx常用命令=========== 1.Nginx启动 1234567    nginx   -c /etc/nginx/nginx.conf```   其中参数-c指定nginx启动时加载的配置文件，当然也可以不指定配置文件，省略-c，也可以启动，表示使用默认的配置文件。### 2.nginx停止--------- nginx -s stop 或者 nginx -s quit 或者 p">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2016/03/ea4bb7be7abb47264915b7d85824adb1-300x63.jpg">
+<meta property="og:updated_time" content="2016-03-02T14:27:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx学习">
+<meta name="twitter:description" content="一、nginx常用命令=========== 1.Nginx启动 1234567    nginx   -c /etc/nginx/nginx.conf```   其中参数-c指定nginx启动时加载的配置文件，当然也可以不指定配置文件，省略-c，也可以启动，表示使用默认的配置文件。### 2.nginx停止--------- nginx -s stop 或者 nginx -s quit 或者 p">
+<meta name="twitter:image" content="http://www.dhu021.top/wp-content/uploads/2016/03/ea4bb7be7abb47264915b7d85824adb1-300x63.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zyb0408.github.io/2016-03-02-Nginx学习.html">
+
+
+
+
+
+  <title>Nginx学习 | 小蜜蜂</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小蜜蜂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Don't Hack Me</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zyb0408.github.io/2016-03-02-Nginx学习.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小蜜蜂">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-32x32-next.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小蜜蜂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Nginx学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-02T22:27:36+08:00">
+                2016-03-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2016-03-02T22:27:36+08:00">
+                2016-03-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+		<div>
+		
+			<div>
+    
+        <div style="text-align:center;color: #636363;font-size:14px;letter-spacing: 10px">���Ľ�����<i class="fa fa-bell"></i>��л�����Ķ�</div>
+    
+</div>
+		
+	</div>
+      
+      
+
+      
+        <h1 id=""><a href="#" class="headerlink" title=""></a><img src="http://www.dhu021.top/wp-content/uploads/2016/03/ea4bb7be7abb47264915b7d85824adb1-300x63.jpg" alt=""></h1><h2 id="一、nginx常用命令"><a href="#一、nginx常用命令" class="headerlink" title="一、nginx常用命令"></a>一、nginx常用命令</h2><p>===========</p>
+<h3 id="1-Nginx启动"><a href="#1-Nginx启动" class="headerlink" title="1.Nginx启动"></a>1.Nginx启动</h3><hr>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">    nginx   -c /etc/nginx/nginx.conf</span></span><br><span class="line"><span class="code">```</span>   </span><br><span class="line"></span><br><span class="line">其中参数-c指定nginx启动时加载的配置文件，当然也可以不指定配置文件，省略-c，也可以启动，表示使用默认的配置文件。</span><br><span class="line"></span><br><span class="line">### 2.nginx停止</span><br><span class="line">---------</span><br></pre></td></tr></table></figure>
+<pre><code>nginx -s stop 或者
+nginx -s quit 或者
+pkill -9 nginx
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">例如在我们的编辑环境中已经安装好了nginx,并且已启动,在命令提示符下直接输入</span><br></pre></td></tr></table></figure>
+<pre><code>nginx -s stop
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">就可以停止了。</span><br><span class="line"></span><br><span class="line">### 3.nginx重载配置</span><br><span class="line">-----------</span><br></pre></td></tr></table></figure>
+<pre><code>nginx -s reload
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 4.检查配置文件是否正确</span><br><span class="line">------------</span><br></pre></td></tr></table></figure>
+<pre><code>nginx -t
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 二、配置文件结构</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">Nginx的核心模块为*<span class="strong">*Main*</span><span class="strong">*和*</span><span class="strong">*Events*</span><span class="strong">*，此外还包括*</span><span class="strong">*标准HTTP模块、可选HTTP模块和邮件模块*</span><span class="strong">*，其还可以支持诸多第三方模块。Main用于配置错误日志、进程及权限等相关的参数，Events用于配置IO模型，如epoll、kqueue、select或poll等，它们是必备模块，HTTP模块用于控制Nginx的HTTP进程。</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">Nginx的主配置文件由几个段组成，这个段通常也被称为nginx的上下文，每个段的定义格式如下所示。需要注意的是，其每一个指令都必须使用分号(;)结束，否则为语法错误。</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">主要结构（所有配置以分号结尾）如下：</span></span><br></pre></td></tr></table></figure>
+<pre><code>##Main段，定义全局属性
+events {
+          ##定义不同IO模型下的工作机制；
+}
+http { 
+    ##定义作为web服务器的相关属性（还可以反向代理mail）
+    server { 
+        ##定义一个虚拟主机的属性，所有web服务必须定义成一个虚拟主机，与httpd不同
+        location [option] uri { 
+            ##定义一个URI的特性
+            ##location中可以嵌套location的
+            location [option] uri { 
+                #嵌套location
+            }
+               if (condition) {
+                ##定义URL重写
+            }
+        }
+    }
+    upstream  &lt;Name&gt; {
+        ##将多个server结合在一起，实现负载均衡
+    }
+ }
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 三、配置指令</span><br><span class="line">======</span><br><span class="line"></span><br><span class="line">定义Nginx运行的用户和用户组用user指令。</span><br></pre></td></tr></table></figure>
+<pre><code>user www-data;
+</code></pre><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">定义nginx进程数，用worker_processes指令，建议设置为等于<span class="meta">CPU</span>总核心数。</span><br></pre></td></tr></table></figure>
+<pre><code>worker_processes 8;
+</code></pre><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">全局错误日志定义类型，**\[ <span class="builtin-name">debug</span> | <span class="builtin-name">info</span> | notice | warn | <span class="builtin-name">error</span> | crit\]**用error_log指令。另外日志还可以定义在http、server及location上下文中，语法格式一样。</span><br></pre></td></tr></table></figure>
+<pre><code>error_log /var/log/nginx/error.log info;
+</code></pre><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">定义进程文件用<span class="keyword">pid</span>指令</span><br></pre></td></tr></table></figure>
+<pre><code>pid /var/run/nginx.pid;
+</code></pre><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">用worker\<span class="variable">_rlimit</span>\<span class="variable">_nofile</span>指令描述nginx进程打开的最多文件描述符的数目，建议设置为默认值。</span><br></pre></td></tr></table></figure>
+<pre><code>worker_rlimit_nofile 65535;
+</code></pre><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">参考事件模型指令：use \[ kqueue | <span class="type">rtsig</span> | <span class="type">epoll</span> | <span class="type">/dev</span>/poll | <span class="type">select</span> | <span class="type">poll</span> \];</span><br></pre></td></tr></table></figure>
+<pre><code>use epoll;
+</code></pre><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注：epoll模型是Linux <span class="number">2.6</span>以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。</span><br><span class="line"></span><br><span class="line">设置单个进程最大连接数用指令：worker_connections（`最大连接数=连接数*进程数`）</span><br></pre></td></tr></table></figure>
+<pre><code>worker_connections 65535;
+</code></pre><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">设定mime类型,类型由mime.<span class="keyword">type</span>文件定义 用<span class="keyword">include</span>指令.</span><br></pre></td></tr></table></figure>
+<pre><code>include       /etc/nginx/mime.types;
+default_type  application/octet-stream;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">开启gzip压缩指令</span><br></pre></td></tr></table></figure>
+<pre><code>gzip on;
+gzip_disable &quot;MSIE [1-6]\.(?!.*SV1)&quot;;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">设定负载均衡的服务器列表用指令upstream。</span><br></pre></td></tr></table></figure>
+<pre><code>upstream mysvr {
+    #weigth参数表示权值，权值越高被分配到的几率越大
+    #本机上的Squid开启3128端口
+    server 192.168.8.1:3128 weight=5;
+    server 192.168.8.2:80  weight=1;
+    server 192.168.8.3:80  weight=6;
+}  
+</code></pre><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设定虚拟主机用指令<span class="keyword">server</span>，其中包括端口，主机名称，默认请求等设置。</span><br></pre></td></tr></table></figure>
+<pre><code>server {
+    #侦听80端口
+    listen       80;
+    #定义使用www.xx.com访问
+    server_name  www.xx.com;
+    #设定本虚拟主机的访问日志
+    access_log  logs/www.xx.com.access.log  main;
+    #默认请求
+    location / {
+          root   /root;      #定义服务器的默认网站根目录位置
+          index index.php index.html index.htm;   #定义首页索引文件的名称
+          fastcgi_pass  www.xx.com;
+          fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+          include /etc/nginx/fastcgi_params;
+     }
+
+    # 定义错误提示页面
+    error_page   500 502 503 504 /50x.html; 
+    location = /50x.html {
+    root   /root;
+    }
+}
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">请求转向指令proxy_pass</span><br></pre></td></tr></table></figure>
+<pre><code>proxy_pass http://www.hubwiz.com;
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 四、负载均衡</span><br><span class="line">======</span><br><span class="line"></span><br><span class="line">负载均衡（又称为负载分担），英文名称为Load Balance，其意思就是将负载（工作任务）进行平衡、分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。</span><br><span class="line"></span><br><span class="line">nginx的upstream目前支持4种方式的分配</span><br><span class="line"></span><br><span class="line">1)、轮询（默认）</span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。</span><br><span class="line"></span><br><span class="line">2)、weight</span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。</span><br><span class="line"></span><br><span class="line">3)、ip<span class="emphasis">_hash</span></span><br><span class="line"><span class="emphasis">----------</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">4)、fair（第三方)</span></span><br><span class="line"><span class="emphasis">------------</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">按后端服务器的响应时间来分配请求，响应时间短的优先分配。</span></span><br></pre></td></tr></table></figure>
+<pre><code>upstream ixdba.net{
+    ip_hash;
+    server 192.168.12.133:80;
+    server 192.168.12.134:80  down;
+    server 192.168.12.135:8009  max_fails=3  fail_timeout=20s;
+    server 192.168.12.136:8080;
+}
+</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">upstream是Nginx的HTTP Upstream模块，这个模块通过一个简单的调度算法来实现客户端IP到后端服务器的负载均衡。在上面的设定中，通过upstream指令指定了一个负载均衡器的名称 [<span class="string">ixdba.net</span>](<span class="link">http://ixdba.net</span>)。这个名称可以任意指定，在后面需要的地方直接调用即可。</span><br><span class="line"></span><br><span class="line"><span class="section">## 五、Location配置</span></span><br><span class="line">============</span><br><span class="line"></span><br><span class="line">语法规则： <span class="code">`location \[=||*|^~\] /uri/ &#123; … &#125;`</span></span><br><span class="line"></span><br><span class="line">通配符</span><br><span class="line"></span><br><span class="line">说明</span><br><span class="line"></span><br><span class="line">=</span><br><span class="line"></span><br><span class="line">开头表示精确匹配</span><br><span class="line"></span><br><span class="line">^~</span><br><span class="line"></span><br><span class="line">开头表示uri以某个常规字符串开头，理解为匹配 url路径即可</span><br><span class="line"></span><br><span class="line">~</span><br><span class="line"></span><br><span class="line">开头表示区分大小写的正则匹配</span><br><span class="line"></span><br><span class="line">!~</span><br><span class="line"></span><br><span class="line">区分大小写不匹配</span><br><span class="line"></span><br><span class="line">!~*</span><br><span class="line"></span><br><span class="line">不区分大小写不匹配</span><br><span class="line"></span><br><span class="line">~*</span><br><span class="line"></span><br><span class="line">开头表示不区分大小写的正则匹配</span><br><span class="line"></span><br><span class="line">/</span><br><span class="line"></span><br><span class="line">通用匹配，任何请求都会匹配到</span><br><span class="line"></span><br><span class="line">首先匹配 =，其次匹配^~, 其次是按文件中顺序的正则匹配，最后是交给 / 通用匹配。当有匹配成功时候，停止匹配，按当前匹配规则处理请求。</span><br></pre></td></tr></table></figure>
+<pre><code>location = / {
+   #规则A
+}
+location = /login {
+   #规则B
+}
+location ^~ /static/ {
+   #规则C
+}
+location ~ \.(gif|jpg|png|js|css)$ {
+   #规则D
+}
+</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">那么产生的效果如下：</span><br><span class="line"></span><br><span class="line">访问根目录/， 比如http://localhost/ 将匹配规则A；</span><br><span class="line"></span><br><span class="line">访问 [<span class="string">http://localhost/login</span>](<span class="link">http://localhost/login</span>) 将匹配规则B；</span><br><span class="line"></span><br><span class="line">访问 [<span class="string">http://localhost/static/a.html</span>](<span class="link">http://localhost/static/a.html</span>) 将匹配规则C；</span><br><span class="line"></span><br><span class="line">访问 [<span class="string">http://localhost/a.gif</span>](<span class="link">http://localhost/a.gif</span>), [<span class="string">http://localhost/b.jpg</span>](<span class="link">http://localhost/b.jpg</span>) 将匹配规则D。</span><br><span class="line"></span><br><span class="line"><span class="section">## 六、Rewrite规则</span></span><br><span class="line">===========</span><br><span class="line"></span><br><span class="line">Nginx Rewrite 规则相关指令有if,rewrite,set,return,break等，其中最关键的就是rewrite。一个简单的Nginx Rewrite规则语法如下：</span><br></pre></td></tr></table></figure>
+<pre><code>rewrite ^/b/(.\*)\.html /play.php?video=$1 break; 
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">*<span class="strong">*正则表达式匹配*</span><span class="strong">*，其中：</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">1、~ 为区分大小写匹配；</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">2、~*</span> 为不区分大小写匹配；</span><br><span class="line"></span><br><span class="line">3、!和!<span class="strong">*分别为区分大小写不匹配及不区分大小写不匹配。</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">*</span><span class="strong">*文件及目录匹配*</span><span class="strong">*，其中：</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">-f和!-f用来判断是否存在文件；</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">-d和!-d用来判断是否存在目录；</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">-e和!-e用来判断是否存在文件或目录；</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">-x和!-x用来判断文件是否可执行。</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">*</span><span class="strong">*flag标记有*</span><span class="strong">*：</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">last 相当于Apache里的\[L\]标记，表示完成rewrite；</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">break 终止匹配, 不再匹配后面的规则；</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">redirect 返回302临时重定向 地址栏会显示跳转后的地址；</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">permanent 返回301永久重定向 地址栏会显示跳转后的地址。</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">当然除了这些以外，Rewrite规则中还会用到一些相应的全局变量，如$args，$url等等</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">## 七、配置自己的文件</span></span><br><span class="line"><span class="strong">=========</span></span><br><span class="line"><span class="strong"></span></span><br><span class="line"><span class="strong">前面几节中我们已经学过了nginx配置文件中的各个段的配置指令，下面我们就来写一个自己配置文件。如下代码：</span></span><br></pre></td></tr></table></figure>
+<pre><code>worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+       server {
+            location / {
+                      #root   html;      #定义服务器的默认网站根目录位置
+                      #index index.php index.html index.htm;   #定义首页索引文件的名称
+                      proxy_pass http://www.hubwiz.com;
+             }
+            error_page   500 502 503 504  /50x.html;
+            location = /50x.html {
+                root   html;
+           }
+         }
+}
+</code></pre><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这样我们自己的配置文件就完成了，先将nginx的服务停止，然后我们用nginx -c *<span class="selector-class">.conf</span> 命令来重新启动nginx，*.conf为我们自己的配置文件所在的路径，nginx启动以后，然后点击【访问测试】，看看会出现什么情况，是不是已经转到我们所配置的站点了。</span><br><span class="line"></span><br><span class="line">我自己的配置文件名为Mynginx<span class="selector-class">.conf</span>,其中的内容就是以上面代码的内容，保存在/etc/nginx目录下，完成以后我们做如下操作：</span><br></pre></td></tr></table></figure>
+<pre><code>nginx -s stop   
+nginx -c /etc/nginx/Mynginx.conf 
+</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后测试。</span><br><span class="line"></span><br><span class="line"><span class="section">## 八、反向代理示例</span></span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">反向代理（Reverse Proxy） 是指代理服务器来接收来自Internet上的连接请求，并将请求转发给内部网络上的服务器，并从服务器上得到的结果返回给Internet上请求连接的客户端。</span><br><span class="line"></span><br><span class="line">比如要配置后端跑 apache 服务的 ip 和端口，也就是说，我们的目标是实现通过 [<span class="string">http://ip</span>](<span class="link">http://ip</span>):port 能访问到你的网站。配置文件可以修改以下内容，reload nginx就可以了。</span><br></pre></td></tr></table></figure>
+<pre><code>## Basic reverse proxy server ##
+    upstream apachephp  {
+        server ip:8080; #Apache
+    }
+    ## Start www.nowamagic.net ##
+    server {
+        listen 80;
+        server_name  www.nowamagic.net;
+        access_log  logs/quancha.access.log  main;
+        error_log  logs/quancha.error.log;
+        root   html;
+        index  index.html index.htm index.php;
+
+        ## send request back to apache ##
+        location / {
+            proxy_pass  http://apachephp;
+                #……………………
+}
+}
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 九、虚拟主机示例</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">Nginx做虚拟主机，尤其是仅仅支持纯静态-html，这是最简单的应用了，可以理解为一个仅支持静态页面的最简单的Web服务器。</span><br><span class="line"></span><br><span class="line">例子，同时支持两个虚拟主机（纯静态-html支持）的配置，我们只需要理改server段，如下：</span><br></pre></td></tr></table></figure>
+<pre><code>server {
+        listen       80;
+        server_name  www.hubwiz.com;
+        #charset koi8-r;
+        #access_log  logs/host.access.log  main;
+        location / {
+                      root   /root; 
+                      index index.php index.html index.htm;  
+
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+      }
+server {
+        listen       80;
+        server_name  www.baidu.com;
+        #charset koi8-r;
+        #access_log  logs/host.access.log  main;
+        location / {
+                      root   /root;     
+                      index index.php index.html index.htm; 
+
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+}
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 十、正向代理示例</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">Nginx正向代理配置如下：</span><br></pre></td></tr></table></figure>
+<pre><code>server
+{
+  listen       8080;
+  server_name www.hubwiz.com;
+  index index.html index.htm index.php;
+  root  /home/wwwroot;
+     location / {
+         resolver        192.168.8.88;
+         proxy_pass      $scheme://$http_host$request_uri;
+         proxy_buffers   256 4k;
+ }
+   access_log off;
+}
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">以上配置的注意事项：</span><br><span class="line"></span><br><span class="line">1，不能有hostname。</span><br><span class="line"></span><br><span class="line">2，必须有resolver, 即dns，即上面的x.x.x.x，换成当前机器的DNS服务器ip即可(查看dns方法 cat /etc/resolv.conf 代理使用)。</span><br><span class="line"></span><br><span class="line">3，$http\<span class="emphasis">_host和$request\_</span>uri是nginx系统变量，保持原样即可。</span><br><span class="line"></span><br><span class="line">检测配置文件无误后，重启nginx，在浏览器中添加代理服务器的IP地址，就可以使用该Nginx正向代理了。</span><br><span class="line"></span><br><span class="line">## 十一、负载均衡示例</span><br><span class="line">=========</span><br></pre></td></tr></table></figure>
+<pre><code>upstream backend{
+      #定义负载均衡设备的Ip及设备状态
+      server 127.0.0.1:9090 down; 
+      server 192.168.1.12:8080 weight=2 ;
+      server 192.168.1.13:6060 max_fails=3 fail_timeout=30s;
+      server 1192.168.1.14:7070 backup;
+}
+server{
+    #…………………………
+   location /{
+        proxy_pass http://backend;
+        #…………………………
+    }
+}
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">以上代码就是对负载均衡应用的示例。</span><br><span class="line"></span><br><span class="line">Upstream可对后端服务器进行健康检查。</span><br><span class="line"></span><br><span class="line">a) down表示当前的server暂时不参与负载。</span><br><span class="line"></span><br><span class="line">b) weight默认为1.weight越大，负载的权重就越大。</span><br><span class="line"></span><br><span class="line">c) max<span class="emphasis">_fails ：在fail_</span>timeout时间内对后台服务器请求失败的次数。</span><br><span class="line"></span><br><span class="line">d) fail<span class="emphasis">_timeout:max_</span>fails次失败后，暂停的时间。</span><br><span class="line"></span><br><span class="line">e) backup：其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。</span><br><span class="line"></span><br><span class="line">## 十二、Rewrite简单示例</span><br><span class="line">==============</span><br></pre></td></tr></table></figure>
+<pre><code>worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+       server {
+            location /hubwiz {
+                      rewrite (.*) http://www.hubwiz.com;
+        }
+           location /baidu {
+                      rewrite (.*) http://www.baidu.com;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+       }
+   }
+}
+</code></pre><p><code>`</code>    </p>
+<p>修改我们自己的配置文件，保存，重新加载nginx，然后测试，在地址栏给出的地址后面分别输入“/hubwiz”、“/baidu”，是不是会和我的结果一样呢？</p>
+<p>输入“/hubwiz”转到汇智网，输入“/baidu”是不是转到百度了呢？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    小蜜蜂
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zyb0408.github.io/2016-03-02-Nginx学习.html" title="Nginx学习">https://zyb0408.github.io/2016-03-02-Nginx学习.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016-03-02-Nginx负载均衡.html" rel="prev" title="Nginx负载均衡">
+                Nginx负载均衡 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon-32x32-next.png" alt="小蜜蜂">
+            
+              <p class="site-author-name" itemprop="name">小蜜蜂</p>
+              <p class="site-description motion-element" itemprop="description">小蜜蜂学计算机</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、nginx常用命令"><span class="nav-number">1.1.</span> <span class="nav-text">一、nginx常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Nginx启动"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.Nginx启动</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小蜜蜂</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">83.4k</span>
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2017,09,17,00,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('100');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

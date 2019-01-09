@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+
+
+
+
+
+  <meta name="keywords" content="OpenCV,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Ubuntu16.04安装OpenCV 3.4.4========================= 参考官方英文安装教程准备– 下载：https://sourceforge.net/projects/opencvlibrary/ 必须的包：  GCC 4.4.x or later CMake 2.8.7 or higher Git GTK+2.x or higher, including hea">
+<meta name="keywords" content="OpenCV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装opencv3.4.4">
+<meta property="og:url" content="https://zyb0408.github.io/2018-11-25-安装opencv3.4.4.html">
+<meta property="og:site_name" content="小蜜蜂">
+<meta property="og:description" content="Ubuntu16.04安装OpenCV 3.4.4========================= 参考官方英文安装教程准备– 下载：https://sourceforge.net/projects/opencvlibrary/ 必须的包：  GCC 4.4.x or later CMake 2.8.7 or higher Git GTK+2.x or higher, including hea">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-25T03:15:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装opencv3.4.4">
+<meta name="twitter:description" content="Ubuntu16.04安装OpenCV 3.4.4========================= 参考官方英文安装教程准备– 下载：https://sourceforge.net/projects/opencvlibrary/ 必须的包：  GCC 4.4.x or later CMake 2.8.7 or higher Git GTK+2.x or higher, including hea">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zyb0408.github.io/2018-11-25-安装opencv3.4.4.html">
+
+
+
+
+
+  <title>安装opencv3.4.4 | 小蜜蜂</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小蜜蜂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Don't Hack Me</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zyb0408.github.io/2018-11-25-安装opencv3.4.4.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小蜜蜂">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-32x32-next.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小蜜蜂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">安装opencv3.4.4</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T11:15:25+08:00">
+                2018-11-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-25T11:15:25+08:00">
+                2018-11-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/图像处理/" itemprop="url" rel="index">
+                    <span itemprop="name">图像处理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  28
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+		<div>
+		
+			<div>
+    
+        <div style="text-align:center;color: #636363;font-size:14px;letter-spacing: 10px">���Ľ�����<i class="fa fa-bell"></i>��л�����Ķ�</div>
+    
+</div>
+		
+	</div>
+      
+      
+
+      
+        <h2 id="Ubuntu16-04安装OpenCV-3-4-4"><a href="#Ubuntu16-04安装OpenCV-3-4-4" class="headerlink" title="Ubuntu16.04安装OpenCV 3.4.4"></a>Ubuntu16.04安装OpenCV 3.4.4</h2><p>=========================</p>
+<h2 id="参考官方英文安装教程"><a href="#参考官方英文安装教程" class="headerlink" title="参考官方英文安装教程"></a>参考<a href="https://docs.opencv.org/3.4.4/d7/d9f/tutorial_linux_install.html" target="_blank" rel="noopener">官方英文安装教程</a></h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>–</p>
+<p>下载：<a href="https://sourceforge.net/projects/opencvlibrary/" target="_blank" rel="noopener">https://sourceforge.net/projects/opencvlibrary/</a> 必须的包：</p>
+<ul>
+<li>GCC 4.4.x or later</li>
+<li>CMake 2.8.7 or higher</li>
+<li>Git</li>
+<li>GTK+2.x or higher, including headers (libgtk2.0-dev)</li>
+<li>pkg-config</li>
+<li>Python 2.6 or later and Numpy 1.5 or later with developer packages (python-dev, python-numpy)</li>
+<li>ffmpeg or libav development packages: libavcodec-dev, libavformat-dev, libswscale-dev</li>
+<li>[optional] libtbb2 libtbb-dev</li>
+<li>[optional] libdc1394 2.x</li>
+<li>[optional] libjpeg-dev, libpng-dev, libtiff-dev, libjasper-dev, libdc1394-22-dev</li>
+<li>[optional] CUDA Toolkit 6.5 or higher *</li>
+</ul>
+<p>代码：<br><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[compiler] sudo apt-<span class="built_in">get</span> install build-essential</span><br><span class="line">[required] sudo apt-<span class="built_in">get</span> install cmake git libgtk2<span class="number">.0</span>-<span class="built_in">dev</span> pkg-config libavcodec-<span class="built_in">dev</span> libavformat-<span class="built_in">dev</span> libswscale-<span class="built_in">dev</span></span><br><span class="line">[optional] sudo apt-<span class="built_in">get</span> install python-<span class="built_in">dev</span> python-numpy libtbb2 libtbb-<span class="built_in">dev</span> libjpeg-<span class="built_in">dev</span> libpng-<span class="built_in">dev</span> libtiff-<span class="built_in">dev</span> libjasper-<span class="built_in">dev</span> libdc1394<span class="number">-22</span>-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure></p>
+<p>如果需要安装OpenCV的额外库那么就做下面的操作 进入到opencv的主目录下<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/opencv/opencv_contrib.git</span><br></pre></td></tr></table></figure></p>
+<p>下载完了之后，开始编译操作。</p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>–<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/opencv</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br></pre></td></tr></table></figure></p>
+<p>编译release版本，并且加入了额外的库（全部都加了）<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -D <span class="attribute">CMAKE_BUILD_TYPE</span>=Release <span class="attribute">-DOPENCV_EXTRA_MODULES_PATH</span>=../opencv_contrib/modules  -D <span class="attribute">CMAKE_INSTALL_PREFIX</span>=/usr/local <span class="built_in">..</span></span><br></pre></td></tr></table></figure></p>
+<p>如果要编译自带的例子，那么在上一句中加入<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">-DBUILD_EXAMPLES</span>=<span class="literal">ON</span></span><br></pre></td></tr></table></figure></p>
+<p>如果要编译Debug版本，那么下面选项的参数二选一。所以如果想两个都要的话，就要编译两次。<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">CMAKE_BUILD_TYPE</span>=Release\Debug</span><br></pre></td></tr></table></figure></p>
+<p>其他比如python支持什么的可选项我就没加入。 最后完用的语句是：这里建议目录更改成/usr/local/opencv3.4.4<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -D <span class="attribute">CMAKE_BUILD_TYPE</span>=Release -D <span class="attribute">CMAKE_INSTALL_PREFIX</span>=/usr/local <span class="built_in">..</span></span><br></pre></td></tr></table></figure></p>
+<p>执行的过程中需要联网下载一个文件<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">IPPICV:</span> <span class="string">Download:</span> ippicv_2019_lnx_intel64_general_20180723.tgz</span><br></pre></td></tr></table></figure></p>
+<p>我这边瞪了一会就下载完了。如果你网速慢的话，可以先去下载，然后放在指定的地方。具体方法去谷歌一下。 结果如下：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">-- General configuration <span class="keyword">for</span> OpenCV <span class="number">3.4</span><span class="number">.4</span> =====================================</span><br><span class="line">--   Version <span class="string">control:</span>               unknown</span><br><span class="line">-- </span><br><span class="line">--   <span class="string">Platform:</span></span><br><span class="line">--     <span class="string">Timestamp:</span>                   <span class="number">2018</span><span class="number">-11</span><span class="number">-25</span><span class="string">T03:</span><span class="number">27</span>:<span class="number">54</span>Z</span><br><span class="line">--     <span class="string">Host:</span>                        Linux <span class="number">4.4</span><span class="number">.0</span><span class="number">-21</span>-generic x86_64</span><br><span class="line">--     <span class="string">CMake:</span>                       <span class="number">3.5</span><span class="number">.1</span></span><br><span class="line">--     CMake <span class="string">generator:</span>             Unix Makefiles</span><br><span class="line">--     CMake build <span class="string">tool:</span>            <span class="regexp">/usr/</span>bin/make</span><br><span class="line">--     <span class="string">Configuration:</span>               Release</span><br><span class="line">-- </span><br><span class="line">--   CPU/HW <span class="string">features:</span></span><br><span class="line">--     <span class="string">Baseline:</span>                    SSE SSE2 SSE3</span><br><span class="line">--       <span class="string">requested:</span>                 SSE3</span><br><span class="line">--     Dispatched code <span class="string">generation:</span>  SSE4_1 SSE4_2 FP16 AVX AVX2 AVX512_SKX</span><br><span class="line">--       <span class="string">requested:</span>                 SSE4_1 SSE4_2 AVX FP16 AVX2 AVX512_SKX</span><br><span class="line">--       SSE4_1 (<span class="number">6</span> files):          + SSSE3 SSE4_1</span><br><span class="line">--       SSE4_2 (<span class="number">2</span> files):          + SSSE3 SSE4_1 POPCNT SSE4_2</span><br><span class="line">--       FP16 (<span class="number">1</span> files):            + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 AVX</span><br><span class="line">--       AVX (<span class="number">6</span> files):             + SSSE3 SSE4_1 POPCNT SSE4_2 AVX</span><br><span class="line">--       AVX2 (<span class="number">12</span> files):           + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2</span><br><span class="line">--       AVX512_SKX (<span class="number">1</span> files):      + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2 AVX_512F AVX512_SKX</span><br><span class="line">-- </span><br><span class="line">--   C/C++:</span><br><span class="line">--     Built <span class="keyword">as</span> dynamic libs?:      YES</span><br><span class="line">--     C++ <span class="string">Compiler:</span>                <span class="regexp">/usr/</span>bin/c++  (ver <span class="number">5.4</span><span class="number">.0</span>)</span><br><span class="line">--     C++ flags (Release):         -fsigned-<span class="keyword">char</span> -W -Wall -Werror=<span class="keyword">return</span>-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winit-self -Wno-narrowing -Wno-delete-non-virtual-dtor -Wno-comment -fdiagnostics-show-option -Wno-<span class="keyword">long</span>-<span class="keyword">long</span> -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -O3 -DNDEBUG  -DNDEBUG</span><br><span class="line">--     C++ flags (Debug):           -fsigned-<span class="keyword">char</span> -W -Wall -Werror=<span class="keyword">return</span>-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winit-self -Wno-narrowing -Wno-delete-non-virtual-dtor -Wno-comment -fdiagnostics-show-option -Wno-<span class="keyword">long</span>-<span class="keyword">long</span> -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -g  -O0 -DDEBUG -D_DEBUG</span><br><span class="line">--     C <span class="string">Compiler:</span>                  <span class="regexp">/usr/</span>bin/cc</span><br><span class="line">--     C flags (Release):           -fsigned-<span class="keyword">char</span> -W -Wall -Werror=<span class="keyword">return</span>-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Winit-self -Wno-narrowing -Wno-comment -fdiagnostics-show-option -Wno-<span class="keyword">long</span>-<span class="keyword">long</span> -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -O3 -DNDEBUG  -DNDEBUG</span><br><span class="line">--     C flags (Debug):             -fsigned-<span class="keyword">char</span> -W -Wall -Werror=<span class="keyword">return</span>-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Winit-self -Wno-narrowing -Wno-comment -fdiagnostics-show-option -Wno-<span class="keyword">long</span>-<span class="keyword">long</span> -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -g  -O0 -DDEBUG -D_DEBUG</span><br><span class="line">--     Linker flags (Release):      </span><br><span class="line">--     Linker flags (Debug):        </span><br><span class="line">--     <span class="string">ccache:</span>                      NO</span><br><span class="line">--     Precompiled <span class="string">headers:</span>         YES</span><br><span class="line">--     Extra <span class="string">dependencies:</span>          dl m pthread rt</span><br><span class="line">--     <span class="number">3</span>rdparty <span class="string">dependencies:</span></span><br><span class="line">-- </span><br><span class="line">--   OpenCV <span class="string">modules:</span></span><br><span class="line">--     To be <span class="string">built:</span>                 calib3d core dnn features2d flann highgui imgcodecs imgproc java_bindings_generator ml objdetect photo python2 python_bindings_generator shape stitching superres ts video videoio videostab</span><br><span class="line">--     <span class="string">Disabled:</span>                    world</span><br><span class="line">--     Disabled by <span class="string">dependency:</span>      -</span><br><span class="line">--     <span class="string">Unavailable:</span>                 cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev java js python3 viz</span><br><span class="line">--     <span class="string">Applications:</span>                tests perf_tests examples apps</span><br><span class="line">--     <span class="string">Documentation:</span>               NO</span><br><span class="line">--     Non-free <span class="string">algorithms:</span>         NO</span><br><span class="line">-- </span><br><span class="line">--   <span class="string">GUI:</span> </span><br><span class="line">--     GTK+:                        YES (ver <span class="number">2.24</span><span class="number">.30</span>)</span><br><span class="line">--       <span class="string">GThread :</span>                  YES (ver <span class="number">2.48</span><span class="number">.2</span>)</span><br><span class="line">--       <span class="string">GtkGlExt:</span>                  NO</span><br><span class="line">--     VTK <span class="string">support:</span>                 NO</span><br><span class="line">-- </span><br><span class="line">--   Media I/<span class="string">O:</span> </span><br><span class="line">--     <span class="string">ZLib:</span>                        <span class="regexp">/home/</span>tf<span class="regexp">/anaconda3/</span>lib/libz.so (ver <span class="number">1.2</span><span class="number">.11</span>)</span><br><span class="line">--     <span class="string">JPEG:</span>                        <span class="regexp">/home/</span>tf<span class="regexp">/anaconda3/</span>lib/libjpeg.so (ver <span class="number">90</span>)</span><br><span class="line">--     <span class="string">WEBP:</span>                        build (ver <span class="string">encoder:</span> <span class="number">0x020e</span>)</span><br><span class="line">--     <span class="string">PNG:</span>                         <span class="regexp">/home/</span>tf<span class="regexp">/anaconda3/</span>lib/libpng.so (ver <span class="number">1.6</span><span class="number">.34</span>)</span><br><span class="line">--     <span class="string">TIFF:</span>                        <span class="regexp">/home/</span>tf<span class="regexp">/anaconda3/</span>lib<span class="regexp">/libtiff.so (ver 42 /</span> <span class="number">4.0</span><span class="number">.9</span>)</span><br><span class="line">--     JPEG <span class="number">2000</span>:                   <span class="regexp">/usr/</span>lib<span class="regexp">/x86_64-linux-gnu/</span>libjasper.so (ver <span class="number">1.900</span><span class="number">.1</span>)</span><br><span class="line">--     <span class="string">OpenEXR:</span>                     build (ver <span class="number">1.7</span><span class="number">.1</span>)</span><br><span class="line">--     <span class="string">HDR:</span>                         YES</span><br><span class="line">--     <span class="string">SUNRASTER:</span>                   YES</span><br><span class="line">--     <span class="string">PXM:</span>                         YES</span><br><span class="line">-- </span><br><span class="line">--   Video I/<span class="string">O:</span></span><br><span class="line">--     <span class="string">DC1394:</span>                      YES (ver <span class="number">2.2</span><span class="number">.4</span>)</span><br><span class="line">--     <span class="string">FFMPEG:</span>                      YES</span><br><span class="line">--       <span class="string">avcodec:</span>                   YES (ver <span class="number">56.60</span><span class="number">.100</span>)</span><br><span class="line">--       <span class="string">avformat:</span>                  YES (ver <span class="number">56.40</span><span class="number">.101</span>)</span><br><span class="line">--       <span class="string">avutil:</span>                    YES (ver <span class="number">54.31</span><span class="number">.100</span>)</span><br><span class="line">--       <span class="string">swscale:</span>                   YES (ver <span class="number">3.1</span><span class="number">.101</span>)</span><br><span class="line">--       <span class="string">avresample:</span>                NO</span><br><span class="line">--     <span class="string">GStreamer:</span>                   NO</span><br><span class="line">--     libv4l/<span class="string">libv4l2:</span>              NO</span><br><span class="line">--     v4l<span class="regexp">/v4l2:                    linux/</span>videodev2.h</span><br><span class="line">-- </span><br><span class="line">--   Parallel <span class="string">framework:</span>            pthreads</span><br><span class="line">-- </span><br><span class="line">--   <span class="string">Trace:</span>                         YES (with Intel ITT)</span><br><span class="line">-- </span><br><span class="line">--   Other third-party <span class="string">libraries:</span></span><br><span class="line">--     Intel <span class="string">IPP:</span>                   <span class="number">2019.0</span><span class="number">.0</span> Gold [<span class="number">2019.0</span><span class="number">.0</span>]</span><br><span class="line">--            <span class="string">at:</span>                   <span class="regexp">/home/</span>tf<span class="regexp">/opencv3.4.4/</span>build<span class="regexp">/3rdparty/</span>ippicv<span class="regexp">/ippicv_lnx/</span>icv</span><br><span class="line">--     Intel IPP <span class="string">IW:</span>                sources (<span class="number">2019.0</span><span class="number">.0</span>)</span><br><span class="line">--               <span class="string">at:</span>                <span class="regexp">/home/</span>tf<span class="regexp">/opencv3.4.4/</span>build<span class="regexp">/3rdparty/</span>ippicv<span class="regexp">/ippicv_lnx/</span>iw</span><br><span class="line">--     <span class="string">Lapack:</span>                      NO</span><br><span class="line">--     <span class="string">Eigen:</span>                       NO</span><br><span class="line">--     Custom <span class="string">HAL:</span>                  NO</span><br><span class="line">--     <span class="string">Protobuf:</span>                    build (<span class="number">3.5</span><span class="number">.1</span>)</span><br><span class="line">-- </span><br><span class="line">--   <span class="string">OpenCL:</span>                        YES (no extra features)</span><br><span class="line">--     Include <span class="string">path:</span>                <span class="regexp">/home/</span>tf<span class="regexp">/opencv3.4.4/</span><span class="number">3</span>rdparty<span class="regexp">/include/</span>opencl/<span class="number">1.2</span></span><br><span class="line">--     Link <span class="string">libraries:</span>              Dynamic load</span><br><span class="line">-- </span><br><span class="line">--   Python <span class="number">2</span>:</span><br><span class="line">--     <span class="string">Interpreter:</span>                 <span class="regexp">/usr/</span>bin/python2<span class="number">.7</span> (ver <span class="number">2.7</span><span class="number">.12</span>)</span><br><span class="line">--     <span class="string">Libraries:</span>                   <span class="regexp">/usr/</span>lib<span class="regexp">/x86_64-linux-gnu/</span>libpython2<span class="number">.7</span>.so (ver <span class="number">2.7</span><span class="number">.12</span>)</span><br><span class="line">--     <span class="string">numpy:</span>                       <span class="regexp">/usr/</span>local<span class="regexp">/lib/</span>python2<span class="number">.7</span><span class="regexp">/dist-packages/</span>numpy<span class="number">-1.16</span><span class="number">.0</span>.dev0+<span class="number">983</span>bbb5-py2<span class="number">.7</span>-linux-x86_64.egg<span class="regexp">/numpy/</span>core/include (ver <span class="number">1.16</span><span class="number">.0</span>.dev0+<span class="number">983</span>bbb5)</span><br><span class="line">--     packages <span class="string">path:</span>               lib<span class="regexp">/python2.7/</span>dist-packages</span><br><span class="line">-- </span><br><span class="line">--   Python (<span class="keyword">for</span> build):            <span class="regexp">/usr/</span>bin/python2<span class="number">.7</span></span><br><span class="line">--     <span class="string">Pylint:</span>                      <span class="regexp">/home/</span>tf<span class="regexp">/anaconda3/</span>bin/pylint (<span class="string">ver:</span> <span class="number">3.7</span><span class="number">.0</span>, <span class="string">checks:</span> <span class="number">162</span>)</span><br><span class="line">-- </span><br><span class="line">--   <span class="string">Java:</span>                          </span><br><span class="line">--     <span class="string">ant:</span>                         NO</span><br><span class="line">--     <span class="string">JNI:</span>                         NO</span><br><span class="line">--     Java <span class="string">wrappers:</span>               NO</span><br><span class="line">--     Java <span class="string">tests:</span>                  NO</span><br><span class="line">-- </span><br><span class="line">--   Install <span class="string">to:</span>                    <span class="regexp">/usr/</span>local</span><br><span class="line">-- -----------------------------------------------------------------</span><br><span class="line">-- </span><br><span class="line">-- Configuring done</span><br><span class="line">-- Generating done</span><br><span class="line">-- Build files have been written <span class="string">to:</span> <span class="regexp">/home/</span>tf<span class="regexp">/opencv3.4.4/</span>build</span><br></pre></td></tr></table></figure></p>
+<p>接下来开始编译了<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j7 # runs <span class="number">7</span> jobs <span class="keyword">in</span> parallel</span><br></pre></td></tr></table></figure></p>
+<p>我实际使用的语句是：<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span> -j24                   <span class="meta">#我电脑比较好，哈哈哈，全程不到10分钟</span></span><br></pre></td></tr></table></figure></p>
+<p>开始安装<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo make <span class="keyword">install</span>           <span class="comment">#大概1分钟就完事，最后贴出了安装的文件。</span></span><br></pre></td></tr></table></figure></p>
+<p>  测试验证 下载测试数据，这个测试数据集有点大啊。。。。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/opencv/opencv_extra.git</span><br></pre></td></tr></table></figure></p>
+<p>设置测试数据的环境变量<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">OPENCV_TEST_DATA_PATH</span>=/home/tf/opencv_extra/testdata</span><br></pre></td></tr></table></figure></p>
+<p>使环境变量生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>进入build目录执行测试程序。 这个测试程序使编译安装完了之后才有的。<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br></pre></td><td class="code"><pre><span class="line">sh <span class="meta-keyword">/home/</span>tf/opencv3<span class="number">.4</span><span class="number">.4</span><span class="meta-keyword">/build/</span>bin/opencv_test_core</span><br><span class="line"></span><br><span class="line">-- Install configuration: <span class="string">"Release"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>ippicv-readme.htm</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>ippicv-EULA.txt</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>ippiw-EULA.txt</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>ippiw-support.txt</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>ippiw-third-party-programs.txt</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>opencl-headers-LICENSE.txt</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/cvconfig.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/opencv_modules.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>pkgconfig/opencv.pc</span><br><span class="line">-- Old export file <span class="string">"/usr/local/share/OpenCV/OpenCVModules.cmake"</span> will be replaced.  Removing files [<span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV/OpenCVModules-release.cmake].</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV/OpenCVModules.cmake</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV/OpenCVModules-release.cmake</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV/OpenCVConfig-version.cmake</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV/OpenCVConfig.cmake</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/bin/</span>setup_vars_opencv3.sh</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV/valgrind.supp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV/valgrind_3rdparty.supp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>openexr-LICENSE</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>openexr-AUTHORS.ilmbase</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>openexr-AUTHORS.openexr</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>openexr-fix_msvc2013_errors.patch</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>protobuf-LICENSE</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>protobuf-README.md</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>quirc-LICENSE</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>ittnotify-LICENSE.BSD</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>ittnotify-LICENSE.GPL</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/cvaux.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/cv.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/cvwimage.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/highgui.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/cxcore.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/cxeigen.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/cxcore.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/cxmisc.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/ml.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/cv.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv/cvaux.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/opencv.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/python/</span>setup.py</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/python/</span>cv2/__init__.py</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/python/</span>cv2/load_config_py2.py</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/python/</span>cv2/load_config_py3.py</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/python/</span>cv2/config.py</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_core.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_core.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_core.so.3.4.4"</span> to <span class="string">"/usr/local/lib:/home/tf/anaconda3/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_core.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl/opencl_svm.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl/ocl_defs.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl/opencl_info.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>opencl_svm_20.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>opencl_gl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>opencl_svm_definitions.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>autogenerated/opencl_gl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>autogenerated/opencl_clamdfft.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>autogenerated/opencl_gl_wrappers.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>autogenerated/opencl_core.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>autogenerated/opencl_core_wrappers.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>autogenerated/opencl_clamdblas.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>opencl_clamdfft.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>opencl_gl_wrappers.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>opencl_svm_hsa_extension.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>opencl_core.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>opencl_core_wrappers.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opencl<span class="meta-keyword">/runtime/</span>opencl_clamdblas.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/warp_reduce.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/dynamic_smem.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/datamov_utils.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/emulation.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/limits.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/warp_shuffle.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/saturate_cast.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/transform.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/scan.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/reduce.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/border_interpolate.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/filters.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/utility.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/functional.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/type_traits.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/vec_distance.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/color.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/funcattrib.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/block.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/warp.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/common.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/simd_functions.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/vec_traits.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda/vec_math.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda<span class="meta-keyword">/detail/</span>type_traits_detail.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda<span class="meta-keyword">/detail/</span>reduce_key_val.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda<span class="meta-keyword">/detail/</span>reduce.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda<span class="meta-keyword">/detail/</span>vec_distance_detail.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda<span class="meta-keyword">/detail/</span>color_detail.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda<span class="meta-keyword">/detail/</span>transform_detail.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/core.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda_types.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>base.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>core.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda_stream_accessor.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>opengl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>ocl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda.inl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>persistence.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>ippasync.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>ocl_genbase.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cuda.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>vsx_utils.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>matx.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>fast_math.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>ptr.inl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>optim.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>mat.inl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>saturate.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>eigen.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>directx.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>sse_utils.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cvstd.inl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>utility.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>bufferpool.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>va_intel.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>operations.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cvstd.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>mat.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>wimage.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>softfloat.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>check.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>types.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>affine.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>ovx.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>traits.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>bindings_utils.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>version.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>neon_utils.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>types_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cv_cpu_dispatch.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cvdef.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>cv_cpu_helper.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>core_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>hal/intrin_neon.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>hal/intrin_forward.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>hal/intrin.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>hal/intrin_vsx.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>hal/intrin_sse_em.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>hal/intrin_cpp.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>hal/hal.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>hal/intrin_sse.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>hal/intrin_avx.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>hal/interface.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>utils/logger.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>utils/trace.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>utils/filesystem.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/core/</span>utils/logger.defines.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/licenses/</span>SoftFloat-COPYING.txt</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_flann.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_flann.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_flann.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_flann.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/flann.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>miniflann.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>flann_base.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>flann.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>timer.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>hierarchical_clustering_index.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>saving.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>kmeans_index.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>heap.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>hdf5.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>kdtree_index.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>dist.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>result_set.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>sampling.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>config.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>any.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>general.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>linear_index.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>nn_index.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>matrix.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>object_factory.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>index_testing.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>dynamic_bitset.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>autotuned_index.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>dummy.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>defines.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>ground_truth.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>simplex_downhill.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>lsh_index.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>all_indices.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>composite_index.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>params.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>random.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>kdtree_single_index.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>logger.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>allocator.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/flann/</span>lsh_table.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_imgproc.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_imgproc.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_imgproc.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_imgproc.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/imgproc.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/imgproc/</span>imgproc.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/imgproc/</span>types_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/imgproc/</span>imgproc_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/imgproc/</span>hal/hal.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/imgproc/</span>hal/interface.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/imgproc/</span>detail/distortion_model.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_ml.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_ml.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_ml.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_ml.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/ml.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/ml/</span>ml.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/ml/</span>ml.inl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_photo.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_photo.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_photo.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_photo.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/photo.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/photo/</span>cuda.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/photo/</span>photo.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/photo/</span>photo_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_video.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_video.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_video.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_video.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/video.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/video/</span>tracking.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/video/</span>video.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/video/</span>background_segm.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/video/</span>tracking_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_dnn.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_dnn.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_dnn.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_dnn.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/dnn.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/dnn/</span>layer.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/dnn/</span>shape_utils.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/dnn/</span>dnn.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/dnn/</span>dict.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/dnn/</span>all_layers.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/dnn/</span>layer.details.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/dnn/</span>dnn.inl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_imgcodecs.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_imgcodecs.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_imgcodecs.so.3.4.4"</span> to <span class="string">"/usr/local/lib:/home/tf/anaconda3/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_imgcodecs.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/imgcodecs.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/imgcodecs/</span>imgcodecs.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/imgcodecs/</span>imgcodecs_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/imgcodecs/</span>ios.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_shape.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_shape.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_shape.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_shape.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/shape.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/shape/</span>hist_cost.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/shape/</span>shape.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/shape/</span>shape_transformer.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/shape/</span>shape_distance.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/shape/</span>emdL1.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_videoio.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_videoio.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_videoio.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_videoio.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/videoio.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videoio/</span>videoio.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videoio/</span>registry.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videoio/</span>cap_ios.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videoio/</span>videoio_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_highgui.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_highgui.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_highgui.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_highgui.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/highgui.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/highgui/</span>highgui.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/highgui/</span>highgui_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_superres.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_superres.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_superres.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_superres.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/superres.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/superres/</span>optical_flow.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_features2d.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_features2d.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_features2d.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_features2d.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/features2d.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/features2d/</span>features2d.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/features2d/</span>hal/interface.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_calib3d.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_calib3d.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_calib3d.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_calib3d.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/calib3d.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/calib3d/</span>calib3d.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/calib3d/</span>calib3d_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_objdetect.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_objdetect.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_objdetect.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_objdetect.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/objdetect.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/objdetect/</span>objdetect.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/objdetect/</span>detection_based_tracker.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/objdetect/</span>objdetect_c.h</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_stitching.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_stitching.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_stitching.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_stitching.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/stitching.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>warpers.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/matchers.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/warpers.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/seam_finders.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/util.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/util_inl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/timelapsers.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/camera.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/autocalib.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/exposure_compensate.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/warpers_inl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/motion_estimators.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/stitching/</span>detail/blenders.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_videostab.so<span class="number">.3</span><span class="number">.4</span><span class="number">.4</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_videostab.so<span class="number">.3</span><span class="number">.4</span></span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/lib/libopencv_videostab.so.3.4.4"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/lib/</span>libopencv_videostab.so</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2/videostab.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>motion_core.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>frame_source.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>optical_flow.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>outlier_rejection.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>deblurring.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>fast_marching.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>ring_buffer.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>stabilizer.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>wobble_suppression.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>inpainting.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>motion_stabilizing.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>fast_marching_inl.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>global_motion.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/include/</span>opencv2<span class="meta-keyword">/videostab/</span>log.hpp</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/python/</span>cv2/python<span class="number">-2.7</span>/cv2.so</span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/python/cv2/python-2.7/cv2.so"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/python/</span>cv2/config<span class="number">-2.7</span>.py</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_frontalface_alt.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_frontalcatface.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_frontalface_alt2.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_fullbody.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_eye.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_lefteye_2splits.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_frontalcatface_extended.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_frontalface_alt_tree.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_righteye_2splits.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_profileface.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_smile.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_russian_plate_number.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_upperbody.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_frontalface_default.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_licence_plate_rus_16stages.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_lowerbody.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/haarcascades/</span>haarcascade_eye_tree_eyeglasses.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/lbpcascades/</span>lbpcascade_profileface.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/lbpcascades/</span>lbpcascade_frontalface_improved.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/lbpcascades/</span>lbpcascade_frontalface.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/lbpcascades/</span>lbpcascade_silverware.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/share/</span>OpenCV<span class="meta-keyword">/lbpcascades/</span>lbpcascade_frontalcatface.xml</span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/bin/</span>opencv_traincascade</span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/bin/opencv_traincascade"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/bin/</span>opencv_createsamples</span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/bin/opencv_createsamples"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/bin/</span>opencv_annotation</span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/bin/opencv_annotation"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/bin/</span>opencv_visualisation</span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/bin/opencv_visualisation"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/bin/</span>opencv_interactive-calibration</span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/bin/opencv_interactive-calibration"</span> to <span class="string">"/usr/local/lib"</span></span><br><span class="line">-- Installing: <span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/bin/</span>opencv_version</span><br><span class="line">-- Set runtime path of <span class="string">"/usr/local/bin/opencv_version"</span> to <span class="string">"/usr/local/lib"</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    小蜜蜂
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zyb0408.github.io/2018-11-25-安装opencv3.4.4.html" title="安装opencv3.4.4">https://zyb0408.github.io/2018-11-25-安装opencv3.4.4.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018-11-19-安装TensorFlow-GPU.html" rel="next" title="安装TensorFlow-GPU">
+                <i class="fa fa-chevron-left"></i> 安装TensorFlow-GPU
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018-11-30-使用hyperlpr识别车牌.html" rel="prev" title="使用hyperlpr识别车牌">
+                使用hyperlpr识别车牌 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon-32x32-next.png" alt="小蜜蜂">
+            
+              <p class="site-author-name" itemprop="name">小蜜蜂</p>
+              <p class="site-description motion-element" itemprop="description">小蜜蜂学计算机</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu16-04安装OpenCV-3-4-4"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu16.04安装OpenCV 3.4.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考官方英文安装教程"><span class="nav-number">2.</span> <span class="nav-text">参考官方英文安装教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">2.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">2.2.</span> <span class="nav-text">编译</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小蜜蜂</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">83.4k</span>
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2017,09,17,00,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('100');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

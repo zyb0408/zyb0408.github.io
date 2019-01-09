@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Computer Siencise, OpenCV, TensorFlow">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数据结构之Series123456789101112131415161718192021222324252627282930313233343536373839404142import pandas as pdfrom import Series,DataFrame Series是类似于一维数组的对象，由一组数据以及索引组成#Series 1-给定了索引a= Series([4,7,-5,3],i">
+<meta name="keywords" content="TensorFlow OpenCV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="panda使用">
+<meta property="og:url" content="https://zyb0408.github.io/2018-11-12-panda使用.html">
+<meta property="og:site_name" content="小蜜蜂">
+<meta property="og:description" content="数据结构之Series123456789101112131415161718192021222324252627282930313233343536373839404142import pandas as pdfrom import Series,DataFrame Series是类似于一维数组的对象，由一组数据以及索引组成#Series 1-给定了索引a= Series([4,7,-5,3],i">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-12T11:37:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="panda使用">
+<meta name="twitter:description" content="数据结构之Series123456789101112131415161718192021222324252627282930313233343536373839404142import pandas as pdfrom import Series,DataFrame Series是类似于一维数组的对象，由一组数据以及索引组成#Series 1-给定了索引a= Series([4,7,-5,3],i">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zyb0408.github.io/2018-11-12-panda使用.html">
+
+
+
+
+
+  <title>panda使用 | 小蜜蜂</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小蜜蜂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Don't Hack Me</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zyb0408.github.io/2018-11-12-panda使用.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小蜜蜂">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-32x32-next.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小蜜蜂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">panda使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T19:37:57+08:00">
+                2018-11-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-12T19:37:57+08:00">
+                2018-11-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+		<div>
+		
+			<div>
+    
+        <div style="text-align:center;color: #636363;font-size:14px;letter-spacing: 10px">���Ľ�����<i class="fa fa-bell"></i>��л�����Ķ�</div>
+    
+</div>
+		
+	</div>
+      
+      
+
+      
+        <h2 id="数据结构之Series"><a href="#数据结构之Series" class="headerlink" title="数据结构之Series"></a>数据结构之Series</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">import</span> Series,DataFrame </span><br><span class="line">Series是类似于一维数组的对象，由一组数据以及索引组成</span><br><span class="line"></span><br><span class="line">#Series <span class="number">1</span>-给定了索引</span><br><span class="line">a= Series([<span class="number">4</span>,<span class="number">7</span>,<span class="number">-5</span>,<span class="number">3</span>],index=[<span class="string">'d'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>,<span class="string">'c'</span>])</span><br><span class="line">b= pd.Series([<span class="number">4</span>,<span class="number">7</span>,<span class="number">-5</span>,<span class="number">3</span>],index=[<span class="string">'d'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>,<span class="string">'c'</span>])</span><br><span class="line">#<span class="number">2</span>-未给定索引，索引为[<span class="number">0</span>,N<span class="number">-1</span>]</span><br><span class="line">ser1 = Series([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">#给index指定一个list</span><br><span class="line">ser2 = Series(range(<span class="number">4</span>),index = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>])</span><br><span class="line">#<span class="number">3</span>-也可以通过字典来创建Series对象</span><br><span class="line">sdata = &#123;<span class="string">'Ohio'</span>: <span class="number">35000</span>, <span class="string">'Texas'</span>: <span class="number">71000</span>, <span class="string">'Oregon'</span>: <span class="number">16000</span>, <span class="string">'Utah'</span>: <span class="number">5000</span>&#125;</span><br><span class="line">ser3 = Series(sdata)</span><br><span class="line">#可以发现，用字典创建的Series是按index有序的</span><br><span class="line">#在用字典生成Series的时候，也可以指定索引，</span><br><span class="line">#当索引中值对应的字典中的值不存在的时候，则此索引的值标记为Missing，NA，</span><br><span class="line">#并且可以通过函数（pandas.isnull，pandas.notnull）来确定哪些索引对应的值是没有的。</span><br><span class="line">states = [<span class="string">'California'</span>, <span class="string">'Ohio'</span>, <span class="string">'Oregon'</span>, <span class="string">'Texas'</span>]</span><br><span class="line">ser3 = Series(sdata,index = states)</span><br><span class="line">In [<span class="number">50</span>]: ser3</span><br><span class="line">Out[<span class="number">50</span>]: </span><br><span class="line">California        NaN</span><br><span class="line">Ohio          <span class="number">35000.0</span></span><br><span class="line">Oregon        <span class="number">16000.0</span></span><br><span class="line">Texas         <span class="number">71000.0</span></span><br><span class="line">dtype: float64</span><br><span class="line"># 判断哪些值为空</span><br><span class="line">In [<span class="number">51</span>]: pd.isnull(ser3)</span><br><span class="line">Out[<span class="number">51</span>]: </span><br><span class="line">California     <span class="literal">True</span></span><br><span class="line">Ohio          <span class="literal">False</span></span><br><span class="line">Oregon        <span class="literal">False</span></span><br><span class="line">Texas         <span class="literal">False</span></span><br><span class="line">dtype: bool</span><br><span class="line">In [<span class="number">52</span>]: pd.notnull(ser3)</span><br><span class="line">Out[<span class="number">52</span>]: </span><br><span class="line">California    <span class="literal">False</span></span><br><span class="line">Ohio           <span class="literal">True</span></span><br><span class="line">Oregon         <span class="literal">True</span></span><br><span class="line">Texas          <span class="literal">True</span></span><br><span class="line">dtype: bool</span><br></pre></td></tr></table></figure>
+<h2 id="访问Series中的元素和索引"><a href="#访问Series中的元素和索引" class="headerlink" title="访问Series中的元素和索引"></a>访问Series中的元素和索引</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">se2</span><br><span class="line"><span class="symbol">Out</span>[<span class="number">159</span>]: </span><br><span class="line">a    <span class="number">0</span></span><br><span class="line">b    <span class="number">1</span></span><br><span class="line">c    <span class="number">2</span></span><br><span class="line">d    <span class="number">3</span></span><br><span class="line">dtype: int64</span><br><span class="line"># 访问索引为<span class="string">"a"</span>,<span class="string">"c"</span>的元素</span><br><span class="line">se2[[<span class="string">"a"</span>,<span class="string">"c"</span>]]</span><br><span class="line"><span class="symbol">Out</span>[<span class="number">160</span>]: </span><br><span class="line">a    <span class="number">0</span></span><br><span class="line">c    <span class="number">2</span></span><br><span class="line">dtype: int64</span><br><span class="line"># 访问索引为<span class="string">"a"</span>的元素</span><br><span class="line">se2[<span class="string">"a"</span>]</span><br><span class="line"><span class="symbol">Out</span>[<span class="number">161</span>]: <span class="number">0</span></span><br><span class="line"># 获取所有的值</span><br><span class="line">se2.values</span><br><span class="line"><span class="symbol">Out</span>[<span class="number">162</span>]: array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], dtype=int64)</span><br><span class="line"># 获取所有的索引</span><br><span class="line">se2.index</span><br><span class="line"><span class="symbol">Out</span>[<span class="number">163</span>]: <span class="symbol">Index</span>([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>], dtype=<span class="string">'object'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="简单运算"><a href="#简单运算" class="headerlink" title="简单运算"></a>简单运算</h2><p>在pandas的Series中，会保留NumPy的数组操作（用布尔数组过滤数据，标量乘法，以及使用数学函数），并同时保持引用的使用.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">se2</span><span class="selector-attr">[se2&gt;2]</span></span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[165]</span>: </span><br><span class="line"><span class="selector-tag">d</span>    3</span><br><span class="line"><span class="selector-tag">dtype</span>: <span class="selector-tag">int64</span></span><br><span class="line"><span class="selector-tag">se2</span>*2</span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[166]</span>: </span><br><span class="line"><span class="selector-tag">a</span>    0</span><br><span class="line"><span class="selector-tag">b</span>    2</span><br><span class="line"><span class="selector-tag">c</span>    4</span><br><span class="line"><span class="selector-tag">d</span>    6</span><br><span class="line"><span class="selector-tag">dtype</span>: <span class="selector-tag">int64</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">np</span><span class="selector-class">.exp</span>(<span class="selector-tag">se2</span>)</span><br><span class="line"><span class="selector-tag">Out</span><span class="selector-attr">[167]</span>: </span><br><span class="line"><span class="selector-tag">a</span>     1<span class="selector-class">.000000</span></span><br><span class="line"><span class="selector-tag">b</span>     2<span class="selector-class">.718282</span></span><br><span class="line"><span class="selector-tag">c</span>     7<span class="selector-class">.389056</span></span><br><span class="line"><span class="selector-tag">d</span>    20<span class="selector-class">.085537</span></span><br><span class="line"><span class="selector-tag">dtype</span>: <span class="selector-tag">float64</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h2><p>DataFrame是一个表格型的数据结构 它含有一组有序的列，每列可以是不同的值类型（数值/字符串/布尔型值） 它有行/列索引，可看做由Series组成的字典（共同用一个索引）<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#DataFrame</span><br><span class="line">d = &#123;<span class="string">'state'</span>:[<span class="string">'1'</span>,<span class="string">'2'</span>],<span class="string">'year'</span>:[<span class="string">'a'</span>,<span class="string">'b'</span>],<span class="string">'pop'</span>:[<span class="string">'x'</span>,<span class="string">'y'</span>]&#125;</span><br><span class="line">frame = pd.DataFrame(d)</span><br><span class="line">frame</span><br><span class="line">  state year pop</span><br><span class="line"><span class="number">0</span>     <span class="number">1</span>    <span class="selector-tag">a</span>   x</span><br><span class="line"><span class="number">1</span>     <span class="number">2</span>    <span class="selector-tag">b</span>   y</span><br></pre></td></tr></table></figure></p>
+<h2 id="DataFrame基本用法"><a href="#DataFrame基本用法" class="headerlink" title="DataFrame基本用法"></a>DataFrame基本用法</h2><h3 id="追加数据"><a href="#追加数据" class="headerlink" title="追加数据"></a>追加数据</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">frame2 =pd.DataFrame([[<span class="string">'z'</span>,<span class="string">'3'</span>,<span class="string">'c'</span>],[<span class="string">'x'</span>,<span class="string">'4'</span>,<span class="string">'d'</span>]],<span class="attribute">columns</span>=[<span class="string">'pop'</span>,<span class="string">'state'</span>,<span class="string">'year'</span>])</span><br><span class="line">frame</span><br><span class="line">  pop state year</span><br><span class="line"><span class="number">0</span>   x     <span class="number">1</span>    a</span><br><span class="line"><span class="number">1</span>   y     <span class="number">2</span>    b</span><br><span class="line"><span class="number">2</span>   z     <span class="number">3</span>    c</span><br><span class="line"><span class="number">3</span>   x     <span class="number">4</span>    d</span><br></pre></td></tr></table></figure>
+<h3 id="拼接数据"><a href="#拼接数据" class="headerlink" title="拼接数据"></a>拼接数据</h3><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pd.concat([frame,frame2])</span><br><span class="line">frame</span><br><span class="line">  pop <span class="section">state</span> year</span><br><span class="line"><span class="number">0</span>   x     <span class="number">1</span>    a</span><br><span class="line"><span class="number">1</span>   y     <span class="number">2</span>    b</span><br><span class="line"><span class="number">0</span>   z     <span class="number">3</span>    c</span><br><span class="line"><span class="number">1</span>   x     <span class="number">4</span>    d</span><br></pre></td></tr></table></figure>
+<h3 id="从csv导入数据"><a href="#从csv导入数据" class="headerlink" title="从csv导入数据"></a>从csv导入数据</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> = pd.read_excel('<span class="type">D</span>:\\<span class="type">Users</span>\\<span class="title">zyb</span>\\<span class="type">Desktop</span>\\<span class="title">plan</span>.<span class="title">xlsx'</span>,<span class="title">header</span>=5)</span></span><br><span class="line"><span class="class"><span class="keyword">data</span></span></span><br><span class="line"><span class="type">Out</span>[<span class="number">189</span>]: </span><br><span class="line">     <span class="number">5</span> <span class="type">FR</span>接入数据库测试  <span class="number">1</span>  <span class="type">Unnamed</span>: <span class="number">3</span></span><br><span class="line"><span class="number">0</span>  <span class="number">6.0</span>      整体测试  <span class="number">1</span>         <span class="type">NaN</span></span><br><span class="line"><span class="number">1</span>  <span class="type">NaN</span>        总计  <span class="number">8</span>         <span class="type">NaN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">type</span>(<span class="title">data</span>)</span></span><br><span class="line"><span class="type">Out</span>[<span class="number">190</span>]: pandas.core.frame.<span class="type">DataFrame</span></span><br></pre></td></tr></table></figure>
+<h3 id="显示头尾几行"><a href="#显示头尾几行" class="headerlink" title="显示头尾几行"></a>显示头尾几行</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span>.head()</span></span><br><span class="line"><span class="class"><span class="keyword">data</span>.tail()</span></span><br></pre></td></tr></table></figure>
+<h3 id="显示列名-值"><a href="#显示列名-值" class="headerlink" title="显示列名/值"></a>显示列名/值</h3><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data.columns</span><br><span class="line"><span class="symbol">Out</span>[<span class="number">6</span>]: <span class="symbol">Index</span>([<span class="number">5</span>, <span class="string">'FR接入数据库测试'</span>, <span class="number">1</span>, <span class="string">'Unnamed: 3'</span>], dtype=<span class="string">'object'</span>)</span><br><span class="line"></span><br><span class="line">data.values</span><br><span class="line"><span class="symbol">Out</span>[<span class="number">7</span>]: </span><br><span class="line">array([[<span class="number">6.0</span>, <span class="string">'整体测试'</span>, <span class="number">1</span>, nan],</span><br><span class="line">       [nan, <span class="string">'总计'</span>, <span class="number">8</span>, nan]], dtype=object)</span><br></pre></td></tr></table></figure>
+<h3 id="筛选、缺失值处理"><a href="#筛选、缺失值处理" class="headerlink" title="筛选、缺失值处理"></a>筛选、缺失值处理</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#筛选行/列</span><br><span class="line"><span class="keyword">data</span>.iloc[<span class="number">3</span>:<span class="number">6</span>]</span><br><span class="line"><span class="keyword">data</span>.iloc[:,<span class="number">3</span>:<span class="number">6</span>]</span><br><span class="line"><span class="keyword">data</span>.loc[:,[<span class="string">"school"</span>, <span class="string">"age"</span>]]</span><br><span class="line"></span><br><span class="line">#条件筛选</span><br><span class="line"><span class="keyword">data</span>[<span class="keyword">data</span>[<span class="string">"G1"</span>]&lt;<span class="number">10</span>]</span><br><span class="line"></span><br><span class="line">#缺失值处理</span><br><span class="line"><span class="keyword">data</span>.fillna(value=<span class="number">0</span>)</span><br><span class="line"><span class="keyword">data</span>.dropna(how=<span class="string">"any"</span>)</span><br><span class="line"><span class="keyword">data</span>.isnull()</span><br></pre></td></tr></table></figure>
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a><strong>排序</strong></h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#排序</span></span><br><span class="line">data.sort_values(<span class="string">"G1"</span>, <span class="attribute">ascending</span>=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#统计并排序</span></span><br><span class="line"><span class="attribute">s</span>=pd.Series(data2.loc[:,<span class="string">"Medu"</span>])</span><br><span class="line"><span class="attribute">s</span>=s.value_counts()</span><br><span class="line"><span class="attribute">s</span>=s.sort_index(axis=0)</span><br></pre></td></tr></table></figure>
+<h3 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a><strong>算术运算</strong></h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">count</span></span><br></pre></td></tr></table></figure>
+<p>非NA值的数量</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">describe</span></span><br></pre></td></tr></table></figure>
+<p>针对Series或各DataFrame列计算汇总统计</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">min</span>,<span class="built_in">max</span></span><br></pre></td></tr></table></figure>
+<p>计算最小值、最大值</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">argmin,</span> argmax</span><br></pre></td></tr></table></figure>
+<p>计算能够获取到最小值和最大值的索引位置（整数)</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">idxmin,</span> idxmax</span><br></pre></td></tr></table></figure>
+<p>计算能够获取到最小值和最大值的索引值</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">quantile</span></span><br></pre></td></tr></table></figure>
+<p>计算样本的分位数（0到1）</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sum</span></span><br></pre></td></tr></table></figure>
+<p>值的总和</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mean</span></span><br></pre></td></tr></table></figure>
+<p>值的平均数</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">media</span></span><br></pre></td></tr></table></figure>
+<p>值的算术中位数（50%分位数)</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mad</span></span><br></pre></td></tr></table></figure>
+<p>根据平均值计算平均绝对离差</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span>, <span class="built_in">std</span></span><br></pre></td></tr></table></figure>
+<p>样本值的方差、标准差</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">skew</span>, <span class="built_in">kurt</span></span><br></pre></td></tr></table></figure>
+<p>样本值的偏度（三阶矩）、峰度（四阶矩）</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cumsum,</span> cumprod</span><br></pre></td></tr></table></figure>
+<p>样本值的累计和/累计积</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cummin,</span> cummax</span><br></pre></td></tr></table></figure>
+<p>样本值的累计最小、最大值</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">diff</span></span><br></pre></td></tr></table></figure>
+<p>计算一阶差分（对时间序列很有用)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pct_change</span><br></pre></td></tr></table></figure>
+<p>计算百分数变化</p>
+<h3 id="groupby-统计、数据透视表"><a href="#groupby-统计、数据透视表" class="headerlink" title="groupby**统计、数据透视表**"></a><strong>groupby**</strong>统计、数据透视表**</h3><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#groupby</span><br><span class="line">data.groupby([<span class="string">'sex'</span>, <span class="string">'studytime'</span>])[<span class="string">'G1'</span>].mean()</span><br><span class="line"></span><br><span class="line">group1 = data.groupby(<span class="string">'sex'</span>)</span><br><span class="line">group1[<span class="string">'G1'</span>,<span class="string">'G2'</span>].agg([<span class="string">'mean'</span>,<span class="string">'sum'</span>])</span><br><span class="line"></span><br><span class="line">#数据透视表</span><br><span class="line">pd.pivot_table(data, values=<span class="string">'G1'</span>, index=[<span class="string">'sex'</span>],columns=[<span class="string">'age'</span>], aggfunc=np.mean)</span><br></pre></td></tr></table></figure>
+<h3 id="类别转换"><a href="#类别转换" class="headerlink" title="类别转换"></a><strong>类别转换</strong></h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#类别转换</span></span><br><span class="line">medu=data[<span class="string">"Medu"</span>].astype(<span class="string">"category"</span>)</span><br><span class="line">medu.cat.categories=[<span class="string">"None"</span>,<span class="string">"&lt;4th grade"</span>,<span class="string">"5th to 9th grade"</span>,<span class="string">"secondary education"</span>,<span class="string">"higher education"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#转换成哑元</span></span><br><span class="line">sex_dummies = pd.get_dummies(X_train['sex'], prefix='sex')</span><br><span class="line">X_train=X_train.join(sex_dummies)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    小蜜蜂
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zyb0408.github.io/2018-11-12-panda使用.html" title="panda使用">https://zyb0408.github.io/2018-11-12-panda使用.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018-11-12-numpy使用.html" rel="next" title="numpy使用">
+                <i class="fa fa-chevron-left"></i> numpy使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018-11-12-matplotlib使用.html" rel="prev" title="matplotlib使用">
+                matplotlib使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon-32x32-next.png" alt="小蜜蜂">
+            
+              <p class="site-author-name" itemprop="name">小蜜蜂</p>
+              <p class="site-description motion-element" itemprop="description">小蜜蜂学计算机</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构之Series"><span class="nav-number">1.</span> <span class="nav-text">数据结构之Series</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问Series中的元素和索引"><span class="nav-number">2.</span> <span class="nav-text">访问Series中的元素和索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单运算"><span class="nav-number">3.</span> <span class="nav-text">简单运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataFrame"><span class="nav-number">4.</span> <span class="nav-text">DataFrame</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataFrame基本用法"><span class="nav-number">5.</span> <span class="nav-text">DataFrame基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#追加数据"><span class="nav-number">5.1.</span> <span class="nav-text">追加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拼接数据"><span class="nav-number">5.2.</span> <span class="nav-text">拼接数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从csv导入数据"><span class="nav-number">5.3.</span> <span class="nav-text">从csv导入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示头尾几行"><span class="nav-number">5.4.</span> <span class="nav-text">显示头尾几行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示列名-值"><span class="nav-number">5.5.</span> <span class="nav-text">显示列名/值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#筛选、缺失值处理"><span class="nav-number">5.6.</span> <span class="nav-text">筛选、缺失值处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序"><span class="nav-number">5.7.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算术运算"><span class="nav-number">5.8.</span> <span class="nav-text">算术运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#groupby-统计、数据透视表"><span class="nav-number">5.9.</span> <span class="nav-text">groupby**统计、数据透视表**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类别转换"><span class="nav-number">5.10.</span> <span class="nav-text">类别转换</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小蜜蜂</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">83.4k</span>
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2017,09,17,00,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('100');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
