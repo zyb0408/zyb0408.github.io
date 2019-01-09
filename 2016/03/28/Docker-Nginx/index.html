@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+
+
+
+
+
+  <meta name="keywords" content="docker,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="学习步骤如下: 1. 建立docker容器运行程序 2. 用上面建立的docker容器加上Nginx实现简单的负载均衡（与docker本身无关） 3. 建立基础仓库到阿里云 4. 梳理宿主机与容器间的两个Nginx关系 简单说下docker docker 是一种新兴的虚拟化方式，跟传统的虚拟化方式相比具有众多优势 更高效的利用系统资源，容器不需要进行硬件虚拟化已经运行完整的操作系统等额外开销，所以">
+<meta name="keywords" content="docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker-Nginx">
+<meta property="og:url" content="https://zyb0408.github.io/2016/03/28/Docker-Nginx/index.html">
+<meta property="og:site_name" content="小蜜蜂">
+<meta property="og:description" content="学习步骤如下: 1. 建立docker容器运行程序 2. 用上面建立的docker容器加上Nginx实现简单的负载均衡（与docker本身无关） 3. 建立基础仓库到阿里云 4. 梳理宿主机与容器间的两个Nginx关系 简单说下docker docker 是一种新兴的虚拟化方式，跟传统的虚拟化方式相比具有众多优势 更高效的利用系统资源，容器不需要进行硬件虚拟化已经运行完整的操作系统等额外开销，所以">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-03-28T12:04:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker-Nginx">
+<meta name="twitter:description" content="学习步骤如下: 1. 建立docker容器运行程序 2. 用上面建立的docker容器加上Nginx实现简单的负载均衡（与docker本身无关） 3. 建立基础仓库到阿里云 4. 梳理宿主机与容器间的两个Nginx关系 简单说下docker docker 是一种新兴的虚拟化方式，跟传统的虚拟化方式相比具有众多优势 更高效的利用系统资源，容器不需要进行硬件虚拟化已经运行完整的操作系统等额外开销，所以">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zyb0408.github.io/2016/03/28/Docker-Nginx/">
+
+
+
+
+
+  <title>Docker-Nginx | 小蜜蜂</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小蜜蜂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Don't Hack Me</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zyb0408.github.io/2016/03/28/Docker-Nginx/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小蜜蜂">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-32x32-next.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小蜜蜂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker-Nginx</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-28T20:04:48+08:00">
+                2016-03-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2016-03-28T20:04:48+08:00">
+                2016-03-28
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+		<div>
+		
+			<div>
+    
+        <div style="text-align:center;color: #636363;font-size:14px;letter-spacing: 10px">���Ľ�����<i class="fa fa-bell"></i>��л�����Ķ�</div>
+    
+</div>
+		
+	</div>
+      
+      
+
+      
+        <p>学习步骤如下: 1. 建立docker容器运行程序 2. 用上面建立的docker容器加上Nginx实现简单的负载均衡（与docker本身无关） 3. 建立基础仓库到阿里云 4. 梳理宿主机与容器间的两个Nginx关系 简单说下docker docker 是一种新兴的虚拟化方式，跟传统的虚拟化方式相比具有众多优势 更高效的利用系统资源，容器不需要进行硬件虚拟化已经运行完整的操作系统等额外开销，所以对系统资源的利用率比较高； 启动速度更快，原因和上面差不多； 一致的运行环境，一般称需要经过开发环境、测试环境、生产环境，但是无法确保所有的环境都是一致的， 所有就会出现同一段代码在不同环境输出的结果不一致，docker镜像提供了相同的运行环境（出内核外），可以避免上述问题的发生； 在程序交付的运维时，只需要提供Dockerfile文件即可实现快速部署 方便迁移，由于每个容器都是一个独立运行环境，和宿主机没有直接关系； docker包含三个概念： 1. 镜像（image） 2. 容器（container） 3. 仓库（repository） 这三个概念后面用到在说，方便理解 一、建立docker容器运行程序 这是我做的第一个比较简单，首先建立的一个简单的express项目，在项目的根目录建立了一个Dockerfile文件（注意第一个字母大写），后面调用run指令的时候docker会默认寻找这个文件，当然这个文件名也可以修改，但是需要得修改相应配置，在Dockerfile 中写入下面代码：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:slim</span><br><span class="line"><span class="keyword">ENV</span> HTTP_PORT <span class="number">8000</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> . /app</span></span><br><span class="line"><span class="bash">WORKDIR /app</span></span><br><span class="line"><span class="bash">RUN npm install --registry=https://registry.npm.taobao.org</span></span><br><span class="line"><span class="bash">EXPOSE 8000</span></span><br><span class="line"><span class="bash">CMD [ <span class="string">"npm"</span>, <span class="string">"start"</span> ]</span></span><br></pre></td></tr></table></figure></p>
+<p>  FROM: 后面跟的是镜像来源，也就是基于那个镜像建立的镜像， 其中node是镜像名称，slim 是镜像版本号，这个node是官方给的基础版本，官网的基础镜像还有很多，点击这里查看更多, 当然还有其他人自定义的优质镜像这里就罗列了， ENV 指的是运行环境，一般程序都会分为development、production 等，我这里直接指定了端口号 COPY 复制，中间有个点 指的是当前目录，复制到/app目录，注意这里不是复制到真实的目录而已复制到容器的目录，所以在真实目录是看不到这个文件夹的 WORKDIR 指定工作目录 RUN npm 安装依赖包 并切换至淘宝源 EPOSE 容器输出端口 CMD 执行启动命令 在根项目根目录下（也是Dockerfile 所在目录）执行 下面代码建立自己的镜像 docker build -t myexpress . build 是建立镜像指令，-t 是添加镜像标签 注意后面有个空格和点，这里的点指的是当前目录,执行完上面命令之后再执行 docker images 就可以看到当前的拥有的镜像了，在你自定义myexpress的镜像之外 还多出了node的镜像，这是因为我们的镜像是建立在node镜像基础之上的，下次在建立依赖node镜像时，就不需要再次下载node镜像了，因为重复利用了，节省的资源 建立完镜像后 ，我们就开始生成容器了，镜像和容器的关系就像是 类和实例的关系，一个镜像可以生成多个容器，执行下方指令生成容器： docker run –name mycontainername -d -p 80:8000 myexpress name 是给当前容器命名 d 是后端运行 p 80是容器端口 8000是映射到主机的端口 myexpress 是前面建立的进行名称 项目已经运行起来，直接访问宿主机ip 即可看到项目主页 二、用上面建立的docker容器加上Nginx实现简单的负载均衡 这个部分的出现纯属意外和docker没有直接关系，我只是刚好看到这里就记录下来 在Nginx的配置文件 http下添加 upstream 代码如下：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream zmb &#123;</span><br><span class="line">   <span class="built_in"> server </span>127.0.0.1:8080;</span><br><span class="line">   <span class="built_in"> server </span>127.0.0.1:8081;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>zmb随便取的只是个代号，后面可以添加weight属性标识权重 然后在server 下location去添加配置 如下：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/ &#123;</span></span><br><span class="line"><span class="title">proxy_pass</span> http://zmb;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  注意这里的两个zmb 必须保持一致 这样在每次请求sever端口是都会循环访问8080和8081端口，若有一个失败则直接访问下一个 三、建立基础仓库到阿里云 这里前提是必须要有一个阿里云账号，将代码托管到阿里云自己仓库 <a href="https://code.aliyun.com" target="_blank" rel="noopener">https://code.aliyun.com</a>, 我们建立一个 空项目 项目里面只有一个Dockerfile 文件并把这个项目同步到自己的仓库，Dockerfile的配置如下：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#version 1.0</span></span><br><span class="line"><span class="comment">#Base image</span></span><br><span class="line"><span class="keyword">FROM</span> centos</span><br><span class="line"><span class="comment">#MAINTAINER</span></span><br><span class="line"><span class="keyword">MAINTAINER</span> zyb</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /usr/<span class="built_in">local</span>/src</span></span><br><span class="line"><span class="bash"><span class="comment">#download soft</span></span></span><br><span class="line"><span class="bash">RUN yum install -y gcc make gcc-c++ openssl-devel wget zlib* perl perl-devel</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment">#pcre</span></span></span><br><span class="line"><span class="bash">WORKDIR /usr/<span class="built_in">local</span>/src</span></span><br><span class="line"><span class="bash">RUN wget https://ncu.dl.sourceforge.net/project/pcre/pcre/8.41/pcre-8.41.tar.gz</span></span><br><span class="line"><span class="bash">RUN tar -zxf pcre-8.41.tar.gz</span></span><br><span class="line"><span class="bash">WORKDIR pcre-8.41</span></span><br><span class="line"><span class="bash">RUN ./configure</span></span><br><span class="line"><span class="bash">RUN make &amp;&amp; make install</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment">#zib-1.2.11</span></span></span><br><span class="line"><span class="bash">WORKDIR /usr/<span class="built_in">local</span>/src</span></span><br><span class="line"><span class="bash">RUN wget http://www.zlib.net/zlib-1.2.11.tar.gz</span></span><br><span class="line"><span class="bash">RUN tar -zxf zlib-1.2.11.tar.gz</span></span><br><span class="line"><span class="bash">WORKDIR zlib-1.2.11</span></span><br><span class="line"><span class="bash">RUN ./configure</span></span><br><span class="line"><span class="bash">RUN make &amp;&amp; make install</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment">#Openssl</span></span></span><br><span class="line"><span class="bash">WORKDIR /usr/<span class="built_in">local</span>/src</span></span><br><span class="line"><span class="bash">RUN wget https://www.openssl.org/<span class="built_in">source</span>/openssl-1.0.2l.tar.gz</span></span><br><span class="line"><span class="bash">RUN tar -zxf openssl-1.0.2l.tar.gz</span></span><br><span class="line"><span class="bash">WORKDIR openssl-1.0.2l</span></span><br><span class="line"><span class="bash">RUN ./config -fPIC --prefix=/usr/<span class="built_in">local</span>/openssl/ <span class="built_in">enable</span>-shared</span></span><br><span class="line"><span class="bash">RUN make depend</span></span><br><span class="line"><span class="bash">RUN make &amp;&amp; make install</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment">#nginx</span></span></span><br><span class="line"><span class="bash">WORKDIR /usr/<span class="built_in">local</span>/src</span></span><br><span class="line"><span class="bash">RUN wget http://nginx.org/download/nginx-1.13.6.tar.gz</span></span><br><span class="line"><span class="bash">RUN tar -zxf nginx-1.13.6.tar.gz</span></span><br><span class="line"><span class="bash">WORKDIR nginx-1.13.6</span></span><br><span class="line"><span class="bash">RUN ./configure --sbin-path=/usr/<span class="built_in">local</span>/nginx/nginx \</span></span><br><span class="line"><span class="bash">--conf-path=/usr/<span class="built_in">local</span>/nginx/nginx.conf \</span></span><br><span class="line"><span class="bash">--pid-path=/usr/<span class="built_in">local</span>/nginx/nginx.pid \</span></span><br><span class="line"><span class="bash">--with-http_ssl_module \</span></span><br><span class="line"><span class="bash">--with-pcre=/usr/<span class="built_in">local</span>/src/pcre-8.41 \</span></span><br><span class="line"><span class="bash">--with-zlib=/usr/<span class="built_in">local</span>/src/zlib-1.2.11 \</span></span><br><span class="line"><span class="bash">--with-openssl=/usr/<span class="built_in">local</span>/src/openssl-1.0.2l \</span></span><br><span class="line"><span class="bash">--with-stream</span></span><br><span class="line"><span class="bash">RUN make &amp;&amp; make install</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment">#nodejs</span></span></span><br><span class="line"><span class="bash">WORKDIR /usr/<span class="built_in">local</span>/src</span></span><br><span class="line"><span class="bash">RUN wget https://nodejs.org/dist/v8.8.1/node-v8.8.1.tar.gz</span></span><br><span class="line"><span class="bash">RUN tar -zxf node-v8.8.1.tar.gz</span></span><br><span class="line"><span class="bash">WORKDIR node-v8.8.1</span></span><br><span class="line"><span class="bash">RUN ./configure</span></span><br><span class="line"><span class="bash">RUN make install</span></span><br><span class="line"><span class="bash">RUN npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span></span><br><span class="line"><span class="bash">RUN rm -rf /usr/<span class="built_in">local</span>/src/*</span></span><br></pre></td></tr></table></figure></p>
+<p>主要是在centos镜像基础上添加了Nginx和node 同步上去之后再 去阿里云上点击 容器镜像服务 功能， 添加镜像仓库，代码源设置为阿里云code，选取命名空间，选择刚才同步的代码仓库等，构建设置 勾选 在代码更新时自动构建， 添加完成之后，列表也点击设置–&gt; 构建–&gt; 立即构建，第一次构建需要编译时间比较长，到此一个基础的centos+Nginx+node的镜像已经构建完成了，列表页有个仓库地址 后面引用项目就FROM该地址即可。 四、梳理宿主机与容器间的两个Nginx关系 上面示例中容器中有个Nginx，一般容器外也会有个Nginx，那么他们两个之间有什么关系或者说怎么个运行步骤呢？ 在一个宿主机中一般会有多个容器，容器外的Nginx根据端口号分发给各个容器的，容器Dockerfile文件中espose 可以设置暴露多个端口号，容器在构建时一般会映射端口号（-p 容器端口号和主机端口号）,这里容器的端口号应该是上面expose 中的一个，主机端口号应该和内部Nginx接受端口相对应，内部的Nginx再讲端口映射到我们项目程序的端口，这样看来内部的Nginx好像没有多大作用（容器可以直接访问主程序的），我是这样认为的，因为在这个示例中外部是有配置Nginx的，如果外部要是什么都没有配置，也可以直接构建项目，因为我们镜像内部包含有Nginx做映射； 也就是说流程应该是这样的 client 访问宿主机 经过外部的Nginx的映射，到相应的容器（若espose没有匹配到则无法访问），容器接受到请求根据端口号经过内部Nginx的映射到我们的主程序中。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    小蜜蜂
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zyb0408.github.io/2016/03/28/Docker-Nginx/" title="Docker-Nginx">https://zyb0408.github.io/2016/03/28/Docker-Nginx/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/13/docker入门实战笔记/" rel="next" title="docker入门实战笔记">
+                <i class="fa fa-chevron-left"></i> docker入门实战笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/18/Ubuntu上使用virtualenv/" rel="prev" title="Ubuntu上使用virtualenv">
+                Ubuntu上使用virtualenv <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon-32x32-next.png" alt="小蜜蜂">
+            
+              <p class="site-author-name" itemprop="name">小蜜蜂</p>
+              <p class="site-description motion-element" itemprop="description">小蜜蜂学计算机</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小蜜蜂</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">66k</span>
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2017,09,17,00,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('100');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>

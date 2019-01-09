@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+
+
+
+
+
+  <meta name="keywords" content="tomcat,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Web服务器根据对javaEE支持的能力分为两大类 1，JavaEE服务器(应用服务器)  1) IBM公司 WebSphere  2) BEA公司 WebLogic  3) JBoss 公司 JBoss  4) Apache组织 Geronimo(免费WebSphere社区版)  2，Web容器(servlet/jsp容器)  1) Apache组织 Tomcat  2) Webtide 公司">
+<meta name="keywords" content="tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat基础1">
+<meta property="og:url" content="https://zyb0408.github.io/2018/09/24/Tomcat基础1/index.html">
+<meta property="og:site_name" content="小蜜蜂">
+<meta property="og:description" content="Web服务器根据对javaEE支持的能力分为两大类 1，JavaEE服务器(应用服务器)  1) IBM公司 WebSphere  2) BEA公司 WebLogic  3) JBoss 公司 JBoss  4) Apache组织 Geronimo(免费WebSphere社区版)  2，Web容器(servlet/jsp容器)  1) Apache组织 Tomcat  2) Webtide 公司">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-24T10:05:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat基础1">
+<meta name="twitter:description" content="Web服务器根据对javaEE支持的能力分为两大类 1，JavaEE服务器(应用服务器)  1) IBM公司 WebSphere  2) BEA公司 WebLogic  3) JBoss 公司 JBoss  4) Apache组织 Geronimo(免费WebSphere社区版)  2，Web容器(servlet/jsp容器)  1) Apache组织 Tomcat  2) Webtide 公司">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zyb0408.github.io/2018/09/24/Tomcat基础1/">
+
+
+
+
+
+  <title>Tomcat基础1 | 小蜜蜂</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小蜜蜂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Don't Hack Me</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zyb0408.github.io/2018/09/24/Tomcat基础1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小蜜蜂">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-32x32-next.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小蜜蜂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Tomcat基础1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-24T18:05:57+08:00">
+                2018-09-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-24T18:05:57+08:00">
+                2018-09-24
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+		<div>
+		
+			<div>
+    
+        <div style="text-align:center;color: #636363;font-size:14px;letter-spacing: 10px">���Ľ�����<i class="fa fa-bell"></i>��л�����Ķ�</div>
+    
+</div>
+		
+	</div>
+      
+      
+
+      
+        <p><strong>Web服务器根据对javaEE支持的能力分为两大类</strong> <strong>1，JavaEE服务器(应用服务器)</strong> </p>
+<p>1) IBM公司 WebSphere </p>
+<p>2) BEA公司 WebLogic </p>
+<p>3) JBoss 公司 JBoss </p>
+<p>4) Apache组织 Geronimo(免费WebSphere社区版) </p>
+<p><strong>2，Web容器(servlet/jsp容器)</strong> </p>
+<p>1) Apache组织 Tomcat </p>
+<p>2) Webtide 公司 jetty</p>
+<h2 id="Tomcat版本"><a href="#Tomcat版本" class="headerlink" title="Tomcat版本"></a>Tomcat版本</h2><p>========</p>
+<p><strong>Tomcat</strong></p>
+<p><strong>JDK</strong></p>
+<p>JavaEE</p>
+<p><strong>Servlet</strong></p>
+<p><strong>JSP</strong></p>
+<p>9.x</p>
+<p>8及更高的版本</p>
+<p>JavaEE8</p>
+<p>4.0</p>
+<p>2.4?</p>
+<p>8.x</p>
+<p>7及更高的版本</p>
+<p>JavaEE7</p>
+<p>3.1</p>
+<p>2.3</p>
+<p>7.x</p>
+<p>6及更高的版本</p>
+<p>JavaEE6</p>
+<p>3.0</p>
+<p>2.2</p>
+<p>6.x</p>
+<p>5及更高的版本</p>
+<p>JavaEE5</p>
+<p>2.5</p>
+<p>2.1</p>
+<p>5.x</p>
+<p>1.4及更高的版本</p>
+<p>JavaEE1.4</p>
+<p>2.4</p>
+<p>2.0</p>
+<p>4.x</p>
+<p>1.3及更高的版本</p>
+<p>JavaEE1.3</p>
+<p>2.3</p>
+<p>1.2</p>
+<p>3.x</p>
+<p>1.1及更高的版本</p>
+<p>JavaEE1.3</p>
+<p>2.2</p>
+<p>1.1</p>
+<h2 id="Tomcat安装"><a href="#Tomcat安装" class="headerlink" title="Tomcat安装"></a>Tomcat安装</h2><p>========</p>
+<p>下载，解压，然后配置环境变量，即可</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><h2 id="方式1："><a href="#方式1：" class="headerlink" title="方式1："></a>方式1：</h2><p>bin目录下的startup.sh(linux下），startup.bat（Windows下）</p>
+<h2 id="方式2："><a href="#方式2：" class="headerlink" title="方式2："></a>方式2：</h2><p>bin目录下，命令行中输入 a.Linux: catalina.sh start/stop b.Windows: catalina.bat start/stop</p>
+<h1 id="Tomcat目录结构"><a href="#Tomcat目录结构" class="headerlink" title="Tomcat目录结构"></a><strong>Tomcat目录结构</strong></h1><h2 id="1、bin目录"><a href="#1、bin目录" class="headerlink" title="1、bin目录"></a><strong>1、bin目录</strong></h2><p>这个目录只要是存放了一些bat文件或者sh文件。比如说我们需要启动tomcat的bat就在这个目录下 启动tomcat的方式： 1).点击 startup.bat可以启动tomcat 2).在黑窗口下运行 catalina.bat 后面需要跟命令：start启动 stop关闭 3).关闭容器 shutdonw.bat或者是直接关闭黑窗口。</p>
+<h2 id="2、conf"><a href="#2、conf" class="headerlink" title="2、conf"></a><strong>2、conf</strong></h2><p>这个目录中存放的都是一些配置文件 xml</p>
+<h2 id="3、lib"><a href="#3、lib" class="headerlink" title="3、lib"></a><strong>3、lib</strong></h2><p>这个目录中存放的是一些jar文件。 这里的jar文件重要有两大类： 1)tomcat自身的jar， 2)实现javaEE平台下部分标准的实现类(比如：jsp servlet…)</p>
+<h2 id="4、log"><a href="#4、log" class="headerlink" title="4、log"></a><strong>4、log</strong></h2><p>存放的都是tomcat的日志文件。如果我们想了解黑窗口在启动时的打印信息，可以进到这个目录下找到cataline.log文件在这个文件中可以看到相关记录。</p>
+<h2 id="5、temp"><a href="#5、temp" class="headerlink" title="5、temp"></a><strong>5、temp</strong></h2><p>在这个目录中存放的是tomcat在运行时所产生的一些临时文件。这些文件是否存在并不影响tomcat的运行，所以这个目录下的内容可以被删除掉。但是：temp文件夹不能删。</p>
+<h2 id="6、webapps"><a href="#6、webapps" class="headerlink" title="6、webapps"></a><strong>6、webapps</strong></h2><p>这个目录主要是存放需要让tomcat去管理的资源的目录。</p>
+<h2 id="7、work"><a href="#7、work" class="headerlink" title="7、work"></a><strong>7、work</strong></h2><p>这个目录主要存放的是tomcat对jsp编译完后得原文件以及class文件。</p>
+<h2 id="8、doc"><a href="#8、doc" class="headerlink" title="8、doc"></a><strong>8、doc</strong></h2><p>存放Tomcat文档;</p>
+<h1 id="Server-xml配置文件简介"><a href="#Server-xml配置文件简介" class="headerlink" title="Server.xml配置文件简介"></a><strong>Server.xml配置文件简介</strong></h1><p><strong>server:</strong> 1、port 指定一个端口，这个端口负责监听关闭tomcat的请求 2、shutdown 指定向端口发送的命令字符串 <strong>service:</strong> 1、name 指定service的名字 <strong>Connector (表示客户端和service之间的连接)：</strong> 1、port 指定服务器端要创建的端口号，并在这个断口监听来自客户端的请求 2、minProcessors 服务器启动时创建的处理请求的线程数 3、maxProcessors 最大可以创建的处理请求的线程数 4、enableLookups 如果为true，则可以通过调用request.getRemoteHost()进行DNS查询来得到远程客户端的实际主机名，若为false则不进行DNS查询，而是返回其ip地址 5、redirectPort 指定服务器正在处理http请求时收到了一个SSL传输请求后重定向的端口号 6、acceptCount 指定当所有可以使用的处理请求的线程数都被使用时，可以放到处理队列中的请求数，超过这个数的请求将不予处理 7、connectionTimeout 指定超时的时间数(以毫秒为单位) <strong>Engine(表示指定service中的请求处理机，接收和处理来自Connector的请求)：</strong> 1、defaultHost 指定缺省的处理请求的主机名，它至少与其中的一个host元素的name属性值是一样的 <strong>Context (表示一个web应用程序)：</strong> 1、docBase 应用程序的路径或者是WAR文件存放的路径 2、path 表示此web应用程序的url的前缀，这样请求的url为<a href="http://localhost:8080/path/***" target="_blank" rel="noopener">http://localhost:8080/path/***</a>* 3、reloadable 这个属性非常重要，如果为true，则tomcat会自动检测应用程序的/WEB-INF/lib 和/WEB-INF/classes目录的变化，自动装载新的应用程序，我们可以在不重起tomcat的情况下改变应用程序 <strong>host (表示一个虚拟主机)：</strong> 1、name 指定主机名 2、appBase 应用程序基本目录，即存放应用程序的目录 3、unpackWARs 如果为true，则tomcat会自动将WAR文件解压，否则不解压，直接从WAR文件中运行应用程序 <strong>Logger (表示日志，调试和错误信息)：</strong> 1、className 指定logger使用的类名，此类必须实现org.apache.catalina.Logger 接口 2、prefix 指定log文件的前缀 3、suffix 指定log文件的后缀 4、timestamp 如果为true，则log文件名中要加入时间，如下例:localhost_log.2001-10-04.txt <strong>Realm (表示存放用户名，密码及role的数据库)：</strong> 1、className 指定Realm使用的类名，此类必须实现org.apache.catalina.Realm接口 <strong>Valve (功能与Logger差不多，其prefix和suffix属性解释和Logger 中的一样)：</strong> 1、className 指定Valve使用的类名，如用org.apache.catalina.valves.AccessLogValve类可以记录应用程序的访问信息 <strong>directory(指定log文件存放的位置)：</strong> 1、pattern 有两个值，common方式记录远程主机名或ip地址，用户名，日期，第一行请求的字符串，HTTP响应代码，发送的字节数。combined方式比common方式记录的值更多。</p>
+<h1 id="tomcat的部署项目的方式"><a href="#tomcat的部署项目的方式" class="headerlink" title="tomcat的部署项目的方式"></a><strong>tomcat的部署项目的方式</strong></h1><p><strong>1、静态部署</strong></p>
+<h3 id="tomcat部署项目三种方式："><a href="#tomcat部署项目三种方式：" class="headerlink" title="tomcat部署项目三种方式："></a>tomcat部署项目三种方式：</h3><h3 id="1-1-放到webapps目录下。"><a href="#1-1-放到webapps目录下。" class="headerlink" title="1.1 放到webapps目录下。"></a><strong>1.1 放到webapps目录下。</strong></h3><p>直接将web项目文件件拷贝到webapps 目录中Tomcat的Webapps目录是Tomcat默认的应用目录，当服务器启动时，会加载所有这个目录下的应用。所以可以将web项目打包成一个 war包放在目录下，服务器会自动解开这个war包，并在这个目录下生成一个同名的文件夹。一个war包就是有特性格式的jar包，它是将一个web程序的所有内容进行压缩得到。具体如何打包，可以使用许多开发工具的IDE环境，如Eclipse等。也可以用 cmd 命令：jar -cvf mywar.war myweb webapps这个默认的应用目录也是可以改变。打开Tomcat的conf目录下的server.xml文件，找到下面内容：</p>
+<pre><code>&lt;Host name=&quot;localhost&quot; appBase=&quot;webapps&quot;
+       unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;
+       xmlValidation=&quot;false&quot; xmlNamespaceAware=&quot;false&quot;&gt;
+</code></pre><h3 id="1-2-修改server-xm-的host节点。"><a href="#1-2-修改server-xm-的host节点。" class="headerlink" title="1.2 修改server.xm 的host节点。"></a><strong>1.2 修改server.xm 的host节点。</strong></h3><p>将appBase修改即可。 添加<context path="/访问资源目录" docbase="e:/xxx"> 在server.xml中指定。在Tomcat的配置文件中，一个Web应用就是一个特定的Context，可以通过在server.xml中新建Context里部署一个web应用程序。打开server.xml文件，在Host标签内建一个Context，内容如下。 在tomcat中的conf目录中，在server.xml中的，<host>节点中添加：</host></context></p>
+<pre><code>&lt;Context path=&quot;/hello&quot; docBase=&quot;D:\ workspace\hello\WebRoot&quot; debug=&quot;0&quot; privileged=&quot;true&quot;&gt;
+&lt;/Context&gt;
+或者
+&lt;Context path=&quot;/myapp&quot; reloadable=&quot;true&quot; docBase=&quot;D:\myapp&quot; workDir=&quot;D:\myapp\work&quot;/&gt;
+或者
+&lt;Context path=&quot;/sms4&quot; docBase=&quot;D:\workspace\sms4\WebRoot&quot;/&gt;
+</code></pre><p><strong>说明：</strong> path是虚拟路径; docBase 是应用程序的物理路径; workDir 是这个应用的工作目录，存放运行时生成的与这个应用相关的文件; debug 则是设定debug level, 0表示提供最少的信息，9表示提供最多的信息 privileged设置为true的时候，才允许Tomcat的Web应用使用容器内的Servlet reloadable 如果为true，则tomcat会自动检测应用程序的/WEB-INF/lib 和/WEB-INF/classes目录的变化，自动装载新的应用程序，可以在不重起tomcat的情况下改变应用程序，实现热部署 antiResourceLocking 和antiJARLocking 热部署是需要配置的参数，默认false避免更新了某个webapp，有时候Tomcat并不能把旧的webapp完全删除，通常会留下WEB-INF/lib下的某个jar包，必须关闭Tomcat才能删除，这就导致自动部署失败。设置为true，Tomcat在运行对应的webapp时，会把相应的源文件和jar文件复制到一个临时目录里。</p>
+<h3 id="1-3-在conf目录下找到或者是新建文件夹"><a href="#1-3-在conf目录下找到或者是新建文件夹" class="headerlink" title="1.3 在conf目录下找到或者是新建文件夹"></a><strong>1.3 在conf目录下找到或者是新建文件夹</strong></h3><p>(Catalina—-&gt;localhost—–&gt;访问资源的   xml—–&gt;&lt;Context……/&gt;) 在该目录中新建一个xml文件，名字不可以随意取，要和path后的那个名字一致，按照下边这个path的配置，xml的名字应该就应该是hello（hello.xml），该xml文件的内容为：</p>
+<pre><code>&lt;Context path=&quot;/hello&quot; docBase=&quot;E:\workspace\hello\WebRoot&quot; debug=&quot;0&quot; privileged=&quot;true&quot;&gt;
+&lt;/Context&gt;
+</code></pre><h2 id="2、动态部署也称之为热部署"><a href="#2、动态部署也称之为热部署" class="headerlink" title="2、动态部署也称之为热部署"></a><strong>2、动态部署也称之为热部署</strong></h2><h3 id="2-1-登陆tomcat管理控制台"><a href="#2-1-登陆tomcat管理控制台" class="headerlink" title="2.1 登陆tomcat管理控制台"></a><strong>2.1 登陆tomcat管理控制台</strong></h3><p><a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a> ，输入用户名和密码后便可管理应用并动态发布。 在Context Path(option):中输入/yourwebname ，这代表你的应用的访问地址。 XML Configration file URL中要指定一个xml文件，比如我们在F:\下建立一个hmcx.xml文件，内容如下： 其中docBase不用写了，因为在下一个文本框中填入。或者更简单点，这个文本框什么都不填，在WAR or Directory URL:中键入F:\hmcx即可，然后点击Deploy按钮，上面就可以看到了web应用程序，名字就Context Path(option):中的名字。</p>
+<h3 id="2-2-如果部署-war文件还有更加简单的方式，"><a href="#2-2-如果部署-war文件还有更加简单的方式，" class="headerlink" title="2.2 如果部署.war文件还有更加简单的方式，"></a><strong>2.2 如果部署.war文件还有更加简单的方式</strong>，</h3><p>下面还有个Select WAR file uploae点击浏览选择.war文件，然后点击Deploy即可。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    小蜜蜂
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zyb0408.github.io/2018/09/24/Tomcat基础1/" title="Tomcat基础1">https://zyb0408.github.io/2018/09/24/Tomcat基础1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tomcat/" rel="tag"># tomcat</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/18/Ubuntu上使用virtualenv/" rel="next" title="Ubuntu上使用virtualenv">
+                <i class="fa fa-chevron-left"></i> Ubuntu上使用virtualenv
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/09/C语言中常用数学函数/" rel="prev" title="C语言中常用数学函数">
+                C语言中常用数学函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon-32x32-next.png" alt="小蜜蜂">
+            
+              <p class="site-author-name" itemprop="name">小蜜蜂</p>
+              <p class="site-description motion-element" itemprop="description">小蜜蜂学计算机</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat版本"><span class="nav-number">1.</span> <span class="nav-text">Tomcat版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat安装"><span class="nav-number">2.</span> <span class="nav-text">Tomcat安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动"><span class="nav-number">2.1.</span> <span class="nav-text">启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式1："><span class="nav-number">3.</span> <span class="nav-text">方式1：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式2："><span class="nav-number">4.</span> <span class="nav-text">方式2：</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat目录结构"><span class="nav-number"></span> <span class="nav-text">Tomcat目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、bin目录"><span class="nav-number">1.</span> <span class="nav-text">1、bin目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、conf"><span class="nav-number">2.</span> <span class="nav-text">2、conf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、lib"><span class="nav-number">3.</span> <span class="nav-text">3、lib</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、log"><span class="nav-number">4.</span> <span class="nav-text">4、log</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、temp"><span class="nav-number">5.</span> <span class="nav-text">5、temp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、webapps"><span class="nav-number">6.</span> <span class="nav-text">6、webapps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、work"><span class="nav-number">7.</span> <span class="nav-text">7、work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、doc"><span class="nav-number">8.</span> <span class="nav-text">8、doc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Server-xml配置文件简介"><span class="nav-number"></span> <span class="nav-text">Server.xml配置文件简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tomcat的部署项目的方式"><span class="nav-number"></span> <span class="nav-text">tomcat的部署项目的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat部署项目三种方式："><span class="nav-number">0.1.</span> <span class="nav-text">tomcat部署项目三种方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-放到webapps目录下。"><span class="nav-number">0.2.</span> <span class="nav-text">1.1 放到webapps目录下。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-修改server-xm-的host节点。"><span class="nav-number">0.3.</span> <span class="nav-text">1.2 修改server.xm 的host节点。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-在conf目录下找到或者是新建文件夹"><span class="nav-number">0.4.</span> <span class="nav-text">1.3 在conf目录下找到或者是新建文件夹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、动态部署也称之为热部署"><span class="nav-number">1.</span> <span class="nav-text">2、动态部署也称之为热部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-登陆tomcat管理控制台"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 登陆tomcat管理控制台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-如果部署-war文件还有更加简单的方式，"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 如果部署.war文件还有更加简单的方式，</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小蜜蜂</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">66k</span>
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2017,09,17,00,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('100');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
