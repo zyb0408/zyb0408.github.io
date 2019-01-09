@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+
+
+
+
+
+  <meta name="keywords" content="Linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ping命令是用来确定本地主机与网络中其他主机的网络通信情况，或者查看是否是为有效IP。 ping的工作原理：网络另一主机发送ICMP报文，通过返回信息判断网络连接状况。没有通过传输层的TCP或者UDP。 ping的返回信息中有一个值为TTL（time to live）表示ping程序发送的ICMP数据包的生存周期，每经过一个网段，TTL减1，当其值被减到0时，改数据包将被丢弃，该数据包的源地址被">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ping命令原理">
+<meta property="og:url" content="https://zyb0408.github.io/2018/10/26/Ping命令原理/index.html">
+<meta property="og:site_name" content="小蜜蜂">
+<meta property="og:description" content="ping命令是用来确定本地主机与网络中其他主机的网络通信情况，或者查看是否是为有效IP。 ping的工作原理：网络另一主机发送ICMP报文，通过返回信息判断网络连接状况。没有通过传输层的TCP或者UDP。 ping的返回信息中有一个值为TTL（time to live）表示ping程序发送的ICMP数据包的生存周期，每经过一个网段，TTL减1，当其值被减到0时，改数据包将被丢弃，该数据包的源地址被">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/mushi.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/12121-1.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/arp.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/21111111111111111111111113.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/arp-1.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/baowen.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/目的.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/格式2.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/格式3.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/格式4.png">
+<meta property="og:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/微信截图_20181026142857-300x170.png">
+<meta property="og:updated_time" content="2018-10-26T05:12:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ping命令原理">
+<meta name="twitter:description" content="ping命令是用来确定本地主机与网络中其他主机的网络通信情况，或者查看是否是为有效IP。 ping的工作原理：网络另一主机发送ICMP报文，通过返回信息判断网络连接状况。没有通过传输层的TCP或者UDP。 ping的返回信息中有一个值为TTL（time to live）表示ping程序发送的ICMP数据包的生存周期，每经过一个网段，TTL减1，当其值被减到0时，改数据包将被丢弃，该数据包的源地址被">
+<meta name="twitter:image" content="http://www.dhu021.top/wp-content/uploads/2018/10/mushi.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zyb0408.github.io/2018/10/26/Ping命令原理/">
+
+
+
+
+
+  <title>Ping命令原理 | 小蜜蜂</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小蜜蜂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Don't Hack Me</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zyb0408.github.io/2018/10/26/Ping命令原理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小蜜蜂">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-32x32-next.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小蜜蜂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Ping命令原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-26T13:12:33+08:00">
+                2018-10-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-26T13:12:33+08:00">
+                2018-10-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+		<div>
+		
+			<div>
+    
+        <div style="text-align:center;color: #636363;font-size:14px;letter-spacing: 10px">���Ľ�����<i class="fa fa-bell"></i>��л�����Ķ�</div>
+    
+</div>
+		
+	</div>
+      
+      
+
+      
+        <p>ping命令是用来确定本地主机与网络中其他主机的网络通信情况，或者查看是否是为有效IP。 ping的工作原理：网络另一主机发送ICMP报文，通过返回信息判断网络连接状况。没有通过传输层的TCP或者UDP。 ping的返回信息中有一个值为TTL（time to live）表示ping程序发送的ICMP数据包的生存周期，每经过一个网段，TTL减1，当其值被减到0时，改数据包将被丢弃，该数据包的源地址被告知的情况下，以重新发送数据包。</p>
+<p>ping命令 背后涉及网络层的ARP-&gt;ICMP-&gt;IP协议。</p>
+<h1 id="ping的流程"><a href="#ping的流程" class="headerlink" title="ping的流程"></a><strong>ping的流程</strong></h1><ul>
+<li>　创建通信套接字</li>
+<li>　将地址、端口信息于套接字绑定</li>
+<li>　构建IP包头与ICMP包头</li>
+<li>　发送构建数据包</li>
+<li>　接收对方主机回应</li>
+<li>　给出程序反馈信息</li>
+</ul>
+<h1 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a><strong>ICMP协议</strong></h1><p>即网际控制报文协议，可在网络中实现主机探测，路由维护、路由选择和流量控制。 由于IP协议没有机制来获取网络错误信息以及对错误进行处理，所以需要一个协议—ICMP协议来解决这个问题，ICMP是IP层的一部分，用于传输差错报文及控制报文，遇到错误时能把错误报告给源发送方，ICMP报文是封装在IP数据报内部。</p>
+<h2 id="ICMP包头格式"><a href="#ICMP包头格式" class="headerlink" title="ICMP包头格式"></a>ICMP包头格式</h2><p>ICMP报文分为两种，一是差错报告报文，二是查询报文。每个ICMP报头均包含类型（8B）、编码（8B）、校验（16B）三项内容。其余选项岁ICMP功能不同而不同。 ping命令只适用众多ICMP报文中的两种：“回送请求（ICMP_ECHO）”和“回送回答报文（ICMP_ECHOREPLY）”，往返的ICMP报文中都有时间戳。 ICMP是（Internet Control Message Protocol）Internet控制报文协议。它是TCP/IP协议族的一个子协议，用于在IP主机、路由器之间传递控制消息。控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息。这些控制消息虽然并不传输用户数据，但是对于用户数据的传递起着重要的作用。</p>
+<h1 id="ping的两情况下ARP的过程"><a href="#ping的两情况下ARP的过程" class="headerlink" title="ping的两情况下ARP的过程"></a>ping的两情况下ARP的过程</h1><p>一种是同一网段内，一种是跨网段的ping。 <img src="http://www.dhu021.top/wp-content/uploads/2018/10/mushi.png" alt=""></p>
+<h2 id="1-同一网段内ping"><a href="#1-同一网段内ping" class="headerlink" title="1.同一网段内ping"></a>1.<strong>同一网段内ping</strong></h2><p>首先，如果主机A，要去ping主机B，那么主机A，就要封装二层报文，他会先查自己的MAC地址表，如果没有B的MAC地址，就会向外发送一个ARP广播包，如图: <img src="http://www.dhu021.top/wp-content/uploads/2018/10/12121-1.png" alt=""> 其中ARP报文格式如下: <img src="http://www.dhu021.top/wp-content/uploads/2018/10/arp.png" alt=""> 其中OP : 1：表示ARP请求 2：表示ARP应答 3：表示RARP请求 4：表示RARP应答 首先，交换机会收到这个报文后，交换机有学习MAC地址的功能，所以他会检索自己有没有保存主机B的MAC地址，如果有，就返回给主机A，如果没有，就会向所有端口发送ARP广播，其它主机收到后，发现不是在找自己，就纷纷丢弃了该报文，不去理会。直到主机B收到了报文后，就立即响应，我的MAC地址是多少，同时学到主机A的MAC地址，并按同样的ARP报文格式返回给主机A。如图： <img src="http://www.dhu021.top/wp-content/uploads/2018/10/21111111111111111111111113.png" alt=""> ARP报文格式为： <img src="http://www.dhu021.top/wp-content/uploads/2018/10/arp-1.png" alt=""> 这时候主机A学到了主机B的MAC地址，就把这个MAC地址封装到ICMP协议的二层报文中向主机B发送，报文格式如下： <img src="http://www.dhu021.top/wp-content/uploads/2018/10/baowen.png" alt=""> 当主机B收到了这个报文后，发现是主机A 的ICPM回显请求，就按同样的格式，返回一个值给主机A，这样就完成了同一网段内的ping过程。 <img src="http://www.dhu021.top/wp-content/uploads/2018/10/目的.png" alt=""> 在这里，讲了这么久的局域网内的PING，实际过程的发生不到1毫秒。</p>
+<h2 id="2-不同网段内ping"><a href="#2-不同网段内ping" class="headerlink" title="2.不同网段内ping"></a>2.不同网段内ping</h2><p>如果主机A要ping主机C，那么主机A发现主机C的IP和自己不是同一网段，他就去找网关转发，但是他也不知道网关的MAC地址情况下呢？他就会向之前那个步骤一样先发送一个ARP广播，学到网关的MAC地址，再发封装ICMP报文给网关路由器.。报文格式如下： <img src="http://www.dhu021.top/wp-content/uploads/2018/10/格式2.png" alt=""> 当路由器收到主机A发过来的ICMP报文，发现自己的目的地址是其本身MAC地址，根据目的的IP2.1.1.1，查路由表，发现2.1.1.1/24的路由表项，得到一个出口指针，去掉原来的MAC头部，加上自己的MAC地址向主机C转发。(如果网关也没有主机C的MAC地址，还是要向前面一个步骤一样，ARP广播一下即可相互学到。路由器2端口能学到主机D的MAC地址，主机D也能学到路由器2端口的MAC地址。)报文格式如下： <img src="http://www.dhu021.top/wp-content/uploads/2018/10/格式3.png" alt=""> 最后，在主机C已学到路由器2端口MAC地址，路由器2端口转发给路由器1端口，路由1端口学到主机A的MAC地址的情况下，他们就不需要再做ARP解析，就将ICMP的回显请求回复过来。报文格式大致如下: <img src="http://www.dhu021.top/wp-content/uploads/2018/10/格式4.png" alt="">    </p>
+<h1 id="ping过程总结"><a href="#ping过程总结" class="headerlink" title="ping过程总结"></a>ping过程总结</h1><h2 id="1-相同网段"><a href="#1-相同网段" class="headerlink" title="1.相同网段"></a>1.相同网段</h2><ol>
+<li>主机A要去Ping主机B， 主机A会封装两层报文，主机A先检查自己MAC地址中是否有B的MAC地址，如果没有就向外发送一个ARP广播包。</li>
+<li>交换机收到这个ARP后，会检查在交换机中是否包含B的MAC地址，如果有就直接返回给A；如果没有就向所有端口发送ARP，该网段的主机的MAC如果与B的MAC地址不同就丢弃，如果主机B收到了该ARP就马上返回相同格式的ARP。</li>
+<li>这时主机A已经有了B的MAC地址，就把B的MAC地址封装到ICMP报中，向主机B发送一个回显请求。</li>
+<li>主机B收到该报文后，知道是主机A的一个回显请求，就会返回一个相同格式的报文。这样就完成了同一个网段的Ping的过程。</li>
+</ol>
+<h2 id="2-ping某个域名的过程"><a href="#2-ping某个域名的过程" class="headerlink" title="2.ping某个域名的过程"></a>2.ping某个域名的过程</h2><ol>
+<li>首先本机发送域名请求数据到PC设置的DNS ip</li>
+<li>PC通过子网掩码判断DNS ip是本网段还是跨网段（这里只考虑跨网段）</li>
+<li>由于是跨网段，PC发送DNS域名解析数据包到PC设置的网关ip上。（此时先要进行二层的mac转发，PC查看本机arp缓存表，如果表中有网关的mac地址，直接转发，如果没有，使用arp解析协议解析到网关的mac地址。之后封装成数据帧发送到三层网络层）此时PC发送三层数据到网关，源地址为PC内网地址，目的地址为DNS ip地址。而在二层源mac地址为PC mac地址，目的mac地址为网关mac地址。</li>
+<li>路由内网网关收到数据包，根据数据包的目的地址，查看路由表。根据路由表发送数据到下一跳上。（发送前，数据到达路由外网端口，会根据nat地址转换配置。形成一条内网ip+port与外网ip+port的一一对应关系。）</li>
+<li>发送到下一跳和内网通信都是一样的，查看路由arp缓存表，如果有下一跳mac地址，就直接发送，没有的话需要arp协议解析一下。</li>
+<li>对端路由收到数据包，再接着根据路由表判断下一跳。这样一跳一跳地，最后到达DNS服务器。服务器将查询结果返回。</li>
+<li>返回的数据包在ISP的网络里最后寻址到你的路由器上，你的路由器收到数据包后，会查询路由nat连接表，寻找ip+port关系对应的内网ip。拆分数据包，封装成帧，最后PC收到域名对应的ip地址。</li>
+</ol>
+<p>【到这里，域名解析过程完成，接下来ping对方ip，过程与上面几乎一样】</p>
+<ol>
+<li>再发起一次PC到目的域名ip地址的一次ping请求信息</li>
+<li>PC通过子网掩码判断对方ip是本网段还是跨网段（这里只考虑跨网段）</li>
+<li>由于是跨网段，PC发送数据包到网关ip上。</li>
+<li>路由内网网关收到数据包，根据数据包的目的地址，查看路由表。根据路由表发送数据到下一跳上。（发送前，数据到达路由外网端口，会根据nat地址转换配置。形成一条内网IP+port与外网ip+port的一一对应关系。）</li>
+<li>发送到下一跳和内网通信都是一样的，查看路由arp缓存表，如果有下一跳mac地址，就直接发送，没有的话就是要arp协议解析一下。</li>
+<li>服务器收到数据包后，会重新构建一个ICMP应答包，然后返回。</li>
+<li><p>返回的数据包在ISP的网络里最后寻址到你的路由器上，你的路由器收到数据包后，会查询路由nat连接表，寻找ip+port关系对应的内网ip。拆分数据包，封装成帧，最后PC收到ICMP应答数据包。</p>
+<p>整个过程到此结束。在整个这个过程中，源ip地址和目的ip地址是不变的（内网到路由器段不算在内）而mac地址是变的。</p>
+</li>
+</ol>
+<h1 id="ping用法"><a href="#ping用法" class="headerlink" title="ping用法"></a>ping用法</h1><pre><code>D:\Users\***&gt;ping /?
+
+用法: ping [-t] [-a] [-n count] [-l size] [-f] [-i TTL] [-v TOS]
+[-r count] [-s count] [[-j host-list] | [-k host-list]]
+[-w timeout] [-R] [-S srcaddr] [-c compartment] [-p]
+[-4] [-6] target_name
+
+选项:
+-t Ping 指定的主机，直到停止。
+若要查看统计信息并继续操作，请键入 Ctrl+Break；
+若要停止，请键入 Ctrl+C。
+-a 将地址解析为主机名。
+-n count 要发送的回显请求数。
+-l size 发送缓冲区大小。
+-f 在数据包中设置“不分段”标记(仅适用于 IPv4)。
+-i TTL 生存时间。
+-v TOS 服务类型(仅适用于 IPv4。该设置已被弃用，
+对 IP 标头中的服务类型字段没有任何
+影响)。
+-r count 记录计数跃点的路由(仅适用于 IPv4)。
+-s count 计数跃点的时间戳(仅适用于 IPv4)。
+-j host-list 与主机列表一起使用的松散源路由(仅适用于 IPv4)。
+-k host-list 与主机列表一起使用的严格源路由(仅适用于 IPv4)。
+-w timeout 等待每次回复的超时时间(毫秒)。
+-R 同样使用路由标头测试反向路由(仅适用于 IPv6)。
+根据 RFC 5095，已弃用此路由标头。
+如果使用此标头，某些系统可能丢弃
+回显请求。
+-S srcaddr 要使用的源地址。
+-c compartment 路由隔离舱标识符。
+-p Ping Hyper-V 网络虚拟化提供程序地址。
+-4 强制使用 IPv4。
+-6 强制使用 IPv6。
+</code></pre><h1 id="ping使用步骤"><a href="#ping使用步骤" class="headerlink" title="ping使用步骤"></a>ping使用步骤</h1><p>一般我们直接使用第e步，用来测试本机与外网是否连通。 a.使用ipconfig /all观察本地网络设置是否正确; b.Ping 127.0.0.1，127.0.0.1 回送地址Ping回送地址是为了检查本地的TCP/IP协议有没有设置好; c.Ping本机IP地址，这样是为了检查本机的IP地址是否设置有误; d.Ping本网网关或本网IP地址，这样的是为了检查硬件设备是否有问题，也可以检查本机与本地网络连接是否正常；（在非局域网中这一步骤可以忽略） e.Ping远程IP地址，这主要是检查本网或本机与外部的连接是否正常。</p>
+<h1 id="判断一条链路好坏"><a href="#判断一条链路好坏" class="headerlink" title="判断一条链路好坏"></a><strong>判断一条链路好坏</strong></h1><p>Ping这个命令除了可以检查网络的连通和检测故障以外，还有一个比较有趣的用途，那就是可以利用它的一些返回数据，来估算你跟某台主机之间的速度是多少字节每秒。</p>
+<p>我们先来看看它有那些返回数据。</p>
+<pre><code>D:\Users\zyb&gt;ping www.baidu.com
+
+正在 www.a.shifen.com [115.239.211.112] 具有 32 字节的数据:
+来自 115.239.211.112 的回复: 字节=32 时间=4ms TTL=119
+来自 115.239.211.112 的回复: 字节=32 时间=4ms TTL=119
+来自 115.239.211.112 的回复: 字节=32 时间=4ms TTL=119
+来自 115.239.211.112 的回复: 字节=32 时间=4ms TTL=119
+
+115.239.211.112 的 Ping 统计信息:
+    数据包: 已发送 = 4，已接收 = 4，丢失 = 0 (0% 丢失)，
+往返行程的估计时间(以毫秒为单位):
+    最短 = 4ms，最长 = 4ms，平均 = 4ms
+</code></pre><p>在例子中”bytes=32”表示ICMP报文中有32个字节的测试数据，”time=4ms”是往返时间。 Sent 发送多个秒包、Received 收到多个回应包、Lost 丢弃了多少个Minmum 最小值 、MAXimun 最大值、Average 平均值。所在图上来看，来回只用了4MS 时间，lost =0 即是丢包数为0，网络状态相当良好。 (更详细可以使用-n参数 “ping –n 100 IP地址” ping 100次。查看 Sent Received Lost Minmum MAXimun Average 这些值的变化。)</p>
+<h1 id="对Ping后返回信息的分析"><a href="#对Ping后返回信息的分析" class="headerlink" title="对Ping后返回信息的分析"></a><strong>对Ping后返回信息的分析</strong></h1><h2 id="1-Request-timed-out"><a href="#1-Request-timed-out" class="headerlink" title="1.Request timed out"></a>1.Request timed out</h2><p>这是大家经常碰到的提示信息，很多文章中说这是对方机器置了过滤ICMP数据包，从上面工作过程来看，这是不完全正确的，至少有下几种情况。 <img src="http://www.dhu021.top/wp-content/uploads/2018/10/微信截图_20181026142857-300x170.png" alt=""></p>
+<p>（1） 对方已关机，或者网络上根本没有这个地址：比如在上图中主机A中PING 192.168.0.7 ，或者主机B关机了，在主机A中PING 192.168.0.5 都会得到超时的信息。</p>
+<p>（2）对方与自己不在同一网段内，通过路由也无法找到对方，但有时对方确实是存在的，当然不存在也是返回超时的信息。</p>
+<p>（3）对方确实存在，但设置了ICMP数据包过滤（比如防火墙设置）。</p>
+<p>怎样知道对方是存在，还是不存在呢，可以用带参数 -a 的Ping命令探测对方，如果能得到对方的NETBIOS名称，则说明对方是存在的，是有防火墙设置，如果得不到，多半是对方不存在或关机，或不在同一网段内。</p>
+<p>（4）错误设置IP地址</p>
+<p>正常情况下，一台主机应该有一个网卡，一个IP地址，或多个网卡，多个IP地址（这些地址一定要处于不同的IP子网）。但如果一台电脑的“拨号网络适配器”（相当于一块软网卡）的TCP/IP设置中，设置了一个与网卡IP地址处于同一子网的IP地址，这样，在IP层协议看来，这台主机就有两个不同的接口处于同一网段内。当从这台主机Ping其他的机器时，会存在这样的问题：</p>
+<p>A.主机不知道将数据包发到哪个网络接口，因为有两个网络接口都连接在同一网段。</p>
+<p>B.主机不知道用哪个地址作为数据包的源地址。因此，从这台主机去Ping其他机器，IP层协议会无法处理，超时后，Ping 就会给出一个“超时无应答”的错误信息提示。但从其他主机Ping这台主机时，请求包从特定的网卡来，ICMP只须简单地将目的、源地址互换，并更改一些标志即可，ICMP应答包能顺利发出，其他主机也就能成功Ping通这台机器了。</p>
+<h2 id="2-Destination-host-Unreachable"><a href="#2-Destination-host-Unreachable" class="headerlink" title="2.Destination host Unreachable"></a>2.Destination host Unreachable</h2><p>（1） 对方与自己不在同一网段内，而自己又未设置默认的路由，比如上例中A机中不设定默认的路由，运行Ping 192.168.0.1.4就会出现“Destination host Unreachable”。</p>
+<p>（2）网线出了故障</p>
+<p>这里要说明一下“destination host unreachable”和 “time out”的区别，如果所经过的路由器的路由表中具有到达目标的路由，而目标因为其他原因不可到达，这时候会出现“time out”，如果路由表中连到达目标的路由都没有，那就会出现“destination host unreachable”。</p>
+<h2 id="3-Bad-IP-address"><a href="#3-Bad-IP-address" class="headerlink" title="3.Bad IP address"></a>3.Bad IP address</h2><p>这个信息表示您可能没有连接到DNS服务器，所以无法解析这个IP地址，也可能是IP地址不存在。</p>
+<h2 id="4-Source-quench-received"><a href="#4-Source-quench-received" class="headerlink" title="4.Source quench received"></a>4.Source quench received</h2><p>这个信息比较特殊，它出现的机率很少。它表示对方或中途的服务器繁忙无法回应。</p>
+<h2 id="5-Unknown-host——不知名主机"><a href="#5-Unknown-host——不知名主机" class="headerlink" title="5.Unknown host——不知名主机"></a>5.Unknown host——不知名主机</h2><p>这种出错信息的意思是，该远程主机的名字不能被域名服务器（DNS）转换成IP地址。故障原因可能是域名服务器有故障，或者其名字不正确，或者网络管理员的系统与远程主机之间的通信线路有故障。</p>
+<h2 id="6-No-answer——无响应"><a href="#6-No-answer——无响应" class="headerlink" title="6.No answer——无响应"></a>6.No answer——无响应</h2><p>这种故障说明本地系统有一条通向中心主机的路由，但却接收不到它发给该中心主机的任何信息。故障原因可能是下列之一：中心主机没有工作；本地或中心主机网络配置不正确；本地或中心的路由器没有工作；通信线路有故障；中心主机存在路由选择问题。</p>
+<h2 id="7-Ping-127-0-0-1"><a href="#7-Ping-127-0-0-1" class="headerlink" title="7.Ping 127.0.0.1"></a>7.Ping 127.0.0.1</h2><p>127.0.0.1是本地循环地址</p>
+<p>如果本地址无法Ping通，则表明本地机TCP/IP协议不能正常工作。</p>
+<h2 id="8-no-rout-to-host"><a href="#8-no-rout-to-host" class="headerlink" title="8.no rout to host"></a>8.no rout to host</h2><p>网卡工作不正常。</p>
+<h2 id="9-transmit-failed，error-code"><a href="#9-transmit-failed，error-code" class="headerlink" title="9.transmit failed，error code"></a>9.transmit failed，error code</h2><p>10043网卡驱动不正常。</p>
+<h2 id="10-unknown-host-name"><a href="#10-unknown-host-name" class="headerlink" title="10.unknown host name"></a>10.unknown host name</h2><p>DNS配置不正确。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    小蜜蜂
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://zyb0408.github.io/2018/10/26/Ping命令原理/" title="Ping命令原理">https://zyb0408.github.io/2018/10/26/Ping命令原理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/26/进程和线程的区别/" rel="next" title="进程和线程的区别">
+                <i class="fa fa-chevron-left"></i> 进程和线程的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/02/类的访问权限的设置/" rel="prev" title="类的访问权限的设置">
+                类的访问权限的设置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/favicon-32x32-next.png" alt="小蜜蜂">
+            
+              <p class="site-author-name" itemprop="name">小蜜蜂</p>
+              <p class="site-description motion-element" itemprop="description">小蜜蜂学计算机</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ping的流程"><span class="nav-number">1.</span> <span class="nav-text">ping的流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ICMP协议"><span class="nav-number">2.</span> <span class="nav-text">ICMP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ICMP包头格式"><span class="nav-number">2.1.</span> <span class="nav-text">ICMP包头格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ping的两情况下ARP的过程"><span class="nav-number">3.</span> <span class="nav-text">ping的两情况下ARP的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-同一网段内ping"><span class="nav-number">3.1.</span> <span class="nav-text">1.同一网段内ping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-不同网段内ping"><span class="nav-number">3.2.</span> <span class="nav-text">2.不同网段内ping</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ping过程总结"><span class="nav-number">4.</span> <span class="nav-text">ping过程总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-相同网段"><span class="nav-number">4.1.</span> <span class="nav-text">1.相同网段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ping某个域名的过程"><span class="nav-number">4.2.</span> <span class="nav-text">2.ping某个域名的过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ping用法"><span class="nav-number">5.</span> <span class="nav-text">ping用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ping使用步骤"><span class="nav-number">6.</span> <span class="nav-text">ping使用步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判断一条链路好坏"><span class="nav-number">7.</span> <span class="nav-text">判断一条链路好坏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对Ping后返回信息的分析"><span class="nav-number">8.</span> <span class="nav-text">对Ping后返回信息的分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Request-timed-out"><span class="nav-number">8.1.</span> <span class="nav-text">1.Request timed out</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Destination-host-Unreachable"><span class="nav-number">8.2.</span> <span class="nav-text">2.Destination host Unreachable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Bad-IP-address"><span class="nav-number">8.3.</span> <span class="nav-text">3.Bad IP address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Source-quench-received"><span class="nav-number">8.4.</span> <span class="nav-text">4.Source quench received</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Unknown-host——不知名主机"><span class="nav-number">8.5.</span> <span class="nav-text">5.Unknown host——不知名主机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-No-answer——无响应"><span class="nav-number">8.6.</span> <span class="nav-text">6.No answer——无响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Ping-127-0-0-1"><span class="nav-number">8.7.</span> <span class="nav-text">7.Ping 127.0.0.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-no-rout-to-host"><span class="nav-number">8.8.</span> <span class="nav-text">8.no rout to host</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-transmit-failed，error-code"><span class="nav-number">8.9.</span> <span class="nav-text">9.transmit failed，error code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-unknown-host-name"><span class="nav-number">8.10.</span> <span class="nav-text">10.unknown host name</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小蜜蜂</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">82.1k</span>
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+<script>
+  var seconds = 1000;
+  var minutes = seconds * 60;
+  var hours = minutes * 60;
+  var days = hours * 24;
+  var years = days * 365;
+  var birthDay = Date.UTC(2017,09,17,00,00,00); // 这里设置建站时间
+  setInterval(function() {
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth()+1;
+    var todayDate = today.getDate();
+    var todayHour = today.getHours();
+    var todayMinute = today.getMinutes();
+    var todaySecond = today.getSeconds();
+    var now = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+    var diff = now - birthDay;
+    var diffYears = Math.floor(diff/years);
+    var diffDays = Math.floor((diff/days)-diffYears*365);
+    var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+    var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+    var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+      document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+  }, 1000);
+</script>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('100');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.4"></script>
+
+
+</body>
+</html>
