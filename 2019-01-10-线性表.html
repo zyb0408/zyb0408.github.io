@@ -81,15 +81,15 @@
 <meta property="og:site_name" content="小蜜蜂">
 <meta property="og:description" content="头结点线性链表的结点类型定义1234typedef struct Lnode&amp;#123;   ElemType   data;       Struct  Lnode  *next;&amp;#125;Lnode  *linklist; 说明：LNode：结构类型名；LNode：类型结构变量有两个域：data：存放线性表的数据元素，next：存放元素直接后继结点的地址;该类型结构变量用于表示线性链表中的一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pl25xfw95.bkt.clouddn.com线性表/20190110071258963.png">
-<meta property="og:image" content="http://pl25xfw95.bkt.clouddn.com线性表/20190110071330284.png">
-<meta property="og:image" content="http://pl25xfw95.bkt.clouddn.com线性表/20190110072707566.png">
-<meta property="og:image" content="http://pl25xfw95.bkt.clouddn.com线性表/20190110072823232.png">
-<meta property="og:updated_time" content="2019-01-10T11:35:53.748Z">
+<meta property="og:image" content="http://pl25xfw95.bkt.clouddn.com/线性表/20190110071258963.png">
+<meta property="og:image" content="http://pl25xfw95.bkt.clouddn.com/线性表/20190110071330284.png">
+<meta property="og:image" content="http://pl25xfw95.bkt.clouddn.com/线性表/20190110072707566.png">
+<meta property="og:image" content="http://pl25xfw95.bkt.clouddn.com/线性表/20190110072823232.png">
+<meta property="og:updated_time" content="2019-01-10T11:38:19.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性表">
 <meta name="twitter:description" content="头结点线性链表的结点类型定义1234typedef struct Lnode&amp;#123;   ElemType   data;       Struct  Lnode  *next;&amp;#125;Lnode  *linklist; 说明：LNode：结构类型名；LNode：类型结构变量有两个域：data：存放线性表的数据元素，next：存放元素直接后继结点的地址;该类型结构变量用于表示线性链表中的一">
-<meta name="twitter:image" content="http://pl25xfw95.bkt.clouddn.com线性表/20190110071258963.png">
+<meta name="twitter:image" content="http://pl25xfw95.bkt.clouddn.com/线性表/20190110071258963.png">
 
 
 
@@ -339,7 +339,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-10T19:35:53+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-10T19:38:19+08:00">
                 2019-01-10
               </time>
             
@@ -436,13 +436,13 @@
       
 
       
-        <h1 id="头结点"><a href="#头结点" class="headerlink" title="头结点"></a>头结点</h1><p><img src="http://pl25xfw95.bkt.clouddn.com线性表/20190110071258963.png" alt="头结点1"><br><img src="http://pl25xfw95.bkt.clouddn.com线性表/20190110071330284.png" alt="头结点"><br><strong>线性链表的结点类型定义</strong><br><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef struct <span class="type">Lnode</span>&#123;</span><br><span class="line">   <span class="type">ElemType</span>   data;    </span><br><span class="line">   <span class="type">Struct</span>  <span class="type">Lnode</span>  *next;</span><br><span class="line">&#125;<span class="type">Lnode</span>  *linklist;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="头结点"><a href="#头结点" class="headerlink" title="头结点"></a>头结点</h1><p><img src="http://pl25xfw95.bkt.clouddn.com/线性表/20190110071258963.png" alt="头结点1"><br><img src="http://pl25xfw95.bkt.clouddn.com/线性表/20190110071330284.png" alt="头结点"><br><strong>线性链表的结点类型定义</strong><br><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef struct <span class="type">Lnode</span>&#123;</span><br><span class="line">   <span class="type">ElemType</span>   data;    </span><br><span class="line">   <span class="type">Struct</span>  <span class="type">Lnode</span>  *next;</span><br><span class="line">&#125;<span class="type">Lnode</span>  *linklist;</span><br></pre></td></tr></table></figure></p>
 <p><strong>说明：</strong><br><code>LNode</code>：结构类型名；<br><code>LNode</code>：类型结构变量有两个域：<br><code>data</code>：存放线性表的数据元素，<br><code>next</code>：存放元素直接后继结点的地址;<br>该类型结构变量用于表示线性链表中的一个结点；<br><code>LNODE *p;</code>：p为指向结点(结构)的指针变量；<br>p是LNODE类型的指针变量</p>
 <h2 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h2><p><em>头插法建立单链表L</em><br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Linklist CreateFromHead()&#123;</span><br><span class="line">  L = (Linklist)malloc(sizeof(LNode));</span><br><span class="line">  L-&gt;<span class="keyword">next</span> = NULL;</span><br><span class="line">  <span class="keyword">while</span>(flag)&#123;</span><br><span class="line">    c = getchar();</span><br><span class="line">    if(c!=<span class="string">'$'</span>)&#123;</span><br><span class="line">      s = (LNode*)malloc(sizeof(LNode));</span><br><span class="line">      s-&gt;data = c;</span><br><span class="line">      s-&gt;<span class="keyword">next</span> = L-&gt;<span class="keyword">next</span>;</span><br><span class="line">      L-&gt;<span class="keyword">next</span> = s;</span><br><span class="line">    &#125;else</span><br><span class="line">      flag = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> L;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>插入的主要内容如下：<br><figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">q=(LNode*)malloc(sizeof(LNode));</span><br><span class="line"><span class="function"><span class="title">q</span>-&gt;</span><span class="keyword">data</span> = <span class="string">'a'</span>;</span><br><span class="line"><span class="function"><span class="title">q</span>-&gt;</span><span class="function"><span class="title">next</span> = p-&gt;</span>next;</span><br><span class="line"><span class="function"><span class="title">p</span>-&gt;</span>next = q;</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://pl25xfw95.bkt.clouddn.com线性表/20190110072707566.png" alt="插入"></p>
+<p><img src="http://pl25xfw95.bkt.clouddn.com/线性表/20190110072707566.png" alt="插入"></p>
 <h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">q = p-&gt;<span class="keyword">next</span>;</span><br><span class="line">p-&gt;<span class="keyword">next</span> = q-&gt;<span class="keyword">next</span>;</span><br><span class="line">free(q);</span><br></pre></td></tr></table></figure>
-<p><img src="http://pl25xfw95.bkt.clouddn.com线性表/20190110072823232.png" alt=""></p>
+<p><img src="http://pl25xfw95.bkt.clouddn.com/线性表/20190110072823232.png" alt=""></p>
 <p><strong>插入、删除算法中的循环条件为何不同？</strong><br>删除算法中的循环条件（<code>p-&gt;next! =NULL &amp;&amp; k&lt;i-1</code>）与前面插入算法中的循环条件（<code>p! =NULL &amp;&amp; k&lt;i-1</code>）不同，因为前面插入算法时的插入位置有<code>m+1</code>个（m为当前单链表中数据元素的个数）。<code>i=m+1</code>是指在第<code>m+1</code>个位置前插入，即在单链表的末尾插入。而删除操作中删除的合法位只有m个，若使用与前面插入操作相同的循环条件，则会出现指针指空的情况， 使删除操作失败。 </p>
 <p><strong>循环链表的定义</strong><br>将线性链表的最后一个结点的指针指向链表的第一个结点（是一个首尾相连的单链表）<br><strong>循环链表与线性链表操作的主要差别？</strong><br>循环链表与线性链表操作的主要差别是算法中循环结束的条件不是p或p-&gt;next是否为NULL,而是它们是否等于头指针；<br><strong>双向链表的定义</strong><br>双向链表中，每个结点有两个指针域，一个指向直接后继元素结点，另一个指向直接前趋元素结点。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">DNode</span>&#123;</span> </span><br><span class="line">	ElemType data; </span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">DNode</span> *<span class="title">prior</span>,*<span class="title">next</span>;</span> </span><br><span class="line">&#125;DNode,*DoubleList;</span><br></pre></td></tr></table></figure></p>
 
