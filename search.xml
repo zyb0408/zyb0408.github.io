@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[线性表]]></title>
-    <url>%2F2019-01-10-%E7%BA%BF%E6%80%A7%E8%A1%A8.html</url>
-    <content type="text"><![CDATA[头结点线性链表的结点类型定义1234typedef struct Lnode&#123; ElemType data; Struct Lnode *next;&#125;Lnode *linklist; 说明：LNode：结构类型名；LNode：类型结构变量有两个域：data：存放线性表的数据元素，next：存放元素直接后继结点的地址;该类型结构变量用于表示线性链表中的一个结点；LNODE *p;：p为指向结点(结构)的指针变量；p是LNODE类型的指针变量 建表头插法建立单链表L123456789101112131415Linklist CreateFromHead()&#123; L = (Linklist)malloc(sizeof(LNode)); L-&gt;next = NULL; while(flag)&#123; c = getchar(); if(c!='$')&#123; s = (LNode*)malloc(sizeof(LNode)); s-&gt;data = c; s-&gt;next = L-&gt;next; L-&gt;next = s; &#125;else flag = 0; &#125; return L;&#125; 插入插入的主要内容如下：1234q=(LNode*)malloc(sizeof(LNode));q-&gt;data = 'a';q-&gt;next = p-&gt;next;p-&gt;next = q; 删除123q = p-&gt;next;p-&gt;next = q-&gt;next;free(q); 插入、删除算法中的循环条件为何不同？删除算法中的循环条件（p-&gt;next! =NULL &amp;&amp; k&lt;i-1）与前面插入算法中的循环条件（p! =NULL &amp;&amp; k&lt;i-1）不同，因为前面插入算法时的插入位置有m+1个（m为当前单链表中数据元素的个数）。i=m+1是指在第m+1个位置前插入，即在单链表的末尾插入。而删除操作中删除的合法位只有m个，若使用与前面插入操作相同的循环条件，则会出现指针指空的情况， 使删除操作失败。 循环链表的定义将线性链表的最后一个结点的指针指向链表的第一个结点（是一个首尾相连的单链表）循环链表与线性链表操作的主要差别？循环链表与线性链表操作的主要差别是算法中循环结束的条件不是p或p-&gt;next是否为NULL,而是它们是否等于头指针；双向链表的定义双向链表中，每个结点有两个指针域，一个指向直接后继元素结点，另一个指向直接前趋元素结点。1234typedef struct DNode&#123; ElemType data; struct DNode *prior,*next; &#125;DNode,*DoubleList;]]></content>
-      <categories>
-        <category>线性表</category>
-      </categories>
-      <tags>
-        <tag>线性表</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[电脑开启虚拟化支持]]></title>
     <url>%2F2019-01-10-%E7%94%B5%E8%84%91%E5%BC%80%E5%90%AF%E8%99%9A%E6%8B%9F%E5%8C%96%E6%94%AF%E6%8C%81.html</url>
     <content type="text"><![CDATA[参考：http://virtual.51cto.com/art/201412/460343.htmhttp://www.udaxia.com/upqd/5254.htmlhttp://jingyan.baidu.com/article/335530daa55d7e19cb41c3c2.html 虚拟化技术目前主要依赖于您电脑的CPU型号及BIOS，某些CPU或者BIOS暂时还不能支持虚拟化技术。支持虚拟化技术的可以在BIOS中开启 开启方法如下： 1、进入BIOS。开机时按F2或F12或DEL或ESC等键(各电脑有所不同)。 2、进入BIOS后，找到Configuration选项， 选择Intel Virtual Technology并回车， 将光标移至Enabled， 然后再回车， 最后按F10保存并退出。 如果找不到Configuration选项，可以试试下面的方法： (1)某些HP(惠普)电脑进入BIOS后，需要选择SystemConfiguration(系统配置)菜单， 然后选择Device Configuration(设备配置)， 找到Virtualization Technology， 设置为Enabled。 (2)某些联想Thinkpad电脑进入BIOS后，需要选择Security菜单， 然后选择Virtualization， 设置为Enabled。 (3)某些DELL(戴尔)电脑进入BIOS后，需要选择Processor Settings菜单， 然后选择VirtualizationTechnology， 设置为Enabled。]]></content>
