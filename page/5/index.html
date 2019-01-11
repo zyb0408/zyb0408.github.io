@@ -434,11 +434,7 @@
 
 Ubuntu
 RedHat
-CentOS
-
-自己玩用Ubuntu，软件开发与线上生产用RedHat或者CentOS（常用） 位数：
-
-32
+CentO
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -633,7 +629,7 @@ CentOS
       
         
           
-          抽象类**是专门设计来让子类继承的类。抽象类一般包括一个或多个抽象方法。 抽象方法**是必须被子类覆盖的方法。 声明抽象类和方法格式：123456789abstract class &lt;类名&gt;&#123;  成员变量；   方法（）&#123; 方法体  &#125;；          
+          抽象类**是专门设计来让子类继承的类。抽象类一般包括一个或多个抽象方法。 抽象方法**是必须被子类覆盖的方法。 声明抽象类和方法格式：123456789abstract class &lt;类名&gt
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -839,8 +835,7 @@ boolean
 false
 类的实例即对象被声明时，它先被初始化为一个特殊的值“null”。这表示它是一个空对象。
 This关键字
-在类定义中的方法中需要引用正在使用该方法的对象时，可以用“this”表示。
-public void 
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1035,7 +1030,7 @@ public void
       
         
           
-          如果子类没有构造方法，则它继承超类无参数的构造方法； 如果子类有构造方法，那么在创建子类的对象时，则将先执行继承下来的超类的构造方法，然后再执行自己的构造方法。 对于超类中包含有参数的构造方法，子类可以通过在自己的构造方法中使用super关键字来引用，而且必须是子类构造方法中的第一条语句。 用sup
+          如果子类没有构造方法，则它继承超类无参数的构造方法； 如果子类有构造方法，那么在创建子类的对象时，则将先执行继承下来的超类的构造方法，然后再执行自己的构造方法。 对于超类中包含有参数的构造方法，子类可
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1230,9 +1225,8 @@ public void
       
         
           
-          super**表示对某个类的超类的引用。 如子类和超类有同名的成员变量或方法，则：         super.&lt;**成员变量名&gt;         super.&lt;**成员方法名&gt; 表示引用超类的成员（如无super则表示子类中的同名成员）**
-
-          
+          super**表示对某个类的超类的引用。 如子类和超类有同名的成员变量或方法，则：         super.&lt;**成员变量名&gt;         super.&lt;**成员方法名&gt
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018-11-02-“super”关键字.html#more" rel="contents">
@@ -1358,11 +1352,39 @@ public void
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zyb0408" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
 
           
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://dhupxd.github.io" title="学姐" target="_blank">学姐</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ztt001.github.io" title="学妹" target="_blank">学妹</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -1439,8 +1461,30 @@ public void
       document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
   }, 1000);
 </script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -1926,28 +1970,6 @@ public void
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
 
   
   <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>

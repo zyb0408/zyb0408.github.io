@@ -429,7 +429,7 @@
       
         
           
-          学习步骤如下: 1. 建立docker容器运行程序 2. 用上面建立的docker容器加上Nginx实现简单的负载均衡（与docker本身无关） 3. 建立基础仓库到阿里云 4. 梳理宿主机与容器间的两个Nginx关系 简单说下docker docker 是一种新兴的虚拟化方式，跟传统的虚拟化方式相
+          学习步骤如下: 1. 建立docker容器运行程序 2. 用上面建立的docker容器加上Nginx实现简单的负载均衡（与docker本身无关） 3. 建立基础仓库到阿里云 4. 梳理宿主机与容器间的
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -625,7 +625,7 @@
         
           
           什么是docker？==========
-docker翻译为搬运工,在这里应该可以理解为搬运应用的工具,也就是云.先了解其运用场景之后更容易对他形成深刻理解. Docker提供了一种可移植的配置标准化机制，允许你一致性地在不同的机器上运行同一个Container；而LXC本身可能因为不同机器的不同配
+docker翻译为搬运工,在这里应该可以理解为搬运应用的工具,也就是云.先了解其运用场景之后更容易对他形成深刻理解. Docker提供了一种可移植的配置标准化
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -821,7 +821,7 @@ docker翻译为搬运工,在这里应该可以理解为搬运应用的工具,也
         
           
           正向代理====
-场景：在国内是无法正常使用google.com。如果想要访问google.com，可以购买一台国外的服务器A，此时你和服务器A的网络是相通的。而服务器A又跟google.com相通， 此时可以由服务器A代理你（客户端），去访问google.com。这个过程称之为正向代理，服务端（g
+场景：在国内是无法正常使用google.com。如果想要访问google.com，可以购买一台国外的服务器A，此时你和服务器A的网络是相通的。而服务器A又跟google.com相通，
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1018,7 +1018,7 @@ docker翻译为搬运工,在这里应该可以理解为搬运应用的工具,也
           
           一、nginx常用命令===========
 1.Nginx启动
-1234567    nginx   -c /etc/nginx/nginx.conf```   其中参数-c指定nginx启动时加载的配置文件，当然也可以不指定配置文件，省略-c，也可以启动，表示使用默认的配置文件。### 2.ng
+1234567    nginx   -c /etc/nginx/nginx.conf```   其中参数-c指定nginx启动时加载
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1145,11 +1145,39 @@ docker翻译为搬运工,在这里应该可以理解为搬运应用的工具,也
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zyb0408" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
 
           
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://dhupxd.github.io" title="学姐" target="_blank">学姐</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ztt001.github.io" title="学妹" target="_blank">学妹</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -1226,8 +1254,30 @@ docker翻译为搬运工,在这里应该可以理解为搬运应用的工具,也
       document.getElementById('showDays').innerHTML="本站已运行 "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
   }, 1000);
 </script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -1713,28 +1763,6 @@ docker翻译为搬运工,在这里应该可以理解为搬运应用的工具,也
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
 
   
   <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
