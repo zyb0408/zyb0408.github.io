@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[C++模板]]></title>
+    <url>%2F2019-01-17-C%2B%2B%E6%A8%A1%E6%9D%BF.html</url>
+    <content type="text"><![CDATA[函数模板以前的重载，是函数名字相同，函数体不同，返回值类型不同，参数类型不同，参数个数不同，参数顺序不同。 函数模板是一个统一的函数，它可以适应一定范围内的不同类型的对象操作。函数模板将代表着不同类型的一组函数，他们都使用相同的代码。 定义12345template &lt;参数化类型名列表&gt;返回值类型 函数名(参数列表)&#123; 函数体&#125; 其中：template是定义模板的关键字， &lt;参数化类型名列表&gt;是模板参数列表，多个表项用逗号隔开。格式如下：1234class 标识符1，class 标识符2//这里的标识符1，标识符2是模板参数，class是修饰符，表示后面其后面的标识符是参数化的类型名，即模板参数。//例如template &lt;class T1, class T2&gt; 例子：12345678template &lt;class T&gt;void swap(T &amp;a,T &amp;b)&#123; T t; t = a; a = b; b = t;&#125; 函数模板与模板函数函数模板是模板函数的一个样板，它可以生成多个重载的模板函数，这些模板函数重用函数体代码。模板函数是函数模板的一个实例。 函数模板的实验例子：12345678910111213#include &lt;iostream.h&gt;template &lt;class T&gt;T max(T a, Tb)&#123; return a&gt;b?a:b;&#125;void main()&#123; int n1 = 8, n2 = 9; double m1 = 3.14, m2 = 3.15; char c1 = 'm', m2 = 'n'; cout&lt;&lt;"max(n1,n2)="&lt;&lt;max(n1,n2)&lt;&lt;endl; cout&lt;&lt;"max(m1,m2)="&lt;&lt;max(m1,m2)&lt;&lt;endl; cout&lt;&lt;"max(c1,c2)="&lt;&lt;max(c1,c2)&lt;&lt;endl;&#125; 执行结果为：123max(n1,n2)=9max(m1,m2)=3.15max(c1,c2)=n 说明：定义了一个函数模板，名字是max，有一个模板参数T。主函数中使用int，char，double代替了模板参数T。 冒泡排序（使用函数模板）12345678910111213141516171819#include &lt;iostream.h&gt;#include &lt;string.h&gt;template &lt;class stype&gt;void bubble(stype * item,int count);template &lt;class stype&gt;void bubble(stype *item,int count)&#123; register i,j; stype t; for(i=1;i&lt;count;i++) for(j=count-1;j&gt;=i;j--)&#123; if(item[j-1]&gt;item[j])&#123; t = item[j-1]; item[j-1] = item[j]; item[j] = t; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++模板</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[C++成员函数的特性之【内外联函数】]]></title>
     <url>%2F2019-01-13-C%2B%2B%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%B9%E6%80%A7.html</url>
     <content type="text"><![CDATA[类的成员函数分为内联函数和外联函数。 内联函数指的是定义带类体内的成员函数，即函数体放在类体内。内联函数与带参数的宏定义比较，效率是一样的。 外联函数说明放在类体内，定义放在类体外的成员函数叫外联函数。外联函数的函数体在类的实现部分。外联函数编程内联函数的方法很简单，只要在函数头的前面加上关键字inline即可。 例子12345678910111213141516171819202122232425262728293031class A&#123; public: A(int x, int y)&#123; X = x; Y = y; &#125; int a()&#123; return X; &#125; int b()&#123; return Y; &#125; int c(); int d(); private: int X,Y;&#125;;inline int A::c()&#123; return a() + b();&#125;inline int A::d()&#123; return c();&#125;#include &lt;iostream.h&gt;void main()&#123; A m(3,5); int i = m.d(); cout&lt;&lt;"d() return: &lt;&lt;i&lt;&lt;endl;&#125; 执行结果为：d() return: 8说明：类A中，直接定义了3个内联函数，又使用inline关键字定义了两个内联函数。内联函数一定要在调用之前进行定义，且不能递归调用。]]></content>
