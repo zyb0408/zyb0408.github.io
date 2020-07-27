@@ -1,0 +1,2305 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Java容器常见面试题/知识点总结 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="ArrayList.html" />
+    
+    
+    <link rel="prev" href="../J2EE基础知识.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Java</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../Java基础知识.html">
+            
+                <a href="../Java基础知识.html">
+            
+                    
+                    Java 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../Java疑难点.html">
+            
+                <a href="../Java疑难点.html">
+            
+                    
+                    Java 基础知识疑难点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../J2EE基础知识.html">
+            
+                <a href="../J2EE基础知识.html">
+            
+                    
+                    J2EE 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">容器</li>
+        
+        
+    
+        <li class="chapter active" data-level="3.1" data-path="Java集合框架常见面试题.html">
+            
+                <a href="Java集合框架常见面试题.html">
+            
+                    
+                    Java容器常见面试题/知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="ArrayList.html">
+            
+                <a href="ArrayList.html">
+            
+                    
+                    ArrayList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="LinkedList.html">
+            
+                <a href="LinkedList.html">
+            
+                    
+                    LinkedList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="HashMap.html">
+            
+                <a href="HashMap.html">
+            
+                    
+                    HashMap(JDK1.8)源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">并发</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                <a href="../Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                    
+                    Java 并发基础常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                <a href="../Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                    
+                    Java 并发进阶常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../Multithread/并发容器总结.html">
+            
+                <a href="../Multithread/并发容器总结.html">
+            
+                    
+                    并发容器总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                <a href="../../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                    
+                    乐观锁与悲观锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../Multithread/Atomic.html">
+            
+                <a href="../Multithread/Atomic.html">
+            
+                    
+                    JUC 中的 Atomic 原子类总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../Multithread/AQS.html">
+            
+                <a href="../Multithread/AQS.html">
+            
+                    
+                    AQS 原理以及 AQS 同步组件总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">JVM</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../jvm/Java内存区域.html">
+            
+                <a href="../jvm/Java内存区域.html">
+            
+                    
+                    一 Java内存区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../jvm/JVM垃圾回收.html">
+            
+                <a href="../jvm/JVM垃圾回收.html">
+            
+                    
+                    二 JVM垃圾回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../jvm/JDK监控和故障处理工具总结.html">
+            
+                <a href="../jvm/JDK监控和故障处理工具总结.html">
+            
+                    
+                    三 JDK 监控和故障处理工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../jvm/类文件结构.html">
+            
+                <a href="../jvm/类文件结构.html">
+            
+                    
+                    四 类文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../jvm/类加载过程.html">
+            
+                <a href="../jvm/类加载过程.html">
+            
+                    
+                    五 类加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../jvm/类加载器.html">
+            
+                <a href="../jvm/类加载器.html">
+            
+                    
+                    六 类加载器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">I/O</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../BIO-NIO-AIO.html">
+            
+                <a href="../BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../Java%20IO与NIO.md">
+            
+                <span>
+            
+                    
+                    Java IO 与 NIO系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Java 8</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">编程规范</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../Java编程规范.html">
+            
+                <a href="../Java编程规范.html">
+            
+                    
+                    Java 编程规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网络</li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="../../network/计算机网络.html">
+            
+                <a href="../../network/计算机网络.html">
+            
+                    
+                    计算机网络常见面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="../../network/干货：计算机网络知识总结.html">
+            
+                <a href="../../network/干货：计算机网络知识总结.html">
+            
+                    
+                    计算机网络基础知识总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="../../network/HTTPS中的TLS.html">
+            
+                <a href="../../network/HTTPS中的TLS.html">
+            
+                    
+                    HTTPS中的TLS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">操作系统</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Linux相关</li>
+        
+        
+    
+        <li class="chapter " data-level="11.1" data-path="../../operating-system/后端程序员必备的Linux基础知识.md">
+            
+                <span>
+            
+                    
+                    后端程序员必备的 Linux 基础知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="../../operating-system/Shell.html">
+            
+                <a href="../../operating-system/Shell.html">
+            
+                    
+                    Shell 编程入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据结构与算法</li>
+        
+        
+    
+
+    
+        
+        <li class="header">数据结构</li>
+        
+        
+    
+        <li class="chapter " data-level="13.1" data-path="../../dataStructures-algorithms/数据结构.html">
+            
+                <a href="../../dataStructures-algorithms/数据结构.html">
+            
+                    
+                    数据结构知识学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">算法</li>
+        
+        
+    
+        <li class="chapter " data-level="14.1" data-path="../../dataStructures-algorithms/算法学习资源推荐.html">
+            
+                <a href="../../dataStructures-algorithms/算法学习资源推荐.html">
+            
+                    
+                    算法学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.2" data-path="../../dataStructures-algorithms/几道常见的子符串算法题.html">
+            
+                <a href="../../dataStructures-algorithms/几道常见的子符串算法题.html">
+            
+                    
+                    几道常见的字符串算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.3" data-path="../../dataStructures-algorithms/几道常见的链表算法题.html">
+            
+                <a href="../../dataStructures-algorithms/几道常见的链表算法题.html">
+            
+                    
+                    几道常见的链表算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.4" data-path="../../dataStructures-algorithms/剑指offer部分编程题.html">
+            
+                <a href="../../dataStructures-algorithms/剑指offer部分编程题.html">
+            
+                    
+                    剑指offer部分编程题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.5" data-path="../../dataStructures-algorithms/公司真题.html">
+            
+                <a href="../../dataStructures-algorithms/公司真题.html">
+            
+                    
+                    公司真题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.6" data-path="../../dataStructures-algorithms/Backtracking-NQueens.html">
+            
+                <a href="../../dataStructures-algorithms/Backtracking-NQueens.html">
+            
+                    
+                    回溯算法经典案例之N皇后问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据库</li>
+        
+        
+    
+
+    
+        
+        <li class="header">MySQL</li>
+        
+        
+    
+        <li class="chapter " data-level="16.1" data-path="../../database/MySQL.html">
+            
+                <a href="../../database/MySQL.html">
+            
+                    
+                    MySQL 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="../../database/一千行MySQL命令.html">
+            
+                <a href="../../database/一千行MySQL命令.html">
+            
+                    
+                    一千行MySQL学习笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="../../database/MySQL高性能优化规范建议.html">
+            
+                <a href="../../database/MySQL高性能优化规范建议.html">
+            
+                    
+                    MySQL高性能优化规范建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="../../database/MySQL%20Index.md">
+            
+                <span>
+            
+                    
+                    数据库索引总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="../../database/事务隔离级别(图文详解">
+            
+                <span>
+            
+                    
+                    事务隔离级别(图文详解)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.6" data-path="../../database/一条sql语句在mysql中如何执行的.html">
+            
+                <a href="../../database/一条sql语句在mysql中如何执行的.html">
+            
+                    
+                    一条SQL语句在MySQL中如何执行的
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Redis</li>
+        
+        
+    
+        <li class="chapter " data-level="17.1" data-path="../../database/Redis/Redis.md">
+            
+                <span>
+            
+                    
+                    Redis 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.2" data-path="../../database/Redis/Redlock分布式锁.html">
+            
+                <a href="../../database/Redis/Redlock分布式锁.html">
+            
+                    
+                    Redlock分布式锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.3" data-path="../../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                <a href="../../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                    
+                    如何做可靠的分布式锁，Redlock真的可行么
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">系统设计</li>
+        
+        
+    
+
+    
+        
+        <li class="header">设计模式</li>
+        
+        
+    
+        <li class="chapter " data-level="19.1" data-path="../../system-design/设计模式.html">
+            
+                <a href="../../system-design/设计模式.html">
+            
+                    
+                    设计模式系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常用框架</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Spring</li>
+        
+        
+    
+        <li class="chapter " data-level="21.1" data-path="../../system-design/framework/spring/Spring.html">
+            
+                <a href="../../system-design/framework/spring/Spring.html">
+            
+                    
+                    Spring 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.2" data-path="../../system-design/framework/spring/SpringInterviewQuestions.html">
+            
+                <a href="../../system-design/framework/spring/SpringInterviewQuestions.html">
+            
+                    
+                    Spring 常见问题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.3" data-path="../../system-design/framework/spring/SpringBean.html">
+            
+                <a href="../../system-design/framework/spring/SpringBean.html">
+            
+                    
+                    Spring中bean的作用域与生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.4" data-path="../../system-design/framework/spring/SpringMVC-Principle.html">
+            
+                <a href="../../system-design/framework/spring/SpringMVC-Principle.html">
+            
+                    
+                    SpringMVC 工作原理详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.5" data-path="../../system-design/framework/spring/Spring-Design-Patterns.html">
+            
+                <a href="../../system-design/framework/spring/Spring-Design-Patterns.html">
+            
+                    
+                    Spring中都用到了那些设计模式?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">ZooKeeper</li>
+        
+        
+    
+        <li class="chapter " data-level="22.1" data-path="../../system-design/framework/ZooKeeper.html">
+            
+                <a href="../../system-design/framework/ZooKeeper.html">
+            
+                    
+                    ZooKeeper 相关概念总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.2" data-path="../../system-design/framework/ZooKeeper数据模型和常见命令.html">
+            
+                <a href="../../system-design/framework/ZooKeeper数据模型和常见命令.html">
+            
+                    
+                    ZooKeeper 数据模型和常见命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据通信</li>
+        
+        
+    
+        <li class="chapter " data-level="23.1" data-path="../../system-design/data-communication/summary.md">
+            
+                <span>
+            
+                    
+                    数据通信(RESTful、RPC、消息队列)相关知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.2" data-path="../../system-design/data-communication/dubbo.html">
+            
+                <a href="../../system-design/data-communication/dubbo.html">
+            
+                    
+                    Dubbo 总结：关于 Dubbo 的重要知识点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.3" data-path="../../system-design/data-communication/message-queue.html">
+            
+                <a href="../../system-design/data-communication/message-queue.html">
+            
+                    
+                    消息队列总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.4" data-path="../../system-design/data-communication/rabbitmq.html">
+            
+                <a href="../../system-design/data-communication/rabbitmq.html">
+            
+                    
+                    RabbitMQ 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.5" data-path="../../system-design/data-communication/RocketMQ-Questions.html">
+            
+                <a href="../../system-design/data-communication/RocketMQ-Questions.html">
+            
+                    
+                    RocketMQ的几个简单问题与答案
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网站架构</li>
+        
+        
+    
+        <li class="chapter " data-level="24.1" data-path="../../system-design/website-architecture/分布式.html">
+            
+                <a href="../../system-design/website-architecture/分布式.html">
+            
+                    
+                    一文读懂分布式应该学什么
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.2" data-path="../../system-design/website-architecture/8%20张图读懂大型网站技术架构.md">
+            
+                <span>
+            
+                    
+                    8 张图读懂大型网站技术架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.3" data-path="../../system-design/website-architecture/【面试精选】关于大型网站系统架构你不得不懂的10个问题.md">
+            
+                <span>
+            
+                    
+                    【面试精选】关于大型网站系统架构你不得不懂的10个问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面试指南</li>
+        
+        
+    
+
+    
+        
+        <li class="header">备战面试</li>
+        
+        
+    
+        <li class="chapter " data-level="26.1" data-path="../../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                <a href="../../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                    
+                    【备战面试1】程序员的简历就该这样写
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.2" data-path="../../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                <a href="../../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                    
+                    【备战面试2】初出茅庐的程序员该如何准备面试？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.3" data-path="../../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                <a href="../../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                    
+                    【备战面试3】7个大部分程序员在面试前很关心的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.4" data-path="../../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                <a href="../../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                    
+                    【备战面试4】Github上开源的Java面试/学习相关的仓库推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.5" data-path="../../essential-content-for-interview/PreparingForInterview/如果面试官问你“你有什么问题问我吗？”时，你该如何回答.md">
+            
+                <span>
+            
+                    
+                    【备战面试5】如果面试官问你“你有什么问题问我吗？”时，你该如何回答
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.6" data-path="../../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                <a href="../../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                    
+                    【备战面试6】美团面试常见问题总结（附详解答案）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常见面试题总结</li>
+        
+        
+    
+        <li class="chapter " data-level="27.1" data-path="../../essential-content-for-interview/MostCommonJavaInterviewQuestions/第一周（2018-8-7）.md">
+            
+                <span>
+            
+                    
+                    第一周（2018-8-7）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.2" data-path="../../essential-content-for-interview/MostCommonJavaInterviewQuestions/第二周(2018-8-13">
+            
+                <span>
+            
+                    
+                    第二周（2018-8-13）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="27.3" data-path="Java集合框架常见面试题.html">
+            
+                <a href="Java集合框架常见面试题.html">
+            
+                    
+                    第三周（2018-08-22）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.4" data-path="../../essential-content-for-interview/MostCommonJavaInterviewQuestions/第四周(2018-8-30">
+            
+                <span>
+            
+                    
+                    第四周(2018-8-30).md
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面经</li>
+        
+        
+    
+        <li class="chapter " data-level="28.1" data-path="../../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                <a href="../../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                    
+                    5面阿里,终获offer(2018年秋招)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.2" data-path="../../essential-content-for-interview/BATJrealInterviewExperience/蚂蚁金服实习生面经总结(已拿口头offer">
+            
+                <span>
+            
+                    
+                    蚂蚁金服2019实习生面经总结(已拿口头offer)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.3" data-path="../../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                <a href="../../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                    
+                    2019年蚂蚁金服、头条、拼多多的面试总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">工具</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Git</li>
+        
+        
+    
+        <li class="chapter " data-level="30.1" data-path="../../tools/Git.html">
+            
+                <a href="../../tools/Git.html">
+            
+                    
+                    Git入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Docker</li>
+        
+        
+    
+        <li class="chapter " data-level="31.1" data-path="../../tools/Docker.html">
+            
+                <a href="../../tools/Docker.html">
+            
+                    
+                    Docker 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="31.2" data-path="../../tools/Docker-Image.html">
+            
+                <a href="../../tools/Docker-Image.html">
+            
+                    
+                    一文搞懂 Docker 镜像的常用操作！
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">资料</li>
+        
+        
+    
+
+    
+        
+        <li class="header">书单</li>
+        
+        
+    
+        <li class="chapter " data-level="33.1" data-path="../../data/java-recommended-books.md">
+            
+                <span>
+            
+                    
+                    Java程序员必备书单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Github榜单</li>
+        
+        
+    
+        <li class="chapter " data-level="34.1" data-path="../../github-trending/JavaGithubTrending.html">
+            
+                <a href="../../github-trending/JavaGithubTrending.html">
+            
+                    
+                    Java 项目月榜单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">待办</li>
+        
+        
+    
+        <li class="chapter " data-level="35.1" data-path="../What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.2" data-path="../What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.3" >
+            
+                <span>
+            
+                    
+                    [ ] Java 多线程类别知识重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.4" data-path="../BIO-NIO-AIO.html">
+            
+                <a href="../BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.5" >
+            
+                <span>
+            
+                    
+                    [ ] Netty 总结(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.6" >
+            
+                <span>
+            
+                    
+                    [ ] 数据结构总结重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">公众号</li>
+        
+        
+    
+        <li class="chapter " data-level="36.1" >
+            
+                <span>
+            
+                    
+                    如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.2" >
+            
+                <span>
+            
+                    
+                    由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本公众号后台回复  即可免费领取！
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.3" >
+            
+                <span>
+            
+                    
+                    一些Java工程师常用学习资源公众号后台回复关键字  即可免费无套路获取。
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Java容器常见面试题/知识点总结</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!-- TOC -->
+<ul>
+<li><a href="#1-&#x5256;&#x6790;&#x9762;&#x8BD5;&#x6700;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x4E4B;-java-&#x96C6;&#x5408;&#x6846;&#x67B6;">1. &#x5256;&#x6790;&#x9762;&#x8BD5;&#x6700;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x4E4B; Java &#x96C6;&#x5408;&#x6846;&#x67B6;</a><ul>
+<li><a href="#11-&#x96C6;&#x5408;&#x6982;&#x8FF0;">1.1. &#x96C6;&#x5408;&#x6982;&#x8FF0;</a><ul>
+<li><a href="#111-java-&#x96C6;&#x5408;&#x6982;&#x89C8;">1.1.1. Java &#x96C6;&#x5408;&#x6982;&#x89C8;</a></li>
+<li><a href="#112-&#x8BF4;&#x8BF4;-listsetmap-&#x4E09;&#x8005;&#x7684;&#x533A;&#x522B;">1.1.2. &#x8BF4;&#x8BF4; List,Set,Map &#x4E09;&#x8005;&#x7684;&#x533A;&#x522B;&#xFF1F;</a></li>
+<li><a href="#113-&#x96C6;&#x5408;&#x6846;&#x67B6;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x603B;&#x7ED3;">1.1.3. &#x96C6;&#x5408;&#x6846;&#x67B6;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x603B;&#x7ED3;</a><ul>
+<li><a href="#1131-list">1.1.3.1. List</a></li>
+<li><a href="#1132-set">1.1.3.2. Set</a></li>
+<li><a href="#1133-map">1.1.3.3. Map</a></li>
+</ul>
+</li>
+<li><a href="#114-&#x5982;&#x4F55;&#x9009;&#x7528;&#x96C6;&#x5408;">1.1.4. &#x5982;&#x4F55;&#x9009;&#x7528;&#x96C6;&#x5408;?</a></li>
+<li><a href="#115-&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4F7F;&#x7528;&#x96C6;&#x5408;">1.1.5. &#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4F7F;&#x7528;&#x96C6;&#x5408;&#xFF1F;</a></li>
+<li><a href="#116-iterator-&#x8FED;&#x4EE3;&#x5668;">1.1.6. Iterator &#x8FED;&#x4EE3;&#x5668;</a><ul>
+<li><a href="#1161-&#x8FED;&#x4EE3;&#x5668;-iterator-&#x662F;&#x4EC0;&#x4E48;">1.1.6.1. &#x8FED;&#x4EE3;&#x5668; Iterator &#x662F;&#x4EC0;&#x4E48;&#xFF1F;</a></li>
+<li><a href="#1162-&#x8FED;&#x4EE3;&#x5668;-iterator-&#x6709;&#x5565;&#x7528;">1.1.6.2. &#x8FED;&#x4EE3;&#x5668; Iterator &#x6709;&#x5565;&#x7528;&#xFF1F;</a></li>
+<li><a href="#1163-&#x5982;&#x4F55;&#x4F7F;&#x7528;">1.1.6.3. &#x5982;&#x4F55;&#x4F7F;&#x7528;&#xFF1F;</a></li>
+</ul>
+</li>
+<li><a href="#117-&#x6709;&#x54EA;&#x4E9B;&#x96C6;&#x5408;&#x662F;&#x7EBF;&#x7A0B;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#x5462;">1.1.7. &#x6709;&#x54EA;&#x4E9B;&#x96C6;&#x5408;&#x662F;&#x7EBF;&#x7A0B;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#xFF1F;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#x5462;&#xFF1F;</a></li>
+</ul>
+</li>
+<li><a href="#12-collection-&#x5B50;&#x63A5;&#x53E3;&#x4E4B;-list">1.2. Collection &#x5B50;&#x63A5;&#x53E3;&#x4E4B; List</a><ul>
+<li><a href="#121-arraylist-&#x548C;-vector-&#x7684;&#x533A;&#x522B;">1.2.1. Arraylist &#x548C; Vector &#x7684;&#x533A;&#x522B;?</a></li>
+<li><a href="#122-arraylist-&#x4E0E;-linkedlist-&#x533A;&#x522B;">1.2.2. Arraylist &#x4E0E; LinkedList &#x533A;&#x522B;?</a><ul>
+<li><a href="#1221-&#x8865;&#x5145;&#x5185;&#x5BB9;&#x53CC;&#x5411;&#x94FE;&#x8868;&#x548C;&#x53CC;&#x5411;&#x5FAA;&#x73AF;&#x94FE;&#x8868;">1.2.2.1. &#x8865;&#x5145;&#x5185;&#x5BB9;:&#x53CC;&#x5411;&#x94FE;&#x8868;&#x548C;&#x53CC;&#x5411;&#x5FAA;&#x73AF;&#x94FE;&#x8868;</a></li>
+<li><a href="#1222-&#x8865;&#x5145;&#x5185;&#x5BB9;randomaccess-&#x63A5;&#x53E3;">1.2.2.2. &#x8865;&#x5145;&#x5185;&#x5BB9;:RandomAccess &#x63A5;&#x53E3;</a></li>
+</ul>
+</li>
+<li><a href="#123-&#x8BF4;&#x4E00;&#x8BF4;-arraylist-&#x7684;&#x6269;&#x5BB9;&#x673A;&#x5236;&#x5427;">1.2.3. &#x8BF4;&#x4E00;&#x8BF4; ArrayList &#x7684;&#x6269;&#x5BB9;&#x673A;&#x5236;&#x5427;</a></li>
+</ul>
+</li>
+<li><a href="#13-collection-&#x5B50;&#x63A5;&#x53E3;&#x4E4B;-set">1.3. Collection &#x5B50;&#x63A5;&#x53E3;&#x4E4B; Set</a><ul>
+<li><a href="#131-comparable-&#x548C;-comparator-&#x7684;&#x533A;&#x522B;">1.3.1. comparable &#x548C; Comparator &#x7684;&#x533A;&#x522B;</a><ul>
+<li><a href="#1311-comparator-&#x5B9A;&#x5236;&#x6392;&#x5E8F;">1.3.1.1. Comparator &#x5B9A;&#x5236;&#x6392;&#x5E8F;</a></li>
+<li><a href="#1312-&#x91CD;&#x5199;-compareto-&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x6309;&#x5E74;&#x9F84;&#x6765;&#x6392;&#x5E8F;">1.3.1.2. &#x91CD;&#x5199; compareTo &#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x6309;&#x5E74;&#x9F84;&#x6765;&#x6392;&#x5E8F;</a></li>
+</ul>
+</li>
+<li><a href="#132-&#x65E0;&#x5E8F;&#x6027;&#x548C;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x6027;&#x7684;&#x542B;&#x4E49;&#x662F;&#x4EC0;&#x4E48;">1.3.2. &#x65E0;&#x5E8F;&#x6027;&#x548C;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x6027;&#x7684;&#x542B;&#x4E49;&#x662F;&#x4EC0;&#x4E48;</a></li>
+<li><a href="#133-&#x6BD4;&#x8F83;-hashsetlinkedhashset-&#x548C;-treeset-&#x4E09;&#x8005;&#x7684;&#x5F02;&#x540C;">1.3.3. &#x6BD4;&#x8F83; HashSet&#x3001;LinkedHashSet &#x548C; TreeSet &#x4E09;&#x8005;&#x7684;&#x5F02;&#x540C;</a></li>
+</ul>
+</li>
+<li><a href="#14-map-&#x63A5;&#x53E3;">1.4. Map &#x63A5;&#x53E3;</a><ul>
+<li><a href="#141-hashmap-&#x548C;-hashtable-&#x7684;&#x533A;&#x522B;">1.4.1. HashMap &#x548C; Hashtable &#x7684;&#x533A;&#x522B;</a></li>
+<li><a href="#142-hashmap-&#x548C;-hashset-&#x533A;&#x522B;">1.4.2. HashMap &#x548C; HashSet &#x533A;&#x522B;</a></li>
+<li><a href="#143-hashmap-&#x548C;-treemap-&#x533A;&#x522B;">1.4.3. HashMap &#x548C; TreeMap &#x533A;&#x522B;</a></li>
+<li><a href="#144-hashset-&#x5982;&#x4F55;&#x68C0;&#x67E5;&#x91CD;&#x590D;">1.4.4. HashSet &#x5982;&#x4F55;&#x68C0;&#x67E5;&#x91CD;&#x590D;</a></li>
+<li><a href="#145-hashmap-&#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;">1.4.5. HashMap &#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;</a><ul>
+<li><a href="#1451-jdk18-&#x4E4B;&#x524D;">1.4.5.1. JDK1.8 &#x4E4B;&#x524D;</a></li>
+<li><a href="#1452-jdk18-&#x4E4B;&#x540E;">1.4.5.2. JDK1.8 &#x4E4B;&#x540E;</a></li>
+</ul>
+</li>
+<li><a href="#146-hashmap-&#x7684;&#x957F;&#x5EA6;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;-2-&#x7684;&#x5E42;&#x6B21;&#x65B9;">1.4.6. HashMap &#x7684;&#x957F;&#x5EA6;&#x4E3A;&#x4EC0;&#x4E48;&#x662F; 2 &#x7684;&#x5E42;&#x6B21;&#x65B9;</a></li>
+<li><a href="#147-hashmap-&#x591A;&#x7EBF;&#x7A0B;&#x64CD;&#x4F5C;&#x5BFC;&#x81F4;&#x6B7B;&#x5FAA;&#x73AF;&#x95EE;&#x9898;">1.4.7. HashMap &#x591A;&#x7EBF;&#x7A0B;&#x64CD;&#x4F5C;&#x5BFC;&#x81F4;&#x6B7B;&#x5FAA;&#x73AF;&#x95EE;&#x9898;</a></li>
+<li><a href="#148-hashmap-&#x6709;&#x54EA;&#x51E0;&#x79CD;&#x5E38;&#x89C1;&#x7684;&#x904D;&#x5386;&#x65B9;&#x5F0F;">1.4.8. HashMap &#x6709;&#x54EA;&#x51E0;&#x79CD;&#x5E38;&#x89C1;&#x7684;&#x904D;&#x5386;&#x65B9;&#x5F0F;?</a></li>
+<li><a href="#149-concurrenthashmap-&#x548C;-hashtable-&#x7684;&#x533A;&#x522B;">1.4.9. ConcurrentHashMap &#x548C; Hashtable &#x7684;&#x533A;&#x522B;</a></li>
+<li><a href="#1410-concurrenthashmap-&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x5E95;&#x5C42;&#x5177;&#x4F53;&#x5B9E;&#x73B0;">1.4.10. ConcurrentHashMap &#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;/&#x5E95;&#x5C42;&#x5177;&#x4F53;&#x5B9E;&#x73B0;</a><ul>
+<li><a href="#14101-jdk17&#x4E0A;&#x9762;&#x6709;&#x793A;&#x610F;&#x56FE;">1.4.10.1. JDK1.7&#xFF08;&#x4E0A;&#x9762;&#x6709;&#x793A;&#x610F;&#x56FE;&#xFF09;</a></li>
+<li><a href="#14102-jdk18-&#x4E0A;&#x9762;&#x6709;&#x793A;&#x610F;&#x56FE;">1.4.10.2. JDK1.8 &#xFF08;&#x4E0A;&#x9762;&#x6709;&#x793A;&#x610F;&#x56FE;&#xFF09;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#15-collections-&#x5DE5;&#x5177;&#x7C7B;">1.5. Collections &#x5DE5;&#x5177;&#x7C7B;</a><ul>
+<li><a href="#151-&#x6392;&#x5E8F;&#x64CD;&#x4F5C;">1.5.1. &#x6392;&#x5E8F;&#x64CD;&#x4F5C;</a></li>
+<li><a href="#152-&#x67E5;&#x627E;&#x66FF;&#x6362;&#x64CD;&#x4F5C;">1.5.2. &#x67E5;&#x627E;,&#x66FF;&#x6362;&#x64CD;&#x4F5C;</a></li>
+<li><a href="#153-&#x540C;&#x6B65;&#x63A7;&#x5236;">1.5.3. &#x540C;&#x6B65;&#x63A7;&#x5236;</a></li>
+</ul>
+</li>
+<li><a href="#16-&#x5176;&#x4ED6;&#x91CD;&#x8981;&#x95EE;&#x9898;">1.6. &#x5176;&#x4ED6;&#x91CD;&#x8981;&#x95EE;&#x9898;</a><ul>
+<li><a href="#161-&#x4EC0;&#x4E48;&#x662F;&#x5FEB;&#x901F;&#x5931;&#x8D25;fail-fast">1.6.1. &#x4EC0;&#x4E48;&#x662F;&#x5FEB;&#x901F;&#x5931;&#x8D25;(fail-fast)&#xFF1F;</a></li>
+<li><a href="#162-&#x4EC0;&#x4E48;&#x662F;&#x5B89;&#x5168;&#x5931;&#x8D25;fail-safe&#x5462;">1.6.2. &#x4EC0;&#x4E48;&#x662F;&#x5B89;&#x5168;&#x5931;&#x8D25;(fail-safe)&#x5462;&#xFF1F;</a></li>
+<li><a href="#163-arraysaslist&#x907F;&#x5751;&#x6307;&#x5357;">1.6.3. Arrays.asList()&#x907F;&#x5751;&#x6307;&#x5357;</a><ul>
+<li><a href="#1631-&#x7B80;&#x4ECB;">1.6.3.1. &#x7B80;&#x4ECB;</a></li>
+<li><a href="#1632-&#x963F;&#x91CC;&#x5DF4;&#x5DF4;-java-&#x5F00;&#x53D1;&#x624B;&#x518C;&#x5BF9;&#x5176;&#x7684;&#x63CF;&#x8FF0;">1.6.3.2. &#x300A;&#x963F;&#x91CC;&#x5DF4;&#x5DF4; Java &#x5F00;&#x53D1;&#x624B;&#x518C;&#x300B;&#x5BF9;&#x5176;&#x7684;&#x63CF;&#x8FF0;</a></li>
+<li><a href="#1633-&#x4F7F;&#x7528;&#x65F6;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#x603B;&#x7ED3;">1.6.3.3. &#x4F7F;&#x7528;&#x65F6;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#x603B;&#x7ED3;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="1-&#x5256;&#x6790;&#x9762;&#x8BD5;&#x6700;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x4E4B;-java-&#x96C6;&#x5408;&#x6846;&#x67B6;">1. &#x5256;&#x6790;&#x9762;&#x8BD5;&#x6700;&#x5E38;&#x89C1;&#x95EE;&#x9898;&#x4E4B; Java &#x96C6;&#x5408;&#x6846;&#x67B6;</h1>
+<h2 id="11-&#x96C6;&#x5408;&#x6982;&#x8FF0;">1.1. &#x96C6;&#x5408;&#x6982;&#x8FF0;</h2>
+<h3 id="111-java-&#x96C6;&#x5408;&#x6982;&#x89C8;">1.1.1. Java &#x96C6;&#x5408;&#x6982;&#x89C8;</h3>
+<p>&#x4ECE;&#x4E0B;&#x56FE;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x5728; Java &#x4E2D;&#x9664;&#x4E86;&#x4EE5; <code>Map</code> &#x7ED3;&#x5C3E;&#x7684;&#x7C7B;&#x4E4B;&#x5916;&#xFF0C; &#x5176;&#x4ED6;&#x7C7B;&#x90FD;&#x5B9E;&#x73B0;&#x4E86; <code>Collection</code> &#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x5E76;&#x4E14;&#xFF0C;&#x4EE5; <code>Map</code> &#x7ED3;&#x5C3E;&#x7684;&#x7C7B;&#x90FD;&#x5B9E;&#x73B0;&#x4E86; <code>Map</code> &#x63A5;&#x53E3;&#x3002;</p>
+<p><img src="images/Java-Collections.jpeg" alt=""></p>
+<h3 id="112-&#x8BF4;&#x8BF4;-listsetmap-&#x4E09;&#x8005;&#x7684;&#x533A;&#x522B;&#xFF1F;">1.1.2. &#x8BF4;&#x8BF4; List,Set,Map &#x4E09;&#x8005;&#x7684;&#x533A;&#x522B;&#xFF1F;</h3>
+<ul>
+<li><code>List</code>(&#x5BF9;&#x4ED8;&#x987A;&#x5E8F;&#x7684;&#x597D;&#x5E2E;&#x624B;)&#xFF1A; &#x5B58;&#x50A8;&#x7684;&#x5143;&#x7D20;&#x662F;&#x6709;&#x5E8F;&#x7684;&#x3001;&#x53EF;&#x91CD;&#x590D;&#x7684;&#x3002;</li>
+<li><code>Set</code>(&#x6CE8;&#x91CD;&#x72EC;&#x4E00;&#x65E0;&#x4E8C;&#x7684;&#x6027;&#x8D28;): &#x5B58;&#x50A8;&#x7684;&#x5143;&#x7D20;&#x662F;&#x65E0;&#x5E8F;&#x7684;&#x3001;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x7684;&#x3002;</li>
+<li><code>Map</code>(&#x7528; Key &#x6765;&#x641C;&#x7D22;&#x7684;&#x4E13;&#x5BB6;): &#x4F7F;&#x7528;&#x952E;&#x503C;&#x5BF9;&#xFF08;kye-value&#xFF09;&#x5B58;&#x50A8;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;&#x6570;&#x5B66;&#x4E0A;&#x7684;&#x51FD;&#x6570; y=f(x)&#xFF0C;&#x201C;x&#x201D;&#x4EE3;&#x8868; key&#xFF0C;&quot;y&quot;&#x4EE3;&#x8868; value&#xFF0C;Key &#x662F;&#x65E0;&#x5E8F;&#x7684;&#x3001;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x7684;&#xFF0C;value &#x662F;&#x65E0;&#x5E8F;&#x7684;&#x3001;&#x53EF;&#x91CD;&#x590D;&#x7684;&#xFF0C;&#x6BCF;&#x4E2A;&#x952E;&#x6700;&#x591A;&#x6620;&#x5C04;&#x5230;&#x4E00;&#x4E2A;&#x503C;&#x3002;</li>
+</ul>
+<h3 id="113-&#x96C6;&#x5408;&#x6846;&#x67B6;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x603B;&#x7ED3;">1.1.3. &#x96C6;&#x5408;&#x6846;&#x67B6;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x603B;&#x7ED3;</h3>
+<p>&#x5148;&#x6765;&#x770B;&#x4E00;&#x4E0B; <code>Collection</code> &#x63A5;&#x53E3;&#x4E0B;&#x9762;&#x7684;&#x96C6;&#x5408;&#x3002;</p>
+<h4 id="1131-list">1.1.3.1. List</h4>
+<ul>
+<li><code>Arraylist</code>&#xFF1A; <code>Object[]</code>&#x6570;&#x7EC4;</li>
+<li><code>Vector</code>&#xFF1A;<code>Object[]</code>&#x6570;&#x7EC4;</li>
+<li><code>LinkedList</code>&#xFF1A; &#x53CC;&#x5411;&#x94FE;&#x8868;(JDK1.6 &#x4E4B;&#x524D;&#x4E3A;&#x5FAA;&#x73AF;&#x94FE;&#x8868;&#xFF0C;JDK1.7 &#x53D6;&#x6D88;&#x4E86;&#x5FAA;&#x73AF;)</li>
+</ul>
+<h4 id="1132-set">1.1.3.2. Set</h4>
+<ul>
+<li><code>HashSet</code>&#xFF08;&#x65E0;&#x5E8F;&#xFF0C;&#x552F;&#x4E00;&#xFF09;: &#x57FA;&#x4E8E; <code>HashMap</code> &#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5E95;&#x5C42;&#x91C7;&#x7528; <code>HashMap</code> &#x6765;&#x4FDD;&#x5B58;&#x5143;&#x7D20;</li>
+<li><code>LinkedHashSet</code>&#xFF1A;<code>LinkedHashSet</code> &#x662F; <code>HashSet</code> &#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x5E76;&#x4E14;&#x5176;&#x5185;&#x90E8;&#x662F;&#x901A;&#x8FC7; <code>LinkedHashMap</code> &#x6765;&#x5B9E;&#x73B0;&#x7684;&#x3002;&#x6709;&#x70B9;&#x7C7B;&#x4F3C;&#x4E8E;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x8BF4;&#x7684; <code>LinkedHashMap</code> &#x5176;&#x5185;&#x90E8;&#x662F;&#x57FA;&#x4E8E; <code>HashMap</code> &#x5B9E;&#x73B0;&#x4E00;&#x6837;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD8;&#x662F;&#x6709;&#x4E00;&#x70B9;&#x70B9;&#x533A;&#x522B;&#x7684;</li>
+<li><code>TreeSet</code>&#xFF08;&#x6709;&#x5E8F;&#xFF0C;&#x552F;&#x4E00;&#xFF09;&#xFF1A; &#x7EA2;&#x9ED1;&#x6811;(&#x81EA;&#x5E73;&#x8861;&#x7684;&#x6392;&#x5E8F;&#x4E8C;&#x53C9;&#x6811;)</li>
+</ul>
+<p>&#x518D;&#x6765;&#x770B;&#x770B; <code>Map</code> &#x63A5;&#x53E3;&#x4E0B;&#x9762;&#x7684;&#x96C6;&#x5408;&#x3002;</p>
+<h4 id="1133-map">1.1.3.3. Map</h4>
+<ul>
+<li><code>HashMap</code>&#xFF1A; JDK1.8 &#x4E4B;&#x524D; HashMap &#x7531;&#x6570;&#x7EC4;+&#x94FE;&#x8868;&#x7EC4;&#x6210;&#x7684;&#xFF0C;&#x6570;&#x7EC4;&#x662F; HashMap &#x7684;&#x4E3B;&#x4F53;&#xFF0C;&#x94FE;&#x8868;&#x5219;&#x662F;&#x4E3B;&#x8981;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#x800C;&#x5B58;&#x5728;&#x7684;&#xFF08;&#x201C;&#x62C9;&#x94FE;&#x6CD5;&#x201D;&#x89E3;&#x51B3;&#x51B2;&#x7A81;&#xFF09;&#x3002;JDK1.8 &#x4EE5;&#x540E;&#x5728;&#x89E3;&#x51B3;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#x65F6;&#x6709;&#x4E86;&#x8F83;&#x5927;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5F53;&#x94FE;&#x8868;&#x957F;&#x5EA6;&#x5927;&#x4E8E;&#x9608;&#x503C;&#xFF08;&#x9ED8;&#x8BA4;&#x4E3A; 8&#xFF09;&#xFF08;&#x5C06;&#x94FE;&#x8868;&#x8F6C;&#x6362;&#x6210;&#x7EA2;&#x9ED1;&#x6811;&#x524D;&#x4F1A;&#x5224;&#x65AD;&#xFF0C;&#x5982;&#x679C;&#x5F53;&#x524D;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#x5C0F;&#x4E8E; 64&#xFF0C;&#x90A3;&#x4E48;&#x4F1A;&#x9009;&#x62E9;&#x5148;&#x8FDB;&#x884C;&#x6570;&#x7EC4;&#x6269;&#x5BB9;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x8F6C;&#x6362;&#x4E3A;&#x7EA2;&#x9ED1;&#x6811;&#xFF09;&#x65F6;&#xFF0C;&#x5C06;&#x94FE;&#x8868;&#x8F6C;&#x5316;&#x4E3A;&#x7EA2;&#x9ED1;&#x6811;&#xFF0C;&#x4EE5;&#x51CF;&#x5C11;&#x641C;&#x7D22;&#x65F6;&#x95F4;</li>
+<li><code>LinkedHashMap</code>&#xFF1A; <code>LinkedHashMap</code> &#x7EE7;&#x627F;&#x81EA; <code>HashMap</code>&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x7684;&#x5E95;&#x5C42;&#x4ECD;&#x7136;&#x662F;&#x57FA;&#x4E8E;&#x62C9;&#x94FE;&#x5F0F;&#x6563;&#x5217;&#x7ED3;&#x6784;&#x5373;&#x7531;&#x6570;&#x7EC4;&#x548C;&#x94FE;&#x8868;&#x6216;&#x7EA2;&#x9ED1;&#x6811;&#x7EC4;&#x6210;&#x3002;&#x53E6;&#x5916;&#xFF0C;<code>LinkedHashMap</code> &#x5728;&#x4E0A;&#x9762;&#x7ED3;&#x6784;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x6761;&#x53CC;&#x5411;&#x94FE;&#x8868;&#xFF0C;&#x4F7F;&#x5F97;&#x4E0A;&#x9762;&#x7684;&#x7ED3;&#x6784;&#x53EF;&#x4EE5;&#x4FDD;&#x6301;&#x952E;&#x503C;&#x5BF9;&#x7684;&#x63D2;&#x5165;&#x987A;&#x5E8F;&#x3002;&#x540C;&#x65F6;&#x901A;&#x8FC7;&#x5BF9;&#x94FE;&#x8868;&#x8FDB;&#x884C;&#x76F8;&#x5E94;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5B9E;&#x73B0;&#x4E86;&#x8BBF;&#x95EE;&#x987A;&#x5E8F;&#x76F8;&#x5173;&#x903B;&#x8F91;&#x3002;&#x8BE6;&#x7EC6;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#xFF1A;<a href="https://www.imooc.com/article/22931" target="_blank">&#x300A;LinkedHashMap &#x6E90;&#x7801;&#x8BE6;&#x7EC6;&#x5206;&#x6790;&#xFF08;JDK1.8&#xFF09;&#x300B;</a></li>
+<li><code>Hashtable</code>&#xFF1A; &#x6570;&#x7EC4;+&#x94FE;&#x8868;&#x7EC4;&#x6210;&#x7684;&#xFF0C;&#x6570;&#x7EC4;&#x662F; HashMap &#x7684;&#x4E3B;&#x4F53;&#xFF0C;&#x94FE;&#x8868;&#x5219;&#x662F;&#x4E3B;&#x8981;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#x800C;&#x5B58;&#x5728;&#x7684;</li>
+<li><code>TreeMap</code>&#xFF1A; &#x7EA2;&#x9ED1;&#x6811;&#xFF08;&#x81EA;&#x5E73;&#x8861;&#x7684;&#x6392;&#x5E8F;&#x4E8C;&#x53C9;&#x6811;&#xFF09;</li>
+</ul>
+<h3 id="114-&#x5982;&#x4F55;&#x9009;&#x7528;&#x96C6;&#x5408;">1.1.4. &#x5982;&#x4F55;&#x9009;&#x7528;&#x96C6;&#x5408;?</h3>
+<p>&#x4E3B;&#x8981;&#x6839;&#x636E;&#x96C6;&#x5408;&#x7684;&#x7279;&#x70B9;&#x6765;&#x9009;&#x7528;&#xFF0C;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6839;&#x636E;&#x952E;&#x503C;&#x83B7;&#x53D6;&#x5230;&#x5143;&#x7D20;&#x503C;&#x65F6;&#x5C31;&#x9009;&#x7528; <code>Map</code> &#x63A5;&#x53E3;&#x4E0B;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x9700;&#x8981;&#x6392;&#x5E8F;&#x65F6;&#x9009;&#x62E9; <code>TreeMap</code>,&#x4E0D;&#x9700;&#x8981;&#x6392;&#x5E8F;&#x65F6;&#x5C31;&#x9009;&#x62E9; <code>HashMap</code>,&#x9700;&#x8981;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x5C31;&#x9009;&#x7528; <code>ConcurrentHashMap</code>&#x3002;</p>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x5B58;&#x653E;&#x5143;&#x7D20;&#x503C;&#x65F6;&#xFF0C;&#x5C31;&#x9009;&#x62E9;&#x5B9E;&#x73B0;<code>Collection</code> &#x63A5;&#x53E3;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x9700;&#x8981;&#x4FDD;&#x8BC1;&#x5143;&#x7D20;&#x552F;&#x4E00;&#x65F6;&#x9009;&#x62E9;&#x5B9E;&#x73B0; <code>Set</code> &#x63A5;&#x53E3;&#x7684;&#x96C6;&#x5408;&#x6BD4;&#x5982; <code>TreeSet</code> &#x6216; <code>HashSet</code>&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5C31;&#x9009;&#x62E9;&#x5B9E;&#x73B0; <code>List</code> &#x63A5;&#x53E3;&#x7684;&#x6BD4;&#x5982; <code>ArrayList</code> &#x6216; <code>LinkedList</code>&#xFF0C;&#x7136;&#x540E;&#x518D;&#x6839;&#x636E;&#x5B9E;&#x73B0;&#x8FD9;&#x4E9B;&#x63A5;&#x53E3;&#x7684;&#x96C6;&#x5408;&#x7684;&#x7279;&#x70B9;&#x6765;&#x9009;&#x7528;&#x3002;</p>
+<h3 id="115-&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4F7F;&#x7528;&#x96C6;&#x5408;&#xFF1F;">1.1.5. &#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4F7F;&#x7528;&#x96C6;&#x5408;&#xFF1F;</h3>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4FDD;&#x5B58;&#x4E00;&#x7EC4;&#x7C7B;&#x578B;&#x76F8;&#x540C;&#x7684;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x662F;&#x7528;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x6765;&#x4FDD;&#x5B58;&#xFF0C;&#x8FD9;&#x4E2A;&#x5BB9;&#x5668;&#x5C31;&#x662F;&#x6570;&#x7EC4;&#xFF0C;&#x4F46;&#x662F;&#xFF0C;&#x4F7F;&#x7528;&#x6570;&#x7EC4;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#x5177;&#x6709;&#x4E00;&#x5B9A;&#x7684;&#x5F0A;&#x7AEF;&#xFF0C;
+&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x7684;&#x7C7B;&#x578B;&#x662F;&#x591A;&#x79CD;&#x591A;&#x6837;&#x7684;&#xFF0C;&#x4E8E;&#x662F;&#xFF0C;&#x5C31;&#x51FA;&#x73B0;&#x4E86;&#x201C;&#x96C6;&#x5408;&#x201D;&#xFF0C;&#x96C6;&#x5408;&#x540C;&#x6837;&#x4E5F;&#x662F;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x7684;&#x3002;</p>
+<p>&#x6570;&#x7EC4;&#x7684;&#x7F3A;&#x70B9;&#x662F;&#x4E00;&#x65E6;&#x58F0;&#x660E;&#x4E4B;&#x540E;&#xFF0C;&#x957F;&#x5EA6;&#x5C31;&#x4E0D;&#x53EF;&#x53D8;&#x4E86;&#xFF1B;&#x540C;&#x65F6;&#xFF0C;&#x58F0;&#x660E;&#x6570;&#x7EC4;&#x65F6;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E5F;&#x51B3;&#x5B9A;&#x4E86;&#x8BE5;&#x6570;&#x7EC4;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x7684;&#x7C7B;&#x578B;&#xFF1B;&#x800C;&#x4E14;&#xFF0C;&#x6570;&#x7EC4;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x662F;&#x6709;&#x5E8F;&#x7684;&#x3001;&#x53EF;&#x91CD;&#x590D;&#x7684;&#xFF0C;&#x7279;&#x70B9;&#x5355;&#x4E00;&#x3002;
+&#x4F46;&#x662F;&#x96C6;&#x5408;&#x63D0;&#x9AD8;&#x4E86;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7684;&#x7075;&#x6D3B;&#x6027;&#xFF0C;Java &#x96C6;&#x5408;&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x5B58;&#x50A8;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x4E0D;&#x540C;&#x6570;&#x91CF;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x4FDD;&#x5B58;&#x5177;&#x6709;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#x7684;&#x6570;&#x636E;</p>
+<h3 id="116-iterator-&#x8FED;&#x4EE3;&#x5668;">1.1.6. Iterator &#x8FED;&#x4EE3;&#x5668;</h3>
+<h4 id="1161-&#x8FED;&#x4EE3;&#x5668;-iterator-&#x662F;&#x4EC0;&#x4E48;&#xFF1F;">1.1.6.1. &#x8FED;&#x4EE3;&#x5668; Iterator &#x662F;&#x4EC0;&#x4E48;&#xFF1F;</h4>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Iterator</span>&lt;<span class="hljs-title">E</span>&gt; </span>{
+    <span class="hljs-comment">//&#x96C6;&#x5408;&#x4E2D;&#x662F;&#x5426;&#x8FD8;&#x6709;&#x5143;&#x7D20;</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-comment">//&#x83B7;&#x5F97;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x5143;&#x7D20;</span>
+    <span class="hljs-function">E <span class="hljs-title">next</span><span class="hljs-params">()</span></span>;
+    ......
+}
+</code></pre>
+<p><code>Iterator</code> &#x5BF9;&#x8C61;&#x79F0;&#x4E3A;&#x8FED;&#x4EE3;&#x5668;&#xFF08;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x4E00;&#x79CD;&#xFF09;&#xFF0C;&#x8FED;&#x4EE3;&#x5668;&#x53EF;&#x4EE5;&#x5BF9;&#x96C6;&#x5408;&#x8FDB;&#x884C;&#x904D;&#x5386;&#xFF0C;&#x4F46;&#x6BCF;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x5185;&#x90E8;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x53EF;&#x80FD;&#x662F;&#x4E0D;&#x5C3D;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6BCF;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x5B58;&#x548C;&#x53D6;&#x90FD;&#x5F88;&#x53EF;&#x80FD;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x867D;&#x7136;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4EBA;&#x4E3A;&#x5730;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;&#x7C7B;&#x4E2D;&#x5B9A;&#x4E49; <code>hasNext()</code> &#x548C; <code>next()</code> &#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x8FD9;&#x6837;&#x505A;&#x4F1A;&#x8BA9;&#x6574;&#x4E2A;&#x96C6;&#x5408;&#x4F53;&#x7CFB;&#x8FC7;&#x4E8E;&#x81C3;&#x80BF;&#x3002;&#x4E8E;&#x662F;&#x5C31;&#x6709;&#x4E86;&#x8FED;&#x4EE3;&#x5668;&#x3002;</p>
+<p>&#x8FED;&#x4EE3;&#x5668;&#x662F;&#x5C06;&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x6CD5;&#x62BD;&#x53D6;&#x51FA;&#x63A5;&#x53E3;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x6BCF;&#x4E2A;&#x7C7B;&#x7684;&#x5185;&#x90E8;&#xFF0C;&#x5B9A;&#x4E49;&#x81EA;&#x5DF1;&#x8FED;&#x4EE3;&#x65B9;&#x5F0F;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x5C31;&#x89C4;&#x5B9A;&#x4E86;&#x6574;&#x4E2A;&#x96C6;&#x5408;&#x4F53;&#x7CFB;&#x7684;&#x904D;&#x5386;&#x65B9;&#x5F0F;&#x90FD;&#x662F; <code>hasNext()</code>&#x548C;<code>next()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x4F7F;&#x7528;&#x8005;&#x4E0D;&#x7528;&#x7BA1;&#x600E;&#x4E48;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x4F1A;&#x7528;&#x5373;&#x53EF;&#x3002;&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x5B9A;&#x4E49;&#x4E3A;&#xFF1A;&#x63D0;&#x4F9B;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#x5BF9;&#x8C61;&#x4E2D;&#x5404;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x800C;&#x53C8;&#x4E0D;&#x9700;&#x8981;&#x66B4;&#x9732;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x5185;&#x90E8;&#x7EC6;&#x8282;&#x3002;</p>
+<h4 id="1162-&#x8FED;&#x4EE3;&#x5668;-iterator-&#x6709;&#x5565;&#x7528;&#xFF1F;">1.1.6.2. &#x8FED;&#x4EE3;&#x5668; Iterator &#x6709;&#x5565;&#x7528;&#xFF1F;</h4>
+<p><code>Iterator</code> &#x4E3B;&#x8981;&#x662F;&#x7528;&#x6765;&#x904D;&#x5386;&#x96C6;&#x5408;&#x7528;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x7279;&#x70B9;&#x662F;&#x66F4;&#x52A0;&#x5B89;&#x5168;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x53EF;&#x4EE5;&#x786E;&#x4FDD;&#xFF0C;&#x5728;&#x5F53;&#x524D;&#x904D;&#x5386;&#x7684;&#x96C6;&#x5408;&#x5143;&#x7D20;&#x88AB;&#x66F4;&#x6539;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x4F1A;&#x629B;&#x51FA; <code>ConcurrentModificationException</code> &#x5F02;&#x5E38;&#x3002;</p>
+<h4 id="1163-&#x5982;&#x4F55;&#x4F7F;&#x7528;&#xFF1F;">1.1.6.3. &#x5982;&#x4F55;&#x4F7F;&#x7528;&#xFF1F;</h4>
+<p>&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x8FED;&#x4EE3;&#x5668;&#x6765;&#x904D;&#x5386; <code>HashMap</code>&#xFF0C;&#x6F14;&#x793A;&#x4E00;&#x4E0B; &#x8FED;&#x4EE3;&#x5668; Iterator &#x7684;&#x4F7F;&#x7528;&#x3002;</p>
+<pre><code class="lang-java">
+Map&lt;Integer, String&gt; map = <span class="hljs-keyword">new</span> HashMap();
+map.put(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;Java&quot;</span>);
+map.put(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;C++&quot;</span>);
+map.put(<span class="hljs-number">3</span>, <span class="hljs-string">&quot;PHP&quot;</span>);
+Iterator&lt;Map.Entry&lt;Integer, String&gt;&gt; iterator = map.entrySet().iterator();
+<span class="hljs-keyword">while</span> (iterator.hasNext()) {
+  Map.Entry&lt;Integer, String&gt; entry = iterator.next();
+  System.out.println(entry.getKey() + entry.getValue());
+}
+</code></pre>
+<h3 id="117-&#x6709;&#x54EA;&#x4E9B;&#x96C6;&#x5408;&#x662F;&#x7EBF;&#x7A0B;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#xFF1F;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#x5462;&#xFF1F;">1.1.7. &#x6709;&#x54EA;&#x4E9B;&#x96C6;&#x5408;&#x662F;&#x7EBF;&#x7A0B;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#xFF1F;&#x600E;&#x4E48;&#x89E3;&#x51B3;&#x5462;&#xFF1F;</h3>
+<p>&#x6211;&#x4EEC;&#x5E38;&#x7528;&#x7684; <code>Arraylist</code> ,<code>LinkedList</code>,<code>Hashmap</code>,<code>HashSet</code>,<code>TreeSet</code>,<code>TreeMap</code>&#xFF0C;<code>PriorityQueue</code> &#x90FD;&#x4E0D;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x3002;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x96C6;&#x5408;&#x6765;&#x4EE3;&#x66FF;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x8981;&#x4F7F;&#x7528;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x96C6;&#x5408;&#x7684;&#x8BDD;&#xFF0C; <code>java.util.concurrent</code> &#x5305;&#x4E2D;&#x63D0;&#x4F9B;&#x4E86;&#x5F88;&#x591A;&#x5E76;&#x53D1;&#x5BB9;&#x5668;&#x4F9B;&#x4F60;&#x4F7F;&#x7528;&#xFF1A;</p>
+<ol>
+<li><code>ConcurrentHashMap</code>: &#x53EF;&#x4EE5;&#x770B;&#x4F5C;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684; <code>HashMap</code></li>
+<li><code>CopyOnWriteArrayList</code>:&#x53EF;&#x4EE5;&#x770B;&#x4F5C;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684; <code>ArrayList</code>&#xFF0C;&#x5728;&#x8BFB;&#x591A;&#x5199;&#x5C11;&#x7684;&#x573A;&#x5408;&#x6027;&#x80FD;&#x975E;&#x5E38;&#x597D;&#xFF0C;&#x8FDC;&#x8FDC;&#x597D;&#x4E8E; <code>Vector</code>.</li>
+<li><code>ConcurrentLinkedQueue</code>:&#x9AD8;&#x6548;&#x7684;&#x5E76;&#x53D1;&#x961F;&#x5217;&#xFF0C;&#x4F7F;&#x7528;&#x94FE;&#x8868;&#x5B9E;&#x73B0;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x505A;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684; <code>LinkedList</code>&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x975E;&#x963B;&#x585E;&#x961F;&#x5217;&#x3002;</li>
+<li><code>BlockingQueue</code>: &#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;JDK &#x5185;&#x90E8;&#x901A;&#x8FC7;&#x94FE;&#x8868;&#x3001;&#x6570;&#x7EC4;&#x7B49;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x4E86;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x3002;&#x8868;&#x793A;&#x963B;&#x585E;&#x961F;&#x5217;&#xFF0C;&#x975E;&#x5E38;&#x9002;&#x5408;&#x7528;&#x4E8E;&#x4F5C;&#x4E3A;&#x6570;&#x636E;&#x5171;&#x4EAB;&#x7684;&#x901A;&#x9053;&#x3002;</li>
+<li><code>ConcurrentSkipListMap</code> :&#x8DF3;&#x8868;&#x7684;&#x5B9E;&#x73B0;&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;<code>Map</code>&#xFF0C;&#x4F7F;&#x7528;&#x8DF3;&#x8868;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x8FDB;&#x884C;&#x5FEB;&#x901F;&#x67E5;&#x627E;&#x3002;</li>
+</ol>
+<h2 id="12-collection-&#x5B50;&#x63A5;&#x53E3;&#x4E4B;-list">1.2. Collection &#x5B50;&#x63A5;&#x53E3;&#x4E4B; List</h2>
+<h3 id="121-arraylist-&#x548C;-vector-&#x7684;&#x533A;&#x522B;">1.2.1. Arraylist &#x548C; Vector &#x7684;&#x533A;&#x522B;?</h3>
+<ol>
+<li>ArrayList &#x662F; List &#x7684;&#x4E3B;&#x8981;&#x5B9E;&#x73B0;&#x7C7B;&#xFF0C;&#x5E95;&#x5C42;&#x4F7F;&#x7528; Object[ ]&#x5B58;&#x50A8;&#xFF0C;&#x9002;&#x7528;&#x4E8E;&#x9891;&#x7E41;&#x7684;&#x67E5;&#x627E;&#x5DE5;&#x4F5C;&#xFF0C;&#x7EBF;&#x7A0B;&#x4E0D;&#x5B89;&#x5168; &#xFF1B;</li>
+<li>Vector &#x662F; List &#x7684;&#x53E4;&#x8001;&#x5B9E;&#x73B0;&#x7C7B;&#xFF0C;&#x5E95;&#x5C42;&#x4F7F;&#x7528; Object[ ]&#x5B58;&#x50A8;&#xFF0C;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x3002;</li>
+</ol>
+<h3 id="122-arraylist-&#x4E0E;-linkedlist-&#x533A;&#x522B;">1.2.2. Arraylist &#x4E0E; LinkedList &#x533A;&#x522B;?</h3>
+<ol>
+<li><strong>&#x662F;&#x5426;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#xFF1A;</strong> <code>ArrayList</code> &#x548C; <code>LinkedList</code> &#x90FD;&#x662F;&#x4E0D;&#x540C;&#x6B65;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E0D;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#xFF1B;</li>
+<li><strong>&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;</strong> <code>Arraylist</code> &#x5E95;&#x5C42;&#x4F7F;&#x7528;&#x7684;&#x662F; <strong><code>Object</code> &#x6570;&#x7EC4;</strong>&#xFF1B;<code>LinkedList</code> &#x5E95;&#x5C42;&#x4F7F;&#x7528;&#x7684;&#x662F; <strong>&#x53CC;&#x5411;&#x94FE;&#x8868;</strong> &#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF08;JDK1.6 &#x4E4B;&#x524D;&#x4E3A;&#x5FAA;&#x73AF;&#x94FE;&#x8868;&#xFF0C;JDK1.7 &#x53D6;&#x6D88;&#x4E86;&#x5FAA;&#x73AF;&#x3002;&#x6CE8;&#x610F;&#x53CC;&#x5411;&#x94FE;&#x8868;&#x548C;&#x53CC;&#x5411;&#x5FAA;&#x73AF;&#x94FE;&#x8868;&#x7684;&#x533A;&#x522B;&#xFF0C;&#x4E0B;&#x9762;&#x6709;&#x4ECB;&#x7ECD;&#x5230;&#xFF01;&#xFF09;</li>
+<li><strong>&#x63D2;&#x5165;&#x548C;&#x5220;&#x9664;&#x662F;&#x5426;&#x53D7;&#x5143;&#x7D20;&#x4F4D;&#x7F6E;&#x7684;&#x5F71;&#x54CD;&#xFF1A;</strong> &#x2460; <strong><code>ArrayList</code> &#x91C7;&#x7528;&#x6570;&#x7EC4;&#x5B58;&#x50A8;&#xFF0C;&#x6240;&#x4EE5;&#x63D2;&#x5165;&#x548C;&#x5220;&#x9664;&#x5143;&#x7D20;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x53D7;&#x5143;&#x7D20;&#x4F4D;&#x7F6E;&#x7684;&#x5F71;&#x54CD;&#x3002;</strong> &#x6BD4;&#x5982;&#xFF1A;&#x6267;&#x884C;<code>add(E e)</code>&#x65B9;&#x6CD5;&#x7684;&#x65F6;&#x5019;&#xFF0C; <code>ArrayList</code> &#x4F1A;&#x9ED8;&#x8BA4;&#x5728;&#x5C06;&#x6307;&#x5B9A;&#x7684;&#x5143;&#x7D20;&#x8FFD;&#x52A0;&#x5230;&#x6B64;&#x5217;&#x8868;&#x7684;&#x672B;&#x5C3E;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x5C31;&#x662F; O(1)&#x3002;&#x4F46;&#x662F;&#x5982;&#x679C;&#x8981;&#x5728;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E; i &#x63D2;&#x5165;&#x548C;&#x5220;&#x9664;&#x5143;&#x7D20;&#x7684;&#x8BDD;&#xFF08;<code>add(int index, E element)</code>&#xFF09;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x5C31;&#x4E3A; O(n-i)&#x3002;&#x56E0;&#x4E3A;&#x5728;&#x8FDB;&#x884C;&#x4E0A;&#x8FF0;&#x64CD;&#x4F5C;&#x7684;&#x65F6;&#x5019;&#x96C6;&#x5408;&#x4E2D;&#x7B2C; i &#x548C;&#x7B2C; i &#x4E2A;&#x5143;&#x7D20;&#x4E4B;&#x540E;&#x7684;(n-i)&#x4E2A;&#x5143;&#x7D20;&#x90FD;&#x8981;&#x6267;&#x884C;&#x5411;&#x540E;&#x4F4D;/&#x5411;&#x524D;&#x79FB;&#x4E00;&#x4F4D;&#x7684;&#x64CD;&#x4F5C;&#x3002; &#x2461; <strong><code>LinkedList</code> &#x91C7;&#x7528;&#x94FE;&#x8868;&#x5B58;&#x50A8;&#xFF0C;&#x6240;&#x4EE5;&#x5BF9;&#x4E8E;<code>add(E e)</code>&#x65B9;&#x6CD5;&#x7684;&#x63D2;&#x5165;&#xFF0C;&#x5220;&#x9664;&#x5143;&#x7D20;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E0D;&#x53D7;&#x5143;&#x7D20;&#x4F4D;&#x7F6E;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x8FD1;&#x4F3C; O(1)&#xFF0C;&#x5982;&#x679C;&#x662F;&#x8981;&#x5728;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;<code>i</code>&#x63D2;&#x5165;&#x548C;&#x5220;&#x9664;&#x5143;&#x7D20;&#x7684;&#x8BDD;&#xFF08;<code>(add(int index, E element)</code>&#xFF09; &#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x8FD1;&#x4F3C;&#x4E3A;<code>o(n))</code>&#x56E0;&#x4E3A;&#x9700;&#x8981;&#x5148;&#x79FB;&#x52A8;&#x5230;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x518D;&#x63D2;&#x5165;&#x3002;</strong></li>
+<li><strong>&#x662F;&#x5426;&#x652F;&#x6301;&#x5FEB;&#x901F;&#x968F;&#x673A;&#x8BBF;&#x95EE;&#xFF1A;</strong> <code>LinkedList</code> &#x4E0D;&#x652F;&#x6301;&#x9AD8;&#x6548;&#x7684;&#x968F;&#x673A;&#x5143;&#x7D20;&#x8BBF;&#x95EE;&#xFF0C;&#x800C; <code>ArrayList</code> &#x652F;&#x6301;&#x3002;&#x5FEB;&#x901F;&#x968F;&#x673A;&#x8BBF;&#x95EE;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#x5143;&#x7D20;&#x7684;&#x5E8F;&#x53F7;&#x5FEB;&#x901F;&#x83B7;&#x53D6;&#x5143;&#x7D20;&#x5BF9;&#x8C61;(&#x5BF9;&#x5E94;&#x4E8E;<code>get(int index)</code>&#x65B9;&#x6CD5;)&#x3002;</li>
+<li><strong>&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x5360;&#x7528;&#xFF1A;</strong> ArrayList &#x7684;&#x7A7A; &#x95F4;&#x6D6A;&#x8D39;&#x4E3B;&#x8981;&#x4F53;&#x73B0;&#x5728;&#x5728; list &#x5217;&#x8868;&#x7684;&#x7ED3;&#x5C3E;&#x4F1A;&#x9884;&#x7559;&#x4E00;&#x5B9A;&#x7684;&#x5BB9;&#x91CF;&#x7A7A;&#x95F4;&#xFF0C;&#x800C; LinkedList &#x7684;&#x7A7A;&#x95F4;&#x82B1;&#x8D39;&#x5219;&#x4F53;&#x73B0;&#x5728;&#x5B83;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x90FD;&#x9700;&#x8981;&#x6D88;&#x8017;&#x6BD4; ArrayList &#x66F4;&#x591A;&#x7684;&#x7A7A;&#x95F4;&#xFF08;&#x56E0;&#x4E3A;&#x8981;&#x5B58;&#x653E;&#x76F4;&#x63A5;&#x540E;&#x7EE7;&#x548C;&#x76F4;&#x63A5;&#x524D;&#x9A71;&#x4EE5;&#x53CA;&#x6570;&#x636E;&#xFF09;&#x3002;</li>
+</ol>
+<h4 id="1221-&#x8865;&#x5145;&#x5185;&#x5BB9;&#x53CC;&#x5411;&#x94FE;&#x8868;&#x548C;&#x53CC;&#x5411;&#x5FAA;&#x73AF;&#x94FE;&#x8868;">1.2.2.1. &#x8865;&#x5145;&#x5185;&#x5BB9;:&#x53CC;&#x5411;&#x94FE;&#x8868;&#x548C;&#x53CC;&#x5411;&#x5FAA;&#x73AF;&#x94FE;&#x8868;</h4>
+<p><strong>&#x53CC;&#x5411;&#x94FE;&#x8868;&#xFF1A;</strong> &#x5305;&#x542B;&#x4E24;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x4E00;&#x4E2A; prev &#x6307;&#x5411;&#x524D;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x4E00;&#x4E2A; next &#x6307;&#x5411;&#x540E;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x3002;</p>
+<blockquote>
+<p>&#x53E6;&#x5916;&#x63A8;&#x8350;&#x4E00;&#x7BC7;&#x628A;&#x53CC;&#x5411;&#x94FE;&#x8868;&#x8BB2;&#x6E05;&#x695A;&#x7684;&#x6587;&#x7AE0;&#xFF1A;<a href="https://juejin.im/post/5b5d1a9af265da0f47352f14" target="_blank">https://juejin.im/post/5b5d1a9af265da0f47352f14</a></p>
+</blockquote>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/&#x53CC;&#x5411;&#x94FE;&#x8868;.png" alt="&#x53CC;&#x5411;&#x94FE;&#x8868;"></p>
+<p><strong>&#x53CC;&#x5411;&#x5FAA;&#x73AF;&#x94FE;&#x8868;&#xFF1A;</strong> &#x6700;&#x540E;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x7684; next &#x6307;&#x5411; head&#xFF0C;&#x800C; head &#x7684; prev &#x6307;&#x5411;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x6784;&#x6210;&#x4E00;&#x4E2A;&#x73AF;&#x3002;</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/&#x53CC;&#x5411;&#x5FAA;&#x73AF;&#x94FE;&#x8868;.png" alt="&#x53CC;&#x5411;&#x5FAA;&#x73AF;&#x94FE;&#x8868;"></p>
+<h4 id="1222-&#x8865;&#x5145;&#x5185;&#x5BB9;randomaccess-&#x63A5;&#x53E3;">1.2.2.2. &#x8865;&#x5145;&#x5185;&#x5BB9;:RandomAccess &#x63A5;&#x53E3;</h4>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">RandomAccess</span> </span>{
+}
+</code></pre>
+<p>&#x67E5;&#x770B;&#x6E90;&#x7801;&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#x5B9E;&#x9645;&#x4E0A; <code>RandomAccess</code> &#x63A5;&#x53E3;&#x4E2D;&#x4EC0;&#x4E48;&#x90FD;&#x6CA1;&#x6709;&#x5B9A;&#x4E49;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x5728;&#x6211;&#x770B;&#x6765; <code>RandomAccess</code> &#x63A5;&#x53E3;&#x4E0D;&#x8FC7;&#x662F;&#x4E00;&#x4E2A;&#x6807;&#x8BC6;&#x7F62;&#x4E86;&#x3002;&#x6807;&#x8BC6;&#x4EC0;&#x4E48;&#xFF1F; &#x6807;&#x8BC6;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x7684;&#x7C7B;&#x5177;&#x6709;&#x968F;&#x673A;&#x8BBF;&#x95EE;&#x529F;&#x80FD;&#x3002;</p>
+<p>&#x5728; <code>binarySearch&#xFF08;)</code> &#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x5B83;&#x8981;&#x5224;&#x65AD;&#x4F20;&#x5165;&#x7684; list &#x662F;&#x5426; <code>RamdomAccess</code> &#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x8C03;&#x7528;<code>indexedBinarySearch()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x662F;&#xFF0C;&#x90A3;&#x4E48;&#x8C03;&#x7528;<code>iteratorBinarySearch()</code>&#x65B9;&#x6CD5;</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">binarySearch</span><span class="hljs-params">(List&lt;? extends Comparable&lt;? <span class="hljs-keyword">super</span> T&gt;&gt; list, T key)</span> </span>{
+        <span class="hljs-keyword">if</span> (list <span class="hljs-keyword">instanceof</span> RandomAccess || list.size()&lt;BINARYSEARCH_THRESHOLD)
+            <span class="hljs-keyword">return</span> Collections.indexedBinarySearch(list, key);
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> Collections.iteratorBinarySearch(list, key);
+    }
+</code></pre>
+<p><code>ArrayList</code> &#x5B9E;&#x73B0;&#x4E86; <code>RandomAccess</code> &#x63A5;&#x53E3;&#xFF0C; &#x800C; <code>LinkedList</code> &#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x6211;&#x89C9;&#x5F97;&#x8FD8;&#x662F;&#x548C;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x6709;&#x5173;&#xFF01;<code>ArrayList</code> &#x5E95;&#x5C42;&#x662F;&#x6570;&#x7EC4;&#xFF0C;&#x800C; <code>LinkedList</code> &#x5E95;&#x5C42;&#x662F;&#x94FE;&#x8868;&#x3002;&#x6570;&#x7EC4;&#x5929;&#x7136;&#x652F;&#x6301;&#x968F;&#x673A;&#x8BBF;&#x95EE;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; O(1)&#xFF0C;&#x6240;&#x4EE5;&#x79F0;&#x4E3A;&#x5FEB;&#x901F;&#x968F;&#x673A;&#x8BBF;&#x95EE;&#x3002;&#x94FE;&#x8868;&#x9700;&#x8981;&#x904D;&#x5386;&#x5230;&#x7279;&#x5B9A;&#x4F4D;&#x7F6E;&#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x7279;&#x5B9A;&#x4F4D;&#x7F6E;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; O(n)&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x652F;&#x6301;&#x5FEB;&#x901F;&#x968F;&#x673A;&#x8BBF;&#x95EE;&#x3002;&#xFF0C;<code>ArrayList</code> &#x5B9E;&#x73B0;&#x4E86; <code>RandomAccess</code> &#x63A5;&#x53E3;&#xFF0C;&#x5C31;&#x8868;&#x660E;&#x4E86;&#x4ED6;&#x5177;&#x6709;&#x5FEB;&#x901F;&#x968F;&#x673A;&#x8BBF;&#x95EE;&#x529F;&#x80FD;&#x3002; <code>RandomAccess</code> &#x63A5;&#x53E3;&#x53EA;&#x662F;&#x6807;&#x8BC6;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x8BF4; <code>ArrayList</code> &#x5B9E;&#x73B0; <code>RandomAccess</code> &#x63A5;&#x53E3;&#x624D;&#x5177;&#x6709;&#x5FEB;&#x901F;&#x968F;&#x673A;&#x8BBF;&#x95EE;&#x529F;&#x80FD;&#x7684;&#xFF01;</p>
+<h3 id="123-&#x8BF4;&#x4E00;&#x8BF4;-arraylist-&#x7684;&#x6269;&#x5BB9;&#x673A;&#x5236;&#x5427;">1.2.3. &#x8BF4;&#x4E00;&#x8BF4; ArrayList &#x7684;&#x6269;&#x5BB9;&#x673A;&#x5236;&#x5427;</h3>
+<p>&#x8BE6;&#x89C1;&#x7B14;&#x4E3B;&#x7684;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;:<a href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/collection/ArrayList-Grow.md" target="_blank">&#x901A;&#x8FC7;&#x6E90;&#x7801;&#x4E00;&#x6B65;&#x4E00;&#x6B65;&#x5206;&#x6790; ArrayList &#x6269;&#x5BB9;&#x673A;&#x5236;</a></p>
+<h2 id="13-collection-&#x5B50;&#x63A5;&#x53E3;&#x4E4B;-set">1.3. Collection &#x5B50;&#x63A5;&#x53E3;&#x4E4B; Set</h2>
+<h3 id="131-comparable-&#x548C;-comparator-&#x7684;&#x533A;&#x522B;">1.3.1. comparable &#x548C; Comparator &#x7684;&#x533A;&#x522B;</h3>
+<ul>
+<li><code>comparable</code> &#x63A5;&#x53E3;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x51FA;&#x81EA;<code>java.lang</code>&#x5305; &#x5B83;&#x6709;&#x4E00;&#x4E2A; <code>compareTo(Object obj)</code>&#x65B9;&#x6CD5;&#x7528;&#x6765;&#x6392;&#x5E8F;</li>
+<li><code>comparator</code>&#x63A5;&#x53E3;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x51FA;&#x81EA; java.util &#x5305;&#x5B83;&#x6709;&#x4E00;&#x4E2A;<code>compare(Object obj1, Object obj2)</code>&#x65B9;&#x6CD5;&#x7528;&#x6765;&#x6392;&#x5E8F;</li>
+</ul>
+<p>&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5BF9;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x4F7F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x6392;&#x5E8F;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x8981;&#x91CD;&#x5199;<code>compareTo()</code>&#x65B9;&#x6CD5;&#x6216;<code>compare()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5BF9;&#x67D0;&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x5B9E;&#x73B0;&#x4E24;&#x79CD;&#x6392;&#x5E8F;&#x65B9;&#x5F0F;&#xFF0C;&#x6BD4;&#x5982;&#x4E00;&#x4E2A; song &#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x6B4C;&#x540D;&#x548C;&#x6B4C;&#x624B;&#x540D;&#x5206;&#x522B;&#x91C7;&#x7528;&#x4E00;&#x79CD;&#x6392;&#x5E8F;&#x65B9;&#x6CD5;&#x7684;&#x8BDD;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x91CD;&#x5199;<code>compareTo()</code>&#x65B9;&#x6CD5;&#x548C;&#x4F7F;&#x7528;&#x81EA;&#x5236;&#x7684;<code>Comparator</code>&#x65B9;&#x6CD5;&#x6216;&#x8005;&#x4EE5;&#x4E24;&#x4E2A; Comparator &#x6765;&#x5B9E;&#x73B0;&#x6B4C;&#x540D;&#x6392;&#x5E8F;&#x548C;&#x6B4C;&#x661F;&#x540D;&#x6392;&#x5E8F;&#xFF0C;&#x7B2C;&#x4E8C;&#x79CD;&#x4EE3;&#x8868;&#x6211;&#x4EEC;&#x53EA;&#x80FD;&#x4F7F;&#x7528;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x7248;&#x7684; <code>Collections.sort()</code>.</p>
+<h4 id="1311-comparator-&#x5B9A;&#x5236;&#x6392;&#x5E8F;">1.3.1.1. Comparator &#x5B9A;&#x5236;&#x6392;&#x5E8F;</h4>
+<pre><code class="lang-java">        ArrayList&lt;Integer&gt; arrayList = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();
+        arrayList.add(-<span class="hljs-number">1</span>);
+        arrayList.add(<span class="hljs-number">3</span>);
+        arrayList.add(<span class="hljs-number">3</span>);
+        arrayList.add(-<span class="hljs-number">5</span>);
+        arrayList.add(<span class="hljs-number">7</span>);
+        arrayList.add(<span class="hljs-number">4</span>);
+        arrayList.add(-<span class="hljs-number">9</span>);
+        arrayList.add(-<span class="hljs-number">7</span>);
+        System.out.println(<span class="hljs-string">&quot;&#x539F;&#x59CB;&#x6570;&#x7EC4;:&quot;</span>);
+        System.out.println(arrayList);
+        <span class="hljs-comment">// void reverse(List list)&#xFF1A;&#x53CD;&#x8F6C;</span>
+        Collections.reverse(arrayList);
+        System.out.println(<span class="hljs-string">&quot;Collections.reverse(arrayList):&quot;</span>);
+        System.out.println(arrayList);
+
+        <span class="hljs-comment">// void sort(List list),&#x6309;&#x81EA;&#x7136;&#x6392;&#x5E8F;&#x7684;&#x5347;&#x5E8F;&#x6392;&#x5E8F;</span>
+        Collections.sort(arrayList);
+        System.out.println(<span class="hljs-string">&quot;Collections.sort(arrayList):&quot;</span>);
+        System.out.println(arrayList);
+        <span class="hljs-comment">// &#x5B9A;&#x5236;&#x6392;&#x5E8F;&#x7684;&#x7528;&#x6CD5;</span>
+        Collections.sort(arrayList, <span class="hljs-keyword">new</span> Comparator&lt;Integer&gt;() {
+
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(Integer o1, Integer o2)</span> </span>{
+                <span class="hljs-keyword">return</span> o2.compareTo(o1);
+            }
+        });
+        System.out.println(<span class="hljs-string">&quot;&#x5B9A;&#x5236;&#x6392;&#x5E8F;&#x540E;&#xFF1A;&quot;</span>);
+        System.out.println(arrayList);
+</code></pre>
+<p>Output:</p>
+<pre><code>&#x539F;&#x59CB;&#x6570;&#x7EC4;:
+[-1, 3, 3, -5, 7, 4, -9, -7]
+Collections.reverse(arrayList):
+[-7, -9, 4, 7, -5, 3, 3, -1]
+Collections.sort(arrayList):
+[-9, -7, -5, -1, 3, 3, 4, 7]
+&#x5B9A;&#x5236;&#x6392;&#x5E8F;&#x540E;&#xFF1A;
+[7, 4, 3, 3, -1, -5, -7, -9]
+</code></pre><h4 id="1312-&#x91CD;&#x5199;-compareto-&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x6309;&#x5E74;&#x9F84;&#x6765;&#x6392;&#x5E8F;">1.3.1.2. &#x91CD;&#x5199; compareTo &#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x6309;&#x5E74;&#x9F84;&#x6765;&#x6392;&#x5E8F;</h4>
+<pre><code class="lang-java"><span class="hljs-comment">// person&#x5BF9;&#x8C61;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;Comparable&#x63A5;&#x53E3;&#xFF0C;&#x6240;&#x4EE5;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#xFF0C;&#x8FD9;&#x6837;&#x624D;&#x4E0D;&#x4F1A;&#x51FA;&#x9519;&#xFF0C;&#x624D;&#x53EF;&#x4EE5;&#x4F7F;treemap&#x4E2D;&#x7684;&#x6570;&#x636E;&#x6309;&#x987A;&#x5E8F;&#x6392;&#x5217;</span>
+<span class="hljs-comment">// &#x524D;&#x9762;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x7684;String&#x7C7B;&#x5DF2;&#x7ECF;&#x9ED8;&#x8BA4;&#x5B9E;&#x73B0;&#x4E86;Comparable&#x63A5;&#x53E3;&#xFF0C;&#x8BE6;&#x7EC6;&#x53EF;&#x4EE5;&#x67E5;&#x770B;String&#x7C7B;&#x7684;API&#x6587;&#x6863;&#xFF0C;&#x53E6;&#x5916;&#x5176;&#x4ED6;</span>
+<span class="hljs-comment">// &#x50CF;Integer&#x7C7B;&#x7B49;&#x90FD;&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x4E86;Comparable&#x63A5;&#x53E3;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x53E6;&#x5916;&#x5B9E;&#x73B0;&#x4E86;</span>
+<span class="hljs-keyword">public</span>  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Comparable</span>&lt;<span class="hljs-title">Person</span>&gt; </span>{
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name, <span class="hljs-keyword">int</span> age)</span> </span>{
+        <span class="hljs-keyword">super</span>();
+        <span class="hljs-keyword">this</span>.name = name;
+        <span class="hljs-keyword">this</span>.age = age;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> name;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>{
+        <span class="hljs-keyword">this</span>.name = name;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> age;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span> </span>{
+        <span class="hljs-keyword">this</span>.age = age;
+    }
+
+    <span class="hljs-comment">/**
+     * T&#x91CD;&#x5199;compareTo&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x6309;&#x5E74;&#x9F84;&#x6765;&#x6392;&#x5E8F;
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compareTo</span><span class="hljs-params">(Person o)</span> </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.age &gt; o.getAge()) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        }
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.age &lt; o.getAge()) {
+            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+}
+</code></pre>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        TreeMap&lt;Person, String&gt; pdata = <span class="hljs-keyword">new</span> TreeMap&lt;Person, String&gt;();
+        pdata.put(<span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;&#x5F20;&#x4E09;&quot;</span>, <span class="hljs-number">30</span>), <span class="hljs-string">&quot;zhangsan&quot;</span>);
+        pdata.put(<span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;&#x674E;&#x56DB;&quot;</span>, <span class="hljs-number">20</span>), <span class="hljs-string">&quot;lisi&quot;</span>);
+        pdata.put(<span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;&#x738B;&#x4E94;&quot;</span>, <span class="hljs-number">10</span>), <span class="hljs-string">&quot;wangwu&quot;</span>);
+        pdata.put(<span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;&#x5C0F;&#x7EA2;&quot;</span>, <span class="hljs-number">5</span>), <span class="hljs-string">&quot;xiaohong&quot;</span>);
+        <span class="hljs-comment">// &#x5F97;&#x5230;key&#x7684;&#x503C;&#x7684;&#x540C;&#x65F6;&#x5F97;&#x5230;key&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x503C;</span>
+        Set&lt;Person&gt; keys = pdata.keySet();
+        <span class="hljs-keyword">for</span> (Person key : keys) {
+            System.out.println(key.getAge() + <span class="hljs-string">&quot;-&quot;</span> + key.getName());
+
+        }
+    }
+</code></pre>
+<p>Output&#xFF1A;</p>
+<pre><code>5-&#x5C0F;&#x7EA2;
+10-&#x738B;&#x4E94;
+20-&#x674E;&#x56DB;
+30-&#x5F20;&#x4E09;
+</code></pre><h3 id="132-&#x65E0;&#x5E8F;&#x6027;&#x548C;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x6027;&#x7684;&#x542B;&#x4E49;&#x662F;&#x4EC0;&#x4E48;">1.3.2. &#x65E0;&#x5E8F;&#x6027;&#x548C;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x6027;&#x7684;&#x542B;&#x4E49;&#x662F;&#x4EC0;&#x4E48;</h3>
+<p>1&#x3001;&#x4EC0;&#x4E48;&#x662F;&#x65E0;&#x5E8F;&#x6027;&#xFF1F;&#x65E0;&#x5E8F;&#x6027;&#x4E0D;&#x7B49;&#x4E8E;&#x968F;&#x673A;&#x6027; &#xFF0C;&#x65E0;&#x5E8F;&#x6027;&#x662F;&#x6307;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x5728;&#x5E95;&#x5C42;&#x6570;&#x7EC4;&#x4E2D;&#x5E76;&#x975E;&#x6309;&#x7167;&#x6570;&#x7EC4;&#x7D22;&#x5F15;&#x7684;&#x987A;&#x5E8F;&#x6DFB;&#x52A0; &#xFF0C;&#x800C;&#x662F;&#x6839;&#x636E;&#x6570;&#x636E;&#x7684;&#x54C8;&#x5E0C;&#x503C;&#x51B3;&#x5B9A;&#x7684;&#x3002;</p>
+<p>2&#x3001;&#x4EC0;&#x4E48;&#x662F;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x6027;&#xFF1F;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x6027;&#x662F;&#x6307;&#x6DFB;&#x52A0;&#x7684;&#x5143;&#x7D20;&#x6309;&#x7167; equals()&#x5224;&#x65AD;&#x65F6; &#xFF0C;&#x8FD4;&#x56DE; false&#xFF0C;&#x9700;&#x8981;&#x540C;&#x65F6;&#x91CD;&#x5199; equals()&#x65B9;&#x6CD5;&#x548C; HashCode()&#x65B9;&#x6CD5;&#x3002;</p>
+<h3 id="133-&#x6BD4;&#x8F83;-hashset&#x3001;linkedhashset-&#x548C;-treeset-&#x4E09;&#x8005;&#x7684;&#x5F02;&#x540C;">1.3.3. &#x6BD4;&#x8F83; HashSet&#x3001;LinkedHashSet &#x548C; TreeSet &#x4E09;&#x8005;&#x7684;&#x5F02;&#x540C;</h3>
+<p>HashSet &#x662F; Set &#x63A5;&#x53E3;&#x7684;&#x4E3B;&#x8981;&#x5B9E;&#x73B0;&#x7C7B; &#xFF0C;HashSet &#x7684;&#x5E95;&#x5C42;&#x662F; HashMap&#xFF0C;&#x7EBF;&#x7A0B;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x5B58;&#x50A8; null &#x503C;&#xFF1B;</p>
+<p>LinkedHashSet &#x662F; HashSet &#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x80FD;&#x591F;&#x6309;&#x7167;&#x6DFB;&#x52A0;&#x7684;&#x987A;&#x5E8F;&#x904D;&#x5386;&#xFF1B;</p>
+<p>TreeSet &#x5E95;&#x5C42;&#x4F7F;&#x7528;&#x7EA2;&#x9ED1;&#x6811;&#xFF0C;&#x80FD;&#x591F;&#x6309;&#x7167;&#x6DFB;&#x52A0;&#x5143;&#x7D20;&#x7684;&#x987A;&#x5E8F;&#x8FDB;&#x884C;&#x904D;&#x5386;&#xFF0C;&#x6392;&#x5E8F;&#x7684;&#x65B9;&#x5F0F;&#x6709;&#x81EA;&#x7136;&#x6392;&#x5E8F;&#x548C;&#x5B9A;&#x5236;&#x6392;&#x5E8F;&#x3002;</p>
+<h2 id="14-map-&#x63A5;&#x53E3;">1.4. Map &#x63A5;&#x53E3;</h2>
+<h3 id="141-hashmap-&#x548C;-hashtable-&#x7684;&#x533A;&#x522B;">1.4.1. HashMap &#x548C; Hashtable &#x7684;&#x533A;&#x522B;</h3>
+<ol>
+<li><strong>&#x7EBF;&#x7A0B;&#x662F;&#x5426;&#x5B89;&#x5168;&#xFF1A;</strong> HashMap &#x662F;&#x975E;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF0C;HashTable &#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;,&#x56E0;&#x4E3A; HashTable &#x5185;&#x90E8;&#x7684;&#x65B9;&#x6CD5;&#x57FA;&#x672C;&#x90FD;&#x7ECF;&#x8FC7;<code>synchronized</code> &#x4FEE;&#x9970;&#x3002;&#xFF08;&#x5982;&#x679C;&#x4F60;&#x8981;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x8BDD;&#x5C31;&#x4F7F;&#x7528; ConcurrentHashMap &#x5427;&#xFF01;&#xFF09;&#xFF1B;</li>
+<li><strong>&#x6548;&#x7387;&#xFF1A;</strong> &#x56E0;&#x4E3A;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x95EE;&#x9898;&#xFF0C;HashMap &#x8981;&#x6BD4; HashTable &#x6548;&#x7387;&#x9AD8;&#x4E00;&#x70B9;&#x3002;&#x53E6;&#x5916;&#xFF0C;HashTable &#x57FA;&#x672C;&#x88AB;&#x6DD8;&#x6C70;&#xFF0C;&#x4E0D;&#x8981;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x4F7F;&#x7528;&#x5B83;&#xFF1B;</li>
+<li><strong>&#x5BF9; Null key &#x548C; Null value &#x7684;&#x652F;&#x6301;&#xFF1A;</strong> HashMap &#x53EF;&#x4EE5;&#x5B58;&#x50A8; null &#x7684; key &#x548C; value&#xFF0C;&#x4F46; null &#x4F5C;&#x4E3A;&#x952E;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#xFF0C;null &#x4F5C;&#x4E3A;&#x503C;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#xFF1B;HashTable &#x4E0D;&#x5141;&#x8BB8;&#x6709; null &#x952E;&#x548C; null &#x503C;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x629B;&#x51FA; NullPointerException&#x3002;</li>
+<li><strong>&#x521D;&#x59CB;&#x5BB9;&#x91CF;&#x5927;&#x5C0F;&#x548C;&#x6BCF;&#x6B21;&#x6269;&#x5145;&#x5BB9;&#x91CF;&#x5927;&#x5C0F;&#x7684;&#x4E0D;&#x540C; &#xFF1A;</strong> &#x2460; &#x521B;&#x5EFA;&#x65F6;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#x5BB9;&#x91CF;&#x521D;&#x59CB;&#x503C;&#xFF0C;Hashtable &#x9ED8;&#x8BA4;&#x7684;&#x521D;&#x59CB;&#x5927;&#x5C0F;&#x4E3A; 11&#xFF0C;&#x4E4B;&#x540E;&#x6BCF;&#x6B21;&#x6269;&#x5145;&#xFF0C;&#x5BB9;&#x91CF;&#x53D8;&#x4E3A;&#x539F;&#x6765;&#x7684; 2n+1&#x3002;HashMap &#x9ED8;&#x8BA4;&#x7684;&#x521D;&#x59CB;&#x5316;&#x5927;&#x5C0F;&#x4E3A; 16&#x3002;&#x4E4B;&#x540E;&#x6BCF;&#x6B21;&#x6269;&#x5145;&#xFF0C;&#x5BB9;&#x91CF;&#x53D8;&#x4E3A;&#x539F;&#x6765;&#x7684; 2 &#x500D;&#x3002;&#x2461; &#x521B;&#x5EFA;&#x65F6;&#x5982;&#x679C;&#x7ED9;&#x5B9A;&#x4E86;&#x5BB9;&#x91CF;&#x521D;&#x59CB;&#x503C;&#xFF0C;&#x90A3;&#x4E48; Hashtable &#x4F1A;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4F60;&#x7ED9;&#x5B9A;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x800C; HashMap &#x4F1A;&#x5C06;&#x5176;&#x6269;&#x5145;&#x4E3A; 2 &#x7684;&#x5E42;&#x6B21;&#x65B9;&#x5927;&#x5C0F;&#xFF08;HashMap &#x4E2D;&#x7684;<code>tableSizeFor()</code>&#x65B9;&#x6CD5;&#x4FDD;&#x8BC1;&#xFF0C;&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x4E86;&#x6E90;&#x4EE3;&#x7801;&#xFF09;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4; HashMap &#x603B;&#x662F;&#x4F7F;&#x7528; 2 &#x7684;&#x5E42;&#x4F5C;&#x4E3A;&#x54C8;&#x5E0C;&#x8868;&#x7684;&#x5927;&#x5C0F;,&#x540E;&#x9762;&#x4F1A;&#x4ECB;&#x7ECD;&#x5230;&#x4E3A;&#x4EC0;&#x4E48;&#x662F; 2 &#x7684;&#x5E42;&#x6B21;&#x65B9;&#x3002;</li>
+<li><strong>&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;</strong> JDK1.8 &#x4EE5;&#x540E;&#x7684; HashMap &#x5728;&#x89E3;&#x51B3;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#x65F6;&#x6709;&#x4E86;&#x8F83;&#x5927;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5F53;&#x94FE;&#x8868;&#x957F;&#x5EA6;&#x5927;&#x4E8E;&#x9608;&#x503C;&#xFF08;&#x9ED8;&#x8BA4;&#x4E3A; 8&#xFF09;&#xFF08;&#x5C06;&#x94FE;&#x8868;&#x8F6C;&#x6362;&#x6210;&#x7EA2;&#x9ED1;&#x6811;&#x524D;&#x4F1A;&#x5224;&#x65AD;&#xFF0C;&#x5982;&#x679C;&#x5F53;&#x524D;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#x5C0F;&#x4E8E; 64&#xFF0C;&#x90A3;&#x4E48;&#x4F1A;&#x9009;&#x62E9;&#x5148;&#x8FDB;&#x884C;&#x6570;&#x7EC4;&#x6269;&#x5BB9;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x8F6C;&#x6362;&#x4E3A;&#x7EA2;&#x9ED1;&#x6811;&#xFF09;&#x65F6;&#xFF0C;&#x5C06;&#x94FE;&#x8868;&#x8F6C;&#x5316;&#x4E3A;&#x7EA2;&#x9ED1;&#x6811;&#xFF0C;&#x4EE5;&#x51CF;&#x5C11;&#x641C;&#x7D22;&#x65F6;&#x95F4;&#x3002;Hashtable &#x6CA1;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x673A;&#x5236;&#x3002;</li>
+</ol>
+<p><strong>HashMap &#x4E2D;&#x5E26;&#x6709;&#x521D;&#x59CB;&#x5BB9;&#x91CF;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF1A;</strong></p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashMap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> initialCapacity, <span class="hljs-keyword">float</span> loadFactor)</span> </span>{
+        <span class="hljs-keyword">if</span> (initialCapacity &lt; <span class="hljs-number">0</span>)
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;Illegal initial capacity: &quot;</span> +
+                                               initialCapacity);
+        <span class="hljs-keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)
+            initialCapacity = MAXIMUM_CAPACITY;
+        <span class="hljs-keyword">if</span> (loadFactor &lt;= <span class="hljs-number">0</span> || Float.isNaN(loadFactor))
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;Illegal load factor: &quot;</span> +
+                                               loadFactor);
+        <span class="hljs-keyword">this</span>.loadFactor = loadFactor;
+        <span class="hljs-keyword">this</span>.threshold = tableSizeFor(initialCapacity);
+    }
+     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashMap</span><span class="hljs-params">(<span class="hljs-keyword">int</span> initialCapacity)</span> </span>{
+        <span class="hljs-keyword">this</span>(initialCapacity, DEFAULT_LOAD_FACTOR);
+    }
+</code></pre>
+<p>&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4FDD;&#x8BC1;&#x4E86; HashMap &#x603B;&#x662F;&#x4F7F;&#x7528; 2 &#x7684;&#x5E42;&#x4F5C;&#x4E3A;&#x54C8;&#x5E0C;&#x8868;&#x7684;&#x5927;&#x5C0F;&#x3002;</p>
+<pre><code class="lang-java">    <span class="hljs-comment">/**
+     * Returns a power of two size for the given target capacity.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">tableSizeFor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> cap)</span> </span>{
+        <span class="hljs-keyword">int</span> n = cap - <span class="hljs-number">1</span>;
+        n |= n &gt;&gt;&gt; <span class="hljs-number">1</span>;
+        n |= n &gt;&gt;&gt; <span class="hljs-number">2</span>;
+        n |= n &gt;&gt;&gt; <span class="hljs-number">4</span>;
+        n |= n &gt;&gt;&gt; <span class="hljs-number">8</span>;
+        n |= n &gt;&gt;&gt; <span class="hljs-number">16</span>;
+        <span class="hljs-keyword">return</span> (n &lt; <span class="hljs-number">0</span>) ? <span class="hljs-number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="hljs-number">1</span>;
+    }
+</code></pre>
+<h3 id="142-hashmap-&#x548C;-hashset-&#x533A;&#x522B;">1.4.2. HashMap &#x548C; HashSet &#x533A;&#x522B;</h3>
+<p>&#x5982;&#x679C;&#x4F60;&#x770B;&#x8FC7; <code>HashSet</code> &#x6E90;&#x7801;&#x7684;&#x8BDD;&#x5C31;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#xFF1A;HashSet &#x5E95;&#x5C42;&#x5C31;&#x662F;&#x57FA;&#x4E8E; HashMap &#x5B9E;&#x73B0;&#x7684;&#x3002;&#xFF08;HashSet &#x7684;&#x6E90;&#x7801;&#x975E;&#x5E38;&#x975E;&#x5E38;&#x5C11;&#xFF0C;&#x56E0;&#x4E3A;&#x9664;&#x4E86; <code>clone()</code>&#x3001;<code>writeObject()</code>&#x3001;<code>readObject()</code>&#x662F; HashSet &#x81EA;&#x5DF1;&#x4E0D;&#x5F97;&#x4E0D;&#x5B9E;&#x73B0;&#x4E4B;&#x5916;&#xFF0C;&#x5176;&#x4ED6;&#x65B9;&#x6CD5;&#x90FD;&#x662F;&#x76F4;&#x63A5;&#x8C03;&#x7528; HashMap &#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">HashMap</th>
+<th style="text-align:center">HashSet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x5B9E;&#x73B0;&#x4E86; Map &#x63A5;&#x53E3;</td>
+<td style="text-align:center">&#x5B9E;&#x73B0; Set &#x63A5;&#x53E3;</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x5B58;&#x50A8;&#x952E;&#x503C;&#x5BF9;</td>
+<td style="text-align:center">&#x4EC5;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x8C03;&#x7528; <code>put()</code>&#x5411; map &#x4E2D;&#x6DFB;&#x52A0;&#x5143;&#x7D20;</td>
+<td style="text-align:center">&#x8C03;&#x7528; <code>add()</code>&#x65B9;&#x6CD5;&#x5411; Set &#x4E2D;&#x6DFB;&#x52A0;&#x5143;&#x7D20;</td>
+</tr>
+<tr>
+<td style="text-align:center">HashMap &#x4F7F;&#x7528;&#x952E;&#xFF08;Key&#xFF09;&#x8BA1;&#x7B97; Hashcode</td>
+<td style="text-align:center">HashSet &#x4F7F;&#x7528;&#x6210;&#x5458;&#x5BF9;&#x8C61;&#x6765;&#x8BA1;&#x7B97; hashcode &#x503C;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x6765;&#x8BF4; hashcode &#x53EF;&#x80FD;&#x76F8;&#x540C;&#xFF0C;&#x6240;&#x4EE5; equals()&#x65B9;&#x6CD5;&#x7528;&#x6765;&#x5224;&#x65AD;&#x5BF9;&#x8C61;&#x7684;&#x76F8;&#x7B49;&#x6027;&#xFF0C;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="143-hashmap-&#x548C;-treemap-&#x533A;&#x522B;">1.4.3. HashMap &#x548C; TreeMap &#x533A;&#x522B;</h3>
+<p><code>TreeMap</code> &#x548C;<code>HashMap</code> &#x90FD;&#x7EE7;&#x627F;&#x81EA;<code>AbstractMap</code> &#xFF0C;&#x4F46;&#x662F;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;<code>TreeMap</code>&#x5B83;&#x8FD8;&#x5B9E;&#x73B0;&#x4E86;<code>NavigableMap</code>&#x63A5;&#x53E3;&#x548C;<code>SortedMap</code> &#x63A5;&#x53E3;&#x3002;</p>
+<p><img src="images/TreeMap&#x7EE7;&#x627F;&#x7ED3;&#x6784;.png" alt=""></p>
+<p>&#x5B9E;&#x73B0; <code>NavigableMap</code> &#x63A5;&#x53E3;&#x8BA9; <code>TreeMap</code> &#x6709;&#x4E86;&#x5BF9;&#x96C6;&#x5408;&#x5185;&#x5143;&#x7D20;&#x7684;&#x641C;&#x7D22;&#x7684;&#x80FD;&#x529B;&#x3002;</p>
+<p>&#x5B9E;&#x73B0;<code>SortMap</code>&#x63A5;&#x53E3;&#x8BA9; <code>TreeMap</code> &#x6709;&#x4E86;&#x5BF9;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x6839;&#x636E;&#x952E;&#x6392;&#x5E8F;&#x7684;&#x80FD;&#x529B;&#x3002;&#x9ED8;&#x8BA4;&#x662F;&#x6309; key &#x7684;&#x5347;&#x5E8F;&#x6392;&#x5E8F;&#xFF0C;&#x4E0D;&#x8FC7;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x6392;&#x5E8F;&#x7684;&#x6BD4;&#x8F83;&#x5668;&#x3002;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@author</span> shuang.kou
+ * <span class="hljs-doctag">@createTime</span> 2020&#x5E74;06&#x6708;15&#x65E5; 17:02:00
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>{
+    <span class="hljs-keyword">private</span> Integer age;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(Integer age)</span> </span>{
+        <span class="hljs-keyword">this</span>.age = age;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> age;
+    }
+
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        TreeMap&lt;Person, String&gt; treeMap = <span class="hljs-keyword">new</span> TreeMap&lt;&gt;(<span class="hljs-keyword">new</span> Comparator&lt;Person&gt;() {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(Person person1, Person person2)</span> </span>{
+                <span class="hljs-keyword">int</span> num = person1.getAge() - person2.getAge();
+                <span class="hljs-keyword">return</span> Integer.compare(num, <span class="hljs-number">0</span>);
+            }
+        });
+        treeMap.put(<span class="hljs-keyword">new</span> Person(<span class="hljs-number">3</span>), <span class="hljs-string">&quot;person1&quot;</span>);
+        treeMap.put(<span class="hljs-keyword">new</span> Person(<span class="hljs-number">18</span>), <span class="hljs-string">&quot;person2&quot;</span>);
+        treeMap.put(<span class="hljs-keyword">new</span> Person(<span class="hljs-number">35</span>), <span class="hljs-string">&quot;person3&quot;</span>);
+        treeMap.put(<span class="hljs-keyword">new</span> Person(<span class="hljs-number">16</span>), <span class="hljs-string">&quot;person4&quot;</span>);
+        treeMap.entrySet().stream().forEach(personStringEntry -&gt; {
+            System.out.println(personStringEntry.getValue());
+        });
+    }
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;:</p>
+<pre><code>person1
+person4
+person2
+person3
+</code></pre><p>&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;<code>TreeMap</code> &#x4E2D;&#x7684;&#x5143;&#x7D20;&#x5DF2;&#x7ECF;&#x662F;&#x6309;&#x7167; <code>Person</code> &#x7684; age &#x5B57;&#x6BB5;&#x7684;&#x5347;&#x5E8F;&#x6765;&#x6392;&#x5217;&#x4E86;&#x3002;</p>
+<p>&#x4E0A;&#x9762;&#xFF0C;&#x6211;&#x4EEC;&#x662F;&#x901A;&#x8FC7;&#x4F20;&#x5165;&#x533F;&#x540D;&#x5185;&#x90E8;&#x7C7B;&#x7684;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5C06;&#x4EE3;&#x7801;&#x66FF;&#x6362;&#x6210; Lambda &#x8868;&#x8FBE;&#x5F0F;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<pre><code class="lang-java">TreeMap&lt;Person, String&gt; treeMap = <span class="hljs-keyword">new</span> TreeMap&lt;&gt;((person1, person2) -&gt; {
+  <span class="hljs-keyword">int</span> num = person1.getAge() - person2.getAge();
+  <span class="hljs-keyword">return</span> Integer.compare(num, <span class="hljs-number">0</span>);
+});
+</code></pre>
+<p><strong>&#x7EFC;&#x4E0A;&#xFF0C;&#x76F8;&#x6BD4;&#x4E8E;<code>HashMap</code>&#x6765;&#x8BF4; <code>TreeMap</code> &#x4E3B;&#x8981;&#x591A;&#x4E86;&#x5BF9;&#x96C6;&#x5408;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x6839;&#x636E;&#x952E;&#x6392;&#x5E8F;&#x7684;&#x80FD;&#x529B;&#x4EE5;&#x53CA;&#x5BF9;&#x96C6;&#x5408;&#x5185;&#x5143;&#x7D20;&#x7684;&#x641C;&#x7D22;&#x7684;&#x80FD;&#x529B;&#x3002;</strong></p>
+<h3 id="144-hashset-&#x5982;&#x4F55;&#x68C0;&#x67E5;&#x91CD;&#x590D;">1.4.4. HashSet &#x5982;&#x4F55;&#x68C0;&#x67E5;&#x91CD;&#x590D;</h3>
+<p>&#x5F53;&#x4F60;&#x628A;&#x5BF9;&#x8C61;&#x52A0;&#x5165;<code>HashSet</code>&#x65F6;&#xFF0C;HashSet &#x4F1A;&#x5148;&#x8BA1;&#x7B97;&#x5BF9;&#x8C61;&#x7684;<code>hashcode</code>&#x503C;&#x6765;&#x5224;&#x65AD;&#x5BF9;&#x8C61;&#x52A0;&#x5165;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x4F1A;&#x4E0E;&#x5176;&#x4ED6;&#x52A0;&#x5165;&#x7684;&#x5BF9;&#x8C61;&#x7684; hashcode &#x503C;&#x4F5C;&#x6BD4;&#x8F83;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x76F8;&#x7B26;&#x7684; hashcode&#xFF0C;HashSet &#x4F1A;&#x5047;&#x8BBE;&#x5BF9;&#x8C61;&#x6CA1;&#x6709;&#x91CD;&#x590D;&#x51FA;&#x73B0;&#x3002;&#x4F46;&#x662F;&#x5982;&#x679C;&#x53D1;&#x73B0;&#x6709;&#x76F8;&#x540C; hashcode &#x503C;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x65F6;&#x4F1A;&#x8C03;&#x7528;<code>equals()</code>&#x65B9;&#x6CD5;&#x6765;&#x68C0;&#x67E5; hashcode &#x76F8;&#x7B49;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x771F;&#x7684;&#x76F8;&#x540C;&#x3002;&#x5982;&#x679C;&#x4E24;&#x8005;&#x76F8;&#x540C;&#xFF0C;HashSet &#x5C31;&#x4E0D;&#x4F1A;&#x8BA9;&#x52A0;&#x5165;&#x64CD;&#x4F5C;&#x6210;&#x529F;&#x3002;&#xFF08;&#x6458;&#x81EA;&#x6211;&#x7684; Java &#x542F;&#x8499;&#x4E66;&#x300A;Head fist java&#x300B;&#x7B2C;&#x4E8C;&#x7248;&#xFF09;</p>
+<p><strong>hashCode()&#x4E0E; equals()&#x7684;&#x76F8;&#x5173;&#x89C4;&#x5B9A;&#xFF1A;</strong></p>
+<ol>
+<li>&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x76F8;&#x7B49;&#xFF0C;&#x5219; hashcode &#x4E00;&#x5B9A;&#x4E5F;&#x662F;&#x76F8;&#x540C;&#x7684;</li>
+<li>&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x76F8;&#x7B49;,&#x5BF9;&#x4E24;&#x4E2A; equals &#x65B9;&#x6CD5;&#x8FD4;&#x56DE; true</li>
+<li>&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x6709;&#x76F8;&#x540C;&#x7684; hashcode &#x503C;&#xFF0C;&#x5B83;&#x4EEC;&#x4E5F;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x76F8;&#x7B49;&#x7684;</li>
+<li>&#x7EFC;&#x4E0A;&#xFF0C;equals &#x65B9;&#x6CD5;&#x88AB;&#x8986;&#x76D6;&#x8FC7;&#xFF0C;&#x5219; hashCode &#x65B9;&#x6CD5;&#x4E5F;&#x5FC5;&#x987B;&#x88AB;&#x8986;&#x76D6;</li>
+<li>hashCode()&#x7684;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#x662F;&#x5BF9;&#x5806;&#x4E0A;&#x7684;&#x5BF9;&#x8C61;&#x4EA7;&#x751F;&#x72EC;&#x7279;&#x503C;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x91CD;&#x5199; hashCode()&#xFF0C;&#x5219;&#x8BE5; class &#x7684;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x65E0;&#x8BBA;&#x5982;&#x4F55;&#x90FD;&#x4E0D;&#x4F1A;&#x76F8;&#x7B49;&#xFF08;&#x5373;&#x4F7F;&#x8FD9;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x6307;&#x5411;&#x76F8;&#x540C;&#x7684;&#x6570;&#x636E;&#xFF09;&#x3002;</li>
+</ol>
+<p><strong>==&#x4E0E; equals &#x7684;&#x533A;&#x522B;</strong></p>
+<p>&#x5BF9;&#x4E8E;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x6765;&#x8BF4;&#xFF0C;== &#x6BD4;&#x8F83;&#x7684;&#x662F;&#x503C;&#x662F;&#x5426;&#x76F8;&#x7B49;&#xFF1B;</p>
+<p>&#x5BF9;&#x4E8E;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x6765;&#x8BF4;&#xFF0C;== &#x6BD4;&#x8F83;&#x7684;&#x662F;&#x4E24;&#x4E2A;&#x5F15;&#x7528;&#x662F;&#x5426;&#x6307;&#x5411;&#x540C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5730;&#x5740;&#xFF08;&#x4E24;&#x8005;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x5B58;&#x653E;&#x7684;&#x5730;&#x5740;&#xFF08;&#x5806;&#x5185;&#x5B58;&#x5730;&#x5740;&#xFF09;&#x662F;&#x5426;&#x6307;&#x5411;&#x540C;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#xFF09;&#xFF1B;</p>
+<p>&#x5BF9;&#x4E8E;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#xFF08;&#x5305;&#x62EC;&#x5305;&#x88C5;&#x7C7B;&#x578B;&#xFF09;&#x6765;&#x8BF4;&#xFF0C;equals &#x5982;&#x679C;&#x6CA1;&#x6709;&#x88AB;&#x91CD;&#x5199;&#xFF0C;&#x5BF9;&#x6BD4;&#x5B83;&#x4EEC;&#x7684;&#x5730;&#x5740;&#x662F;&#x5426;&#x76F8;&#x7B49;&#xFF1B;&#x5982;&#x679C; equals()&#x65B9;&#x6CD5;&#x88AB;&#x91CD;&#x5199;&#xFF08;&#x4F8B;&#x5982; String&#xFF09;&#xFF0C;&#x5219;&#x6BD4;&#x8F83;&#x7684;&#x662F;&#x5730;&#x5740;&#x91CC;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<h3 id="145-hashmap-&#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;">1.4.5. HashMap &#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;</h3>
+<h4 id="1451-jdk18-&#x4E4B;&#x524D;">1.4.5.1. JDK1.8 &#x4E4B;&#x524D;</h4>
+<p>JDK1.8 &#x4E4B;&#x524D; <code>HashMap</code> &#x5E95;&#x5C42;&#x662F; <strong>&#x6570;&#x7EC4;&#x548C;&#x94FE;&#x8868;</strong> &#x7ED3;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x4E5F;&#x5C31;&#x662F; <strong>&#x94FE;&#x8868;&#x6563;&#x5217;</strong>&#x3002;<strong>HashMap &#x901A;&#x8FC7; key &#x7684; hashCode &#x7ECF;&#x8FC7;&#x6270;&#x52A8;&#x51FD;&#x6570;&#x5904;&#x7406;&#x8FC7;&#x540E;&#x5F97;&#x5230; hash &#x503C;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7; (n - 1) &amp; hash &#x5224;&#x65AD;&#x5F53;&#x524D;&#x5143;&#x7D20;&#x5B58;&#x653E;&#x7684;&#x4F4D;&#x7F6E;&#xFF08;&#x8FD9;&#x91CC;&#x7684; n &#x6307;&#x7684;&#x662F;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#xFF09;&#xFF0C;&#x5982;&#x679C;&#x5F53;&#x524D;&#x4F4D;&#x7F6E;&#x5B58;&#x5728;&#x5143;&#x7D20;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x5224;&#x65AD;&#x8BE5;&#x5143;&#x7D20;&#x4E0E;&#x8981;&#x5B58;&#x5165;&#x7684;&#x5143;&#x7D20;&#x7684; hash &#x503C;&#x4EE5;&#x53CA; key &#x662F;&#x5426;&#x76F8;&#x540C;&#xFF0C;&#x5982;&#x679C;&#x76F8;&#x540C;&#x7684;&#x8BDD;&#xFF0C;&#x76F4;&#x63A5;&#x8986;&#x76D6;&#xFF0C;&#x4E0D;&#x76F8;&#x540C;&#x5C31;&#x901A;&#x8FC7;&#x62C9;&#x94FE;&#x6CD5;&#x89E3;&#x51B3;&#x51B2;&#x7A81;&#x3002;</strong></p>
+<p><strong>&#x6240;&#x8C13;&#x6270;&#x52A8;&#x51FD;&#x6570;&#x6307;&#x7684;&#x5C31;&#x662F; HashMap &#x7684; hash &#x65B9;&#x6CD5;&#x3002;&#x4F7F;&#x7528; hash &#x65B9;&#x6CD5;&#x4E5F;&#x5C31;&#x662F;&#x6270;&#x52A8;&#x51FD;&#x6570;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x4E00;&#x4E9B;&#x5B9E;&#x73B0;&#x6BD4;&#x8F83;&#x5DEE;&#x7684; hashCode() &#x65B9;&#x6CD5; &#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#x4F7F;&#x7528;&#x6270;&#x52A8;&#x51FD;&#x6570;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x78B0;&#x649E;&#x3002;</strong></p>
+<p><strong>JDK 1.8 HashMap &#x7684; hash &#x65B9;&#x6CD5;&#x6E90;&#x7801;:</strong></p>
+<p>JDK 1.8 &#x7684; hash &#x65B9;&#x6CD5; &#x76F8;&#x6BD4;&#x4E8E; JDK 1.7 hash &#x65B9;&#x6CD5;&#x66F4;&#x52A0;&#x7B80;&#x5316;&#xFF0C;&#x4F46;&#x662F;&#x539F;&#x7406;&#x4E0D;&#x53D8;&#x3002;</p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hash</span><span class="hljs-params">(Object key)</span> </span>{
+      <span class="hljs-keyword">int</span> h;
+      <span class="hljs-comment">// key.hashCode()&#xFF1A;&#x8FD4;&#x56DE;&#x6563;&#x5217;&#x503C;&#x4E5F;&#x5C31;&#x662F;hashcode</span>
+      <span class="hljs-comment">// ^ &#xFF1A;&#x6309;&#x4F4D;&#x5F02;&#x6216;</span>
+      <span class="hljs-comment">// &gt;&gt;&gt;:&#x65E0;&#x7B26;&#x53F7;&#x53F3;&#x79FB;&#xFF0C;&#x5FFD;&#x7565;&#x7B26;&#x53F7;&#x4F4D;&#xFF0C;&#x7A7A;&#x4F4D;&#x90FD;&#x4EE5;0&#x8865;&#x9F50;</span>
+      <span class="hljs-keyword">return</span> (key == <span class="hljs-keyword">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);
+  }
+</code></pre>
+<p>&#x5BF9;&#x6BD4;&#x4E00;&#x4E0B; JDK1.7 &#x7684; HashMap &#x7684; hash &#x65B9;&#x6CD5;&#x6E90;&#x7801;.</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hash</span><span class="hljs-params">(<span class="hljs-keyword">int</span> h)</span> </span>{
+    <span class="hljs-comment">// This function ensures that hashCodes that differ only by</span>
+    <span class="hljs-comment">// constant multiples at each bit position have a bounded</span>
+    <span class="hljs-comment">// number of collisions (approximately 8 at default load factor).</span>
+
+    h ^= (h &gt;&gt;&gt; <span class="hljs-number">20</span>) ^ (h &gt;&gt;&gt; <span class="hljs-number">12</span>);
+    <span class="hljs-keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="hljs-number">7</span>) ^ (h &gt;&gt;&gt; <span class="hljs-number">4</span>);
+}
+</code></pre>
+<p>&#x76F8;&#x6BD4;&#x4E8E; JDK1.8 &#x7684; hash &#x65B9;&#x6CD5; &#xFF0C;JDK 1.7 &#x7684; hash &#x65B9;&#x6CD5;&#x7684;&#x6027;&#x80FD;&#x4F1A;&#x7A0D;&#x5DEE;&#x4E00;&#x70B9;&#x70B9;&#xFF0C;&#x56E0;&#x4E3A;&#x6BD5;&#x7ADF;&#x6270;&#x52A8;&#x4E86; 4 &#x6B21;&#x3002;</p>
+<p>&#x6240;&#x8C13; <strong>&#x201C;&#x62C9;&#x94FE;&#x6CD5;&#x201D;</strong> &#x5C31;&#x662F;&#xFF1A;&#x5C06;&#x94FE;&#x8868;&#x548C;&#x6570;&#x7EC4;&#x76F8;&#x7ED3;&#x5408;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#x6570;&#x7EC4;&#xFF0C;&#x6570;&#x7EC4;&#x4E2D;&#x6BCF;&#x4E00;&#x683C;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#x3002;&#x82E5;&#x9047;&#x5230;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#xFF0C;&#x5219;&#x5C06;&#x51B2;&#x7A81;&#x7684;&#x503C;&#x52A0;&#x5230;&#x94FE;&#x8868;&#x4E2D;&#x5373;&#x53EF;&#x3002;</p>
+<p><img src="https://static01.imgkr.com/temp/77c95eb733284dbd8ce4e85c9cb6b042.png" alt="jdk1.8&#x4E4B;&#x524D;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;-HashMap"></p>
+<h4 id="1452-jdk18-&#x4E4B;&#x540E;">1.4.5.2. JDK1.8 &#x4E4B;&#x540E;</h4>
+<p>&#x76F8;&#x6BD4;&#x4E8E;&#x4E4B;&#x524D;&#x7684;&#x7248;&#x672C;&#xFF0C; JDK1.8 &#x4E4B;&#x540E;&#x5728;&#x89E3;&#x51B3;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#x65F6;&#x6709;&#x4E86;&#x8F83;&#x5927;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5F53;&#x94FE;&#x8868;&#x957F;&#x5EA6;&#x5927;&#x4E8E;&#x9608;&#x503C;&#xFF08;&#x9ED8;&#x8BA4;&#x4E3A; 8&#xFF09;&#xFF08;&#x5C06;&#x94FE;&#x8868;&#x8F6C;&#x6362;&#x6210;&#x7EA2;&#x9ED1;&#x6811;&#x524D;&#x4F1A;&#x5224;&#x65AD;&#xFF0C;&#x5982;&#x679C;&#x5F53;&#x524D;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#x5C0F;&#x4E8E; 64&#xFF0C;&#x90A3;&#x4E48;&#x4F1A;&#x9009;&#x62E9;&#x5148;&#x8FDB;&#x884C;&#x6570;&#x7EC4;&#x6269;&#x5BB9;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x8F6C;&#x6362;&#x4E3A;&#x7EA2;&#x9ED1;&#x6811;&#xFF09;&#x65F6;&#xFF0C;&#x5C06;&#x94FE;&#x8868;&#x8F6C;&#x5316;&#x4E3A;&#x7EA2;&#x9ED1;&#x6811;&#xFF0C;&#x4EE5;&#x51CF;&#x5C11;&#x641C;&#x7D22;&#x65F6;&#x95F4;&#x3002;</p>
+<p><img src="https://static01.imgkr.com/temp/19f97c2ad53b4ff2948ee4b4792ebe1a.png" alt="jdk1.8&#x4E4B;&#x540E;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;-HashMap"></p>
+<blockquote>
+<p>TreeMap&#x3001;TreeSet &#x4EE5;&#x53CA; JDK1.8 &#x4E4B;&#x540E;&#x7684; HashMap &#x5E95;&#x5C42;&#x90FD;&#x7528;&#x5230;&#x4E86;&#x7EA2;&#x9ED1;&#x6811;&#x3002;&#x7EA2;&#x9ED1;&#x6811;&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x7684;&#x7F3A;&#x9677;&#xFF0C;&#x56E0;&#x4E3A;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#x4F1A;&#x9000;&#x5316;&#x6210;&#x4E00;&#x4E2A;&#x7EBF;&#x6027;&#x7ED3;&#x6784;&#x3002;</p>
+</blockquote>
+<h3 id="146-hashmap-&#x7684;&#x957F;&#x5EA6;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;-2-&#x7684;&#x5E42;&#x6B21;&#x65B9;">1.4.6. HashMap &#x7684;&#x957F;&#x5EA6;&#x4E3A;&#x4EC0;&#x4E48;&#x662F; 2 &#x7684;&#x5E42;&#x6B21;&#x65B9;</h3>
+<p>&#x4E3A;&#x4E86;&#x80FD;&#x8BA9; HashMap &#x5B58;&#x53D6;&#x9AD8;&#x6548;&#xFF0C;&#x5C3D;&#x91CF;&#x8F83;&#x5C11;&#x78B0;&#x649E;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8981;&#x5C3D;&#x91CF;&#x628A;&#x6570;&#x636E;&#x5206;&#x914D;&#x5747;&#x5300;&#x3002;&#x6211;&#x4EEC;&#x4E0A;&#x9762;&#x4E5F;&#x8BB2;&#x5230;&#x4E86;&#x8FC7;&#x4E86;&#xFF0C;Hash &#x503C;&#x7684;&#x8303;&#x56F4;&#x503C;-2147483648 &#x5230; 2147483647&#xFF0C;&#x524D;&#x540E;&#x52A0;&#x8D77;&#x6765;&#x5927;&#x6982; 40 &#x4EBF;&#x7684;&#x6620;&#x5C04;&#x7A7A;&#x95F4;&#xFF0C;&#x53EA;&#x8981;&#x54C8;&#x5E0C;&#x51FD;&#x6570;&#x6620;&#x5C04;&#x5F97;&#x6BD4;&#x8F83;&#x5747;&#x5300;&#x677E;&#x6563;&#xFF0C;&#x4E00;&#x822C;&#x5E94;&#x7528;&#x662F;&#x5F88;&#x96BE;&#x51FA;&#x73B0;&#x78B0;&#x649E;&#x7684;&#x3002;&#x4F46;&#x95EE;&#x9898;&#x662F;&#x4E00;&#x4E2A; 40 &#x4EBF;&#x957F;&#x5EA6;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x5185;&#x5B58;&#x662F;&#x653E;&#x4E0D;&#x4E0B;&#x7684;&#x3002;&#x6240;&#x4EE5;&#x8FD9;&#x4E2A;&#x6563;&#x5217;&#x503C;&#x662F;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x62FF;&#x6765;&#x7528;&#x7684;&#x3002;&#x7528;&#x4E4B;&#x524D;&#x8FD8;&#x8981;&#x5148;&#x505A;&#x5BF9;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#x53D6;&#x6A21;&#x8FD0;&#x7B97;&#xFF0C;&#x5F97;&#x5230;&#x7684;&#x4F59;&#x6570;&#x624D;&#x80FD;&#x7528;&#x6765;&#x8981;&#x5B58;&#x653E;&#x7684;&#x4F4D;&#x7F6E;&#x4E5F;&#x5C31;&#x662F;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x7EC4;&#x4E0B;&#x6807;&#x3002;&#x8FD9;&#x4E2A;&#x6570;&#x7EC4;&#x4E0B;&#x6807;&#x7684;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#x662F;&#x201C; <code>(n - 1) &amp; hash</code>&#x201D;&#x3002;&#xFF08;n &#x4EE3;&#x8868;&#x6570;&#x7EC4;&#x957F;&#x5EA6;&#xFF09;&#x3002;&#x8FD9;&#x4E5F;&#x5C31;&#x89E3;&#x91CA;&#x4E86; HashMap &#x7684;&#x957F;&#x5EA6;&#x4E3A;&#x4EC0;&#x4E48;&#x662F; 2 &#x7684;&#x5E42;&#x6B21;&#x65B9;&#x3002;</p>
+<p><strong>&#x8FD9;&#x4E2A;&#x7B97;&#x6CD5;&#x5E94;&#x8BE5;&#x5982;&#x4F55;&#x8BBE;&#x8BA1;&#x5462;&#xFF1F;</strong></p>
+<p>&#x6211;&#x4EEC;&#x9996;&#x5148;&#x53EF;&#x80FD;&#x4F1A;&#x60F3;&#x5230;&#x91C7;&#x7528;%&#x53D6;&#x4F59;&#x7684;&#x64CD;&#x4F5C;&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x91CD;&#x70B9;&#x6765;&#x4E86;&#xFF1A;<strong>&#x201C;&#x53D6;&#x4F59;(%)&#x64CD;&#x4F5C;&#x4E2D;&#x5982;&#x679C;&#x9664;&#x6570;&#x662F; 2 &#x7684;&#x5E42;&#x6B21;&#x5219;&#x7B49;&#x4EF7;&#x4E8E;&#x4E0E;&#x5176;&#x9664;&#x6570;&#x51CF;&#x4E00;&#x7684;&#x4E0E;(&amp;)&#x64CD;&#x4F5C;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x8BF4; hash%length==hash&amp;(length-1)&#x7684;&#x524D;&#x63D0;&#x662F; length &#x662F; 2 &#x7684; n &#x6B21;&#x65B9;&#xFF1B;&#xFF09;&#x3002;&#x201D;</strong> &#x5E76;&#x4E14; <strong>&#x91C7;&#x7528;&#x4E8C;&#x8FDB;&#x5236;&#x4F4D;&#x64CD;&#x4F5C; &amp;&#xFF0C;&#x76F8;&#x5BF9;&#x4E8E;%&#x80FD;&#x591F;&#x63D0;&#x9AD8;&#x8FD0;&#x7B97;&#x6548;&#x7387;&#xFF0C;&#x8FD9;&#x5C31;&#x89E3;&#x91CA;&#x4E86; HashMap &#x7684;&#x957F;&#x5EA6;&#x4E3A;&#x4EC0;&#x4E48;&#x662F; 2 &#x7684;&#x5E42;&#x6B21;&#x65B9;&#x3002;</strong></p>
+<h3 id="147-hashmap-&#x591A;&#x7EBF;&#x7A0B;&#x64CD;&#x4F5C;&#x5BFC;&#x81F4;&#x6B7B;&#x5FAA;&#x73AF;&#x95EE;&#x9898;">1.4.7. HashMap &#x591A;&#x7EBF;&#x7A0B;&#x64CD;&#x4F5C;&#x5BFC;&#x81F4;&#x6B7B;&#x5FAA;&#x73AF;&#x95EE;&#x9898;</h3>
+<p>&#x4E3B;&#x8981;&#x539F;&#x56E0;&#x5728;&#x4E8E;&#x5E76;&#x53D1;&#x4E0B;&#x7684; Rehash &#x4F1A;&#x9020;&#x6210;&#x5143;&#x7D20;&#x4E4B;&#x95F4;&#x4F1A;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x5FAA;&#x73AF;&#x94FE;&#x8868;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;jdk 1.8 &#x540E;&#x89E3;&#x51B3;&#x4E86;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x662F;&#x4E0D;&#x5EFA;&#x8BAE;&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x4E0B;&#x4F7F;&#x7528; HashMap,&#x56E0;&#x4E3A;&#x591A;&#x7EBF;&#x7A0B;&#x4E0B;&#x4F7F;&#x7528; HashMap &#x8FD8;&#x662F;&#x4F1A;&#x5B58;&#x5728;&#x5176;&#x4ED6;&#x95EE;&#x9898;&#x6BD4;&#x5982;&#x6570;&#x636E;&#x4E22;&#x5931;&#x3002;&#x5E76;&#x53D1;&#x73AF;&#x5883;&#x4E0B;&#x63A8;&#x8350;&#x4F7F;&#x7528; ConcurrentHashMap &#x3002;</p>
+<p>&#x8BE6;&#x60C5;&#x8BF7;&#x67E5;&#x770B;&#xFF1A;<a href="https://coolshell.cn/articles/9606.html" target="_blank">https://coolshell.cn/articles/9606.html</a></p>
+<h3 id="148-hashmap-&#x6709;&#x54EA;&#x51E0;&#x79CD;&#x5E38;&#x89C1;&#x7684;&#x904D;&#x5386;&#x65B9;&#x5F0F;">1.4.8. HashMap &#x6709;&#x54EA;&#x51E0;&#x79CD;&#x5E38;&#x89C1;&#x7684;&#x904D;&#x5386;&#x65B9;&#x5F0F;?</h3>
+<p><a href="https://mp.weixin.qq.com/s/Zz6mofCtmYpABDL1ap04ow" target="_blank">HashMap &#x7684; 7 &#x79CD;&#x904D;&#x5386;&#x65B9;&#x5F0F;&#x4E0E;&#x6027;&#x80FD;&#x5206;&#x6790;&#xFF01;</a></p>
+<h3 id="149-concurrenthashmap-&#x548C;-hashtable-&#x7684;&#x533A;&#x522B;">1.4.9. ConcurrentHashMap &#x548C; Hashtable &#x7684;&#x533A;&#x522B;</h3>
+<p>ConcurrentHashMap &#x548C; Hashtable &#x7684;&#x533A;&#x522B;&#x4E3B;&#x8981;&#x4F53;&#x73B0;&#x5728;&#x5B9E;&#x73B0;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x65B9;&#x5F0F;&#x4E0A;&#x4E0D;&#x540C;&#x3002;</p>
+<ul>
+<li><strong>&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;</strong> JDK1.7 &#x7684; ConcurrentHashMap &#x5E95;&#x5C42;&#x91C7;&#x7528; <strong>&#x5206;&#x6BB5;&#x7684;&#x6570;&#x7EC4;+&#x94FE;&#x8868;</strong> &#x5B9E;&#x73B0;&#xFF0C;JDK1.8 &#x91C7;&#x7528;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x8DDF; HashMap1.8 &#x7684;&#x7ED3;&#x6784;&#x4E00;&#x6837;&#xFF0C;&#x6570;&#x7EC4;+&#x94FE;&#x8868;/&#x7EA2;&#x9ED1;&#x4E8C;&#x53C9;&#x6811;&#x3002;Hashtable &#x548C; JDK1.8 &#x4E4B;&#x524D;&#x7684; HashMap &#x7684;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7C7B;&#x4F3C;&#x90FD;&#x662F;&#x91C7;&#x7528; <strong>&#x6570;&#x7EC4;+&#x94FE;&#x8868;</strong> &#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x6570;&#x7EC4;&#x662F; HashMap &#x7684;&#x4E3B;&#x4F53;&#xFF0C;&#x94FE;&#x8868;&#x5219;&#x662F;&#x4E3B;&#x8981;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#x800C;&#x5B58;&#x5728;&#x7684;&#xFF1B;</li>
+<li><strong>&#x5B9E;&#x73B0;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x65B9;&#x5F0F;&#xFF08;&#x91CD;&#x8981;&#xFF09;&#xFF1A;</strong> &#x2460; <strong>&#x5728; JDK1.7 &#x7684;&#x65F6;&#x5019;&#xFF0C;ConcurrentHashMap&#xFF08;&#x5206;&#x6BB5;&#x9501;&#xFF09;</strong> &#x5BF9;&#x6574;&#x4E2A;&#x6876;&#x6570;&#x7EC4;&#x8FDB;&#x884C;&#x4E86;&#x5206;&#x5272;&#x5206;&#x6BB5;(Segment)&#xFF0C;&#x6BCF;&#x4E00;&#x628A;&#x9501;&#x53EA;&#x9501;&#x5BB9;&#x5668;&#x5176;&#x4E2D;&#x4E00;&#x90E8;&#x5206;&#x6570;&#x636E;&#xFF0C;&#x591A;&#x7EBF;&#x7A0B;&#x8BBF;&#x95EE;&#x5BB9;&#x5668;&#x91CC;&#x4E0D;&#x540C;&#x6570;&#x636E;&#x6BB5;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x5B58;&#x5728;&#x9501;&#x7ADE;&#x4E89;&#xFF0C;&#x63D0;&#x9AD8;&#x5E76;&#x53D1;&#x8BBF;&#x95EE;&#x7387;&#x3002; <strong>&#x5230;&#x4E86; JDK1.8 &#x7684;&#x65F6;&#x5019;&#x5DF2;&#x7ECF;&#x6452;&#x5F03;&#x4E86; Segment &#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x7528; Node &#x6570;&#x7EC4;+&#x94FE;&#x8868;+&#x7EA2;&#x9ED1;&#x6811;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x5E76;&#x53D1;&#x63A7;&#x5236;&#x4F7F;&#x7528; synchronized &#x548C; CAS &#x6765;&#x64CD;&#x4F5C;&#x3002;&#xFF08;JDK1.6 &#x4EE5;&#x540E; &#x5BF9; synchronized &#x9501;&#x505A;&#x4E86;&#x5F88;&#x591A;&#x4F18;&#x5316;&#xFF09;</strong> &#x6574;&#x4E2A;&#x770B;&#x8D77;&#x6765;&#x5C31;&#x50CF;&#x662F;&#x4F18;&#x5316;&#x8FC7;&#x4E14;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684; HashMap&#xFF0C;&#x867D;&#x7136;&#x5728; JDK1.8 &#x4E2D;&#x8FD8;&#x80FD;&#x770B;&#x5230; Segment &#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x4F46;&#x662F;&#x5DF2;&#x7ECF;&#x7B80;&#x5316;&#x4E86;&#x5C5E;&#x6027;&#xFF0C;&#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x517C;&#x5BB9;&#x65E7;&#x7248;&#x672C;&#xFF1B;&#x2461; <strong>Hashtable(&#x540C;&#x4E00;&#x628A;&#x9501;)</strong> :&#x4F7F;&#x7528; synchronized &#x6765;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#xFF0C;&#x6548;&#x7387;&#x975E;&#x5E38;&#x4F4E;&#x4E0B;&#x3002;&#x5F53;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x8BBF;&#x95EE;&#x540C;&#x6B65;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x4E5F;&#x8BBF;&#x95EE;&#x540C;&#x6B65;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x8FDB;&#x5165;&#x963B;&#x585E;&#x6216;&#x8F6E;&#x8BE2;&#x72B6;&#x6001;&#xFF0C;&#x5982;&#x4F7F;&#x7528; put &#x6DFB;&#x52A0;&#x5143;&#x7D20;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E0D;&#x80FD;&#x4F7F;&#x7528; put &#x6DFB;&#x52A0;&#x5143;&#x7D20;&#xFF0C;&#x4E5F;&#x4E0D;&#x80FD;&#x4F7F;&#x7528; get&#xFF0C;&#x7ADE;&#x4E89;&#x4F1A;&#x8D8A;&#x6765;&#x8D8A;&#x6FC0;&#x70C8;&#x6548;&#x7387;&#x8D8A;&#x4F4E;&#x3002;</li>
+</ul>
+<p><strong>&#x4E24;&#x8005;&#x7684;&#x5BF9;&#x6BD4;&#x56FE;&#xFF1A;</strong></p>
+<p><strong>HashTable:</strong></p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/HashTable&#x5168;&#x8868;&#x9501;.png" alt="HashTable&#x5168;&#x8868;&#x9501;"></p>
+<p style="text-align:right;font-size:13px;color:gray">http://www.cnblogs.com/chengxiao/p/6842045.html&gt;</p>
+
+<p><strong>JDK1.7 &#x7684; ConcurrentHashMap&#xFF1A;</strong></p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/ConcurrentHashMap&#x5206;&#x6BB5;&#x9501;.jpg" alt="JDK1.7&#x7684;ConcurrentHashMap"></p>
+<p style="text-align:right;font-size:13px;color:gray">http://www.cnblogs.com/chengxiao/p/6842045.html&gt;</p>
+
+<p><strong>JDK1.8 &#x7684; ConcurrentHashMap&#xFF1A;</strong></p>
+<p><img src="https://static01.imgkr.com/temp/26fca75ccc874c8fbbeb4fbcd4dec4aa.png" alt="JDK1.8 &#x7684; ConcurrentHashMap"></p>
+<p>JDK1.8 &#x7684; <code>ConcurrentHashMap</code> &#x4E0D;&#x5728;&#x662F; <strong>Segment &#x6570;&#x7EC4; + HashEntry &#x6570;&#x7EC4; + &#x94FE;&#x8868;</strong>&#xFF0C;&#x800C;&#x662F; <strong>Node &#x6570;&#x7EC4; + &#x94FE;&#x8868; / &#x7EA2;&#x9ED1;&#x6811;</strong>&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;Node &#x53EA;&#x80FD;&#x7528;&#x4E8E;&#x94FE;&#x8868;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x7EA2;&#x9ED1;&#x6811;&#x7684;&#x60C5;&#x51B5;&#x9700;&#x8981;&#x4F7F;&#x7528; <strong><code>TreeNode</code></strong>&#x3002;&#x5F53;&#x51B2;&#x7A81;&#x94FE;&#x8868;&#x8FBE;&#x5230;&#x4E00;&#x5B9A;&#x957F;&#x5EA6;&#x65F6;&#xFF0C;&#x94FE;&#x8868;&#x4F1A;&#x8F6C;&#x6362;&#x6210;&#x7EA2;&#x9ED1;&#x6811;&#x3002;</p>
+<h3 id="1410-concurrenthashmap-&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x5E95;&#x5C42;&#x5177;&#x4F53;&#x5B9E;&#x73B0;">1.4.10. ConcurrentHashMap &#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;/&#x5E95;&#x5C42;&#x5177;&#x4F53;&#x5B9E;&#x73B0;</h3>
+<h4 id="14101-jdk17&#xFF08;&#x4E0A;&#x9762;&#x6709;&#x793A;&#x610F;&#x56FE;&#xFF09;">1.4.10.1. JDK1.7&#xFF08;&#x4E0A;&#x9762;&#x6709;&#x793A;&#x610F;&#x56FE;&#xFF09;</h4>
+<p>&#x9996;&#x5148;&#x5C06;&#x6570;&#x636E;&#x5206;&#x4E3A;&#x4E00;&#x6BB5;&#x4E00;&#x6BB5;&#x7684;&#x5B58;&#x50A8;&#xFF0C;&#x7136;&#x540E;&#x7ED9;&#x6BCF;&#x4E00;&#x6BB5;&#x6570;&#x636E;&#x914D;&#x4E00;&#x628A;&#x9501;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5360;&#x7528;&#x9501;&#x8BBF;&#x95EE;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x6BB5;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x5176;&#x4ED6;&#x6BB5;&#x7684;&#x6570;&#x636E;&#x4E5F;&#x80FD;&#x88AB;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x8BBF;&#x95EE;&#x3002;</p>
+<p><strong>ConcurrentHashMap &#x662F;&#x7531; Segment &#x6570;&#x7EC4;&#x7ED3;&#x6784;&#x548C; HashEntry &#x6570;&#x7EC4;&#x7ED3;&#x6784;&#x7EC4;&#x6210;</strong>&#x3002;</p>
+<p>Segment &#x5B9E;&#x73B0;&#x4E86; ReentrantLock,&#x6240;&#x4EE5; Segment &#x662F;&#x4E00;&#x79CD;&#x53EF;&#x91CD;&#x5165;&#x9501;&#xFF0C;&#x626E;&#x6F14;&#x9501;&#x7684;&#x89D2;&#x8272;&#x3002;HashEntry &#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x952E;&#x503C;&#x5BF9;&#x6570;&#x636E;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Segment</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">ReentrantLock</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>{
+}
+</code></pre>
+<p>&#x4E00;&#x4E2A; ConcurrentHashMap &#x91CC;&#x5305;&#x542B;&#x4E00;&#x4E2A; Segment &#x6570;&#x7EC4;&#x3002;Segment &#x7684;&#x7ED3;&#x6784;&#x548C; HashMap &#x7C7B;&#x4F3C;&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x6570;&#x7EC4;&#x548C;&#x94FE;&#x8868;&#x7ED3;&#x6784;&#xFF0C;&#x4E00;&#x4E2A; Segment &#x5305;&#x542B;&#x4E00;&#x4E2A; HashEntry &#x6570;&#x7EC4;&#xFF0C;&#x6BCF;&#x4E2A; HashEntry &#x662F;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#x7ED3;&#x6784;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x6BCF;&#x4E2A; Segment &#x5B88;&#x62A4;&#x7740;&#x4E00;&#x4E2A; HashEntry &#x6570;&#x7EC4;&#x91CC;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5F53;&#x5BF9; HashEntry &#x6570;&#x7EC4;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x9996;&#x5148;&#x83B7;&#x5F97;&#x5BF9;&#x5E94;&#x7684; Segment &#x7684;&#x9501;&#x3002;</p>
+<h4 id="14102-jdk18-&#xFF08;&#x4E0A;&#x9762;&#x6709;&#x793A;&#x610F;&#x56FE;&#xFF09;">1.4.10.2. JDK1.8 &#xFF08;&#x4E0A;&#x9762;&#x6709;&#x793A;&#x610F;&#x56FE;&#xFF09;</h4>
+<p>ConcurrentHashMap &#x53D6;&#x6D88;&#x4E86; Segment &#x5206;&#x6BB5;&#x9501;&#xFF0C;&#x91C7;&#x7528; CAS &#x548C; synchronized &#x6765;&#x4FDD;&#x8BC1;&#x5E76;&#x53D1;&#x5B89;&#x5168;&#x3002;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x8DDF; HashMap1.8 &#x7684;&#x7ED3;&#x6784;&#x7C7B;&#x4F3C;&#xFF0C;&#x6570;&#x7EC4;+&#x94FE;&#x8868;/&#x7EA2;&#x9ED1;&#x4E8C;&#x53C9;&#x6811;&#x3002;Java 8 &#x5728;&#x94FE;&#x8868;&#x957F;&#x5EA6;&#x8D85;&#x8FC7;&#x4E00;&#x5B9A;&#x9608;&#x503C;&#xFF08;8&#xFF09;&#x65F6;&#x5C06;&#x94FE;&#x8868;&#xFF08;&#x5BFB;&#x5740;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; O(N)&#xFF09;&#x8F6C;&#x6362;&#x4E3A;&#x7EA2;&#x9ED1;&#x6811;&#xFF08;&#x5BFB;&#x5740;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; O(log(N))&#xFF09;</p>
+<p>synchronized &#x53EA;&#x9501;&#x5B9A;&#x5F53;&#x524D;&#x94FE;&#x8868;&#x6216;&#x7EA2;&#x9ED1;&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x9996;&#x8282;&#x70B9;&#xFF0C;&#x8FD9;&#x6837;&#x53EA;&#x8981; hash &#x4E0D;&#x51B2;&#x7A81;&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x5E76;&#x53D1;&#xFF0C;&#x6548;&#x7387;&#x53C8;&#x63D0;&#x5347; N &#x500D;&#x3002;</p>
+<h2 id="15-collections-&#x5DE5;&#x5177;&#x7C7B;">1.5. Collections &#x5DE5;&#x5177;&#x7C7B;</h2>
+<p>Collections &#x5DE5;&#x5177;&#x7C7B;&#x5E38;&#x7528;&#x65B9;&#x6CD5;:</p>
+<ol>
+<li>&#x6392;&#x5E8F;</li>
+<li>&#x67E5;&#x627E;,&#x66FF;&#x6362;&#x64CD;&#x4F5C;</li>
+<li>&#x540C;&#x6B65;&#x63A7;&#x5236;(&#x4E0D;&#x63A8;&#x8350;&#xFF0C;&#x9700;&#x8981;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x96C6;&#x5408;&#x7C7B;&#x578B;&#x65F6;&#x8BF7;&#x8003;&#x8651;&#x4F7F;&#x7528; JUC &#x5305;&#x4E0B;&#x7684;&#x5E76;&#x53D1;&#x96C6;&#x5408;)</li>
+</ol>
+<h3 id="151-&#x6392;&#x5E8F;&#x64CD;&#x4F5C;">1.5.1. &#x6392;&#x5E8F;&#x64CD;&#x4F5C;</h3>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reverse</span><span class="hljs-params">(List list)</span><span class="hljs-comment">//&#x53CD;&#x8F6C;</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title">shuffle</span><span class="hljs-params">(List list)</span><span class="hljs-comment">//&#x968F;&#x673A;&#x6392;&#x5E8F;</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(List list)</span><span class="hljs-comment">//&#x6309;&#x81EA;&#x7136;&#x6392;&#x5E8F;&#x7684;&#x5347;&#x5E8F;&#x6392;&#x5E8F;</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(List list, Comparator c)</span><span class="hljs-comment">//&#x5B9A;&#x5236;&#x6392;&#x5E8F;&#xFF0C;&#x7531;Comparator&#x63A7;&#x5236;&#x6392;&#x5E8F;&#x903B;&#x8F91;</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(List list, <span class="hljs-keyword">int</span> i , <span class="hljs-keyword">int</span> j)</span><span class="hljs-comment">//&#x4EA4;&#x6362;&#x4E24;&#x4E2A;&#x7D22;&#x5F15;&#x4F4D;&#x7F6E;&#x7684;&#x5143;&#x7D20;</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(List list, <span class="hljs-keyword">int</span> distance)</span><span class="hljs-comment">//&#x65CB;&#x8F6C;&#x3002;&#x5F53;distance&#x4E3A;&#x6B63;&#x6570;&#x65F6;&#xFF0C;&#x5C06;list&#x540E;distance&#x4E2A;&#x5143;&#x7D20;&#x6574;&#x4F53;&#x79FB;&#x5230;&#x524D;&#x9762;&#x3002;&#x5F53;distance&#x4E3A;&#x8D1F;&#x6570;&#x65F6;&#xFF0C;&#x5C06; list&#x7684;&#x524D;distance&#x4E2A;&#x5143;&#x7D20;&#x6574;&#x4F53;&#x79FB;&#x5230;&#x540E;&#x9762;</span>
+</span></code></pre>
+<h3 id="152-&#x67E5;&#x627E;&#x66FF;&#x6362;&#x64CD;&#x4F5C;">1.5.2. &#x67E5;&#x627E;,&#x66FF;&#x6362;&#x64CD;&#x4F5C;</h3>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">binarySearch</span><span class="hljs-params">(List list, Object key)</span><span class="hljs-comment">//&#x5BF9;List&#x8FDB;&#x884C;&#x4E8C;&#x5206;&#x67E5;&#x627E;&#xFF0C;&#x8FD4;&#x56DE;&#x7D22;&#x5F15;&#xFF0C;&#x6CE8;&#x610F;List&#x5FC5;&#x987B;&#x662F;&#x6709;&#x5E8F;&#x7684;</span>
+<span class="hljs-keyword">int</span> <span class="hljs-title">max</span><span class="hljs-params">(Collection coll)</span><span class="hljs-comment">//&#x6839;&#x636E;&#x5143;&#x7D20;&#x7684;&#x81EA;&#x7136;&#x987A;&#x5E8F;&#xFF0C;&#x8FD4;&#x56DE;&#x6700;&#x5927;&#x7684;&#x5143;&#x7D20;&#x3002; &#x7C7B;&#x6BD4;int min(Collection coll)</span>
+<span class="hljs-keyword">int</span> <span class="hljs-title">max</span><span class="hljs-params">(Collection coll, Comparator c)</span><span class="hljs-comment">//&#x6839;&#x636E;&#x5B9A;&#x5236;&#x6392;&#x5E8F;&#xFF0C;&#x8FD4;&#x56DE;&#x6700;&#x5927;&#x5143;&#x7D20;&#xFF0C;&#x6392;&#x5E8F;&#x89C4;&#x5219;&#x7531;Comparatator&#x7C7B;&#x63A7;&#x5236;&#x3002;&#x7C7B;&#x6BD4;int min(Collection coll, Comparator c)</span>
+<span class="hljs-keyword">void</span> <span class="hljs-title">fill</span><span class="hljs-params">(List list, Object obj)</span><span class="hljs-comment">//&#x7528;&#x6307;&#x5B9A;&#x7684;&#x5143;&#x7D20;&#x4EE3;&#x66FF;&#x6307;&#x5B9A;list&#x4E2D;&#x7684;&#x6240;&#x6709;&#x5143;&#x7D20;&#x3002;</span>
+<span class="hljs-keyword">int</span> <span class="hljs-title">frequency</span><span class="hljs-params">(Collection c, Object o)</span><span class="hljs-comment">//&#x7EDF;&#x8BA1;&#x5143;&#x7D20;&#x51FA;&#x73B0;&#x6B21;&#x6570;</span>
+<span class="hljs-keyword">int</span> <span class="hljs-title">indexOfSubList</span><span class="hljs-params">(List list, List target)</span><span class="hljs-comment">//&#x7EDF;&#x8BA1;target&#x5728;list&#x4E2D;&#x7B2C;&#x4E00;&#x6B21;&#x51FA;&#x73B0;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x627E;&#x4E0D;&#x5230;&#x5219;&#x8FD4;&#x56DE;-1&#xFF0C;&#x7C7B;&#x6BD4;int lastIndexOfSubList(List source, list target).</span>
+<span class="hljs-keyword">boolean</span> <span class="hljs-title">replaceAll</span><span class="hljs-params">(List list, Object oldVal, Object newVal)</span>, &#x7528;&#x65B0;&#x5143;&#x7D20;&#x66FF;&#x6362;&#x65E7;&#x5143;&#x7D20;
+</span></code></pre>
+<h3 id="153-&#x540C;&#x6B65;&#x63A7;&#x5236;">1.5.3. &#x540C;&#x6B65;&#x63A7;&#x5236;</h3>
+<p><code>Collections</code> &#x63D0;&#x4F9B;&#x4E86;&#x591A;&#x4E2A;<code>synchronizedXxx()</code>&#x65B9;&#x6CD5;&#xB7;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x5C06;&#x6307;&#x5B9A;&#x96C6;&#x5408;&#x5305;&#x88C5;&#x6210;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x4ECE;&#x800C;&#x89E3;&#x51B3;&#x591A;&#x7EBF;&#x7A0B;&#x5E76;&#x53D1;&#x8BBF;&#x95EE;&#x96C6;&#x5408;&#x65F6;&#x7684;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x77E5;&#x9053; <code>HashSet</code>&#xFF0C;<code>TreeSet</code>&#xFF0C;<code>ArrayList</code>,<code>LinkedList</code>,<code>HashMap</code>,<code>TreeMap</code> &#x90FD;&#x662F;&#x7EBF;&#x7A0B;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#x3002;<code>Collections</code> &#x63D0;&#x4F9B;&#x4E86;&#x591A;&#x4E2A;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x628A;&#x4ED6;&#x4EEC;&#x5305;&#x88C5;&#x6210;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;&#x7684;&#x96C6;&#x5408;&#x3002;</p>
+<p><strong>&#x6700;&#x597D;&#x4E0D;&#x8981;&#x7528;&#x4E0B;&#x9762;&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#xFF0C;&#x6548;&#x7387;&#x975E;&#x5E38;&#x4F4E;&#xFF0C;&#x9700;&#x8981;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x96C6;&#x5408;&#x7C7B;&#x578B;&#x65F6;&#x8BF7;&#x8003;&#x8651;&#x4F7F;&#x7528; JUC &#x5305;&#x4E0B;&#x7684;&#x5E76;&#x53D1;&#x96C6;&#x5408;&#x3002;</strong></p>
+<p>&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java">synchronizedCollection(Collection&lt;T&gt;  c) <span class="hljs-comment">//&#x8FD4;&#x56DE;&#x6307;&#x5B9A; collection &#x652F;&#x6301;&#x7684;&#x540C;&#x6B65;&#xFF08;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF09;collection&#x3002;</span>
+synchronizedList(List&lt;T&gt; list)<span class="hljs-comment">//&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5217;&#x8868;&#x652F;&#x6301;&#x7684;&#x540C;&#x6B65;&#xFF08;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF09;List&#x3002;</span>
+synchronizedMap(Map&lt;K,V&gt; m) <span class="hljs-comment">//&#x8FD4;&#x56DE;&#x7531;&#x6307;&#x5B9A;&#x6620;&#x5C04;&#x652F;&#x6301;&#x7684;&#x540C;&#x6B65;&#xFF08;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF09;Map&#x3002;</span>
+synchronizedSet(Set&lt;T&gt; s) <span class="hljs-comment">//&#x8FD4;&#x56DE;&#x6307;&#x5B9A; set &#x652F;&#x6301;&#x7684;&#x540C;&#x6B65;&#xFF08;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF09;set&#x3002;</span>
+</code></pre>
+<h2 id="16-&#x5176;&#x4ED6;&#x91CD;&#x8981;&#x95EE;&#x9898;">1.6. &#x5176;&#x4ED6;&#x91CD;&#x8981;&#x95EE;&#x9898;</h2>
+<h3 id="161-&#x4EC0;&#x4E48;&#x662F;&#x5FEB;&#x901F;&#x5931;&#x8D25;fail-fast&#xFF1F;">1.6.1. &#x4EC0;&#x4E48;&#x662F;&#x5FEB;&#x901F;&#x5931;&#x8D25;(fail-fast)&#xFF1F;</h3>
+<p><strong>&#x5FEB;&#x901F;&#x5931;&#x8D25;(fail-fast)</strong> &#x662F; Java &#x96C6;&#x5408;&#x7684;&#x4E00;&#x79CD;&#x9519;&#x8BEF;&#x68C0;&#x6D4B;&#x673A;&#x5236;&#x3002;<strong>&#x5728;&#x4F7F;&#x7528;&#x8FED;&#x4EE3;&#x5668;&#x5BF9;&#x96C6;&#x5408;&#x8FDB;&#x884C;&#x904D;&#x5386;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x4E0B;&#x64CD;&#x4F5C;&#x975E;&#x5B89;&#x5168;&#x5931;&#x8D25;(fail-safe)&#x7684;&#x96C6;&#x5408;&#x7C7B;&#x53EF;&#x80FD;&#x5C31;&#x4F1A;&#x89E6;&#x53D1; fail-fast &#x673A;&#x5236;&#xFF0C;&#x5BFC;&#x81F4;&#x629B;&#x51FA; <code>ConcurrentModificationException</code> &#x5F02;&#x5E38;&#x3002; &#x53E6;&#x5916;&#xFF0C;&#x5728;&#x5355;&#x7EBF;&#x7A0B;&#x4E0B;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x904D;&#x5386;&#x8FC7;&#x7A0B;&#x4E2D;&#x5BF9;&#x96C6;&#x5408;&#x5BF9;&#x8C61;&#x7684;&#x5185;&#x5BB9;&#x8FDB;&#x884C;&#x4E86;&#x4FEE;&#x6539;&#x7684;&#x8BDD;&#x4E5F;&#x4F1A;&#x89E6;&#x53D1; fail-fast &#x673A;&#x5236;&#x3002;</strong></p>
+<blockquote>
+<p>&#x6CE8;&#xFF1A;&#x589E;&#x5F3A; for &#x5FAA;&#x73AF;&#x4E5F;&#x662F;&#x501F;&#x52A9;&#x8FED;&#x4EE3;&#x5668;&#x8FDB;&#x884C;&#x904D;&#x5386;&#x3002;</p>
+</blockquote>
+<p>&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;&#x591A;&#x7EBF;&#x7A0B;&#x4E0B;&#xFF0C;&#x5982;&#x679C;&#x7EBF;&#x7A0B; 1 &#x6B63;&#x5728;&#x5BF9;&#x96C6;&#x5408;&#x8FDB;&#x884C;&#x904D;&#x5386;&#xFF0C;&#x6B64;&#x65F6;&#x7EBF;&#x7A0B; 2 &#x5BF9;&#x96C6;&#x5408;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF08;&#x589E;&#x52A0;&#x3001;&#x5220;&#x9664;&#x3001;&#x4FEE;&#x6539;&#xFF09;&#xFF0C;&#x6216;&#x8005;&#x7EBF;&#x7A0B; 1 &#x5728;&#x904D;&#x5386;&#x8FC7;&#x7A0B;&#x4E2D;&#x5BF9;&#x96C6;&#x5408;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x90FD;&#x4F1A;&#x5BFC;&#x81F4;&#x7EBF;&#x7A0B; 1 &#x629B;&#x51FA; <code>ConcurrentModificationException</code> &#x5F02;&#x5E38;&#x3002;</p>
+<p><strong>&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;</strong></p>
+<p>&#x6BCF;&#x5F53;&#x8FED;&#x4EE3;&#x5668;&#x4F7F;&#x7528; <code>hashNext()</code>/<code>next()</code>&#x904D;&#x5386;&#x4E0B;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x4E4B;&#x524D;&#xFF0C;&#x90FD;&#x4F1A;&#x68C0;&#x6D4B; <code>modCount</code> &#x53D8;&#x91CF;&#x662F;&#x5426;&#x4E3A; <code>expectedModCount</code> &#x503C;&#xFF0C;&#x662F;&#x7684;&#x8BDD;&#x5C31;&#x8FD4;&#x56DE;&#x904D;&#x5386;&#xFF1B;&#x5426;&#x5219;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x7EC8;&#x6B62;&#x904D;&#x5386;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5728;&#x96C6;&#x5408;&#x88AB;&#x904D;&#x5386;&#x671F;&#x95F4;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x4F1A;&#x6539;&#x53D8; <code>modCount</code> &#x7684;&#x503C;&#xFF0C;&#x8FDB;&#x800C;&#x5BFC;&#x81F4; <code>modCount != expectedModCount</code> &#xFF0C;&#x8FDB;&#x800C;&#x629B;&#x51FA; <code>ConcurrentModificationException</code> &#x5F02;&#x5E38;&#x3002;</p>
+<blockquote>
+<p>&#x6CE8;&#xFF1A;&#x901A;&#x8FC7; <code>Iterator</code> &#x7684;&#x65B9;&#x6CD5;&#x4FEE;&#x6539;&#x96C6;&#x5408;&#x7684;&#x8BDD;&#x4F1A;&#x4FEE;&#x6539;&#x5230; <code>expectedModCount</code> &#x7684;&#x503C;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x4F1A;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;</p>
+</blockquote>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">checkForComodification</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (modCount != expectedModCount)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ConcurrentModificationException();
+}
+</code></pre>
+<p>&#x597D;&#x5427;&#xFF01;&#x76F8;&#x4FE1;&#x5927;&#x5BB6;&#x5DF2;&#x7ECF;&#x641E;&#x61C2;&#x4E86;&#x5FEB;&#x901F;&#x5931;&#x8D25;(fail-fast)&#x673A;&#x5236;&#x4EE5;&#x53CA;&#x5B83;&#x7684;&#x539F;&#x7406;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x518D;&#x6765;&#x8D81;&#x70ED;&#x6253;&#x94C1;&#xFF0C;&#x770B;&#x4E00;&#x4E2A;&#x963F;&#x91CC;&#x5DF4;&#x5DF4;&#x624B;&#x518C;&#x76F8;&#x5173;&#x7684;&#x89C4;&#x5B9A;&#xFF1A;</p>
+<p><img src="https://imgkr.cn-bj.ufileos.com/ad28e3ba-e419-4724-869c-73879e604da1.png" alt=""></p>
+<p>&#x6709;&#x4E86;&#x524D;&#x9762;&#x8BB2;&#x7684;&#x57FA;&#x7840;&#xFF0C;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#xFF1A;&#x4F7F;&#x7528; <code>Iterator</code> &#x63D0;&#x4F9B;&#x7684; <code>remove</code> &#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x5230; <code>expectedModCount</code> &#x7684;&#x503C;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x624D;&#x4E0D;&#x4F1A;&#x518D;&#x629B;&#x51FA;<code>ConcurrentModificationException</code> &#x5F02;&#x5E38;&#x3002;</p>
+<h3 id="162-&#x4EC0;&#x4E48;&#x662F;&#x5B89;&#x5168;&#x5931;&#x8D25;fail-safe&#x5462;&#xFF1F;">1.6.2. &#x4EC0;&#x4E48;&#x662F;&#x5B89;&#x5168;&#x5931;&#x8D25;(fail-safe)&#x5462;&#xFF1F;</h3>
+<p>&#x660E;&#x767D;&#x4E86;&#x5FEB;&#x901F;&#x5931;&#x8D25;(fail-fast)&#x4E4B;&#x540E;&#xFF0C;&#x5B89;&#x5168;&#x5931;&#x8D25;(fail-safe)&#x6211;&#x4EEC;&#x5C31;&#x5F88;&#x597D;&#x7406;&#x89E3;&#x4E86;&#x3002;</p>
+<p>&#x91C7;&#x7528;&#x5B89;&#x5168;&#x5931;&#x8D25;&#x673A;&#x5236;&#x7684;&#x96C6;&#x5408;&#x5BB9;&#x5668;&#xFF0C;&#x5728;&#x904D;&#x5386;&#x65F6;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x5728;&#x96C6;&#x5408;&#x5185;&#x5BB9;&#x4E0A;&#x8BBF;&#x95EE;&#x7684;&#xFF0C;&#x800C;&#x662F;&#x5148;&#x590D;&#x5236;&#x539F;&#x6709;&#x96C6;&#x5408;&#x5185;&#x5BB9;&#xFF0C;&#x5728;&#x62F7;&#x8D1D;&#x7684;&#x96C6;&#x5408;&#x4E0A;&#x8FDB;&#x884C;&#x904D;&#x5386;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x5728;&#x904D;&#x5386;&#x8FC7;&#x7A0B;&#x4E2D;&#x5BF9;&#x539F;&#x96C6;&#x5408;&#x6240;&#x4F5C;&#x7684;&#x4FEE;&#x6539;&#x5E76;&#x4E0D;&#x80FD;&#x88AB;&#x8FED;&#x4EE3;&#x5668;&#x68C0;&#x6D4B;&#x5230;&#xFF0C;&#x6545;&#x4E0D;&#x4F1A;&#x629B; <code>ConcurrentModificationException</code> &#x5F02;&#x5E38;&#x3002;</p>
+<h3 id="163-arraysaslist&#x907F;&#x5751;&#x6307;&#x5357;">1.6.3. Arrays.asList()&#x907F;&#x5751;&#x6307;&#x5357;</h3>
+<p>&#x6700;&#x8FD1;&#x4F7F;&#x7528;<code>Arrays.asList()</code>&#x9047;&#x5230;&#x4E86;&#x4E00;&#x4E9B;&#x5751;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x7F51;&#x4E0A;&#x770B;&#x5230;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#xFF1A;<a href="http://javadevnotes.com/java-array-to-list-examples" target="_blank">Java Array to List Examples</a> &#x611F;&#x89C9;&#x633A;&#x4E0D;&#x9519;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x4E0D;&#x662F;&#x7279;&#x522B;&#x5168;&#x9762;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x81EA;&#x5DF1;&#x5BF9;&#x4E8E;&#x8FD9;&#x5757;&#x5C0F;&#x77E5;&#x8BC6;&#x70B9;&#x8FDB;&#x884C;&#x4E86;&#x7B80;&#x5355;&#x7684;&#x603B;&#x7ED3;&#x3002;</p>
+<h4 id="1631-&#x7B80;&#x4ECB;">1.6.3.1. &#x7B80;&#x4ECB;</h4>
+<p><code>Arrays.asList()</code>&#x5728;&#x5E73;&#x65F6;&#x5F00;&#x53D1;&#x4E2D;&#x8FD8;&#x662F;&#x6BD4;&#x8F83;&#x5E38;&#x89C1;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B83;&#x5C06;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x4E2A; List &#x96C6;&#x5408;&#x3002;</p>
+<pre><code class="lang-java">String[] myArray = { <span class="hljs-string">&quot;Apple&quot;</span>, <span class="hljs-string">&quot;Banana&quot;</span>, <span class="hljs-string">&quot;Orange&quot;</span> }&#xFF1B;
+List&lt;String&gt; myList = Arrays.asList(myArray);
+<span class="hljs-comment">//&#x4E0A;&#x9762;&#x4E24;&#x4E2A;&#x8BED;&#x53E5;&#x7B49;&#x4EF7;&#x4E8E;&#x4E0B;&#x9762;&#x4E00;&#x6761;&#x8BED;&#x53E5;</span>
+List&lt;String&gt; myList = Arrays.asList(<span class="hljs-string">&quot;Apple&quot;</span>,<span class="hljs-string">&quot;Banana&quot;</span>, <span class="hljs-string">&quot;Orange&quot;</span>);
+</code></pre>
+<p>JDK &#x6E90;&#x7801;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x8BF4;&#x660E;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ *&#x8FD4;&#x56DE;&#x7531;&#x6307;&#x5B9A;&#x6570;&#x7EC4;&#x652F;&#x6301;&#x7684;&#x56FA;&#x5B9A;&#x5927;&#x5C0F;&#x7684;&#x5217;&#x8868;&#x3002;&#x6B64;&#x65B9;&#x6CD5;&#x4F5C;&#x4E3A;&#x57FA;&#x4E8E;&#x6570;&#x7EC4;&#x548C;&#x57FA;&#x4E8E;&#x96C6;&#x5408;&#x7684;API&#x4E4B;&#x95F4;&#x7684;&#x6865;&#x6881;&#xFF0C;&#x4E0E;           Collection.toArray()&#x7ED3;&#x5408;&#x4F7F;&#x7528;&#x3002;&#x8FD4;&#x56DE;&#x7684;List&#x662F;&#x53EF;&#x5E8F;&#x5217;&#x5316;&#x5E76;&#x5B9E;&#x73B0;RandomAccess&#x63A5;&#x53E3;&#x3002;
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-function">List&lt;T&gt; <span class="hljs-title">asList</span><span class="hljs-params">(T... a)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(a);
+}
+</code></pre>
+<h4 id="1632-&#x300A;&#x963F;&#x91CC;&#x5DF4;&#x5DF4;-java-&#x5F00;&#x53D1;&#x624B;&#x518C;&#x300B;&#x5BF9;&#x5176;&#x7684;&#x63CF;&#x8FF0;">1.6.3.2. &#x300A;&#x963F;&#x91CC;&#x5DF4;&#x5DF4; Java &#x5F00;&#x53D1;&#x624B;&#x518C;&#x300B;&#x5BF9;&#x5176;&#x7684;&#x63CF;&#x8FF0;</h4>
+<p><code>Arrays.asList()</code>&#x5C06;&#x6570;&#x7EC4;&#x8F6C;&#x6362;&#x4E3A;&#x96C6;&#x5408;&#x540E;,&#x5E95;&#x5C42;&#x5176;&#x5B9E;&#x8FD8;&#x662F;&#x6570;&#x7EC4;&#xFF0C;&#x300A;&#x963F;&#x91CC;&#x5DF4;&#x5DF4; Java &#x5F00;&#x53D1;&#x624B;&#x518C;&#x300B;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x6709;&#x5982;&#x4E0B;&#x63CF;&#x8FF0;&#xFF1A;</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/&#x963F;&#x91CC;&#x5DF4;&#x5DF4;Java&#x5F00;&#x53D1;&#x624B;-Arrays.asList(" alt="&#x963F;&#x91CC;&#x5DF4;&#x5DF4;Java&#x5F00;&#x53D1;&#x624B;-Arrays.asList()&#x65B9;&#x6CD5;">&#x65B9;&#x6CD5;.png&gt;)</p>
+<h4 id="1633-&#x4F7F;&#x7528;&#x65F6;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#x603B;&#x7ED3;">1.6.3.3. &#x4F7F;&#x7528;&#x65F6;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#x603B;&#x7ED3;</h4>
+<p><strong>&#x4F20;&#x9012;&#x7684;&#x6570;&#x7EC4;&#x5FC5;&#x987B;&#x662F;&#x5BF9;&#x8C61;&#x6570;&#x7EC4;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x3002;</strong></p>
+<p><code>Arrays.asList()</code>&#x662F;&#x6CDB;&#x578B;&#x65B9;&#x6CD5;&#xFF0C;&#x4F20;&#x5165;&#x7684;&#x5BF9;&#x8C61;&#x5FC5;&#x987B;&#x662F;&#x5BF9;&#x8C61;&#x6570;&#x7EC4;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">int</span>[] myArray = { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> };
+List myList = Arrays.asList(myArray);
+System.out.println(myList.size());<span class="hljs-comment">//1</span>
+System.out.println(myList.get(<span class="hljs-number">0</span>));<span class="hljs-comment">//&#x6570;&#x7EC4;&#x5730;&#x5740;&#x503C;</span>
+System.out.println(myList.get(<span class="hljs-number">1</span>));<span class="hljs-comment">//&#x62A5;&#x9519;&#xFF1A;ArrayIndexOutOfBoundsException</span>
+<span class="hljs-keyword">int</span> [] array=(<span class="hljs-keyword">int</span>[]) myList.get(<span class="hljs-number">0</span>);
+System.out.println(array[<span class="hljs-number">0</span>]);<span class="hljs-comment">//1</span>
+</code></pre>
+<p>&#x5F53;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x539F;&#x751F;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x6570;&#x7EC4;&#x65F6;&#xFF0C;<code>Arrays.asList()</code> &#x7684;&#x771F;&#x6B63;&#x5F97;&#x5230;&#x7684;&#x53C2;&#x6570;&#x5C31;&#x4E0D;&#x662F;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x800C;&#x662F;&#x6570;&#x7EC4;&#x5BF9;&#x8C61;&#x672C;&#x8EAB;&#xFF01;&#x6B64;&#x65F6; List &#x7684;&#x552F;&#x4E00;&#x5143;&#x7D20;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x8FD9;&#x4E5F;&#x5C31;&#x89E3;&#x91CA;&#x4E86;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x5305;&#x88C5;&#x7C7B;&#x578B;&#x6570;&#x7EC4;&#x5C31;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+<pre><code class="lang-java">Integer[] myArray = { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> };
+</code></pre>
+<p><strong>&#x4F7F;&#x7528;&#x96C6;&#x5408;&#x7684;&#x4FEE;&#x6539;&#x65B9;&#x6CD5;:<code>add()</code>&#x3001;<code>remove()</code>&#x3001;<code>clear()</code>&#x4F1A;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;</strong></p>
+<pre><code class="lang-java">List myList = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+myList.add(<span class="hljs-number">4</span>);<span class="hljs-comment">//&#x8FD0;&#x884C;&#x65F6;&#x62A5;&#x9519;&#xFF1A;UnsupportedOperationException</span>
+myList.remove(<span class="hljs-number">1</span>);<span class="hljs-comment">//&#x8FD0;&#x884C;&#x65F6;&#x62A5;&#x9519;&#xFF1A;UnsupportedOperationException</span>
+myList.clear();<span class="hljs-comment">//&#x8FD0;&#x884C;&#x65F6;&#x62A5;&#x9519;&#xFF1A;UnsupportedOperationException</span>
+</code></pre>
+<p><code>Arrays.asList()</code> &#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;&#x5E76;&#x4E0D;&#x662F; <code>java.util.ArrayList</code> &#xFF0C;&#x800C;&#x662F; <code>java.util.Arrays</code> &#x7684;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x7C7B;,&#x8FD9;&#x4E2A;&#x5185;&#x90E8;&#x7C7B;&#x5E76;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x96C6;&#x5408;&#x7684;&#x4FEE;&#x6539;&#x65B9;&#x6CD5;&#x6216;&#x8005;&#x8BF4;&#x5E76;&#x6CA1;&#x6709;&#x91CD;&#x5199;&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-java">List myList = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+System.out.println(myList.getClass());<span class="hljs-comment">//class java.util.Arrays$ArrayList</span>
+</code></pre>
+<p>&#x4E0B;&#x56FE;&#x662F;<code>java.util.Arrays$ArrayList</code>&#x7684;&#x7B80;&#x6613;&#x6E90;&#x7801;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8FD9;&#x4E2A;&#x7C7B;&#x91CD;&#x5199;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x54EA;&#x4E9B;&#x3002;</p>
+<pre><code class="lang-java">  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayList</span>&lt;<span class="hljs-title">E</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractList</span>&lt;<span class="hljs-title">E</span>&gt;
+        <span class="hljs-keyword">implements</span> <span class="hljs-title">RandomAccess</span>, <span class="hljs-title">java</span>.<span class="hljs-title">io</span>.<span class="hljs-title">Serializable</span>
+    </span>{
+        ...
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> E <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>{
+          ...
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> E <span class="hljs-title">set</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index, E element)</span> </span>{
+          ...
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">indexOf</span><span class="hljs-params">(Object o)</span> </span>{
+          ...
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">contains</span><span class="hljs-params">(Object o)</span> </span>{
+           ...
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">forEach</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-keyword">super</span> E&gt; action)</span> </span>{
+          ...
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">replaceAll</span><span class="hljs-params">(UnaryOperator&lt;E&gt; operator)</span> </span>{
+          ...
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(Comparator&lt;? <span class="hljs-keyword">super</span> E&gt; c)</span> </span>{
+          ...
+        }
+    }
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x518D;&#x770B;&#x4E00;&#x4E0B;<code>java.util.AbstractList</code>&#x7684;<code>remove()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x6837;&#x6211;&#x4EEC;&#x5C31;&#x660E;&#x767D;&#x4E3A;&#x5565;&#x4F1A;&#x629B;&#x51FA;<code>UnsupportedOperationException</code>&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> E <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>{
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException();
+}
+</code></pre>
+<p><strong>&#x300A;Java&#x9762;&#x8BD5;&#x7A81;&#x51FB;&#x300B;:</strong> Java &#x7A0B;&#x5E8F;&#x5458;&#x9762;&#x8BD5;&#x5FC5;&#x5907;&#x7684;&#x300A;Java&#x9762;&#x8BD5;&#x7A81;&#x51FB;&#x300B;V3.0 PDF &#x7248;&#x672C;&#x626B;&#x7801;&#x5173;&#x6CE8;&#x4E0B;&#x9762;&#x7684;&#x516C;&#x4F17;&#x53F7;&#xFF0C;&#x5728;&#x540E;&#x53F0;&#x56DE;&#x590D; <strong>&quot;&#x9762;&#x8BD5;&#x7A81;&#x51FB;&quot;</strong> &#x5373;&#x53EF;&#x514D;&#x8D39;&#x9886;&#x53D6;&#xFF01;</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/format,png.jpeg" alt="&#x6211;&#x7684;&#x516C;&#x4F17;&#x53F7;"></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../J2EE基础知识.html" class="navigation navigation-prev " aria-label="Previous page: J2EE 基础知识回顾">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="ArrayList.html" class="navigation navigation-next " aria-label="Next page: ArrayList 源码学习">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Java容器常见面试题/知识点总结","level":"3.1","depth":1,"next":{"title":"ArrayList 源码学习","level":"3.2","depth":1,"path":"java/collection/ArrayList.md","ref":"java/collection/ArrayList.md","articles":[]},"previous":{"title":"J2EE 基础知识回顾","level":"2.3","depth":1,"path":"java/J2EE基础知识.md","ref":"java/J2EE基础知识.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"java/collection/Java集合框架常见面试题.md","mtime":"2020-07-23T06:31:40.824Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-24T11:21:30.457Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

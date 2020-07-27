@@ -1,0 +1,1916 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Spring中都用到了那些设计模式? · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../ZooKeeper.html" />
+    
+    
+    <link rel="prev" href="SpringMVC-Principle.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Java</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../../java/Java基础知识.html">
+            
+                <a href="../../../java/Java基础知识.html">
+            
+                    
+                    Java 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../../java/Java疑难点.html">
+            
+                <a href="../../../java/Java疑难点.html">
+            
+                    
+                    Java 基础知识疑难点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../../../java/J2EE基础知识.html">
+            
+                <a href="../../../java/J2EE基础知识.html">
+            
+                    
+                    J2EE 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">容器</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../../../java/collection/Java集合框架常见面试题.html">
+            
+                <a href="../../../java/collection/Java集合框架常见面试题.html">
+            
+                    
+                    Java容器常见面试题/知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../../../java/collection/ArrayList.html">
+            
+                <a href="../../../java/collection/ArrayList.html">
+            
+                    
+                    ArrayList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../../../java/collection/LinkedList.html">
+            
+                <a href="../../../java/collection/LinkedList.html">
+            
+                    
+                    LinkedList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../../../java/collection/HashMap.html">
+            
+                <a href="../../../java/collection/HashMap.html">
+            
+                    
+                    HashMap(JDK1.8)源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">并发</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../../java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                <a href="../../../java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                    
+                    Java 并发基础常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../../../java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                <a href="../../../java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                    
+                    Java 并发进阶常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../../../java/Multithread/并发容器总结.html">
+            
+                <a href="../../../java/Multithread/并发容器总结.html">
+            
+                    
+                    并发容器总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../../../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                <a href="../../../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                    
+                    乐观锁与悲观锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../../../java/Multithread/Atomic.html">
+            
+                <a href="../../../java/Multithread/Atomic.html">
+            
+                    
+                    JUC 中的 Atomic 原子类总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../../../java/Multithread/AQS.html">
+            
+                <a href="../../../java/Multithread/AQS.html">
+            
+                    
+                    AQS 原理以及 AQS 同步组件总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">JVM</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../../../java/jvm/Java内存区域.html">
+            
+                <a href="../../../java/jvm/Java内存区域.html">
+            
+                    
+                    一 Java内存区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../../../java/jvm/JVM垃圾回收.html">
+            
+                <a href="../../../java/jvm/JVM垃圾回收.html">
+            
+                    
+                    二 JVM垃圾回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../../../java/jvm/JDK监控和故障处理工具总结.html">
+            
+                <a href="../../../java/jvm/JDK监控和故障处理工具总结.html">
+            
+                    
+                    三 JDK 监控和故障处理工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../../../java/jvm/类文件结构.html">
+            
+                <a href="../../../java/jvm/类文件结构.html">
+            
+                    
+                    四 类文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../../../java/jvm/类加载过程.html">
+            
+                <a href="../../../java/jvm/类加载过程.html">
+            
+                    
+                    五 类加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../../../java/jvm/类加载器.html">
+            
+                <a href="../../../java/jvm/类加载器.html">
+            
+                    
+                    六 类加载器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">I/O</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../../../java/BIO-NIO-AIO.html">
+            
+                <a href="../../../java/BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../../../java/Java%20IO与NIO.md">
+            
+                <span>
+            
+                    
+                    Java IO 与 NIO系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Java 8</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../../../java/What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../../../java/What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">编程规范</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../../../java/Java编程规范.html">
+            
+                <a href="../../../java/Java编程规范.html">
+            
+                    
+                    Java 编程规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网络</li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="../../../network/计算机网络.html">
+            
+                <a href="../../../network/计算机网络.html">
+            
+                    
+                    计算机网络常见面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="../../../network/干货：计算机网络知识总结.html">
+            
+                <a href="../../../network/干货：计算机网络知识总结.html">
+            
+                    
+                    计算机网络基础知识总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="../../../network/HTTPS中的TLS.html">
+            
+                <a href="../../../network/HTTPS中的TLS.html">
+            
+                    
+                    HTTPS中的TLS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">操作系统</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Linux相关</li>
+        
+        
+    
+        <li class="chapter " data-level="11.1" data-path="../../../operating-system/后端程序员必备的Linux基础知识.md">
+            
+                <span>
+            
+                    
+                    后端程序员必备的 Linux 基础知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="../../../operating-system/Shell.html">
+            
+                <a href="../../../operating-system/Shell.html">
+            
+                    
+                    Shell 编程入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据结构与算法</li>
+        
+        
+    
+
+    
+        
+        <li class="header">数据结构</li>
+        
+        
+    
+        <li class="chapter " data-level="13.1" data-path="../../../dataStructures-algorithms/数据结构.html">
+            
+                <a href="../../../dataStructures-algorithms/数据结构.html">
+            
+                    
+                    数据结构知识学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">算法</li>
+        
+        
+    
+        <li class="chapter " data-level="14.1" data-path="../../../dataStructures-algorithms/算法学习资源推荐.html">
+            
+                <a href="../../../dataStructures-algorithms/算法学习资源推荐.html">
+            
+                    
+                    算法学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.2" data-path="../../../dataStructures-algorithms/几道常见的子符串算法题.html">
+            
+                <a href="../../../dataStructures-algorithms/几道常见的子符串算法题.html">
+            
+                    
+                    几道常见的字符串算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.3" data-path="../../../dataStructures-algorithms/几道常见的链表算法题.html">
+            
+                <a href="../../../dataStructures-algorithms/几道常见的链表算法题.html">
+            
+                    
+                    几道常见的链表算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.4" data-path="../../../dataStructures-algorithms/剑指offer部分编程题.html">
+            
+                <a href="../../../dataStructures-algorithms/剑指offer部分编程题.html">
+            
+                    
+                    剑指offer部分编程题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.5" data-path="../../../dataStructures-algorithms/公司真题.html">
+            
+                <a href="../../../dataStructures-algorithms/公司真题.html">
+            
+                    
+                    公司真题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.6" data-path="../../../dataStructures-algorithms/Backtracking-NQueens.html">
+            
+                <a href="../../../dataStructures-algorithms/Backtracking-NQueens.html">
+            
+                    
+                    回溯算法经典案例之N皇后问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据库</li>
+        
+        
+    
+
+    
+        
+        <li class="header">MySQL</li>
+        
+        
+    
+        <li class="chapter " data-level="16.1" data-path="../../../database/MySQL.html">
+            
+                <a href="../../../database/MySQL.html">
+            
+                    
+                    MySQL 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="../../../database/一千行MySQL命令.html">
+            
+                <a href="../../../database/一千行MySQL命令.html">
+            
+                    
+                    一千行MySQL学习笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="../../../database/MySQL高性能优化规范建议.html">
+            
+                <a href="../../../database/MySQL高性能优化规范建议.html">
+            
+                    
+                    MySQL高性能优化规范建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="../../../database/MySQL%20Index.md">
+            
+                <span>
+            
+                    
+                    数据库索引总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="../../../database/事务隔离级别(图文详解">
+            
+                <span>
+            
+                    
+                    事务隔离级别(图文详解)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.6" data-path="../../../database/一条sql语句在mysql中如何执行的.html">
+            
+                <a href="../../../database/一条sql语句在mysql中如何执行的.html">
+            
+                    
+                    一条SQL语句在MySQL中如何执行的
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Redis</li>
+        
+        
+    
+        <li class="chapter " data-level="17.1" data-path="../../../database/Redis/Redis.md">
+            
+                <span>
+            
+                    
+                    Redis 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.2" data-path="../../../database/Redis/Redlock分布式锁.html">
+            
+                <a href="../../../database/Redis/Redlock分布式锁.html">
+            
+                    
+                    Redlock分布式锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.3" data-path="../../../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                <a href="../../../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                    
+                    如何做可靠的分布式锁，Redlock真的可行么
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">系统设计</li>
+        
+        
+    
+
+    
+        
+        <li class="header">设计模式</li>
+        
+        
+    
+        <li class="chapter " data-level="19.1" data-path="../../设计模式.html">
+            
+                <a href="../../设计模式.html">
+            
+                    
+                    设计模式系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常用框架</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Spring</li>
+        
+        
+    
+        <li class="chapter " data-level="21.1" data-path="Spring.html">
+            
+                <a href="Spring.html">
+            
+                    
+                    Spring 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.2" data-path="SpringInterviewQuestions.html">
+            
+                <a href="SpringInterviewQuestions.html">
+            
+                    
+                    Spring 常见问题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.3" data-path="SpringBean.html">
+            
+                <a href="SpringBean.html">
+            
+                    
+                    Spring中bean的作用域与生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.4" data-path="SpringMVC-Principle.html">
+            
+                <a href="SpringMVC-Principle.html">
+            
+                    
+                    SpringMVC 工作原理详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="21.5" data-path="Spring-Design-Patterns.html">
+            
+                <a href="Spring-Design-Patterns.html">
+            
+                    
+                    Spring中都用到了那些设计模式?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">ZooKeeper</li>
+        
+        
+    
+        <li class="chapter " data-level="22.1" data-path="../ZooKeeper.html">
+            
+                <a href="../ZooKeeper.html">
+            
+                    
+                    ZooKeeper 相关概念总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.2" data-path="../ZooKeeper数据模型和常见命令.html">
+            
+                <a href="../ZooKeeper数据模型和常见命令.html">
+            
+                    
+                    ZooKeeper 数据模型和常见命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据通信</li>
+        
+        
+    
+        <li class="chapter " data-level="23.1" data-path="../../data-communication/summary.md">
+            
+                <span>
+            
+                    
+                    数据通信(RESTful、RPC、消息队列)相关知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.2" data-path="../../data-communication/dubbo.html">
+            
+                <a href="../../data-communication/dubbo.html">
+            
+                    
+                    Dubbo 总结：关于 Dubbo 的重要知识点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.3" data-path="../../data-communication/message-queue.html">
+            
+                <a href="../../data-communication/message-queue.html">
+            
+                    
+                    消息队列总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.4" data-path="../../data-communication/rabbitmq.html">
+            
+                <a href="../../data-communication/rabbitmq.html">
+            
+                    
+                    RabbitMQ 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.5" data-path="../../data-communication/RocketMQ-Questions.html">
+            
+                <a href="../../data-communication/RocketMQ-Questions.html">
+            
+                    
+                    RocketMQ的几个简单问题与答案
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网站架构</li>
+        
+        
+    
+        <li class="chapter " data-level="24.1" data-path="../../website-architecture/分布式.html">
+            
+                <a href="../../website-architecture/分布式.html">
+            
+                    
+                    一文读懂分布式应该学什么
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.2" data-path="../../website-architecture/8%20张图读懂大型网站技术架构.md">
+            
+                <span>
+            
+                    
+                    8 张图读懂大型网站技术架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.3" data-path="../../website-architecture/【面试精选】关于大型网站系统架构你不得不懂的10个问题.md">
+            
+                <span>
+            
+                    
+                    【面试精选】关于大型网站系统架构你不得不懂的10个问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面试指南</li>
+        
+        
+    
+
+    
+        
+        <li class="header">备战面试</li>
+        
+        
+    
+        <li class="chapter " data-level="26.1" data-path="../../../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                <a href="../../../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                    
+                    【备战面试1】程序员的简历就该这样写
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.2" data-path="../../../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                <a href="../../../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                    
+                    【备战面试2】初出茅庐的程序员该如何准备面试？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.3" data-path="../../../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                <a href="../../../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                    
+                    【备战面试3】7个大部分程序员在面试前很关心的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.4" data-path="../../../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                <a href="../../../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                    
+                    【备战面试4】Github上开源的Java面试/学习相关的仓库推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.5" data-path="../../../essential-content-for-interview/PreparingForInterview/如果面试官问你“你有什么问题问我吗？”时，你该如何回答.md">
+            
+                <span>
+            
+                    
+                    【备战面试5】如果面试官问你“你有什么问题问我吗？”时，你该如何回答
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.6" data-path="../../../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                <a href="../../../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                    
+                    【备战面试6】美团面试常见问题总结（附详解答案）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常见面试题总结</li>
+        
+        
+    
+        <li class="chapter " data-level="27.1" data-path="../../../essential-content-for-interview/MostCommonJavaInterviewQuestions/第一周（2018-8-7）.md">
+            
+                <span>
+            
+                    
+                    第一周（2018-8-7）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.2" data-path="../../../essential-content-for-interview/MostCommonJavaInterviewQuestions/第二周(2018-8-13">
+            
+                <span>
+            
+                    
+                    第二周（2018-8-13）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.3" data-path="../../../java/collection/Java集合框架常见面试题.html">
+            
+                <a href="../../../java/collection/Java集合框架常见面试题.html">
+            
+                    
+                    第三周（2018-08-22）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.4" data-path="../../../essential-content-for-interview/MostCommonJavaInterviewQuestions/第四周(2018-8-30">
+            
+                <span>
+            
+                    
+                    第四周(2018-8-30).md
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面经</li>
+        
+        
+    
+        <li class="chapter " data-level="28.1" data-path="../../../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                <a href="../../../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                    
+                    5面阿里,终获offer(2018年秋招)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.2" data-path="../../../essential-content-for-interview/BATJrealInterviewExperience/蚂蚁金服实习生面经总结(已拿口头offer">
+            
+                <span>
+            
+                    
+                    蚂蚁金服2019实习生面经总结(已拿口头offer)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.3" data-path="../../../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                <a href="../../../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                    
+                    2019年蚂蚁金服、头条、拼多多的面试总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">工具</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Git</li>
+        
+        
+    
+        <li class="chapter " data-level="30.1" data-path="../../../tools/Git.html">
+            
+                <a href="../../../tools/Git.html">
+            
+                    
+                    Git入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Docker</li>
+        
+        
+    
+        <li class="chapter " data-level="31.1" data-path="../../../tools/Docker.html">
+            
+                <a href="../../../tools/Docker.html">
+            
+                    
+                    Docker 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="31.2" data-path="../../../tools/Docker-Image.html">
+            
+                <a href="../../../tools/Docker-Image.html">
+            
+                    
+                    一文搞懂 Docker 镜像的常用操作！
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">资料</li>
+        
+        
+    
+
+    
+        
+        <li class="header">书单</li>
+        
+        
+    
+        <li class="chapter " data-level="33.1" data-path="../../../data/java-recommended-books.md">
+            
+                <span>
+            
+                    
+                    Java程序员必备书单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Github榜单</li>
+        
+        
+    
+        <li class="chapter " data-level="34.1" data-path="../../../github-trending/JavaGithubTrending.html">
+            
+                <a href="../../../github-trending/JavaGithubTrending.html">
+            
+                    
+                    Java 项目月榜单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">待办</li>
+        
+        
+    
+        <li class="chapter " data-level="35.1" data-path="../../../java/What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.2" data-path="../../../java/What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.3" >
+            
+                <span>
+            
+                    
+                    [ ] Java 多线程类别知识重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.4" data-path="../../../java/BIO-NIO-AIO.html">
+            
+                <a href="../../../java/BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.5" >
+            
+                <span>
+            
+                    
+                    [ ] Netty 总结(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.6" >
+            
+                <span>
+            
+                    
+                    [ ] 数据结构总结重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">公众号</li>
+        
+        
+    
+        <li class="chapter " data-level="36.1" >
+            
+                <span>
+            
+                    
+                    如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.2" >
+            
+                <span>
+            
+                    
+                    由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本公众号后台回复  即可免费领取！
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.3" >
+            
+                <span>
+            
+                    
+                    一些Java工程师常用学习资源公众号后台回复关键字  即可免费无套路获取。
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >Spring中都用到了那些设计模式?</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>&#x70B9;&#x51FB;&#x5173;&#x6CE8;<a href="#&#x516C;&#x4F17;&#x53F7;">&#x516C;&#x4F17;&#x53F7;</a>&#x53CA;&#x65F6;&#x83B7;&#x53D6;&#x7B14;&#x4E3B;&#x6700;&#x65B0;&#x66F4;&#x65B0;&#x6587;&#x7AE0;&#xFF0C;&#x5E76;&#x53EF;&#x514D;&#x8D39;&#x9886;&#x53D6;&#x672C;&#x6587;&#x6863;&#x914D;&#x5957;&#x7684;&#x300A;Java&#x9762;&#x8BD5;&#x7A81;&#x51FB;&#x300B;&#x4EE5;&#x53CA;Java&#x5DE5;&#x7A0B;&#x5E08;&#x5FC5;&#x5907;&#x5B66;&#x4E60;&#x8D44;&#x6E90;&#x3002;</p>
+<!-- TOC -->
+<ul>
+<li><a href="#&#x63A7;&#x5236;&#x53CD;&#x8F6C;ioc&#x548C;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;di">&#x63A7;&#x5236;&#x53CD;&#x8F6C;(IoC)&#x548C;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;(DI)</a></li>
+<li><a href="#&#x5DE5;&#x5382;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;">&#x5DE5;&#x5382;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
+<li><a href="#&#x5355;&#x4F8B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;">&#x5355;&#x4F8B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a></li>
+<li><a href="#&#x4EE3;&#x7406;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;">&#x4EE3;&#x7406;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</a><ul>
+<li><a href="#&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x5728;-aop-&#x4E2D;&#x7684;&#x5E94;&#x7528;">&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x5728; AOP &#x4E2D;&#x7684;&#x5E94;&#x7528;</a></li>
+<li><a href="#spring-aop-&#x548C;-aspectj-aop-&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;">Spring AOP &#x548C; AspectJ AOP &#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;?</a></li>
+</ul>
+</li>
+<li><a href="#&#x6A21;&#x677F;&#x65B9;&#x6CD5;">&#x6A21;&#x677F;&#x65B9;&#x6CD5;</a></li>
+<li><a href="#&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;">&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;</a><ul>
+<li><a href="#spring-&#x4E8B;&#x4EF6;&#x9A71;&#x52A8;&#x6A21;&#x578B;&#x4E2D;&#x7684;&#x4E09;&#x79CD;&#x89D2;&#x8272;">Spring &#x4E8B;&#x4EF6;&#x9A71;&#x52A8;&#x6A21;&#x578B;&#x4E2D;&#x7684;&#x4E09;&#x79CD;&#x89D2;&#x8272;</a><ul>
+<li><a href="#&#x4E8B;&#x4EF6;&#x89D2;&#x8272;">&#x4E8B;&#x4EF6;&#x89D2;&#x8272;</a></li>
+<li><a href="#&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x8005;&#x89D2;&#x8272;">&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x8005;&#x89D2;&#x8272;</a></li>
+<li><a href="#&#x4E8B;&#x4EF6;&#x53D1;&#x5E03;&#x8005;&#x89D2;&#x8272;">&#x4E8B;&#x4EF6;&#x53D1;&#x5E03;&#x8005;&#x89D2;&#x8272;</a></li>
+</ul>
+</li>
+<li><a href="#spring-&#x7684;&#x4E8B;&#x4EF6;&#x6D41;&#x7A0B;&#x603B;&#x7ED3;">Spring &#x7684;&#x4E8B;&#x4EF6;&#x6D41;&#x7A0B;&#x603B;&#x7ED3;</a></li>
+</ul>
+</li>
+<li><a href="#&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;">&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</a><ul>
+<li><a href="#spring-aop&#x4E2D;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;">spring AOP&#x4E2D;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</a></li>
+<li><a href="#spring-mvc&#x4E2D;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;">spring MVC&#x4E2D;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</a></li>
+</ul>
+</li>
+<li><a href="#&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;">&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;</a></li>
+<li><a href="#&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</a></li>
+<li><a href="#&#x53C2;&#x8003;">&#x53C2;&#x8003;</a></li>
+</ul>
+<!-- /TOC -->
+<p>JDK &#x4E2D;&#x7528;&#x5230;&#x4E86;&#x90A3;&#x4E9B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;?Spring &#x4E2D;&#x7528;&#x5230;&#x4E86;&#x90A3;&#x4E9B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;?&#x8FD9;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x5728;&#x9762;&#x8BD5;&#x4E2D;&#x6BD4;&#x8F83;&#x5E38;&#x89C1;&#x3002;&#x6211;&#x5728;&#x7F51;&#x4E0A;&#x641C;&#x7D22;&#x4E86;&#x4E00;&#x4E0B;&#x5173;&#x4E8E; Spring &#x4E2D;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x8BB2;&#x89E3;&#x51E0;&#x4E4E;&#x90FD;&#x662F;&#x5343;&#x7BC7;&#x4E00;&#x5F8B;&#xFF0C;&#x800C;&#x4E14;&#x5927;&#x90E8;&#x5206;&#x90FD;&#x5E74;&#x4EE3;&#x4E45;&#x8FDC;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x82B1;&#x4E86;&#x51E0;&#x5929;&#x65F6;&#x95F4;&#x81EA;&#x5DF1;&#x603B;&#x7ED3;&#x4E86;&#x4E00;&#x4E0B;&#xFF0C;&#x7531;&#x4E8E;&#x6211;&#x7684;&#x4E2A;&#x4EBA;&#x80FD;&#x529B;&#x6709;&#x9650;&#xFF0C;&#x6587;&#x4E2D;&#x5982;&#x6709;&#x4EFB;&#x4F55;&#x9519;&#x8BEF;&#x5404;&#x4F4D;&#x90FD;&#x53EF;&#x4EE5;&#x6307;&#x51FA;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x6587;&#x7AE0;&#x7BC7;&#x5E45;&#x6709;&#x9650;&#xFF0C;&#x5BF9;&#x4E8E;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4EE5;&#x53CA;&#x4E00;&#x4E9B;&#x6E90;&#x7801;&#x7684;&#x89E3;&#x8BFB;&#x6211;&#x53EA;&#x662F;&#x4E00;&#x7B14;&#x5E26;&#x8FC7;&#xFF0C;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x7684;&#x4E3B;&#x8981;&#x76EE;&#x7684;&#x662F;&#x56DE;&#x987E;&#x4E00;&#x4E0B; Spring &#x4E2D;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;</p>
+<p>Design Patterns(&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;) &#x8868;&#x793A;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x4E2D;&#x6700;&#x597D;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x7F16;&#x7A0B;&#x5B9E;&#x8DF5;&#x3002; Spring &#x6846;&#x67B6;&#x4E2D;&#x5E7F;&#x6CDB;&#x4F7F;&#x7528;&#x4E86;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x770B;&#x5230;&#x5E95;&#x6709;&#x54EA;&#x4E9B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;?</p>
+<h2 id="&#x63A7;&#x5236;&#x53CD;&#x8F6C;ioc&#x548C;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;di">&#x63A7;&#x5236;&#x53CD;&#x8F6C;(IoC)&#x548C;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;(DI)</h2>
+<p><strong>IoC(Inversion of Control,&#x63A7;&#x5236;&#x7FFB;&#x8F6C;)</strong> &#x662F;Spring &#x4E2D;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5B83;&#x4E0D;&#x662F;&#x4EC0;&#x4E48;&#x6280;&#x672F;&#xFF0C;&#x800C;&#x662F;&#x4E00;&#x79CD;&#x89E3;&#x8026;&#x7684;&#x8BBE;&#x8BA1;&#x601D;&#x60F3;&#x3002;&#x5B83;&#x7684;&#x4E3B;&#x8981;&#x76EE;&#x7684;&#x662F;&#x501F;&#x52A9;&#x4E8E;&#x201C;&#x7B2C;&#x4E09;&#x65B9;&#x201D;(Spring &#x4E2D;&#x7684; IOC &#x5BB9;&#x5668;) &#x5B9E;&#x73B0;&#x5177;&#x6709;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x7684;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x7684;&#x89E3;&#x8026;(IOC&#x5BB9;&#x6613;&#x7BA1;&#x7406;&#x5BF9;&#x8C61;&#xFF0C;&#x4F60;&#x53EA;&#x7BA1;&#x4F7F;&#x7528;&#x5373;&#x53EF;)&#xFF0C;&#x4ECE;&#x800C;&#x964D;&#x4F4E;&#x4EE3;&#x7801;&#x4E4B;&#x95F4;&#x7684;&#x8026;&#x5408;&#x5EA6;&#x3002;<strong>IOC &#x662F;&#x4E00;&#x4E2A;&#x539F;&#x5219;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x6A21;&#x5F0F;&#xFF0C;&#x4EE5;&#x4E0B;&#x6A21;&#x5F0F;&#xFF08;&#x4F46;&#x4E0D;&#x9650;&#x4E8E;&#xFF09;&#x5B9E;&#x73B0;&#x4E86;IoC&#x539F;&#x5219;&#x3002;</strong></p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/ioc-patterns.png" alt="ioc-patterns"></p>
+<p><strong>Spring IOC &#x5BB9;&#x5668;&#x5C31;&#x50CF;&#x662F;&#x4E00;&#x4E2A;&#x5DE5;&#x5382;&#x4E00;&#x6837;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x914D;&#x7F6E;&#x597D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;/&#x6CE8;&#x89E3;&#x5373;&#x53EF;&#xFF0C;&#x5B8C;&#x5168;&#x4E0D;&#x7528;&#x8003;&#x8651;&#x5BF9;&#x8C61;&#x662F;&#x5982;&#x4F55;&#x88AB;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x7684;&#x3002;</strong> IOC &#x5BB9;&#x5668;&#x8D1F;&#x8D23;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x5BF9;&#x8C61;&#x8FDE;&#x63A5;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x914D;&#x7F6E;&#x8FD9;&#x4E9B;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4ECE;&#x521B;&#x5EFA;&#x4E2D;&#x5904;&#x7406;&#x8FD9;&#x4E9B;&#x5BF9;&#x8C61;&#x7684;&#x6574;&#x4E2A;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF0C;&#x76F4;&#x5230;&#x5B83;&#x4EEC;&#x88AB;&#x5B8C;&#x5168;&#x9500;&#x6BC1;&#x3002;</p>
+<p>&#x5728;&#x5B9E;&#x9645;&#x9879;&#x76EE;&#x4E2D;&#x4E00;&#x4E2A; Service &#x7C7B;&#x5982;&#x679C;&#x6709;&#x51E0;&#x767E;&#x751A;&#x81F3;&#x4E0A;&#x5343;&#x4E2A;&#x7C7B;&#x4F5C;&#x4E3A;&#x5B83;&#x7684;&#x5E95;&#x5C42;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5B9E;&#x4F8B;&#x5316;&#x8FD9;&#x4E2A; Service&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x8981;&#x6BCF;&#x6B21;&#x90FD;&#x8981;&#x641E;&#x6E05;&#x8FD9;&#x4E2A; Service &#x6240;&#x6709;&#x5E95;&#x5C42;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x4F1A;&#x628A;&#x4EBA;&#x903C;&#x75AF;&#x3002;&#x5982;&#x679C;&#x5229;&#x7528; IOC &#x7684;&#x8BDD;&#xFF0C;&#x4F60;&#x53EA;&#x9700;&#x8981;&#x914D;&#x7F6E;&#x597D;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x9700;&#x8981;&#x7684;&#x5730;&#x65B9;&#x5F15;&#x7528;&#x5C31;&#x884C;&#x4E86;&#xFF0C;&#x8FD9;&#x5927;&#x5927;&#x589E;&#x52A0;&#x4E86;&#x9879;&#x76EE;&#x7684;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#x4E14;&#x964D;&#x4F4E;&#x4E86;&#x5F00;&#x53D1;&#x96BE;&#x5EA6;&#x3002;&#x5173;&#x4E8E;Spring IOC &#x7684;&#x7406;&#x89E3;&#xFF0C;&#x63A8;&#x8350;&#x770B;&#x8FD9;&#x4E00;&#x4E0B;&#x77E5;&#x4E4E;&#x7684;&#x4E00;&#x4E2A;&#x56DE;&#x7B54;&#xFF1A;<a href="https://www.zhihu.com/question/23277575/answer/169698662" target="_blank">https://www.zhihu.com/question/23277575/answer/169698662</a>  &#xFF0C;&#x975E;&#x5E38;&#x4E0D;&#x9519;&#x3002;</p>
+<p><strong>&#x63A7;&#x5236;&#x7FFB;&#x8F6C;&#x600E;&#x4E48;&#x7406;&#x89E3;&#x5462;?</strong> &#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;&quot;&#x5BF9;&#x8C61;a &#x4F9D;&#x8D56;&#x4E86;&#x5BF9;&#x8C61; b&#xFF0C;&#x5F53;&#x5BF9;&#x8C61; a &#x9700;&#x8981;&#x4F7F;&#x7528; &#x5BF9;&#x8C61; b&#x7684;&#x65F6;&#x5019;&#x5FC5;&#x987B;&#x81EA;&#x5DF1;&#x53BB;&#x521B;&#x5EFA;&#x3002;&#x4F46;&#x662F;&#x5F53;&#x7CFB;&#x7EDF;&#x5F15;&#x5165;&#x4E86; IOC &#x5BB9;&#x5668;&#x540E;&#xFF0C; &#x5BF9;&#x8C61;a &#x548C;&#x5BF9;&#x8C61; b &#x4E4B;&#x524D;&#x5C31;&#x5931;&#x53BB;&#x4E86;&#x76F4;&#x63A5;&#x7684;&#x8054;&#x7CFB;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#xFF0C;&#x5F53;&#x5BF9;&#x8C61; a &#x9700;&#x8981;&#x4F7F;&#x7528; &#x5BF9;&#x8C61; b&#x7684;&#x65F6;&#x5019;&#xFF0C; &#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6307;&#x5B9A; IOC &#x5BB9;&#x5668;&#x53BB;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;b&#x6CE8;&#x5165;&#x5230;&#x5BF9;&#x8C61; a &#x4E2D;&quot;&#x3002; &#x5BF9;&#x8C61; a &#x83B7;&#x5F97;&#x4F9D;&#x8D56;&#x5BF9;&#x8C61; b &#x7684;&#x8FC7;&#x7A0B;,&#x7531;&#x4E3B;&#x52A8;&#x884C;&#x4E3A;&#x53D8;&#x4E3A;&#x4E86;&#x88AB;&#x52A8;&#x884C;&#x4E3A;&#xFF0C;&#x63A7;&#x5236;&#x6743;&#x7FFB;&#x8F6C;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x63A7;&#x5236;&#x53CD;&#x8F6C;&#x540D;&#x5B57;&#x7684;&#x7531;&#x6765;&#x3002;</p>
+<p><strong>DI(Dependecy Inject,&#x4F9D;&#x8D56;&#x6CE8;&#x5165;)&#x662F;&#x5B9E;&#x73B0;&#x63A7;&#x5236;&#x53CD;&#x8F6C;&#x7684;&#x4E00;&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x5C31;&#x662F;&#x5C06;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x4F20;&#x5165;&#x5230;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x53BB;&#x3002;</strong></p>
+<h2 id="&#x5DE5;&#x5382;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;">&#x5DE5;&#x5382;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</h2>
+<p>Spring&#x4F7F;&#x7528;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>BeanFactory</code> &#x6216; <code>ApplicationContext</code> &#x521B;&#x5EFA; bean &#x5BF9;&#x8C61;&#x3002;</p>
+<p><strong>&#x4E24;&#x8005;&#x5BF9;&#x6BD4;&#xFF1A;</strong></p>
+<ul>
+<li><code>BeanFactory</code> &#xFF1A;&#x5EF6;&#x8FDF;&#x6CE8;&#x5165;(&#x4F7F;&#x7528;&#x5230;&#x67D0;&#x4E2A; bean &#x7684;&#x65F6;&#x5019;&#x624D;&#x4F1A;&#x6CE8;&#x5165;),&#x76F8;&#x6BD4;&#x4E8E;<code>ApplicationContext</code> &#x6765;&#x8BF4;&#x4F1A;&#x5360;&#x7528;&#x66F4;&#x5C11;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x901F;&#x5EA6;&#x66F4;&#x5FEB;&#x3002;</li>
+<li><code>ApplicationContext</code> &#xFF1A;&#x5BB9;&#x5668;&#x542F;&#x52A8;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x7BA1;&#x4F60;&#x7528;&#x6CA1;&#x7528;&#x5230;&#xFF0C;&#x4E00;&#x6B21;&#x6027;&#x521B;&#x5EFA;&#x6240;&#x6709; bean &#x3002;<code>BeanFactory</code> &#x4EC5;&#x63D0;&#x4F9B;&#x4E86;&#x6700;&#x57FA;&#x672C;&#x7684;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x652F;&#x6301;&#xFF0C;<code>ApplicationContext</code> &#x6269;&#x5C55;&#x4E86; <code>BeanFactory</code> ,&#x9664;&#x4E86;&#x6709;<code>BeanFactory</code>&#x7684;&#x529F;&#x80FD;&#x8FD8;&#x6709;&#x989D;&#x5916;&#x66F4;&#x591A;&#x529F;&#x80FD;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x822C;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4F7F;&#x7528;<code>ApplicationContext</code>&#x4F1A;&#x66F4;&#x591A;&#x3002;</li>
+</ul>
+<p>ApplicationContext&#x7684;&#x4E09;&#x4E2A;&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A;</p>
+<ol>
+<li><code>ClassPathXmlApplication</code>&#xFF1A;&#x628A;&#x4E0A;&#x4E0B;&#x6587;&#x6587;&#x4EF6;&#x5F53;&#x6210;&#x7C7B;&#x8DEF;&#x5F84;&#x8D44;&#x6E90;&#x3002;</li>
+<li><code>FileSystemXmlApplication</code>&#xFF1A;&#x4ECE;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684; XML &#x6587;&#x4EF6;&#x8F7D;&#x5165;&#x4E0A;&#x4E0B;&#x6587;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;&#x3002;</li>
+<li><code>XmlWebApplicationContext</code>&#xFF1A;&#x4ECE;Web&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;XML&#x6587;&#x4EF6;&#x8F7D;&#x5165;&#x4E0A;&#x4E0B;&#x6587;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;&#x3002;</li>
+</ol>
+<p>Example:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">import</span> org.springframework.context.ApplicationContext;
+<span class="hljs-keyword">import</span> org.springframework.context.support.FileSystemXmlApplicationContext;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        ApplicationContext context = <span class="hljs-keyword">new</span> FileSystemXmlApplicationContext(
+                <span class="hljs-string">&quot;C:/work/IOC Containers/springframework.applicationcontext/src/main/resources/bean-factory-config.xml&quot;</span>);
+
+        HelloApplicationContext obj = (HelloApplicationContext) context.getBean(<span class="hljs-string">&quot;helloApplicationContext&quot;</span>);
+        obj.getMsg();
+    }
+}
+</code></pre>
+<h2 id="&#x5355;&#x4F8B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;">&#x5355;&#x4F8B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</h2>
+<p>&#x5728;&#x6211;&#x4EEC;&#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x6709;&#x4E00;&#x4E9B;&#x5BF9;&#x8C61;&#x5176;&#x5B9E;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;&#xFF1A;&#x7EBF;&#x7A0B;&#x6C60;&#x3001;&#x7F13;&#x5B58;&#x3001;&#x5BF9;&#x8BDD;&#x6846;&#x3001;&#x6CE8;&#x518C;&#x8868;&#x3001;&#x65E5;&#x5FD7;&#x5BF9;&#x8C61;&#x3001;&#x5145;&#x5F53;&#x6253;&#x5370;&#x673A;&#x3001;&#x663E;&#x5361;&#x7B49;&#x8BBE;&#x5907;&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x8FD9;&#x4E00;&#x7C7B;&#x5BF9;&#x8C61;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#xFF0C;&#x5982;&#x679C;&#x5236;&#x9020;&#x51FA;&#x591A;&#x4E2A;&#x5B9E;&#x4F8B;&#x5C31;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x4E00;&#x4E9B;&#x95EE;&#x9898;&#x7684;&#x4EA7;&#x751F;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;&#x7A0B;&#x5E8F;&#x7684;&#x884C;&#x4E3A;&#x5F02;&#x5E38;&#x3001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x8FC7;&#x91CF;&#x3001;&#x6216;&#x8005;&#x4E0D;&#x4E00;&#x81F4;&#x6027;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
+<p><strong>&#x4F7F;&#x7528;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x7684;&#x597D;&#x5904;:</strong></p>
+<ul>
+<li>&#x5BF9;&#x4E8E;&#x9891;&#x7E41;&#x4F7F;&#x7528;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x6240;&#x82B1;&#x8D39;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x8FD9;&#x5BF9;&#x4E8E;&#x90A3;&#x4E9B;&#x91CD;&#x91CF;&#x7EA7;&#x5BF9;&#x8C61;&#x800C;&#x8A00;&#xFF0C;&#x662F;&#x975E;&#x5E38;&#x53EF;&#x89C2;&#x7684;&#x4E00;&#x7B14;&#x7CFB;&#x7EDF;&#x5F00;&#x9500;&#xFF1B;</li>
+<li>&#x7531;&#x4E8E; new &#x64CD;&#x4F5C;&#x7684;&#x6B21;&#x6570;&#x51CF;&#x5C11;&#xFF0C;&#x56E0;&#x800C;&#x5BF9;&#x7CFB;&#x7EDF;&#x5185;&#x5B58;&#x7684;&#x4F7F;&#x7528;&#x9891;&#x7387;&#x4E5F;&#x4F1A;&#x964D;&#x4F4E;&#xFF0C;&#x8FD9;&#x5C06;&#x51CF;&#x8F7B; GC &#x538B;&#x529B;&#xFF0C;&#x7F29;&#x77ED; GC &#x505C;&#x987F;&#x65F6;&#x95F4;&#x3002;</li>
+</ul>
+<p><strong>Spring &#x4E2D; bean &#x7684;&#x9ED8;&#x8BA4;&#x4F5C;&#x7528;&#x57DF;&#x5C31;&#x662F; singleton(&#x5355;&#x4F8B;)&#x7684;&#x3002;</strong> &#x9664;&#x4E86; singleton &#x4F5C;&#x7528;&#x57DF;&#xFF0C;Spring &#x4E2D; bean &#x8FD8;&#x6709;&#x4E0B;&#x9762;&#x51E0;&#x79CD;&#x4F5C;&#x7528;&#x57DF;&#xFF1A;</p>
+<ul>
+<li>prototype : &#x6BCF;&#x6B21;&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; bean &#x5B9E;&#x4F8B;&#x3002;</li>
+<li>request : &#x6BCF;&#x4E00;&#x6B21;HTTP&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;bean&#xFF0C;&#x8BE5;bean&#x4EC5;&#x5728;&#x5F53;&#x524D;HTTP request&#x5185;&#x6709;&#x6548;&#x3002;</li>
+<li>session : &#x6BCF;&#x4E00;&#x6B21;HTTP&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x65B0;&#x7684; bean&#xFF0C;&#x8BE5;bean&#x4EC5;&#x5728;&#x5F53;&#x524D; HTTP session &#x5185;&#x6709;&#x6548;&#x3002;</li>
+<li>global-session&#xFF1A; &#x5168;&#x5C40;session&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x4EC5;&#x4EC5;&#x5728;&#x57FA;&#x4E8E;portlet&#x7684;web&#x5E94;&#x7528;&#x4E2D;&#x624D;&#x6709;&#x610F;&#x4E49;&#xFF0C;Spring5&#x5DF2;&#x7ECF;&#x6CA1;&#x6709;&#x4E86;&#x3002;Portlet&#x662F;&#x80FD;&#x591F;&#x751F;&#x6210;&#x8BED;&#x4E49;&#x4EE3;&#x7801;(&#x4F8B;&#x5982;&#xFF1A;HTML)&#x7247;&#x6BB5;&#x7684;&#x5C0F;&#x578B;Java Web&#x63D2;&#x4EF6;&#x3002;&#x5B83;&#x4EEC;&#x57FA;&#x4E8E;portlet&#x5BB9;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x50CF;servlet&#x4E00;&#x6837;&#x5904;&#x7406;HTTP&#x8BF7;&#x6C42;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x4E0E; servlet &#x4E0D;&#x540C;&#xFF0C;&#x6BCF;&#x4E2A; portlet &#x90FD;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x4F1A;&#x8BDD;</li>
+</ul>
+<p><strong>Spring &#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x7684;&#x65B9;&#x5F0F;&#xFF1A;</strong></p>
+<ul>
+<li>xml : <code>&lt;bean id=&quot;userService&quot; class=&quot;top.snailclimb.UserService&quot; scope=&quot;singleton&quot;/&gt;</code></li>
+<li>&#x6CE8;&#x89E3;&#xFF1A;<code>@Scope(value = &quot;singleton&quot;)</code></li>
+</ul>
+<p><strong>Spring &#x901A;&#x8FC7; <code>ConcurrentHashMap</code> &#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6CE8;&#x518C;&#x8868;&#x7684;&#x7279;&#x6B8A;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x3002;Spring &#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x7684;&#x6838;&#x5FC3;&#x4EE3;&#x7801;&#x5982;&#x4E0B;</strong></p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x901A;&#x8FC7; ConcurrentHashMap&#xFF08;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#xFF09; &#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6CE8;&#x518C;&#x8868;</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;String, Object&gt; singletonObjects = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="hljs-number">64</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getSingleton</span><span class="hljs-params">(String beanName, ObjectFactory&lt;?&gt; singletonFactory)</span> </span>{
+        Assert.notNull(beanName, <span class="hljs-string">&quot;&apos;beanName&apos; must not be null&quot;</span>);
+        <span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>.singletonObjects) {
+            <span class="hljs-comment">// &#x68C0;&#x67E5;&#x7F13;&#x5B58;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x5B9E;&#x4F8B;  </span>
+            Object singletonObject = <span class="hljs-keyword">this</span>.singletonObjects.get(beanName);
+            <span class="hljs-keyword">if</span> (singletonObject == <span class="hljs-keyword">null</span>) {
+                <span class="hljs-comment">//...&#x7701;&#x7565;&#x4E86;&#x5F88;&#x591A;&#x4EE3;&#x7801;</span>
+                <span class="hljs-keyword">try</span> {
+                    singletonObject = singletonFactory.getObject();
+                }
+                <span class="hljs-comment">//...&#x7701;&#x7565;&#x4E86;&#x5F88;&#x591A;&#x4EE3;&#x7801;</span>
+                <span class="hljs-comment">// &#x5982;&#x679C;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x5728;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x6CE8;&#x518C;&#x5230;&#x5355;&#x4F8B;&#x6CE8;&#x518C;&#x8868;&#x4E2D;&#x3002;</span>
+                addSingleton(beanName, singletonObject);
+            }
+            <span class="hljs-keyword">return</span> (singletonObject != NULL_OBJECT ? singletonObject : <span class="hljs-keyword">null</span>);
+        }
+    }
+    <span class="hljs-comment">//&#x5C06;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x5230;&#x5355;&#x4F8B;&#x6CE8;&#x518C;&#x8868;</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addSingleton</span><span class="hljs-params">(String beanName, Object singletonObject)</span> </span>{
+            <span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>.singletonObjects) {
+                <span class="hljs-keyword">this</span>.singletonObjects.put(beanName, (singletonObject != <span class="hljs-keyword">null</span> ? singletonObject : NULL_OBJECT));
+
+            }
+        }
+}
+</code></pre>
+<h2 id="&#x4EE3;&#x7406;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;">&#x4EE3;&#x7406;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</h2>
+<h3 id="&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x5728;-aop-&#x4E2D;&#x7684;&#x5E94;&#x7528;">&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x5728; AOP &#x4E2D;&#x7684;&#x5E94;&#x7528;</h3>
+<p>AOP(Aspect-Oriented Programming:&#x9762;&#x5411;&#x5207;&#x9762;&#x7F16;&#x7A0B;)&#x80FD;&#x591F;&#x5C06;&#x90A3;&#x4E9B;&#x4E0E;&#x4E1A;&#x52A1;&#x65E0;&#x5173;&#xFF0C;<strong>&#x5374;&#x4E3A;&#x4E1A;&#x52A1;&#x6A21;&#x5757;&#x6240;&#x5171;&#x540C;&#x8C03;&#x7528;&#x7684;&#x903B;&#x8F91;&#x6216;&#x8D23;&#x4EFB;&#xFF08;&#x4F8B;&#x5982;&#x4E8B;&#x52A1;&#x5904;&#x7406;&#x3001;&#x65E5;&#x5FD7;&#x7BA1;&#x7406;&#x3001;&#x6743;&#x9650;&#x63A7;&#x5236;&#x7B49;&#xFF09;&#x5C01;&#x88C5;&#x8D77;&#x6765;</strong>&#xFF0C;&#x4FBF;&#x4E8E;<strong>&#x51CF;&#x5C11;&#x7CFB;&#x7EDF;&#x7684;&#x91CD;&#x590D;&#x4EE3;&#x7801;</strong>&#xFF0C;<strong>&#x964D;&#x4F4E;&#x6A21;&#x5757;&#x95F4;&#x7684;&#x8026;&#x5408;&#x5EA6;</strong>&#xFF0C;&#x5E76;<strong>&#x6709;&#x5229;&#x4E8E;&#x672A;&#x6765;&#x7684;&#x53EF;&#x62D3;&#x5C55;&#x6027;&#x548C;&#x53EF;&#x7EF4;&#x62A4;&#x6027;</strong>&#x3002;</p>
+<p><strong>Spring AOP &#x5C31;&#x662F;&#x57FA;&#x4E8E;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x7684;</strong>&#xFF0C;&#x5982;&#x679C;&#x8981;&#x4EE3;&#x7406;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5B9E;&#x73B0;&#x4E86;&#x67D0;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x90A3;&#x4E48;Spring AOP&#x4F1A;&#x4F7F;&#x7528;<strong>JDK Proxy</strong>&#xFF0C;&#x53BB;&#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#xFF0C;&#x800C;&#x5BF9;&#x4E8E;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5C31;&#x65E0;&#x6CD5;&#x4F7F;&#x7528; JDK Proxy &#x53BB;&#x8FDB;&#x884C;&#x4EE3;&#x7406;&#x4E86;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;Spring AOP&#x4F1A;&#x4F7F;&#x7528;<strong>Cglib</strong> &#xFF0C;&#x8FD9;&#x65F6;&#x5019;Spring AOP&#x4F1A;&#x4F7F;&#x7528; <strong>Cglib</strong> &#x751F;&#x6210;&#x4E00;&#x4E2A;&#x88AB;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x7684;&#x5B50;&#x7C7B;&#x6765;&#x4F5C;&#x4E3A;&#x4EE3;&#x7406;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/SpringAOPProcess.jpg" alt="SpringAOPProcess"></p>
+<p>&#x5F53;&#x7136;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; AspectJ ,Spring AOP &#x5DF2;&#x7ECF;&#x96C6;&#x6210;&#x4E86;AspectJ  &#xFF0C;AspectJ  &#x5E94;&#x8BE5;&#x7B97;&#x7684;&#x4E0A;&#x662F; Java &#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x4E2D;&#x6700;&#x5B8C;&#x6574;&#x7684; AOP &#x6846;&#x67B6;&#x4E86;&#x3002;</p>
+<p>&#x4F7F;&#x7528; AOP &#x4E4B;&#x540E;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x4E00;&#x4E9B;&#x901A;&#x7528;&#x529F;&#x80FD;&#x62BD;&#x8C61;&#x51FA;&#x6765;&#xFF0C;&#x5728;&#x9700;&#x8981;&#x7528;&#x5230;&#x7684;&#x5730;&#x65B9;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5373;&#x53EF;&#xFF0C;&#x8FD9;&#x6837;&#x5927;&#x5927;&#x7B80;&#x5316;&#x4E86;&#x4EE3;&#x7801;&#x91CF;&#x3002;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x589E;&#x52A0;&#x65B0;&#x529F;&#x80FD;&#x65F6;&#x4E5F;&#x65B9;&#x4FBF;&#xFF0C;&#x8FD9;&#x6837;&#x4E5F;&#x63D0;&#x9AD8;&#x4E86;&#x7CFB;&#x7EDF;&#x6269;&#x5C55;&#x6027;&#x3002;&#x65E5;&#x5FD7;&#x529F;&#x80FD;&#x3001;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x7B49;&#x7B49;&#x573A;&#x666F;&#x90FD;&#x7528;&#x5230;&#x4E86; AOP &#x3002;</p>
+<h3 id="spring-aop-&#x548C;-aspectj-aop-&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;">Spring AOP &#x548C; AspectJ AOP &#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;?</h3>
+<p><strong>Spring AOP &#x5C5E;&#x4E8E;&#x8FD0;&#x884C;&#x65F6;&#x589E;&#x5F3A;&#xFF0C;&#x800C; AspectJ &#x662F;&#x7F16;&#x8BD1;&#x65F6;&#x589E;&#x5F3A;&#x3002;</strong> Spring AOP &#x57FA;&#x4E8E;&#x4EE3;&#x7406;(Proxying)&#xFF0C;&#x800C; AspectJ &#x57FA;&#x4E8E;&#x5B57;&#x8282;&#x7801;&#x64CD;&#x4F5C;(Bytecode Manipulation)&#x3002;</p>
+<p> Spring AOP &#x5DF2;&#x7ECF;&#x96C6;&#x6210;&#x4E86; AspectJ  &#xFF0C;AspectJ  &#x5E94;&#x8BE5;&#x7B97;&#x7684;&#x4E0A;&#x662F; Java &#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x4E2D;&#x6700;&#x5B8C;&#x6574;&#x7684; AOP &#x6846;&#x67B6;&#x4E86;&#x3002;AspectJ  &#x76F8;&#x6BD4;&#x4E8E; Spring AOP &#x529F;&#x80FD;&#x66F4;&#x52A0;&#x5F3A;&#x5927;&#xFF0C;&#x4F46;&#x662F; Spring AOP &#x76F8;&#x5BF9;&#x6765;&#x8BF4;&#x66F4;&#x7B80;&#x5355;&#xFF0C;</p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x7684;&#x5207;&#x9762;&#x6BD4;&#x8F83;&#x5C11;&#xFF0C;&#x90A3;&#x4E48;&#x4E24;&#x8005;&#x6027;&#x80FD;&#x5DEE;&#x5F02;&#x4E0D;&#x5927;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5F53;&#x5207;&#x9762;&#x592A;&#x591A;&#x7684;&#x8BDD;&#xFF0C;&#x6700;&#x597D;&#x9009;&#x62E9; AspectJ &#xFF0C;&#x5B83;&#x6BD4;Spring AOP &#x5FEB;&#x5F88;&#x591A;&#x3002;</p>
+<h2 id="&#x6A21;&#x677F;&#x65B9;&#x6CD5;">&#x6A21;&#x677F;&#x65B9;&#x6CD5;</h2>
+<p>&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;&#x662F;&#x4E00;&#x79CD;&#x884C;&#x4E3A;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x5B83;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x4E2D;&#x7684;&#x7B97;&#x6CD5;&#x7684;&#x9AA8;&#x67B6;&#xFF0C;&#x800C;&#x5C06;&#x4E00;&#x4E9B;&#x6B65;&#x9AA4;&#x5EF6;&#x8FDF;&#x5230;&#x5B50;&#x7C7B;&#x4E2D;&#x3002; &#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x4F7F;&#x5F97;&#x5B50;&#x7C7B;&#x53EF;&#x4EE5;&#x4E0D;&#x6539;&#x53D8;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x7684;&#x7ED3;&#x6784;&#x5373;&#x53EF;&#x91CD;&#x5B9A;&#x4E49;&#x8BE5;&#x7B97;&#x6CD5;&#x7684;&#x67D0;&#x4E9B;&#x7279;&#x5B9A;&#x6B65;&#x9AA4;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x3002;</p>
+<p><img src="https://ws1.sinaimg.cn/large/006rNwoDgy1g3a73vdbojj30vo0iwdgc.jpg" alt="&#x6A21;&#x677F;&#x65B9;&#x6CD5;UML&#x56FE;"></p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Template</span> </span>{
+    <span class="hljs-comment">//&#x8FD9;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x6A21;&#x677F;&#x65B9;&#x6CD5;</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TemplateMethod</span><span class="hljs-params">()</span></span>{
+        PrimitiveOperation1();  
+        PrimitiveOperation2();
+        PrimitiveOperation3();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span>  <span class="hljs-title">PrimitiveOperation1</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-comment">//&#x5F53;&#x524D;&#x7C7B;&#x5B9E;&#x73B0;</span>
+    }
+
+    <span class="hljs-comment">//&#x88AB;&#x5B50;&#x7C7B;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">PrimitiveOperation2</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">PrimitiveOperation3</span><span class="hljs-params">()</span></span>;
+
+}
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TemplateImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Template</span> </span>{
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">PrimitiveOperation2</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//&#x5F53;&#x524D;&#x7C7B;&#x5B9E;&#x73B0;</span>
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">PrimitiveOperation3</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//&#x5F53;&#x524D;&#x7C7B;&#x5B9E;&#x73B0;</span>
+    }
+}
+</code></pre>
+<p>Spring &#x4E2D; <code>jdbcTemplate</code>&#x3001;<code>hibernateTemplate</code> &#x7B49;&#x4EE5; Template &#x7ED3;&#x5C3E;&#x7684;&#x5BF9;&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;&#x7684;&#x7C7B;&#xFF0C;&#x5B83;&#x4EEC;&#x5C31;&#x4F7F;&#x7528;&#x5230;&#x4E86;&#x6A21;&#x677F;&#x6A21;&#x5F0F;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x90FD;&#x662F;&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x5B9E;&#x73B0;&#x6A21;&#x677F;&#x6A21;&#x5F0F;&#xFF0C;&#x4F46;&#x662F; Spring &#x5E76;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x800C;&#x662F;&#x4F7F;&#x7528;Callback &#x6A21;&#x5F0F;&#x4E0E;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;&#x914D;&#x5408;&#xFF0C;&#x65E2;&#x8FBE;&#x5230;&#x4E86;&#x4EE3;&#x7801;&#x590D;&#x7528;&#x7684;&#x6548;&#x679C;&#xFF0C;&#x540C;&#x65F6;&#x589E;&#x52A0;&#x4E86;&#x7075;&#x6D3B;&#x6027;&#x3002;</p>
+<h2 id="&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;">&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;</h2>
+<p>&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x662F;&#x4E00;&#x79CD;&#x5BF9;&#x8C61;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x3002;&#x5B83;&#x8868;&#x793A;&#x7684;&#x662F;&#x4E00;&#x79CD;&#x5BF9;&#x8C61;&#x4E0E;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x5177;&#x6709;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x53D1;&#x751F;&#x6539;&#x53D8;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x6240;&#x4F9D;&#x8D56;&#x7684;&#x5BF9;&#x8C61;&#x4E5F;&#x4F1A;&#x505A;&#x51FA;&#x53CD;&#x5E94;&#x3002;Spring &#x4E8B;&#x4EF6;&#x9A71;&#x52A8;&#x6A21;&#x578B;&#x5C31;&#x662F;&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x5F88;&#x7ECF;&#x5178;&#x7684;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x3002;Spring &#x4E8B;&#x4EF6;&#x9A71;&#x52A8;&#x6A21;&#x578B;&#x975E;&#x5E38;&#x6709;&#x7528;&#xFF0C;&#x5728;&#x5F88;&#x591A;&#x573A;&#x666F;&#x90FD;&#x53EF;&#x4EE5;&#x89E3;&#x8026;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x6BCF;&#x6B21;&#x6DFB;&#x52A0;&#x5546;&#x54C1;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x66F4;&#x65B0;&#x5546;&#x54C1;&#x7D22;&#x5F15;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x5C31;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x6765;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+<h3 id="spring-&#x4E8B;&#x4EF6;&#x9A71;&#x52A8;&#x6A21;&#x578B;&#x4E2D;&#x7684;&#x4E09;&#x79CD;&#x89D2;&#x8272;">Spring &#x4E8B;&#x4EF6;&#x9A71;&#x52A8;&#x6A21;&#x578B;&#x4E2D;&#x7684;&#x4E09;&#x79CD;&#x89D2;&#x8272;</h3>
+<h4 id="&#x4E8B;&#x4EF6;&#x89D2;&#x8272;">&#x4E8B;&#x4EF6;&#x89D2;&#x8272;</h4>
+<p> <code>ApplicationEvent</code> (<code>org.springframework.context</code>&#x5305;&#x4E0B;)&#x5145;&#x5F53;&#x4E8B;&#x4EF6;&#x7684;&#x89D2;&#x8272;,&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x62BD;&#x8C61;&#x7C7B;&#xFF0C;&#x5B83;&#x7EE7;&#x627F;&#x4E86;<code>java.util.EventObject</code>&#x5E76;&#x5B9E;&#x73B0;&#x4E86; <code>java.io.Serializable</code>&#x63A5;&#x53E3;&#x3002;</p>
+<p>Spring &#x4E2D;&#x9ED8;&#x8BA4;&#x5B58;&#x5728;&#x4EE5;&#x4E0B;&#x4E8B;&#x4EF6;&#xFF0C;&#x4ED6;&#x4EEC;&#x90FD;&#x662F;&#x5BF9; <code>ApplicationContextEvent</code> &#x7684;&#x5B9E;&#x73B0;(&#x7EE7;&#x627F;&#x81EA;<code>ApplicationContextEvent</code>)&#xFF1A;</p>
+<ul>
+<li><code>ContextStartedEvent</code>&#xFF1A;<code>ApplicationContext</code> &#x542F;&#x52A8;&#x540E;&#x89E6;&#x53D1;&#x7684;&#x4E8B;&#x4EF6;;</li>
+<li><code>ContextStoppedEvent</code>&#xFF1A;<code>ApplicationContext</code> &#x505C;&#x6B62;&#x540E;&#x89E6;&#x53D1;&#x7684;&#x4E8B;&#x4EF6;;</li>
+<li><code>ContextRefreshedEvent</code>&#xFF1A;<code>ApplicationContext</code> &#x521D;&#x59CB;&#x5316;&#x6216;&#x5237;&#x65B0;&#x5B8C;&#x6210;&#x540E;&#x89E6;&#x53D1;&#x7684;&#x4E8B;&#x4EF6;;</li>
+<li><code>ContextClosedEvent</code>&#xFF1A;<code>ApplicationContext</code> &#x5173;&#x95ED;&#x540E;&#x89E6;&#x53D1;&#x7684;&#x4E8B;&#x4EF6;&#x3002;</li>
+</ul>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/ApplicationEvent-Subclass.png" alt="ApplicationEvent-Subclass"></p>
+<h4 id="&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x8005;&#x89D2;&#x8272;">&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x8005;&#x89D2;&#x8272;</h4>
+<p><code>ApplicationListener</code> &#x5145;&#x5F53;&#x4E86;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x8005;&#x89D2;&#x8272;&#xFF0C;&#x5B83;&#x662F;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x91CC;&#x9762;&#x53EA;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A; <code>onApplicationEvent&#xFF08;&#xFF09;</code>&#x65B9;&#x6CD5;&#x6765;&#x5904;&#x7406;<code>ApplicationEvent</code>&#x3002;<code>ApplicationListener</code>&#x63A5;&#x53E3;&#x7C7B;&#x6E90;&#x7801;&#x5982;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x770B;&#x51FA;&#x63A5;&#x53E3;&#x4E2D;&#x7684;&#x4E8B;&#x4EF6;&#x53EA;&#x8981;&#x5B9E;&#x73B0;&#x4E86; <code>ApplicationEvent</code>&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x5728; Spring&#x4E2D;&#x6211;&#x4EEC;&#x53EA;&#x8981;&#x5B9E;&#x73B0; <code>ApplicationListener</code> &#x63A5;&#x53E3;&#x5B9E;&#x73B0; <code>onApplicationEvent()</code> &#x65B9;&#x6CD5;&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> org.springframework.context;
+<span class="hljs-keyword">import</span> java.util.EventListener;
+<span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ApplicationListener</span>&lt;<span class="hljs-title">E</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ApplicationEvent</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">EventListener</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onApplicationEvent</span><span class="hljs-params">(E var1)</span></span>;
+}
+</code></pre>
+<h4 id="&#x4E8B;&#x4EF6;&#x53D1;&#x5E03;&#x8005;&#x89D2;&#x8272;">&#x4E8B;&#x4EF6;&#x53D1;&#x5E03;&#x8005;&#x89D2;&#x8272;</h4>
+<p><code>ApplicationEventPublisher</code> &#x5145;&#x5F53;&#x4E86;&#x4E8B;&#x4EF6;&#x7684;&#x53D1;&#x5E03;&#x8005;&#xFF0C;&#x5B83;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ApplicationEventPublisher</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">publishEvent</span><span class="hljs-params">(ApplicationEvent event)</span> </span>{
+        <span class="hljs-keyword">this</span>.publishEvent((Object)event);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">publishEvent</span><span class="hljs-params">(Object var1)</span></span>;
+}
+</code></pre>
+<p><code>ApplicationEventPublisher</code> &#x63A5;&#x53E3;&#x7684;<code>publishEvent&#xFF08;&#xFF09;</code>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5728;<code>AbstractApplicationContext</code>&#x7C7B;&#x4E2D;&#x88AB;&#x5B9E;&#x73B0;&#xFF0C;&#x9605;&#x8BFB;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x4F60;&#x4F1A;&#x53D1;&#x73B0;&#x5B9E;&#x9645;&#x4E0A;&#x4E8B;&#x4EF6;&#x771F;&#x6B63;&#x662F;&#x901A;&#x8FC7;<code>ApplicationEventMulticaster</code>&#x6765;&#x5E7F;&#x64AD;&#x51FA;&#x53BB;&#x7684;&#x3002;&#x5177;&#x4F53;&#x5185;&#x5BB9;&#x8FC7;&#x591A;&#xFF0C;&#x5C31;&#x4E0D;&#x5728;&#x8FD9;&#x91CC;&#x5206;&#x6790;&#x4E86;&#xFF0C;&#x540E;&#x9762;&#x53EF;&#x80FD;&#x4F1A;&#x5355;&#x72EC;&#x5199;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#x63D0;&#x5230;&#x3002;</p>
+<h3 id="spring-&#x7684;&#x4E8B;&#x4EF6;&#x6D41;&#x7A0B;&#x603B;&#x7ED3;">Spring &#x7684;&#x4E8B;&#x4EF6;&#x6D41;&#x7A0B;&#x603B;&#x7ED3;</h3>
+<ol>
+<li>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;: &#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x7EE7;&#x627F;&#x81EA; <code>ApplicationEvent</code>&#xFF0C;&#x5E76;&#x4E14;&#x5199;&#x76F8;&#x5E94;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF1B;</li>
+<li>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x8005;&#xFF1A;&#x5B9E;&#x73B0; <code>ApplicationListener</code> &#x63A5;&#x53E3;&#xFF0C;&#x91CD;&#x5199; <code>onApplicationEvent()</code> &#x65B9;&#x6CD5;&#xFF1B;</li>
+<li>&#x4F7F;&#x7528;&#x4E8B;&#x4EF6;&#x53D1;&#x5E03;&#x8005;&#x53D1;&#x5E03;&#x6D88;&#x606F;:  &#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>ApplicationEventPublisher</code> &#x7684; <code>publishEvent()</code> &#x65B9;&#x6CD5;&#x53D1;&#x5E03;&#x6D88;&#x606F;&#x3002;</li>
+</ol>
+<p>Example:</p>
+<pre><code class="lang-java"><span class="hljs-comment">// &#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;,&#x7EE7;&#x627F;&#x81EA;ApplicationEvent&#x5E76;&#x4E14;&#x5199;&#x76F8;&#x5E94;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoEvent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ApplicationEvent</span></span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
+
+    <span class="hljs-keyword">private</span> String message;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DemoEvent</span><span class="hljs-params">(Object source,String message)</span></span>{
+        <span class="hljs-keyword">super</span>(source);
+        <span class="hljs-keyword">this</span>.message = message;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getMessage</span><span class="hljs-params">()</span> </span>{
+         <span class="hljs-keyword">return</span> message;
+          }
+
+
+<span class="hljs-comment">// &#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x8005;,&#x5B9E;&#x73B0;ApplicationListener&#x63A5;&#x53E3;&#xFF0C;&#x91CD;&#x5199; onApplicationEvent() &#x65B9;&#x6CD5;&#xFF1B;</span>
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoListener</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ApplicationListener</span>&lt;<span class="hljs-title">DemoEvent</span>&gt;</span>{
+
+    <span class="hljs-comment">//&#x4F7F;&#x7528;onApplicationEvent&#x63A5;&#x6536;&#x6D88;&#x606F;</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onApplicationEvent</span><span class="hljs-params">(DemoEvent event)</span> </span>{
+        String msg = event.getMessage();
+        System.out.println(<span class="hljs-string">&quot;&#x63A5;&#x6536;&#x5230;&#x7684;&#x4FE1;&#x606F;&#x662F;&#xFF1A;&quot;</span>+msg);
+    }
+
+}
+<span class="hljs-comment">// &#x53D1;&#x5E03;&#x4E8B;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;ApplicationEventPublisher  &#x7684; publishEvent() &#x65B9;&#x6CD5;&#x53D1;&#x5E03;&#x6D88;&#x606F;&#x3002;</span>
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoPublisher</span> </span>{
+
+    <span class="hljs-meta">@Autowired</span>
+    ApplicationContext applicationContext;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">publish</span><span class="hljs-params">(String message)</span></span>{
+        <span class="hljs-comment">//&#x53D1;&#x5E03;&#x4E8B;&#x4EF6;</span>
+        applicationContext.publishEvent(<span class="hljs-keyword">new</span> DemoEvent(<span class="hljs-keyword">this</span>, message));
+    }
+}
+</code></pre>
+<p>&#x5F53;&#x8C03;&#x7528; <code>DemoPublisher</code> &#x7684; <code>publish()</code> &#x65B9;&#x6CD5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6BD4;&#x5982; <code>demoPublisher.publish(&quot;&#x4F60;&#x597D;&quot;)</code> &#xFF0C;&#x63A7;&#x5236;&#x53F0;&#x5C31;&#x4F1A;&#x6253;&#x5370;&#x51FA;:<code>&#x63A5;&#x6536;&#x5230;&#x7684;&#x4FE1;&#x606F;&#x662F;&#xFF1A;&#x4F60;&#x597D;</code> &#x3002;</p>
+<h2 id="&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;">&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</h2>
+<p>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;(Adapter Pattern) &#x5C06;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#x8F6C;&#x6362;&#x6210;&#x5BA2;&#x6237;&#x5E0C;&#x671B;&#x7684;&#x53E6;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x4F7F;&#x63A5;&#x53E3;&#x4E0D;&#x517C;&#x5BB9;&#x7684;&#x90A3;&#x4E9B;&#x7C7B;&#x53EF;&#x4EE5;&#x4E00;&#x8D77;&#x5DE5;&#x4F5C;&#xFF0C;&#x5176;&#x522B;&#x540D;&#x4E3A;&#x5305;&#x88C5;&#x5668;(Wrapper)&#x3002;</p>
+<h3 id="spring-aop&#x4E2D;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;">spring AOP&#x4E2D;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</h3>
+<p>&#x6211;&#x4EEC;&#x77E5;&#x9053; Spring AOP &#x7684;&#x5B9E;&#x73B0;&#x662F;&#x57FA;&#x4E8E;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#xFF0C;&#x4F46;&#x662F; Spring AOP &#x7684;&#x589E;&#x5F3A;&#x6216;&#x901A;&#x77E5;(Advice)&#x4F7F;&#x7528;&#x5230;&#x4E86;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#xFF0C;&#x4E0E;&#x4E4B;&#x76F8;&#x5173;&#x7684;&#x63A5;&#x53E3;&#x662F;<code>AdvisorAdapter</code> &#x3002;Advice &#x5E38;&#x7528;&#x7684;&#x7C7B;&#x578B;&#x6709;&#xFF1A;<code>BeforeAdvice</code>&#xFF08;&#x76EE;&#x6807;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x524D;,&#x524D;&#x7F6E;&#x901A;&#x77E5;&#xFF09;&#x3001;<code>AfterAdvice</code>&#xFF08;&#x76EE;&#x6807;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x540E;,&#x540E;&#x7F6E;&#x901A;&#x77E5;&#xFF09;&#x3001;<code>AfterReturningAdvice</code>(&#x76EE;&#x6807;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x7ED3;&#x675F;&#x540E;&#xFF0C;return&#x4E4B;&#x524D;)&#x7B49;&#x7B49;&#x3002;&#x6BCF;&#x4E2A;&#x7C7B;&#x578B;Advice&#xFF08;&#x901A;&#x77E5;&#xFF09;&#x90FD;&#x6709;&#x5BF9;&#x5E94;&#x7684;&#x62E6;&#x622A;&#x5668;:<code>MethodBeforeAdviceInterceptor</code>&#x3001;<code>AfterReturningAdviceAdapter</code>&#x3001;<code>AfterReturningAdviceInterceptor</code>&#x3002;Spring&#x9884;&#x5B9A;&#x4E49;&#x7684;&#x901A;&#x77E5;&#x8981;&#x901A;&#x8FC7;&#x5BF9;&#x5E94;&#x7684;&#x9002;&#x914D;&#x5668;&#xFF0C;&#x9002;&#x914D;&#x6210; <code>MethodInterceptor</code>&#x63A5;&#x53E3;(&#x65B9;&#x6CD5;&#x62E6;&#x622A;&#x5668;)&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#xFF08;&#x5982;&#xFF1A;<code>MethodBeforeAdviceInterceptor</code> &#x8D1F;&#x8D23;&#x9002;&#x914D; <code>MethodBeforeAdvice</code>&#xFF09;&#x3002;</p>
+<h3 id="spring-mvc&#x4E2D;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;">spring MVC&#x4E2D;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</h3>
+<p>&#x5728;Spring MVC&#x4E2D;&#xFF0C;<code>DispatcherServlet</code> &#x6839;&#x636E;&#x8BF7;&#x6C42;&#x4FE1;&#x606F;&#x8C03;&#x7528; <code>HandlerMapping</code>&#xFF0C;&#x89E3;&#x6790;&#x8BF7;&#x6C42;&#x5BF9;&#x5E94;&#x7684; <code>Handler</code>&#x3002;&#x89E3;&#x6790;&#x5230;&#x5BF9;&#x5E94;&#x7684; <code>Handler</code>&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x5E73;&#x5E38;&#x8BF4;&#x7684; <code>Controller</code> &#x63A7;&#x5236;&#x5668;&#xFF09;&#x540E;&#xFF0C;&#x5F00;&#x59CB;&#x7531;<code>HandlerAdapter</code> &#x9002;&#x914D;&#x5668;&#x5904;&#x7406;&#x3002;<code>HandlerAdapter</code> &#x4F5C;&#x4E3A;&#x671F;&#x671B;&#x63A5;&#x53E3;&#xFF0C;&#x5177;&#x4F53;&#x7684;&#x9002;&#x914D;&#x5668;&#x5B9E;&#x73B0;&#x7C7B;&#x7528;&#x4E8E;&#x5BF9;&#x76EE;&#x6807;&#x7C7B;&#x8FDB;&#x884C;&#x9002;&#x914D;&#xFF0C;<code>Controller</code> &#x4F5C;&#x4E3A;&#x9700;&#x8981;&#x9002;&#x914D;&#x7684;&#x7C7B;&#x3002;</p>
+<p><strong>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5728; Spring MVC &#x4E2D;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#xFF1F;</strong> Spring MVC &#x4E2D;&#x7684; <code>Controller</code> &#x79CD;&#x7C7B;&#x4F17;&#x591A;&#xFF0C;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684; <code>Controller</code> &#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x5BF9;&#x8BF7;&#x6C42;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x5229;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x7684;&#x8BDD;&#xFF0C;<code>DispatcherServlet</code> &#x76F4;&#x63A5;&#x83B7;&#x53D6;&#x5BF9;&#x5E94;&#x7C7B;&#x578B;&#x7684; <code>Controller</code>&#xFF0C;&#x9700;&#x8981;&#x7684;&#x81EA;&#x884C;&#x6765;&#x5224;&#x65AD;&#xFF0C;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4E00;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">if</span>(mappedHandler.getHandler() <span class="hljs-keyword">instanceof</span> MultiActionController){  
+   ((MultiActionController)mappedHandler.getHandler()).xxx  
+}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(mappedHandler.getHandler() <span class="hljs-keyword">instanceof</span> XXX){  
+    ...  
+}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(...){  
+   ...  
+}
+</code></pre>
+<p>&#x5047;&#x5982;&#x6211;&#x4EEC;&#x518D;&#x589E;&#x52A0;&#x4E00;&#x4E2A; <code>Controller</code>&#x7C7B;&#x578B;&#x5C31;&#x8981;&#x5728;&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x4E2D;&#x518D;&#x52A0;&#x5165;&#x4E00;&#x884C; &#x5224;&#x65AD;&#x8BED;&#x53E5;&#xFF0C;&#x8FD9;&#x79CD;&#x5F62;&#x5F0F;&#x5C31;&#x4F7F;&#x5F97;&#x7A0B;&#x5E8F;&#x96BE;&#x4EE5;&#x7EF4;&#x62A4;&#xFF0C;&#x4E5F;&#x8FDD;&#x53CD;&#x4E86;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x5F00;&#x95ED;&#x539F;&#x5219; &#x2013; &#x5BF9;&#x6269;&#x5C55;&#x5F00;&#x653E;&#xFF0C;&#x5BF9;&#x4FEE;&#x6539;&#x5173;&#x95ED;&#x3002;</p>
+<h2 id="&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;">&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;</h2>
+<p>&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x52A8;&#x6001;&#x5730;&#x7ED9;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;&#x989D;&#x5916;&#x7684;&#x5C5E;&#x6027;&#x6216;&#x884C;&#x4E3A;&#x3002;&#x76F8;&#x6BD4;&#x4E8E;&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#xFF0C;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;&#x66F4;&#x52A0;&#x7075;&#x6D3B;&#x3002;&#x7B80;&#x5355;&#x70B9;&#x513F;&#x8BF4;&#x5C31;&#x662F;&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x539F;&#x6709;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x53C8;&#x4E0D;&#x613F;&#x76F4;&#x63A5;&#x53BB;&#x4FEE;&#x6539;&#x539F;&#x6709;&#x7684;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x8BBE;&#x8BA1;&#x4E00;&#x4E2A;Decorator&#x5957;&#x5728;&#x539F;&#x6709;&#x4EE3;&#x7801;&#x5916;&#x9762;&#x3002;&#x5176;&#x5B9E;&#x5728; JDK &#x4E2D;&#x5C31;&#x6709;&#x5F88;&#x591A;&#x5730;&#x65B9;&#x7528;&#x5230;&#x4E86;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;&#xFF0C;&#x6BD4;&#x5982; <code>InputStream</code>&#x5BB6;&#x65CF;&#xFF0C;<code>InputStream</code> &#x7C7B;&#x4E0B;&#x6709; <code>FileInputStream</code> (&#x8BFB;&#x53D6;&#x6587;&#x4EF6;)&#x3001;<code>BufferedInputStream</code> (&#x589E;&#x52A0;&#x7F13;&#x5B58;,&#x4F7F;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x901F;&#x5EA6;&#x5927;&#x5927;&#x63D0;&#x5347;)&#x7B49;&#x5B50;&#x7C7B;&#x90FD;&#x5728;&#x4E0D;&#x4FEE;&#x6539;<code>InputStream</code> &#x4EE3;&#x7801;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x6269;&#x5C55;&#x4E86;&#x5B83;&#x7684;&#x529F;&#x80FD;&#x3002;</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/Decorator.jpg" alt="&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;&#x793A;&#x610F;&#x56FE;"></p>
+<p>Spring &#x4E2D;&#x914D;&#x7F6E; DataSource &#x7684;&#x65F6;&#x5019;&#xFF0C;DataSource &#x53EF;&#x80FD;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x5E93;&#x548C;&#x6570;&#x636E;&#x6E90;&#x3002;&#x6211;&#x4EEC;&#x80FD;&#x5426;&#x6839;&#x636E;&#x5BA2;&#x6237;&#x7684;&#x9700;&#x6C42;&#x5728;&#x5C11;&#x4FEE;&#x6539;&#x539F;&#x6709;&#x7C7B;&#x7684;&#x4EE3;&#x7801;&#x4E0B;&#x52A8;&#x6001;&#x5207;&#x6362;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x6E90;&#xFF1F;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x5C31;&#x8981;&#x7528;&#x5230;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;(&#x8FD9;&#x4E00;&#x70B9;&#x6211;&#x81EA;&#x5DF1;&#x8FD8;&#x6CA1;&#x592A;&#x7406;&#x89E3;&#x5177;&#x4F53;&#x539F;&#x7406;)&#x3002;Spring &#x4E2D;&#x7528;&#x5230;&#x7684;&#x5305;&#x88C5;&#x5668;&#x6A21;&#x5F0F;&#x5728;&#x7C7B;&#x540D;&#x4E0A;&#x542B;&#x6709; <code>Wrapper</code>&#x6216;&#x8005; <code>Decorator</code>&#x3002;&#x8FD9;&#x4E9B;&#x7C7B;&#x57FA;&#x672C;&#x4E0A;&#x90FD;&#x662F;&#x52A8;&#x6001;&#x5730;&#x7ED9;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;&#x989D;&#x5916;&#x7684;&#x804C;&#x8D23;</p>
+<h2 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h2>
+<p>Spring &#x6846;&#x67B6;&#x4E2D;&#x7528;&#x5230;&#x4E86;&#x54EA;&#x4E9B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;</p>
+<ul>
+<li><strong>&#x5DE5;&#x5382;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</strong> : Spring&#x4F7F;&#x7528;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x901A;&#x8FC7; <code>BeanFactory</code>&#x3001;<code>ApplicationContext</code> &#x521B;&#x5EFA; bean &#x5BF9;&#x8C61;&#x3002;</li>
+<li><strong>&#x4EE3;&#x7406;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</strong> : Spring AOP &#x529F;&#x80FD;&#x7684;&#x5B9E;&#x73B0;&#x3002;</li>
+<li><strong>&#x5355;&#x4F8B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</strong> : Spring &#x4E2D;&#x7684; Bean &#x9ED8;&#x8BA4;&#x90FD;&#x662F;&#x5355;&#x4F8B;&#x7684;&#x3002;</li>
+<li><strong>&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;</strong> : Spring &#x4E2D; <code>jdbcTemplate</code>&#x3001;<code>hibernateTemplate</code> &#x7B49;&#x4EE5; Template &#x7ED3;&#x5C3E;&#x7684;&#x5BF9;&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;&#x7684;&#x7C7B;&#xFF0C;&#x5B83;&#x4EEC;&#x5C31;&#x4F7F;&#x7528;&#x5230;&#x4E86;&#x6A21;&#x677F;&#x6A21;&#x5F0F;&#x3002;</li>
+<li><strong>&#x5305;&#x88C5;&#x5668;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</strong> : &#x6211;&#x4EEC;&#x7684;&#x9879;&#x76EE;&#x9700;&#x8981;&#x8FDE;&#x63A5;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x540C;&#x7684;&#x5BA2;&#x6237;&#x5728;&#x6BCF;&#x6B21;&#x8BBF;&#x95EE;&#x4E2D;&#x6839;&#x636E;&#x9700;&#x8981;&#x4F1A;&#x53BB;&#x8BBF;&#x95EE;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x5E93;&#x3002;&#x8FD9;&#x79CD;&#x6A21;&#x5F0F;&#x8BA9;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x5BA2;&#x6237;&#x7684;&#x9700;&#x6C42;&#x80FD;&#x591F;&#x52A8;&#x6001;&#x5207;&#x6362;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x6E90;&#x3002;</li>
+<li><strong>&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;:</strong> Spring &#x4E8B;&#x4EF6;&#x9A71;&#x52A8;&#x6A21;&#x578B;&#x5C31;&#x662F;&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x5F88;&#x7ECF;&#x5178;&#x7684;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x3002;</li>
+<li><strong>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</strong> :Spring AOP &#x7684;&#x589E;&#x5F3A;&#x6216;&#x901A;&#x77E5;(Advice)&#x4F7F;&#x7528;&#x5230;&#x4E86;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x3001;spring MVC &#x4E2D;&#x4E5F;&#x662F;&#x7528;&#x5230;&#x4E86;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x9002;&#x914D;<code>Controller</code>&#x3002;</li>
+<li>......</li>
+</ul>
+<h2 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h2>
+<ul>
+<li>&#x300A;Spring&#x6280;&#x672F;&#x5185;&#x5E55;&#x300B;</li>
+<li><a href="https://blog.eduonix.com/java-programming-2/learn-design-patterns-used-spring-framework/" target="_blank">https://blog.eduonix.com/java-programming-2/learn-design-patterns-used-spring-framework/</a></li>
+<li><a href="http://blog.yeamin.top/2018/03/27/&#x5355;&#x4F8B;&#x6A21;&#x5F0F;-Spring&#x5355;&#x4F8B;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#x5206;&#x6790;/" target="_blank">http://blog.yeamin.top/2018/03/27/&#x5355;&#x4F8B;&#x6A21;&#x5F0F;-Spring&#x5355;&#x4F8B;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#x5206;&#x6790;/</a></li>
+<li><a href="https://www.tutorialsteacher.com/ioc/inversion-of-control" target="_blank">https://www.tutorialsteacher.com/ioc/inversion-of-control</a> </li>
+<li><a href="https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html" target="_blank">https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html</a></li>
+<li><a href="https://juejin.im/post/5a8eb261f265da4e9e307230" target="_blank">https://juejin.im/post/5a8eb261f265da4e9e307230</a></li>
+<li><a href="https://juejin.im/post/5ba28986f265da0abc2b6084" target="_blank">https://juejin.im/post/5ba28986f265da0abc2b6084</a></li>
+</ul>
+<h2 id="&#x516C;&#x4F17;&#x53F7;">&#x516C;&#x4F17;&#x53F7;</h2>
+<p>&#x5982;&#x679C;&#x5927;&#x5BB6;&#x60F3;&#x8981;&#x5B9E;&#x65F6;&#x5173;&#x6CE8;&#x6211;&#x66F4;&#x65B0;&#x7684;&#x6587;&#x7AE0;&#x4EE5;&#x53CA;&#x5206;&#x4EAB;&#x7684;&#x5E72;&#x8D27;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x5173;&#x6CE8;&#x6211;&#x7684;&#x516C;&#x4F17;&#x53F7;&#x3002;</p>
+<p><strong>&#x300A;Java&#x9762;&#x8BD5;&#x7A81;&#x51FB;&#x300B;:</strong> &#x7531;&#x672C;&#x6587;&#x6863;&#x884D;&#x751F;&#x7684;&#x4E13;&#x4E3A;&#x9762;&#x8BD5;&#x800C;&#x751F;&#x7684;&#x300A;Java&#x9762;&#x8BD5;&#x7A81;&#x51FB;&#x300B;V2.0 PDF &#x7248;&#x672C;<a href="#&#x516C;&#x4F17;&#x53F7;">&#x516C;&#x4F17;&#x53F7;</a>&#x540E;&#x53F0;&#x56DE;&#x590D; <strong>&quot;Java&#x9762;&#x8BD5;&#x7A81;&#x51FB;&quot;</strong> &#x5373;&#x53EF;&#x514D;&#x8D39;&#x9886;&#x53D6;&#xFF01;</p>
+<p><strong>Java&#x5DE5;&#x7A0B;&#x5E08;&#x5FC5;&#x5907;&#x5B66;&#x4E60;&#x8D44;&#x6E90;:</strong> &#x4E00;&#x4E9B;Java&#x5DE5;&#x7A0B;&#x5E08;&#x5E38;&#x7528;&#x5B66;&#x4E60;&#x8D44;&#x6E90;&#x516C;&#x4F17;&#x53F7;&#x540E;&#x53F0;&#x56DE;&#x590D;&#x5173;&#x952E;&#x5B57; <strong>&#x201C;1&#x201D;</strong> &#x5373;&#x53EF;&#x514D;&#x8D39;&#x65E0;&#x5957;&#x8DEF;&#x83B7;&#x53D6;&#x3002; </p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png" alt="&#x6211;&#x7684;&#x516C;&#x4F17;&#x53F7;"></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="SpringMVC-Principle.html" class="navigation navigation-prev " aria-label="Previous page: SpringMVC 工作原理详解">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../ZooKeeper.html" class="navigation navigation-next " aria-label="Next page: ZooKeeper 相关概念总结">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Spring中都用到了那些设计模式?","level":"21.5","depth":1,"next":{"title":"ZooKeeper 相关概念总结","level":"22.1","depth":1,"path":"system-design/framework/ZooKeeper.md","ref":"system-design/framework/ZooKeeper.md","articles":[]},"previous":{"title":"SpringMVC 工作原理详解","level":"21.4","depth":1,"path":"system-design/framework/spring/SpringMVC-Principle.md","ref":"system-design/framework/spring/SpringMVC-Principle.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"system-design/framework/spring/Spring-Design-Patterns.md","mtime":"2020-07-23T06:31:40.995Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-24T11:21:30.457Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

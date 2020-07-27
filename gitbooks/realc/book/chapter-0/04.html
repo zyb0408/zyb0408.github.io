@@ -1,0 +1,896 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>C代码规范 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="03.html" />
+    
+    
+    <link rel="prev" href="02.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Seperate-0.html">
+            
+                <a href="Seperate-0.html">
+            
+                    
+                    第一部分
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="00.html">
+            
+                <a href="00.html">
+            
+                    
+                    前序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="01.html">
+            
+                <a href="01.html">
+            
+                    
+                    序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="02.html">
+            
+                <a href="02.html">
+            
+                    
+                    C代码风格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.4" data-path="04.html">
+            
+                <a href="04.html">
+            
+                    
+                    C代码规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="03.html">
+            
+                <a href="03.html">
+            
+                    
+                    变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter-1/Seperate-1.html">
+            
+                <a href="../chapter-1/Seperate-1.html">
+            
+                    
+                    第二部分
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../chapter-1/10.html">
+            
+                <a href="../chapter-1/10.html">
+            
+                    
+                    指针(上)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../chapter-1/11.html">
+            
+                <a href="../chapter-1/11.html">
+            
+                    
+                    指针(下)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../chapter-1/12.html">
+            
+                <a href="../chapter-1/12.html">
+            
+                    
+                    预处理器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../chapter-1/13.html">
+            
+                <a href="../chapter-1/13.html">
+            
+                    
+                    效率至上(上)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../chapter-1/14.html">
+            
+                <a href="../chapter-1/14.html">
+            
+                    
+                    效率至上(下)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../chapter-1/15.html">
+            
+                <a href="../chapter-1/15.html">
+            
+                    
+                    未曾领略的新风景
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../chapter-1/16.html">
+            
+                <a href="../chapter-1/16.html">
+            
+                    
+                    C线程和Glib的视角
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter-2/Seperate-2.html">
+            
+                <a href="../chapter-2/Seperate-2.html">
+            
+                    
+                    第三部分
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chapter-2/20.html">
+            
+                <a href="../chapter-2/20.html">
+            
+                    
+                    错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../chapter-2/21.html">
+            
+                <a href="../chapter-2/21.html">
+            
+                    
+                    开始行动
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../chapter-2/22.html">
+            
+                <a href="../chapter-2/22.html">
+            
+                    
+                    单线程备份(上)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../chapter-2/23.html">
+            
+                <a href="../chapter-2/23.html">
+            
+                    
+                    单线程备份(下)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../chapter-2/24.html">
+            
+                <a href="../chapter-2/24.html">
+            
+                    
+                    多线程备份
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../chapter-2/25.html">
+            
+                <a href="../chapter-2/25.html">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter-3/Seperate-3.html">
+            
+                <a href="../chapter-3/Seperate-3.html">
+            
+                    
+                    第四部分
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../chapter-3/30.html">
+            
+                <a href="../chapter-3/30.html">
+            
+                    
+                    网络的世界
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../chapter-3/31.html">
+            
+                <a href="../chapter-3/31.html">
+            
+                    
+                    套接字编程(1)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../chapter-3/32.html">
+            
+                <a href="../chapter-3/32.html">
+            
+                    
+                    套接字编程(2)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../chapter-3/33.html">
+            
+                <a href="../chapter-3/33.html">
+            
+                    
+                    并发HTTP服务器(1)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../chapter-3/34.html">
+            
+                <a href="../chapter-3/34.html">
+            
+                    
+                    并发HTTP服务器(2)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../chapter-3/35.html">
+            
+                <a href="../chapter-3/35.html">
+            
+                    
+                    并发HTTP服务器(3)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../chapter-3/36.html">
+            
+                <a href="../chapter-3/36.html">
+            
+                    
+                    并发HTTP服务器(4)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../chapter-3/37.html">
+            
+                <a href="../chapter-3/37.html">
+            
+                    
+                    并发HTTP服务器(5)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >C代码规范</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h4 id="0x04-c&#x4EE3;&#x7801;&#x89C4;&#x8303;">0x04 C&#x4EE3;&#x7801;&#x89C4;&#x8303;</h4>
+<ol>
+<li><p><strong>&#x547D;&#x540D;</strong></p>
+<ul>
+<li>&#x53EA;&#x8981;&#x63D0;&#x5230;&#x4EE3;&#x7801;&#x89C4;&#x8303;&#xFF0C;&#x5C31;&#x4E0D;&#x5F97;&#x4E0D;&#x8BF4;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x3002;</li>
+<li>&#x5728;&#x4E00;&#x4E9B;&#x5C0F;&#x7684;&#x6F14;&#x793A;&#x7A0B;&#x5E8F;&#x4E2D;&#xFF0C;&#x4E5F;&#x8BB8;&#x8D39;&#x5C3D;&#x5FC3;&#x601D;&#x53BB;&#x6784;&#x601D;&#x4E00;&#x4E2A; <strong>&#x547D;&#x540D;</strong> &#x662F;&#x4E00;&#x4EF6;&#x5341;&#x5206;&#x50BB;&#x7684;&#x884C;&#x4E3A;&#xFF0C;&#x4F46;&#x662F;&#x53EA;&#x8981;&#x7A0B;&#x5E8F;&#x4E0A;&#x5347;&#x5230;&#x4F60;&#x9700;&#x8981;&#x4E25;&#x6B63;&#x8BBE;&#x8BA1;&#xFF0C;&#x601D;&#x8003;&#xFF0C;&#x590D;&#x67E5;&#x7684;&#x5C42;&#x6B21;&#xFF0C;&#x4F60;&#x5C31;&#x9700;&#x8981;&#x597D;&#x597D;&#x8003;&#x8651; <strong>&#x547D;&#x540D;</strong> &#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</li>
+<li><p>&#x51FD;&#x6570;&#x547D;&#x540D;&#xFF1A;</p>
+<ul>
+<li><p>C&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8BA9;&#x4E0B;&#x5212;&#x7EBF;&#x6216;&#x8005;&#x8BCD;&#x6C47;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x8868;&#x8FBE;&#x51FD;&#x6570;&#x529F;&#x80FD;&#xFF1A;</p>
+<ol>
+<li>&#x524D;&#x7F00;&#xFF1A; <ol>
+<li><code>set</code> &#x53EF;&#x4EE5;&#x8868;&#x793A;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;&#x67D0;&#x503C;</li>
+<li><code>get</code> &#x53EF;&#x4EE5;&#x8868;&#x793A;&#x83B7;&#x53D6;&#x67D0;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x503C;</li>
+<li><code>is</code>  &#x53EF;&#x4EE5;&#x8868;&#x793A;&#x8BE2;&#x95EE;&#x662F;&#x5426;&#x662F;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;</li>
+</ol>
+</li>
+<li><p>&#x540E;&#x7F00;&#xFF1A;</p>
+<ol>
+<li><code>max/min</code> &#x53EF;&#x4EE5;&#x8868;&#x793A;&#x67D0;&#x79CD;&#x64CD;&#x4F5C;&#x7684;&#x6700;&#x5927;(&#x5C0F;)&#x6B21;&#x6570;</li>
+<li><code>cnt</code> &#x53EF;&#x4EE5;&#x8868;&#x793A;&#x5F53;&#x524D;&#x7684;&#x64CD;&#x4F5C;&#x6B21;&#x6570;</li>
+<li><p><code>key</code> &#x67D0;&#x79CD;&#x5173;&#x952E;&#x503C;</p>
+<pre><code> size_t get_counts();
+ size_t retry_max();
+ int    is_empty();
+</code></pre></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x53EA;&#x662F;&#xFF0C;&#x4E0D;&#x8981;&#x8BA9;&#x547D;&#x540D;&#x8FC7;&#x4E8E;&#x8D58;&#x8FF0;&#x5176;&#x4E49;&#xFF0C;&#x53EA;&#x7B80;&#x5355;&#x4FDD;&#x7559;&#x52A8;&#x4F5C;&#x4EE5;&#x53CA;&#x76EE;&#x7684;&#x5373;&#x53EF;&#xFF0C;&#x8BE6;&#x7EC6;&#x529F;&#x80FD;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6587;&#x6863;&#x6765;&#x8FDB;&#x884C;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x89E3;&#x91CA;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x7ED3;&#x6784;&#x4F53;&#x547D;&#x540D;&#xFF1A;</p>
+<ul>
+<li><p>&#x7531;&#x4E8E;&#x7ED3;&#x6784;&#x4F53;&#x7684; <strong>&#x6807;&#x7B7E;</strong>&#xFF0C;&#x4E0D;&#x4F1A;&#x6C61;&#x67D3;&#x547D;&#x540D;&#xFF0C;&#x5373;&#x6807;&#x7B7E;&#x4E0D;&#x5728;&#x547D;&#x540D;&#x641C;&#x7D22;&#x8303;&#x56F4;&#x4E4B;&#x5185;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x653E;&#x5FC3;&#x4F7F;&#x7528;&#xFF1A;</p>
+<ol>
+<li><p>&#x6709;&#x4EBA;&#x4E60;&#x60EF;&#x4F7F;&#x7528; <code>typedef</code>, &#x800C;&#x6709;&#x4EBA;&#x559C;&#x6B22;&#x4F7F;&#x7528; <code>struct tag obj</code>&#xFF0C;&#x540E;&#x8005;&#x6BD4;&#x8F83;&#x591A;&#xFF0C;&#x4F46;&#x662F;&#x524D;&#x8005;&#x4E5F;&#x4E0D;&#x5931;&#x4E3A;&#x4E00;&#x79CD;&#x597D;&#x65B9;&#x6CD5;&#xFF0C;&#x4EC1;&#x8005;&#x89C1;&#x4EC1;&#x667A;&#x8005;&#x89C1;&#x667A;&#x3002;</p>
+<pre><code> /*&#x65B9;&#x6CD5;1*/
+ struct inetaddr_4{
+         int    port;
+         char * name;
+ };
+ struct inetaddr_4 *addr_info;
+ /*&#x65B9;&#x6CD5;2*/
+ typedef struct _addr{
+         int    port;
+         char * name;
+ }inetaddr_4;
+ inetaddr_4 *addr_info_2;    
+</code></pre><p>&#x4E24;&#x8005;&#x540C;&#x5904;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5185;&#x4EA6;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x7F16;&#x8BD1;&#x9519;&#x8BEF;&#x3002;    </p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>&#x53D8;&#x91CF;&#x547D;&#x540D;</p>
+<ul>
+<li>&#x6240;&#x6709;&#x5B57;&#x7B26;&#x90FD;&#x4F7F;&#x7528;&#x5C0F;&#x5199;</li>
+<li>&#x542B;&#x4E49;&#x591A;&#x7684;&#x53EF;&#x4EE5;&#x7528; <code>_</code> &#x8FDB;&#x884C;&#x8F85;&#x52A9;</li>
+<li>&#x4EE5; <code>=</code> &#x4E3A;&#x6807;&#x51C6;&#x8FDB;&#x884C;&#x5BF9;&#x9F50;</li>
+<li>&#x7C7B;&#x578B;&#xFF0C; &#x53D8;&#x91CF;&#x540D;&#x5DE6;&#x5BF9;&#x9F50;&#x3002;</li>
+<li><p>&#x7B49;&#x53F7;&#x5DE6;&#x53F3;&#x4E24;&#x7AEF;&#xFF0C;&#x6700;&#x5C11;&#x6709;&#x4E00;&#x4E2A;&#x7A7A;&#x683C;&#x3002;</p>
+<pre><code>  int main(void)
+  {
+      int          counts = 0;
+      inetaddr_4   *addr    = NULL;
+
+      return 0;
+  }
+</code></pre><p>&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x6307;&#x9488;&#x58F0;&#x660E;&#x5B9A;&#x4E49;&#x65F6;&#x5019;&#x51FA;&#x9519;&#xFF0C;&#x5C06; <code>*</code> &#x7D27;&#x8D34;&#x7740;&#x53D8;&#x91CF;&#x540D;&#x603B;&#x4E0D;&#x4F1A;&#x51FA;&#x9519;&#x3002;</p>
+<pre><code>  inetaddr_4   *addr, object, *addr_2;
+</code></pre><p>&#x5176;&#x4E2D; <code>addr</code> &#x548C; <code>addr_2</code> &#x662F;&#x6307;&#x9488;&#xFF0C;&#x800C; <code>object</code> &#x5219;&#x662F;&#x4E00;&#x4E2A;&#x6808;&#x4E0A;&#x7684;&#x5B8C;&#x6574;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x6307;&#x9488;&#x3002;</p>
+</li>
+<li><p>&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x80FD;&#x5C11;&#x7528;&#x5C31;&#x5C11;&#x7528;&#xFF0C;&#x5FC5;&#x987B;&#x8981;&#x7528;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x6DFB;&#x52A0;&#x524D;&#x7F00; <code>g_</code></p>
+<pre><code>  int g_counts;
+</code></pre></li>
+</ul>
+</li>
+<li><p><code>#define</code> &#x547D;&#x540D;</p>
+<ul>
+<li>&#x6240;&#x6709;&#x5B57;&#x7B26;&#x90FD;&#x662F;&#x7528;&#x5927;&#x5199;&#xFF0C;&#x5E76;&#x7528; <code>_</code> &#x8FDB;&#x884C;&#x5206;&#x5272;</li>
+<li><p>&#x5982;&#x679C;&#x591A;&#x4E8E;&#x4E00;&#x4E2A;&#x8BED;&#x53E5;&#xFF0C;&#x4F7F;&#x7528;&#x3000;<code>do{...}while(0)</code> &#x8FDB;&#x884C;&#x5305;&#x88F9;&#xFF0C;&#x9632;&#x6B62; <code>;</code> &#x9519;&#x8BEF;&#x3002;</p>
+<pre><code>  #define SWAP(x, y)         \
+  do{                        \
+      x = x + y;        \
+      y = x - y;            \
+      x = x - y;            \
+  }while(0)
+</code></pre><p>&#x5F53;&#x7136;&#x8FD9;&#x4E2A;&#x4EA4;&#x6362;&#x5B8F;&#x5B9E;&#x9645;&#x4E0A;&#x6709;&#x4E00;&#x70B9;&#x7F3A;&#x9677;&#xFF0C;&#x5728;&#x5927;&#x540E;&#x65B9;&#x4F1A;&#x63D0;&#x51FA;&#x3002;&#x6B64;&#x5904;&#x662F;&#x4EE3;&#x7801;&#x89C4;&#x8303;&#xFF0C;&#x5C31;&#x4E0D;&#x91CD;&#x590D;&#x5F3A;&#x8C03;&#x3002;</p>
+</li>
+</ul>
+</li>
+<li><p><code>enum</code> &#x547D;&#x540D;</p>
+<ul>
+<li>&#x6240;&#x6709;&#x5B57;&#x7B26;&#x90FD;&#x662F;&#x7528;&#x5927;&#x5199;&#xFF0C;&#x5E76;&#x7528; <code>_</code> &#x8FDB;&#x884C;&#x5206;&#x5272;</li>
+<li>&#x4E0E; <code>define</code> &#x76F8;&#x6BD4;&#xFF0C;<code>enum</code>&#x9002;&#x7528;&#x4E8E;&#x540C;&#x4E00;&#x7C7B;&#x578B;&#x7684;&#x5E38;&#x91CF;&#x58F0;&#x660E;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5355;&#x4E00;&#x72EC;&#x7ACB;&#x7684;&#x5E38;&#x91CF;&#x3002;&#x5F80;&#x5F80;&#x51FA;&#x73B0;&#x90FD;&#x662F;&#x6210;&#x7EC4;&#x3002;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p><strong>&#x683C;&#x5F0F;&#x5316;&#x4EE3;&#x7801;</strong></p>
+<ul>
+<li><p>&#x82B1;&#x62EC;&#x53F7; <code>{}</code></p>
+<ul>
+<li>&#x6DF7;&#x5408;&#x4F7F;&#x7528;&#x7B26;&#x5408;&#x8282;&#x4FED;&#x601D;&#x60F3;&#xFF0C;&#x4F46;&#x4F1A;&#x7A0D;&#x5FAE;&#x6709;&#x4E00;&#x70B9;&#x7ED3;&#x6784;&#x7D0A;&#x4E71;&#x3002;</li>
+<li>&#x5355;&#x4E00;&#x4F7F;&#x7528;&#x80FD;&#x66F4;&#x597D;&#x8BA9;&#x4EE3;&#x7801;&#x7ED3;&#x6784;&#x6E05;&#x6670;&#x3002;</li>
+<li>&#x6240;&#x8C13;&#x6DF7;&#x5408;&#xFF0C;&#x5355;&#x4E00;&#x6307;&#x7684;&#x662F;&#x662F;&#x5426;&#x4E00;&#x76F4;&#x4F7F;&#x7528; <code>{}</code> &#x8FDB;&#x884C;&#x4EE3;&#x7801;&#x5305;&#x88F9;&#x3002;</li>
+<li>&#x6709;&#x4EBA;&#x8BA4;&#x4E3A; &#x5F53;&#x5355;&#x4E00;&#x8BED;&#x53E5;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x5FC5;&#x8981;&#x6DFB;&#x52A0; <code>{}</code>&#xFF0C;&#x6709;&#x7684;&#x4EBA;&#x5219;&#x4E60;&#x60EF;&#x6DFB;&#x52A0;</li>
+<li><p>&#x5F53;&#x4F5C;&#x7528;&#x57DF;&#x8D85;&#x8FC7;&#x4E00;&#x4E2A;&#x5C4F;&#x5E55;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x9002;&#x5F53;&#x7684;&#x4F7F;&#x7528;&#x6CE8;&#x91CA;&#x6765;&#x6307;&#x660E; <code>{}</code> &#x4F5C;&#x7528;&#x57DF;</p>
+<pre><code>  while(1){
+      if(tmp == NULL){
+          break;
+      }
+      else if(fanny == 1){
+          ... &#x5927;&#x6982;&#x8D85;&#x8FC7;&#x4E86;&#x4E00;&#x4E2A;&#x5C4F;&#x5E55;&#x7684;&#x4EE3;&#x7801;
+      } /*else if fanny*/
+  }/*end while*/
+</code></pre><p>&#x5982;&#x679C;&#x662F;&#x4EE3;&#x7801;&#x91CF;&#x5C11;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4F46;&#x5D4C;&#x5957;&#x6BD4;&#x8F83;&#x591A;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x6CE8;&#x91CA;&#x3002;</p>
+</li>
+</ul>
+</li>
+<li><p>&#x62EC;&#x53F7; <code>()</code></p>
+<ul>
+<li><p>&#x6709;&#x4EBA;&#x5EFA;&#x8BAE;&#x9664;&#x4E86;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x4EE5;&#x5916;&#xFF0C;&#x5728;&#x6761;&#x4EF6;&#x8BED;&#x53E5;&#x7B49;&#x7C7B;&#x4F3C;&#x60C5;&#x51B5;&#x4E0B;&#x4F7F;&#x7528; <code>()</code> &#x8981;&#x5728;&#x5173;&#x952E;&#x5B57;&#x540E;&#x7A7A;&#x4E00;&#x683C;&#xFF0C;&#x518D;&#x63A5;&#x4E0A; <code>()</code>&#x8BED;&#x53E5;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E00;&#x70B9;&#xFF0C;&#x6211;&#x4E2A;&#x4EBA;&#x4E60;&#x60EF;&#x662F;&#x4E0D;&#x7A7A;&#x683C;&#xFF0C;&#x4F46;&#x603B;&#x6709;&#x8FD9;&#x79CD;&#x8BF4;&#x6CD5;&#x3002;</p>
+<pre><code>  if (space == NULL) {
+      /**TODO**/
+  }
+  while(1){
+      /**&#x6211;&#x4E60;&#x60EF;&#x4E8E;&#x5982;&#x6B64;&#x5199;**/
+  }
+  strcpy(str1, str2); /**&#x7B2C;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#x662F;&#x4E3A;&#x4E86;&#x548C;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x5199;&#x6CD5;&#x8FDB;&#x884C;&#x533A;&#x5206;**/
+  return 0;
+</code></pre></li>
+</ul>
+</li>
+<li><p><code>switch</code></p>
+<ul>
+<li>&#x4E00;&#x5B9A;&#x8981;&#x653E;&#x4E00;&#x4E2A; <code>default</code> &#x5728;&#x6700;&#x540E;&#xFF0C;&#x5373;&#x4F7F;&#x5B83;&#x6C38;&#x8FDC;&#x4E0D;&#x4F1A;&#x7528;&#x5230;&#x3002;</li>
+<li><p>&#x6BCF;&#x4E2A; <code>case</code> &#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x65B0;&#x53D8;&#x91CF;&#xFF0C;&#x53EF;&#x4EE5;&#x7528; <code>{}</code> &#x5305;&#x88F9;&#x8D77;&#x6765;&#xFF0C;&#x5E76;&#x5728;&#x91CC;&#x9762;&#x5B8C;&#x6210;&#x6240;&#x6709;&#x64CD;&#x4F5C;&#x3002;</p>
+<pre><code>  switch(...)
+  {
+      case 1:
+          /**TODO**/
+          break;
+
+      case 2:
+      {
+          int new_vari;
+          /**&#x521B;&#x5EFA;&#x65B0;&#x53D8;&#x91CF;&#x5219;&#x7528; {} &#x5305;&#x88F9;&#x8D77;&#x6765;**/
+      }
+      break;
+
+      default:
+          call_error();
+  }
+</code></pre></li>
+</ul>
+</li>
+<li><p><code>goto</code> </p>
+<ul>
+<li>&#x867D;&#x7136;&#x8BB8;&#x591A;&#x4EBA;&#xFF0C;&#x8BB8;&#x591A;&#x4E66;&#x90FD;&#x63D0;&#x9192;&#x4E0D;&#x518D;&#x4F7F;&#x7528; <code>goto</code> &#x5173;&#x952E;&#x5B57;&#xFF0C;&#x800C;&#x662F;&#x4F7F;&#x7528; <code>setjmp</code> &#x548C; <code>longjmp</code>&#x6765;&#x53D6;&#x4EE3;&#x5B83;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x8FD8;&#x662F;&#x90A3;&#x53E5;&#x8BDD;&#xFF0C;&#x4EC1;&#x8005;&#x89C1;&#x4EC1;&#x667A;&#x8005;&#x89C1;&#x667A;&#xFF0C;&#x5982;&#x679C; <code>goto</code> &#x80FD;&#x591F;&#x8BA9;&#x4EE3;&#x7801;&#x6E05;&#x6670;&#xFF0C;&#x90A3;&#x4F55;&#x4E50;&#x800C;&#x4E0D;&#x4E3A;&#x5462;&#xFF0C;&#x8FD9;&#x4E2A;&#x89C2;&#x70B9;&#x4E5F;&#x662F;&#x6700;&#x8FD1;&#x624D;&#x4F53;&#x4F1A;&#x5230;&#x7684;&#xFF08;&#x5E76;&#x975E;&#x6211;&#x4E00;&#x5DF1;&#x4E4B;&#x8A00;&#xFF09;&#x3002;</li>
+<li>&#x5177;&#x4F53;&#x4F7F;&#x7528;&#x53EF;&#x4EE5;&#x67E5;&#x8BE2;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x8BED;&#x53E5;</p>
+<ul>
+<li>&#x5E94;&#x8BE5;&#x8BA9;&#x5B8C;&#x6574;&#x7684;&#x8BED;&#x53E5;&#x5728;&#x6BCF;&#x4E00;&#x884C;&#x4E2D;&#xFF0C;&#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x3002;</li>
+<li>&#x5BF9;&#x4E8E;&#x53D8;&#x91CF;&#x58F0;&#x660E;&#x5B9A;&#x4E49;&#x4EA6;&#x662F;&#x5982;&#x6B64;</li>
+<li>&#x539F;&#x56E0;&#x662F;&#x8FD9;&#x6837;&#x80FD;&#x8BA9;&#x6587;&#x6863;&#x66F4;&#x6709;&#x9488;&#x5BF9;&#x6027;</li>
+</ul>
+</li>
+<li><p>&#x5934;&#x6587;&#x4EF6;&#x4FDD;&#x62A4;</p>
+<ul>
+<li>&#x5BF9;&#x4E8E;&#x5934;&#x6587;&#x4EF6;&#x800C;&#x8A00;&#xFF0C;&#x5728;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x4E2D;&#x6709;&#x53EF;&#x80FD;&#x88AB;&#x591A;&#x6B21;&#x5305;&#x542B;(<code>#include</code>)&#xFF0C;&#x5982;&#x679C;&#x7F3A;&#x5C11;&#x5934;&#x6587;&#x4EF6;&#x4FDD;&#x62A4;&#xFF0C;&#x5219;&#x4F1A;&#x53D1;&#x751F;&#x7F16;&#x8BD1;&#x9519;&#x8BEF;</li>
+<li><p>&#x4E0D;&#x8981;&#x5C06; <code>_</code> &#x4F5C;&#x4E3A;&#x5B8F;&#x7684;&#x5F00;&#x5934;&#x6216;&#x8005;&#x7ED3;&#x5C3E;&#x3002;</p>
+<pre><code>  #ifndef VECTOR_H_INCLUDE
+      #define VECTOR_H_INCLUDE
+          /**TODO**/
+      #endif 
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>&#x5B8F;</strong></p>
+<ul>
+<li>C&#x8BED;&#x8A00;&#x7684;&#x5B8F;&#x6709;&#x8BF8;&#x591A;&#x5F0A;&#x7AEF;&#xFF0C;&#x6240;&#x4EE5;&#x5C3D;&#x91CF;&#x4F7F;&#x7528; <code>inline</code> &#x51FD;&#x6570;&#x6765;&#x4EE3;&#x66FF;&#x5B8F;&#x3002;&#x5728;&#x5927;&#x540E;&#x65B9;&#x4F1A;&#x6709;&#x89E3;&#x91CA;</li>
+<li>&#x4F46;&#x662F;&#xFF0C;&#x8BF7;&#x4E0D;&#x8981;&#x56E0;&#x6B64;&#x629B;&#x5F03;&#x4E86;&#x5B8F;&#xFF0C;&#x6BD4;&#x5982;&#x5728; <code>C11</code> &#x4E2D;&#x6709;&#x4E00;&#x4E2A;&#x65B0;&#x5174;&#x7684;&#x5B8F;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x53D8;&#x91CF;</p>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x65F6;&#x523B;&#x521D;&#x59CB;&#x5316;&#x6240;&#x6709;&#x6240;&#x58F0;&#x660E;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E48;&#x505A;&#x603B;&#x6CA1;&#x6709;&#x574F;&#x5904;&#xFF0C;&#x800C;&#x4E14;&#x80FD;&#x51CF;&#x5C11;&#x51FA;&#x9519;&#x7684;&#x53EF;&#x80FD;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x51FD;&#x6570;</p>
+<ul>
+<li>&#x51FD;&#x6570;&#x5E94;&#x8BE5;&#x5C3D;&#x53EF;&#x80FD;&#x7684;&#x77ED;&#x5C0F;&#xFF0C;&#x4E00;&#x4E2A;ANSI&#x5C4F;&#x5E55;&#x7684;&#x4E3A;&#x6700;&#x4F73;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x5982;&#x679C;&#x67D0;&#x4E2A;&#x5FAA;&#x73AF;&#x5E26;&#x7740;&#x7A7A;&#x8BED;&#x53E5;&#xFF0C;&#x4F7F;&#x7528; <code>{}</code> &#x8FDB;&#x884C;&#x6302;&#x8F7D;&#xFF0C;&#x4EE5;&#x514D;&#x51FA;&#x73B0;&#x610F;&#x5916;&#x3002;</p>
+<pre><code> while(*is_end++ != &apos;\0&apos;)
+ {
+     ;
+ }
+</code></pre><p> &#x867D;&#x7136;&#x662F;&#x7A7A;&#x7684;&#x5FAA;&#x73AF;&#x4F53;&#xFF0C;&#x4F46;&#x662F;&#x5199;&#x51FA;&#x6765;&#x4EE5;&#x514D;&#x9020;&#x6210;&#x8BEF;&#x5FAA;&#x73AF;&#x3002;</p>
+</li>
+<li><p>&#x5C3D;&#x91CF;&#x4E0D;&#x8981;&#x8BA9;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x503C;&#x76F4;&#x63A5;&#x4F5C;&#x4E3A;&#x6761;&#x4EF6;&#x8BED;&#x53E5;&#x7684;&#x5224;&#x65AD;&#xFF0C;&#x8FD9;&#x6837;&#x4F1A;&#x6781;&#x5927;&#x964D;&#x4F4E;&#x53EF;&#x8BFB;&#x6027;</p>
+<pre><code> if(is_eof(file) == 0)
+     &#x597D;&#x8FC7;
+ if(!is_eof(file))
+</code></pre></li>
+<li><p>&#x4E0D;&#x8981;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x6216;&#x8005;&#x4E00;&#x70B9;&#x70B9;&#x7684;&#x6240;&#x8C13;&#x901F;&#x5EA6;&#x63D0;&#x5347;(&#x4E5F;&#x8BB8;&#x6839;&#x672C;&#x6CA1;&#x6709;)&#xFF0C;&#x800C;&#x653E;&#x5F03;&#x53EF;&#x8BFB;&#x6027;&#xFF0C;&#x4F7F;&#x7528;&#x5D4C;&#x5165;&#x5F0F;&#x7684;&#x8D4B;&#x503C;&#x8BED;&#x53E5;</p>
+<pre><code> int add = 10;
+ int num = 11;
+ int thr = 20;
+ add = add + thr;
+ num = add + 20;
+     &#x4E0D;&#x8981;&#x5199;&#x6210;
+ num = (add = add + thr) + 20;
+</code></pre></li>
+</ol>
+<h4 id="&#x6D6E;&#x70B9;&#x6570;">&#x6D6E;&#x70B9;&#x6570;</h4>
+<ul>
+<li>&#x4E07;&#x4E07;&#x8BB0;&#x4F4F;&#x4E0D;&#x8981;&#x518D;&#x4F7F;&#x7528;&#x6D6E;&#x70B9;&#x6570;&#x6BD4;&#x8F83;&#x5F7C;&#x6B64;&#x662F;&#x5426;&#x76F8;&#x7B49;&#x6216;&#x4E0D;&#x7B49;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x628A;&#x6D6E;&#x70B9;&#x6570;&#x7528;&#x5728;&#x79BB;&#x6563;&#x6027;&#x7684;&#x6570;&#x636E;&#x4E0A;&#xFF0C;&#x6BD4;&#x5982;&#x5FAA;&#x73AF;&#x8BA1;&#x6570;&#x5668;&#xFF0C;&#x90A3;&#x5C31;&#x7B49;&#x6B7B;&#x5427;&#x3002;</li>
+</ul>
+<h4 id="&#x5176;&#x4ED6;">&#x5176;&#x4ED6;</h4>
+<ul>
+<li>&#x4F7F;&#x7528; <code>#if</code> &#x800C;&#x4E0D;&#x662F; <code>#ifdef</code></li>
+<li><p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>define()</code> &#x6765;&#x4EE3;&#x66FF; <code>#ifdef</code>&#x7684;&#x529F;&#x80FD;</p>
+<pre><code>  #if !define(USERS_DEFINE)
+      #define USERS_DEFINE ...
+  #endif
+</code></pre></li>
+<li><p>&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x5927;&#x6BB5;&#x9700;&#x8981;&#x6D88;&#x9664;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x6CE8;&#x91CA; <code>/**/</code>&#xFF0C;&#x56E0;&#x4E3A;&#x6CE8;&#x91CA;&#x4E0D;&#x80FD;&#x5185;&#x5D4C;&#x7740;&#x6CE8;&#x91CA;(<code>//</code>&#x9664;&#x5916;)&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9ED1;&#x9B54;&#x6CD5;&#xFF1A;</p>
+<pre><code>  #if NOT_DECLARATION
+      /**&#x60F3;&#x8981;&#x6CE8;&#x91CA;&#x7684;&#x4EE3;&#x7801;**/
+  #endif
+</code></pre></li>
+<li><p>&#x4E0D;&#x8981;&#x4F7F;&#x7528;&#x7EAF;&#x6570;&#x5B57;</p>
+<ul>
+<li>&#x610F;&#x5473;&#x7740;&#xFF0C;&#x4E0D;&#x5728;&#x4F7F;&#x7528;&#x6BEB;&#x65E0;&#x6807;&#x8BB0;&#x7684;&#x6570;&#x5B57;&#xFF0C;&#x56E0;&#x4E3A;&#x53EF;&#x80FD;&#x4F60;&#x8FC7;&#x4E86;&#x51E0;&#x4E2A;&#x6708;&#x518D;&#x770B;&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F60;&#x6839;&#x672C;&#x4E0D;&#x77E5;&#x9053;&#x8FD9;&#x4E2A;&#x6570;&#x5B57;&#x4EE3;&#x8868;&#x7740;&#x4EC0;&#x4E48;</li>
+<li>&#x800C;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;<code>#define</code> &#x7ED9;&#x5B83;&#x4E00;&#x4E2A;&#x540D;&#x5B57;&#xFF0C;&#x6765;&#x8BF4;&#x660E;&#x8FD9;&#x4E2A;&#x6570;&#x5B57;&#x7684;&#x610F;&#x4E49;&#x3002;</li>
+</ul>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="02.html" class="navigation navigation-prev " aria-label="Previous page: C代码风格">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="03.html" class="navigation navigation-next " aria-label="Next page: 变量">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"C代码规范","level":"1.2.4","depth":2,"next":{"title":"变量","level":"1.2.5","depth":2,"path":"book/chapter-0/03.md","ref":"book/chapter-0/03.md","articles":[]},"previous":{"title":"C代码风格","level":"1.2.3","depth":2,"path":"book/chapter-0/02.md","ref":"book/chapter-0/02.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"book/chapter-0/04.md","mtime":"2020-07-27T02:34:56.744Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-27T02:35:50.450Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

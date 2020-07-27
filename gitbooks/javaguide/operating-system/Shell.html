@@ -1,0 +1,2009 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Shell 编程入门 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../dataStructures-algorithms/数据结构.html" />
+    
+    
+    <link rel="prev" href="后端程序员必备的Linux基础知识.md" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Java</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../java/Java基础知识.html">
+            
+                <a href="../java/Java基础知识.html">
+            
+                    
+                    Java 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../java/Java疑难点.html">
+            
+                <a href="../java/Java疑难点.html">
+            
+                    
+                    Java 基础知识疑难点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../java/J2EE基础知识.html">
+            
+                <a href="../java/J2EE基础知识.html">
+            
+                    
+                    J2EE 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">容器</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../java/collection/Java集合框架常见面试题.html">
+            
+                <a href="../java/collection/Java集合框架常见面试题.html">
+            
+                    
+                    Java容器常见面试题/知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../java/collection/ArrayList.html">
+            
+                <a href="../java/collection/ArrayList.html">
+            
+                    
+                    ArrayList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../java/collection/LinkedList.html">
+            
+                <a href="../java/collection/LinkedList.html">
+            
+                    
+                    LinkedList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../java/collection/HashMap.html">
+            
+                <a href="../java/collection/HashMap.html">
+            
+                    
+                    HashMap(JDK1.8)源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">并发</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                <a href="../java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                    
+                    Java 并发基础常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                <a href="../java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                    
+                    Java 并发进阶常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../java/Multithread/并发容器总结.html">
+            
+                <a href="../java/Multithread/并发容器总结.html">
+            
+                    
+                    并发容器总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                <a href="../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                    
+                    乐观锁与悲观锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../java/Multithread/Atomic.html">
+            
+                <a href="../java/Multithread/Atomic.html">
+            
+                    
+                    JUC 中的 Atomic 原子类总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../java/Multithread/AQS.html">
+            
+                <a href="../java/Multithread/AQS.html">
+            
+                    
+                    AQS 原理以及 AQS 同步组件总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">JVM</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../java/jvm/Java内存区域.html">
+            
+                <a href="../java/jvm/Java内存区域.html">
+            
+                    
+                    一 Java内存区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../java/jvm/JVM垃圾回收.html">
+            
+                <a href="../java/jvm/JVM垃圾回收.html">
+            
+                    
+                    二 JVM垃圾回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../java/jvm/JDK监控和故障处理工具总结.html">
+            
+                <a href="../java/jvm/JDK监控和故障处理工具总结.html">
+            
+                    
+                    三 JDK 监控和故障处理工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../java/jvm/类文件结构.html">
+            
+                <a href="../java/jvm/类文件结构.html">
+            
+                    
+                    四 类文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../java/jvm/类加载过程.html">
+            
+                <a href="../java/jvm/类加载过程.html">
+            
+                    
+                    五 类加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../java/jvm/类加载器.html">
+            
+                <a href="../java/jvm/类加载器.html">
+            
+                    
+                    六 类加载器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">I/O</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../java/BIO-NIO-AIO.html">
+            
+                <a href="../java/BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../java/Java%20IO与NIO.md">
+            
+                <span>
+            
+                    
+                    Java IO 与 NIO系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Java 8</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../java/What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../java/What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">编程规范</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../java/Java编程规范.html">
+            
+                <a href="../java/Java编程规范.html">
+            
+                    
+                    Java 编程规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网络</li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="../network/计算机网络.html">
+            
+                <a href="../network/计算机网络.html">
+            
+                    
+                    计算机网络常见面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="../network/干货：计算机网络知识总结.html">
+            
+                <a href="../network/干货：计算机网络知识总结.html">
+            
+                    
+                    计算机网络基础知识总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="../network/HTTPS中的TLS.html">
+            
+                <a href="../network/HTTPS中的TLS.html">
+            
+                    
+                    HTTPS中的TLS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">操作系统</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Linux相关</li>
+        
+        
+    
+        <li class="chapter " data-level="11.1" data-path="后端程序员必备的Linux基础知识.md">
+            
+                <span>
+            
+                    
+                    后端程序员必备的 Linux 基础知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="11.2" data-path="Shell.html">
+            
+                <a href="Shell.html">
+            
+                    
+                    Shell 编程入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据结构与算法</li>
+        
+        
+    
+
+    
+        
+        <li class="header">数据结构</li>
+        
+        
+    
+        <li class="chapter " data-level="13.1" data-path="../dataStructures-algorithms/数据结构.html">
+            
+                <a href="../dataStructures-algorithms/数据结构.html">
+            
+                    
+                    数据结构知识学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">算法</li>
+        
+        
+    
+        <li class="chapter " data-level="14.1" data-path="../dataStructures-algorithms/算法学习资源推荐.html">
+            
+                <a href="../dataStructures-algorithms/算法学习资源推荐.html">
+            
+                    
+                    算法学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.2" data-path="../dataStructures-algorithms/几道常见的子符串算法题.html">
+            
+                <a href="../dataStructures-algorithms/几道常见的子符串算法题.html">
+            
+                    
+                    几道常见的字符串算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.3" data-path="../dataStructures-algorithms/几道常见的链表算法题.html">
+            
+                <a href="../dataStructures-algorithms/几道常见的链表算法题.html">
+            
+                    
+                    几道常见的链表算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.4" data-path="../dataStructures-algorithms/剑指offer部分编程题.html">
+            
+                <a href="../dataStructures-algorithms/剑指offer部分编程题.html">
+            
+                    
+                    剑指offer部分编程题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.5" data-path="../dataStructures-algorithms/公司真题.html">
+            
+                <a href="../dataStructures-algorithms/公司真题.html">
+            
+                    
+                    公司真题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.6" data-path="../dataStructures-algorithms/Backtracking-NQueens.html">
+            
+                <a href="../dataStructures-algorithms/Backtracking-NQueens.html">
+            
+                    
+                    回溯算法经典案例之N皇后问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据库</li>
+        
+        
+    
+
+    
+        
+        <li class="header">MySQL</li>
+        
+        
+    
+        <li class="chapter " data-level="16.1" data-path="../database/MySQL.html">
+            
+                <a href="../database/MySQL.html">
+            
+                    
+                    MySQL 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="../database/一千行MySQL命令.html">
+            
+                <a href="../database/一千行MySQL命令.html">
+            
+                    
+                    一千行MySQL学习笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="../database/MySQL高性能优化规范建议.html">
+            
+                <a href="../database/MySQL高性能优化规范建议.html">
+            
+                    
+                    MySQL高性能优化规范建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="../database/MySQL%20Index.md">
+            
+                <span>
+            
+                    
+                    数据库索引总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="../database/事务隔离级别(图文详解">
+            
+                <span>
+            
+                    
+                    事务隔离级别(图文详解)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.6" data-path="../database/一条sql语句在mysql中如何执行的.html">
+            
+                <a href="../database/一条sql语句在mysql中如何执行的.html">
+            
+                    
+                    一条SQL语句在MySQL中如何执行的
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Redis</li>
+        
+        
+    
+        <li class="chapter " data-level="17.1" data-path="../database/Redis/Redis.md">
+            
+                <span>
+            
+                    
+                    Redis 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.2" data-path="../database/Redis/Redlock分布式锁.html">
+            
+                <a href="../database/Redis/Redlock分布式锁.html">
+            
+                    
+                    Redlock分布式锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.3" data-path="../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                <a href="../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                    
+                    如何做可靠的分布式锁，Redlock真的可行么
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">系统设计</li>
+        
+        
+    
+
+    
+        
+        <li class="header">设计模式</li>
+        
+        
+    
+        <li class="chapter " data-level="19.1" data-path="../system-design/设计模式.html">
+            
+                <a href="../system-design/设计模式.html">
+            
+                    
+                    设计模式系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常用框架</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Spring</li>
+        
+        
+    
+        <li class="chapter " data-level="21.1" data-path="../system-design/framework/spring/Spring.html">
+            
+                <a href="../system-design/framework/spring/Spring.html">
+            
+                    
+                    Spring 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.2" data-path="../system-design/framework/spring/SpringInterviewQuestions.html">
+            
+                <a href="../system-design/framework/spring/SpringInterviewQuestions.html">
+            
+                    
+                    Spring 常见问题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.3" data-path="../system-design/framework/spring/SpringBean.html">
+            
+                <a href="../system-design/framework/spring/SpringBean.html">
+            
+                    
+                    Spring中bean的作用域与生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.4" data-path="../system-design/framework/spring/SpringMVC-Principle.html">
+            
+                <a href="../system-design/framework/spring/SpringMVC-Principle.html">
+            
+                    
+                    SpringMVC 工作原理详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.5" data-path="../system-design/framework/spring/Spring-Design-Patterns.html">
+            
+                <a href="../system-design/framework/spring/Spring-Design-Patterns.html">
+            
+                    
+                    Spring中都用到了那些设计模式?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">ZooKeeper</li>
+        
+        
+    
+        <li class="chapter " data-level="22.1" data-path="../system-design/framework/ZooKeeper.html">
+            
+                <a href="../system-design/framework/ZooKeeper.html">
+            
+                    
+                    ZooKeeper 相关概念总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.2" data-path="../system-design/framework/ZooKeeper数据模型和常见命令.html">
+            
+                <a href="../system-design/framework/ZooKeeper数据模型和常见命令.html">
+            
+                    
+                    ZooKeeper 数据模型和常见命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据通信</li>
+        
+        
+    
+        <li class="chapter " data-level="23.1" data-path="../system-design/data-communication/summary.md">
+            
+                <span>
+            
+                    
+                    数据通信(RESTful、RPC、消息队列)相关知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.2" data-path="../system-design/data-communication/dubbo.html">
+            
+                <a href="../system-design/data-communication/dubbo.html">
+            
+                    
+                    Dubbo 总结：关于 Dubbo 的重要知识点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.3" data-path="../system-design/data-communication/message-queue.html">
+            
+                <a href="../system-design/data-communication/message-queue.html">
+            
+                    
+                    消息队列总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.4" data-path="../system-design/data-communication/rabbitmq.html">
+            
+                <a href="../system-design/data-communication/rabbitmq.html">
+            
+                    
+                    RabbitMQ 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.5" data-path="../system-design/data-communication/RocketMQ-Questions.html">
+            
+                <a href="../system-design/data-communication/RocketMQ-Questions.html">
+            
+                    
+                    RocketMQ的几个简单问题与答案
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网站架构</li>
+        
+        
+    
+        <li class="chapter " data-level="24.1" data-path="../system-design/website-architecture/分布式.html">
+            
+                <a href="../system-design/website-architecture/分布式.html">
+            
+                    
+                    一文读懂分布式应该学什么
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.2" data-path="../system-design/website-architecture/8%20张图读懂大型网站技术架构.md">
+            
+                <span>
+            
+                    
+                    8 张图读懂大型网站技术架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.3" data-path="../system-design/website-architecture/【面试精选】关于大型网站系统架构你不得不懂的10个问题.md">
+            
+                <span>
+            
+                    
+                    【面试精选】关于大型网站系统架构你不得不懂的10个问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面试指南</li>
+        
+        
+    
+
+    
+        
+        <li class="header">备战面试</li>
+        
+        
+    
+        <li class="chapter " data-level="26.1" data-path="../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                    
+                    【备战面试1】程序员的简历就该这样写
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.2" data-path="../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                    
+                    【备战面试2】初出茅庐的程序员该如何准备面试？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.3" data-path="../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                    
+                    【备战面试3】7个大部分程序员在面试前很关心的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.4" data-path="../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                    
+                    【备战面试4】Github上开源的Java面试/学习相关的仓库推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.5" data-path="../essential-content-for-interview/PreparingForInterview/如果面试官问你“你有什么问题问我吗？”时，你该如何回答.md">
+            
+                <span>
+            
+                    
+                    【备战面试5】如果面试官问你“你有什么问题问我吗？”时，你该如何回答
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.6" data-path="../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                    
+                    【备战面试6】美团面试常见问题总结（附详解答案）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常见面试题总结</li>
+        
+        
+    
+        <li class="chapter " data-level="27.1" data-path="../essential-content-for-interview/MostCommonJavaInterviewQuestions/第一周（2018-8-7）.md">
+            
+                <span>
+            
+                    
+                    第一周（2018-8-7）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.2" data-path="../essential-content-for-interview/MostCommonJavaInterviewQuestions/第二周(2018-8-13">
+            
+                <span>
+            
+                    
+                    第二周（2018-8-13）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.3" data-path="../java/collection/Java集合框架常见面试题.html">
+            
+                <a href="../java/collection/Java集合框架常见面试题.html">
+            
+                    
+                    第三周（2018-08-22）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.4" data-path="../essential-content-for-interview/MostCommonJavaInterviewQuestions/第四周(2018-8-30">
+            
+                <span>
+            
+                    
+                    第四周(2018-8-30).md
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面经</li>
+        
+        
+    
+        <li class="chapter " data-level="28.1" data-path="../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                <a href="../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                    
+                    5面阿里,终获offer(2018年秋招)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.2" data-path="../essential-content-for-interview/BATJrealInterviewExperience/蚂蚁金服实习生面经总结(已拿口头offer">
+            
+                <span>
+            
+                    
+                    蚂蚁金服2019实习生面经总结(已拿口头offer)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.3" data-path="../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                <a href="../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                    
+                    2019年蚂蚁金服、头条、拼多多的面试总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">工具</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Git</li>
+        
+        
+    
+        <li class="chapter " data-level="30.1" data-path="../tools/Git.html">
+            
+                <a href="../tools/Git.html">
+            
+                    
+                    Git入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Docker</li>
+        
+        
+    
+        <li class="chapter " data-level="31.1" data-path="../tools/Docker.html">
+            
+                <a href="../tools/Docker.html">
+            
+                    
+                    Docker 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="31.2" data-path="../tools/Docker-Image.html">
+            
+                <a href="../tools/Docker-Image.html">
+            
+                    
+                    一文搞懂 Docker 镜像的常用操作！
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">资料</li>
+        
+        
+    
+
+    
+        
+        <li class="header">书单</li>
+        
+        
+    
+        <li class="chapter " data-level="33.1" data-path="../data/java-recommended-books.md">
+            
+                <span>
+            
+                    
+                    Java程序员必备书单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Github榜单</li>
+        
+        
+    
+        <li class="chapter " data-level="34.1" data-path="../github-trending/JavaGithubTrending.html">
+            
+                <a href="../github-trending/JavaGithubTrending.html">
+            
+                    
+                    Java 项目月榜单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">待办</li>
+        
+        
+    
+        <li class="chapter " data-level="35.1" data-path="../java/What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.2" data-path="../java/What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.3" >
+            
+                <span>
+            
+                    
+                    [ ] Java 多线程类别知识重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.4" data-path="../java/BIO-NIO-AIO.html">
+            
+                <a href="../java/BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.5" >
+            
+                <span>
+            
+                    
+                    [ ] Netty 总结(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.6" >
+            
+                <span>
+            
+                    
+                    [ ] 数据结构总结重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">公众号</li>
+        
+        
+    
+        <li class="chapter " data-level="36.1" >
+            
+                <span>
+            
+                    
+                    如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.2" >
+            
+                <span>
+            
+                    
+                    由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本公众号后台回复  即可免费领取！
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.3" >
+            
+                <span>
+            
+                    
+                    一些Java工程师常用学习资源公众号后台回复关键字  即可免费无套路获取。
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Shell 编程入门</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!-- MarkdownTOC -->
+<ul>
+<li><a href="#shell-&#x7F16;&#x7A0B;&#x5165;&#x95E8;">Shell &#x7F16;&#x7A0B;&#x5165;&#x95E8;</a><ul>
+<li><a href="#&#x8D70;&#x8FDB;-shell-&#x7F16;&#x7A0B;&#x7684;&#x5927;&#x95E8;">&#x8D70;&#x8FDB; Shell &#x7F16;&#x7A0B;&#x7684;&#x5927;&#x95E8;</a><ul>
+<li><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5B66;shell">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5B66;Shell&#xFF1F;</a></li>
+<li><a href="#&#x4EC0;&#x4E48;&#x662F;-shell">&#x4EC0;&#x4E48;&#x662F; Shell&#xFF1F;</a></li>
+<li><a href="#shell-&#x7F16;&#x7A0B;&#x7684;-hello-world">Shell &#x7F16;&#x7A0B;&#x7684; Hello World</a></li>
+</ul>
+</li>
+<li><a href="#shell-&#x53D8;&#x91CF;">Shell &#x53D8;&#x91CF;</a><ul>
+<li><a href="#shell-&#x7F16;&#x7A0B;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x4ECB;&#x7ECD;">Shell &#x7F16;&#x7A0B;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x4ECB;&#x7ECD;</a></li>
+<li><a href="#shell-&#x5B57;&#x7B26;&#x4E32;&#x5165;&#x95E8;">Shell &#x5B57;&#x7B26;&#x4E32;&#x5165;&#x95E8;</a></li>
+<li><a href="#shell-&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x89C1;&#x64CD;&#x4F5C;">Shell &#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x89C1;&#x64CD;&#x4F5C;</a></li>
+<li><a href="#shell-&#x6570;&#x7EC4;">Shell &#x6570;&#x7EC4;</a></li>
+</ul>
+</li>
+<li><a href="#shell-&#x57FA;&#x672C;&#x8FD0;&#x7B97;&#x7B26;">Shell &#x57FA;&#x672C;&#x8FD0;&#x7B97;&#x7B26;</a><ul>
+<li><a href="#&#x7B97;&#x6570;&#x8FD0;&#x7B97;&#x7B26;">&#x7B97;&#x6570;&#x8FD0;&#x7B97;&#x7B26;</a></li>
+<li><a href="#&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;">&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;</a></li>
+<li><a href="#&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7B26;">&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7B26;</a></li>
+<li><a href="#&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;">&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;</a></li>
+<li><a href="#&#x5B57;&#x7B26;&#x4E32;&#x8FD0;&#x7B97;&#x7B26;">&#x5B57;&#x7B26;&#x4E32;&#x8FD0;&#x7B97;&#x7B26;</a></li>
+<li><a href="#&#x6587;&#x4EF6;&#x76F8;&#x5173;&#x8FD0;&#x7B97;&#x7B26;">&#x6587;&#x4EF6;&#x76F8;&#x5173;&#x8FD0;&#x7B97;&#x7B26;</a></li>
+</ul>
+</li>
+<li><a href="#shell&#x6D41;&#x7A0B;&#x63A7;&#x5236;">shell&#x6D41;&#x7A0B;&#x63A7;&#x5236;</a><ul>
+<li><a href="#if-&#x6761;&#x4EF6;&#x8BED;&#x53E5;">if &#x6761;&#x4EF6;&#x8BED;&#x53E5;</a></li>
+<li><a href="#for-&#x5FAA;&#x73AF;&#x8BED;&#x53E5;">for &#x5FAA;&#x73AF;&#x8BED;&#x53E5;</a></li>
+<li><a href="#while-&#x8BED;&#x53E5;">while &#x8BED;&#x53E5;</a></li>
+</ul>
+</li>
+<li><a href="#shell-&#x51FD;&#x6570;">shell &#x51FD;&#x6570;</a><ul>
+<li><a href="#&#x4E0D;&#x5E26;&#x53C2;&#x6570;&#x6CA1;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x51FD;&#x6570;">&#x4E0D;&#x5E26;&#x53C2;&#x6570;&#x6CA1;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x51FD;&#x6570;</a></li>
+<li><a href="#&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x51FD;&#x6570;">&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x51FD;&#x6570;</a></li>
+<li><a href="#&#x5E26;&#x53C2;&#x6570;&#x7684;&#x51FD;&#x6570;">&#x5E26;&#x53C2;&#x6570;&#x7684;&#x51FD;&#x6570;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /MarkdownTOC -->
+<h1 id="shell-&#x7F16;&#x7A0B;&#x5165;&#x95E8;">Shell &#x7F16;&#x7A0B;&#x5165;&#x95E8;</h1>
+<h2 id="&#x8D70;&#x8FDB;-shell-&#x7F16;&#x7A0B;&#x7684;&#x5927;&#x95E8;">&#x8D70;&#x8FDB; Shell &#x7F16;&#x7A0B;&#x7684;&#x5927;&#x95E8;</h2>
+<h3 id="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5B66;shell&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5B66;Shell&#xFF1F;</h3>
+<p>&#x5B66;&#x4E00;&#x4E2A;&#x4E1C;&#x897F;&#xFF0C;&#x6211;&#x4EEC;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x51B5;&#x90FD;&#x662F;&#x5F80;&#x5B9E;&#x7528;&#x6027;&#x65B9;&#x5411;&#x7740;&#x60F3;&#x3002;&#x4ECE;&#x5DE5;&#x4F5C;&#x89D2;&#x5EA6;&#x6765;&#x8BB2;&#xFF0C;&#x5B66;&#x4E60; Shell &#x662F;&#x4E3A;&#x4E86;&#x63D0;&#x9AD8;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x5DE5;&#x4F5C;&#x6548;&#x7387;&#xFF0C;&#x63D0;&#x9AD8;&#x4EA7;&#x51FA;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x5728;&#x66F4;&#x5C11;&#x7684;&#x65F6;&#x95F4;&#x5B8C;&#x6210;&#x66F4;&#x591A;&#x7684;&#x4E8B;&#x60C5;&#x3002;</p>
+<p>&#x5F88;&#x591A;&#x4EBA;&#x4F1A;&#x8BF4; Shell &#x7F16;&#x7A0B;&#x5C5E;&#x4E8E;&#x8FD0;&#x7EF4;&#x65B9;&#x9762;&#x7684;&#x77E5;&#x8BC6;&#x4E86;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x8FD0;&#x7EF4;&#x4EBA;&#x5458;&#x6765;&#x505A;&#xFF0C;&#x6211;&#x4EEC;&#x505A;&#x540E;&#x7AEF;&#x5F00;&#x53D1;&#x7684;&#x6CA1;&#x5FC5;&#x8981;&#x5B66;&#x3002;&#x6211;&#x89C9;&#x5F97;&#x8FD9;&#x79CD;&#x8BF4;&#x6CD5;&#x5927;&#x9519;&#x7279;&#x9519;&#xFF0C;&#x76F8;&#x6BD4;&#x4E8E;&#x4E13;&#x95E8;&#x505A;Linux&#x8FD0;&#x7EF4;&#x7684;&#x4EBA;&#x5458;&#x6765;&#x8BF4;&#xFF0C;&#x6211;&#x4EEC;&#x5BF9; Shell &#x7F16;&#x7A0B;&#x638C;&#x63E1;&#x7A0B;&#x5EA6;&#x7684;&#x8981;&#x6C42;&#x8981;&#x6BD4;&#x4ED6;&#x4EEC;&#x4F4E;&#xFF0C;&#x4F46;&#x662F;shell&#x7F16;&#x7A0B;&#x4E5F;&#x662F;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x8981;&#x638C;&#x63E1;&#x7684;&#xFF01;</p>
+<p>&#x76EE;&#x524D;Linux&#x7CFB;&#x7EDF;&#x4E0B;&#x6700;&#x6D41;&#x884C;&#x7684;&#x8FD0;&#x7EF4;&#x81EA;&#x52A8;&#x5316;&#x8BED;&#x8A00;&#x5C31;&#x662F;Shell&#x548C;Python&#x4E86;&#x3002;</p>
+<p>&#x4E24;&#x8005;&#x4E4B;&#x95F4;&#xFF0C;Shell&#x51E0;&#x4E4E;&#x662F;IT&#x4F01;&#x4E1A;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x7684;&#x8FD0;&#x7EF4;&#x81EA;&#x52A8;&#x5316;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x5728;&#x8FD0;&#x7EF4;&#x5DE5;&#x4F5C;&#x4E2D;&#x7684;&#x670D;&#x52A1;&#x76D1;&#x63A7;&#x3001;&#x4E1A;&#x52A1;&#x5FEB;&#x901F;&#x90E8;&#x7F72;&#x3001;&#x670D;&#x52A1;&#x542F;&#x52A8;&#x505C;&#x6B62;&#x3001;&#x6570;&#x636E;&#x5907;&#x4EFD;&#x53CA;&#x5904;&#x7406;&#x3001;&#x65E5;&#x5FD7;&#x5206;&#x6790;&#x7B49;&#x73AF;&#x8282;&#x91CC;&#xFF0C;shell&#x662F;&#x4E0D;&#x53EF;&#x7F3A;&#x7684;&#x3002;Python &#x66F4;&#x9002;&#x5408;&#x5904;&#x7406;&#x590D;&#x6742;&#x7684;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#xFF0C;&#x4EE5;&#x53CA;&#x5F00;&#x53D1;&#x590D;&#x6742;&#x7684;&#x8FD0;&#x7EF4;&#x8F6F;&#x4EF6;&#x5DE5;&#x5177;&#xFF0C;&#x5B9E;&#x73B0;&#x901A;&#x8FC7;web&#x8BBF;&#x95EE;&#x7B49;&#x3002;Shell&#x662F;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x89E3;&#x91CA;&#x5668;&#xFF0C;&#x89E3;&#x91CA;&#x6267;&#x884C;&#x7528;&#x6237;&#x6240;&#x8F93;&#x5165;&#x7684;&#x547D;&#x4EE4;&#x548C;&#x7A0B;&#x5E8F;&#x3002;&#x4E00;&#x8F93;&#x5165;&#x547D;&#x4EE4;&#xFF0C;&#x5C31;&#x7ACB;&#x5373;&#x56DE;&#x5E94;&#x7684;&#x4EA4;&#x4E92;&#x7684;&#x5BF9;&#x8BDD;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x53E6;&#x5916;&#xFF0C;&#x4E86;&#x89E3; shell &#x7F16;&#x7A0B;&#x4E5F;&#x662F;&#x5927;&#x90E8;&#x5206;&#x4E92;&#x8054;&#x7F51;&#x516C;&#x53F8;&#x62DB;&#x8058;&#x540E;&#x7AEF;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x7684;&#x8981;&#x6C42;&#x3002;&#x4E0B;&#x56FE;&#x662F;&#x6211;&#x622A;&#x53D6;&#x7684;&#x4E00;&#x4E9B;&#x77E5;&#x540D;&#x4E92;&#x8054;&#x7F51;&#x516C;&#x53F8;&#x5BF9;&#x4E8E; Shell &#x7F16;&#x7A0B;&#x7684;&#x8981;&#x6C42;&#x3002;</p>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/60190220.jpg" alt="&#x5927;&#x578B;&#x4E92;&#x8054;&#x7F51;&#x516C;&#x53F8;&#x5BF9;&#x4E8E;shell&#x7F16;&#x7A0B;&#x6280;&#x80FD;&#x7684;&#x8981;&#x6C42;"></p>
+<h3 id="&#x4EC0;&#x4E48;&#x662F;-shell&#xFF1F;">&#x4EC0;&#x4E48;&#x662F; Shell&#xFF1F;</h3>
+<p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#x201C;Shell&#x7F16;&#x7A0B;&#x5C31;&#x662F;&#x5BF9;&#x4E00;&#x5806;Linux&#x547D;&#x4EE4;&#x7684;&#x903B;&#x8F91;&#x5316;&#x5904;&#x7406;&#x201D;&#x3002;</p>
+<p>W3Cschool &#x4E0A;&#x7684;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#x662F;&#x8FD9;&#x6837;&#x4ECB;&#x7ECD; Shell&#x7684;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;
+<img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-26/19456505.jpg" alt="&#x4EC0;&#x4E48;&#x662F; Shell&#xFF1F;"></p>
+<h3 id="shell-&#x7F16;&#x7A0B;&#x7684;-hello-world">Shell &#x7F16;&#x7A0B;&#x7684; Hello World</h3>
+<p>&#x5B66;&#x4E60;&#x4EFB;&#x4F55;&#x4E00;&#x95E8;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x7B2C;&#x4E00;&#x4EF6;&#x4E8B;&#x5C31;&#x662F;&#x8F93;&#x51FA;HelloWord&#x4E86;&#xFF01;&#x4E0B;&#x9762;&#x6211;&#x4F1A;&#x4ECE;&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5230;shell&#x4EE3;&#x7801;&#x7F16;&#x5199;&#x6765;&#x8BF4;&#x4E0B;Shell &#x7F16;&#x7A0B;&#x5982;&#x4F55;&#x8F93;&#x51FA;Hello World&#x3002;</p>
+<p>(1)&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6; helloworld.sh :<code>touch helloworld.sh</code>&#xFF0C;&#x6269;&#x5C55;&#x540D;&#x4E3A; sh&#xFF08;sh&#x4EE3;&#x8868;Shell&#xFF09;&#xFF08;&#x6269;&#x5C55;&#x540D;&#x5E76;&#x4E0D;&#x5F71;&#x54CD;&#x811A;&#x672C;&#x6267;&#x884C;&#xFF0C;&#x89C1;&#x540D;&#x77E5;&#x610F;&#x5C31;&#x597D;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x7528; php &#x5199; shell &#x811A;&#x672C;&#xFF0C;&#x6269;&#x5C55;&#x540D;&#x5C31;&#x7528; php &#x597D;&#x4E86;&#xFF09;</p>
+<p>(2) &#x4F7F;&#x811A;&#x672C;&#x5177;&#x6709;&#x6267;&#x884C;&#x6743;&#x9650;&#xFF1A;<code>chmod +x helloworld.sh</code></p>
+<p>(3) &#x4F7F;&#x7528; vim &#x547D;&#x4EE4;&#x4FEE;&#x6539;helloworld.sh&#x6587;&#x4EF6;&#xFF1A;<code>vim helloworld.sh</code>(vim &#x6587;&#x4EF6;------&gt;&#x8FDB;&#x5165;&#x6587;&#x4EF6;-----&gt;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;------&gt;&#x6309;i&#x8FDB;&#x5165;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;-----&gt;&#x7F16;&#x8F91;&#x6587;&#x4EF6; -------&gt;&#x6309;Esc&#x8FDB;&#x5165;&#x5E95;&#x884C;&#x6A21;&#x5F0F;-----&gt;&#x8F93;&#x5165;:wq/q! &#xFF08;&#x8F93;&#x5165;wq&#x4EE3;&#x8868;&#x5199;&#x5165;&#x5185;&#x5BB9;&#x5E76;&#x9000;&#x51FA;&#xFF0C;&#x5373;&#x4FDD;&#x5B58;&#xFF1B;&#x8F93;&#x5165;q!&#x4EE3;&#x8868;&#x5F3A;&#x5236;&#x9000;&#x51FA;&#x4E0D;&#x4FDD;&#x5B58;&#x3002;&#xFF09;)</p>
+<p>helloworld.sh &#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-shell">#!/bin/bash
+#&#x7B2C;&#x4E00;&#x4E2A;shell&#x5C0F;&#x7A0B;&#x5E8F;,echo &#x662F;linux&#x4E2D;&#x7684;&#x8F93;&#x51FA;&#x547D;&#x4EE4;&#x3002;
+echo  &quot;helloworld!&quot;
+</code></pre>
+<p>shell&#x4E2D; # &#x7B26;&#x53F7;&#x8868;&#x793A;&#x6CE8;&#x91CA;&#x3002;<strong>shell &#x7684;&#x7B2C;&#x4E00;&#x884C;&#x6BD4;&#x8F83;&#x7279;&#x6B8A;&#xFF0C;&#x4E00;&#x822C;&#x90FD;&#x4F1A;&#x4EE5;#!&#x5F00;&#x59CB;&#x6765;&#x6307;&#x5B9A;&#x4F7F;&#x7528;&#x7684; shell &#x7C7B;&#x578B;&#x3002;&#x5728;linux&#x4E2D;&#xFF0C;&#x9664;&#x4E86;bash shell&#x4EE5;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x7248;&#x672C;&#x7684;shell&#xFF0C; &#x4F8B;&#x5982;zsh&#x3001;dash&#x7B49;&#x7B49;...&#x4E0D;&#x8FC7;bash shell&#x8FD8;&#x662F;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x6700;&#x591A;&#x7684;&#x3002;</strong></p>
+<p>(4) &#x8FD0;&#x884C;&#x811A;&#x672C;:<code>./helloworld.sh</code> &#x3002;&#xFF08;&#x6CE8;&#x610F;&#xFF0C;&#x4E00;&#x5B9A;&#x8981;&#x5199;&#x6210; <code>./helloworld.sh</code> &#xFF0C;&#x800C;&#x4E0D;&#x662F; <code>helloworld.sh</code> &#xFF0C;&#x8FD0;&#x884C;&#x5176;&#x5B83;&#x4E8C;&#x8FDB;&#x5236;&#x7684;&#x7A0B;&#x5E8F;&#x4E5F;&#x4E00;&#x6837;&#xFF0C;&#x76F4;&#x63A5;&#x5199; <code>helloworld.sh</code> &#xFF0C;linux &#x7CFB;&#x7EDF;&#x4F1A;&#x53BB; PATH &#x91CC;&#x5BFB;&#x627E;&#x6709;&#x6CA1;&#x6709;&#x53EB; helloworld.sh &#x7684;&#xFF0C;&#x800C;&#x53EA;&#x6709; /bin, /sbin, /usr/bin&#xFF0C;/usr/sbin &#x7B49;&#x5728; PATH &#x91CC;&#xFF0C;&#x4F60;&#x7684;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x901A;&#x5E38;&#x4E0D;&#x5728; PATH &#x91CC;&#xFF0C;&#x6240;&#x4EE5;&#x5199;&#x6210; <code>helloworld.sh</code> &#x662F;&#x4F1A;&#x627E;&#x4E0D;&#x5230;&#x547D;&#x4EE4;&#x7684;&#xFF0C;&#x8981;&#x7528;<code>./helloworld.sh</code> &#x544A;&#x8BC9;&#x7CFB;&#x7EDF;&#x8BF4;&#xFF0C;&#x5C31;&#x5728;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x627E;&#x3002;&#xFF09;</p>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-16/55296212.jpg" alt="shell &#x7F16;&#x7A0B;Hello World"></p>
+<h2 id="shell-&#x53D8;&#x91CF;">Shell &#x53D8;&#x91CF;</h2>
+<h3 id="shell-&#x7F16;&#x7A0B;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x4ECB;&#x7ECD;">Shell &#x7F16;&#x7A0B;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x4ECB;&#x7ECD;</h3>
+<p><strong>Shell&#x7F16;&#x7A0B;&#x4E2D;&#x4E00;&#x822C;&#x5206;&#x4E3A;&#x4E09;&#x79CD;&#x53D8;&#x91CF;&#xFF1A;</strong></p>
+<ol>
+<li><strong>&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x7684;&#x53D8;&#x91CF;&#xFF08;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#xFF09;:</strong> &#x4EC5;&#x5728;&#x5F53;&#x524D; Shell &#x5B9E;&#x4F8B;&#x4E2D;&#x6709;&#x6548;&#xFF0C;&#x5176;&#x4ED6; Shell &#x542F;&#x52A8;&#x7684;&#x7A0B;&#x5E8F;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x3002;</li>
+<li><strong>Linux&#x5DF2;&#x5B9A;&#x4E49;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;</strong>&#xFF08;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF0C; &#x4F8B;&#x5982;&#xFF1A;$PATH, $HOME &#x7B49;..., &#x8FD9;&#x7C7B;&#x53D8;&#x91CF;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#xFF09;&#xFF0C;&#x4F7F;&#x7528; <code>env</code> &#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x6240;&#x6709;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF0C;&#x800C;set&#x547D;&#x4EE4;&#x65E2;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x4E5F;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#x3002;</li>
+<li><strong>Shell&#x53D8;&#x91CF;</strong> &#xFF1A;Shell&#x53D8;&#x91CF;&#x662F;&#x7531; Shell &#x7A0B;&#x5E8F;&#x8BBE;&#x7F6E;&#x7684;&#x7279;&#x6B8A;&#x53D8;&#x91CF;&#x3002;Shell &#x53D8;&#x91CF;&#x4E2D;&#x6709;&#x4E00;&#x90E8;&#x5206;&#x662F;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF0C;&#x6709;&#x4E00;&#x90E8;&#x5206;&#x662F;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x8FD9;&#x4E9B;&#x53D8;&#x91CF;&#x4FDD;&#x8BC1;&#x4E86; Shell &#x7684;&#x6B63;&#x5E38;&#x8FD0;&#x884C;</li>
+</ol>
+<p><strong>&#x5E38;&#x7528;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;:</strong></p>
+<blockquote>
+<p>PATH &#x51B3;&#x5B9A;&#x4E86;shell&#x5C06;&#x5230;&#x54EA;&#x4E9B;&#x76EE;&#x5F55;&#x4E2D;&#x5BFB;&#x627E;&#x547D;&#x4EE4;&#x6216;&#x7A0B;&#x5E8F; 
+HOME &#x5F53;&#x524D;&#x7528;&#x6237;&#x4E3B;&#x76EE;&#x5F55; 
+HISTSIZE&#x3000;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x6570; 
+LOGNAME &#x5F53;&#x524D;&#x7528;&#x6237;&#x7684;&#x767B;&#x5F55;&#x540D; 
+HOSTNAME&#x3000;&#x6307;&#x4E3B;&#x673A;&#x7684;&#x540D;&#x79F0; 
+SHELL &#x5F53;&#x524D;&#x7528;&#x6237;Shell&#x7C7B;&#x578B; 
+LANGUGE &#x3000;&#x8BED;&#x8A00;&#x76F8;&#x5173;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF0C;&#x591A;&#x8BED;&#x8A00;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x6B64;&#x73AF;&#x5883;&#x53D8;&#x91CF; 
+MAIL&#x3000;&#x5F53;&#x524D;&#x7528;&#x6237;&#x7684;&#x90AE;&#x4EF6;&#x5B58;&#x653E;&#x76EE;&#x5F55; 
+PS1&#x3000;&#x57FA;&#x672C;&#x63D0;&#x793A;&#x7B26;&#xFF0C;&#x5BF9;&#x4E8E;root&#x7528;&#x6237;&#x662F;#&#xFF0C;&#x5BF9;&#x4E8E;&#x666E;&#x901A;&#x7528;&#x6237;&#x662F;$</p>
+</blockquote>
+<p><strong>&#x4F7F;&#x7528; Linux &#x5DF2;&#x5B9A;&#x4E49;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF1A;</strong></p>
+<p>&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x8981;&#x770B;&#x5F53;&#x524D;&#x7528;&#x6237;&#x76EE;&#x5F55;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#xFF1A;<code>echo $HOME</code>&#x547D;&#x4EE4;&#xFF1B;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8981;&#x770B;&#x5F53;&#x524D;&#x7528;&#x6237;Shell&#x7C7B;&#x578B; &#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>echo $SHELL</code>&#x547D;&#x4EE4;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x3002;</p>
+<p><strong>&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x7684;&#x53D8;&#x91CF;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">#!/bin/bash
+#&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;hello
+hello=&quot;hello world&quot;
+echo $hello
+echo  &quot;helloworld!&quot;
+</code></pre>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-17/19835037.jpg" alt="&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x7684;&#x53D8;&#x91CF;"></p>
+<p><strong>Shell &#x7F16;&#x7A0B;&#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x540D;&#x7684;&#x547D;&#x540D;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#xFF1A;</strong></p>
+<ul>
+<li>&#x547D;&#x540D;&#x53EA;&#x80FD;&#x4F7F;&#x7528;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#xFF0C;&#x6570;&#x5B57;&#x548C;&#x4E0B;&#x5212;&#x7EBF;&#xFF0C;&#x9996;&#x4E2A;&#x5B57;&#x7B26;&#x4E0D;&#x80FD;&#x4EE5;&#x6570;&#x5B57;&#x5F00;&#x5934;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E0B;&#x5212;&#x7EBF;&#xFF08;_&#xFF09;&#x5F00;&#x5934;&#x3002;</li>
+<li>&#x4E2D;&#x95F4;&#x4E0D;&#x80FD;&#x6709;&#x7A7A;&#x683C;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E0B;&#x5212;&#x7EBF;&#xFF08;_&#xFF09;&#x3002;</li>
+<li>&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x6807;&#x70B9;&#x7B26;&#x53F7;&#x3002;</li>
+<li>&#x4E0D;&#x80FD;&#x4F7F;&#x7528;bash&#x91CC;&#x7684;&#x5173;&#x952E;&#x5B57;&#xFF08;&#x53EF;&#x7528;help&#x547D;&#x4EE4;&#x67E5;&#x770B;&#x4FDD;&#x7559;&#x5173;&#x952E;&#x5B57;&#xFF09;&#x3002;</li>
+</ul>
+<h3 id="shell-&#x5B57;&#x7B26;&#x4E32;&#x5165;&#x95E8;">Shell &#x5B57;&#x7B26;&#x4E32;&#x5165;&#x95E8;</h3>
+<p>&#x5B57;&#x7B26;&#x4E32;&#x662F;shell&#x7F16;&#x7A0B;&#x4E2D;&#x6700;&#x5E38;&#x7528;&#x6700;&#x6709;&#x7528;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF08;&#x9664;&#x4E86;&#x6570;&#x5B57;&#x548C;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4E5F;&#x6CA1;&#x5565;&#x5176;&#x5B83;&#x7C7B;&#x578B;&#x597D;&#x7528;&#x4E86;&#xFF09;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x53EF;&#x4EE5;&#x7528;&#x5355;&#x5F15;&#x53F7;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x53CC;&#x5F15;&#x53F7;&#x3002;&#x8FD9;&#x70B9;&#x548C;Java&#x4E2D;&#x6709;&#x6240;&#x4E0D;&#x540C;&#x3002;</p>
+<p><strong>&#x5355;&#x5F15;&#x53F7;&#x5B57;&#x7B26;&#x4E32;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">#!/bin/bash
+name=&apos;SnailClimb&apos;
+hello=&apos;Hello, I  am &apos;$name&apos;!&apos;
+echo $hello
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code>Hello, I am SnailClimb!
+</code></pre><p><strong>&#x53CC;&#x5F15;&#x53F7;&#x5B57;&#x7B26;&#x4E32;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">#!/bin/bash
+name=&apos;SnailClimb&apos;
+hello=&quot;Hello, I  am &quot;$name&quot;!&quot;
+echo $hello
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code>Hello, I am SnailClimb!
+</code></pre><h3 id="shell-&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x89C1;&#x64CD;&#x4F5C;">Shell &#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x89C1;&#x64CD;&#x4F5C;</h3>
+<p><strong>&#x62FC;&#x63A5;&#x5B57;&#x7B26;&#x4E32;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">#!/bin/bash
+name=&quot;SnailClimb&quot;
+# &#x4F7F;&#x7528;&#x53CC;&#x5F15;&#x53F7;&#x62FC;&#x63A5;
+greeting=&quot;hello, &quot;$name&quot; !&quot;
+greeting_1=&quot;hello, ${name} !&quot;
+echo $greeting  $greeting_1
+# &#x4F7F;&#x7528;&#x5355;&#x5F15;&#x53F7;&#x62FC;&#x63A5;
+greeting_2=&apos;hello, &apos;$name&apos; !&apos;
+greeting_3=&apos;hello, ${name} !&apos;
+echo $greeting_2  $greeting_3
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</p>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-17/51148933.jpg" alt="&#x8F93;&#x51FA;&#x7ED3;&#x679C;"></p>
+<p><strong>&#x83B7;&#x53D6;&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">#!/bin/bash
+#&#x83B7;&#x53D6;&#x5B57;&#x7B26;&#x4E32;&#x957F;&#x5EA6;
+name=&quot;SnailClimb&quot;
+# &#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;
+echo ${#name} #&#x8F93;&#x51FA; 10
+# &#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x5F0F;
+expr length &quot;$name&quot;;
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;:</p>
+<pre><code>10
+10
+</code></pre><p>&#x4F7F;&#x7528; expr &#x547D;&#x4EE4;&#x65F6;&#xFF0C;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x7684;&#x8FD0;&#x7B97;&#x7B26;&#x5DE6;&#x53F3;&#x5FC5;&#x987B;&#x5305;&#x542B;&#x7A7A;&#x683C;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5305;&#x542B;&#x7A7A;&#x683C;&#xFF0C;&#x5C06;&#x4F1A;&#x8F93;&#x51FA;&#x8868;&#x8FBE;&#x5F0F;&#x672C;&#x8EAB;:</p>
+<pre><code class="lang-shell">expr 5+6    // &#x76F4;&#x63A5;&#x8F93;&#x51FA; 5+6
+expr 5 + 6       // &#x8F93;&#x51FA; 11
+</code></pre>
+<p>&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x8FD0;&#x7B97;&#x7B26;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7B26;&#x53F7;<code>\</code>&#x8FDB;&#x884C;&#x8F6C;&#x4E49;&#xFF0C;&#x5426;&#x5219;&#x5C31;&#x4F1A;&#x63D0;&#x793A;&#x8BED;&#x6CD5;&#x9519;&#x8BEF;&#x3002;</p>
+<pre><code class="lang-shell">expr 5 * 6       // &#x8F93;&#x51FA;&#x9519;&#x8BEF;
+expr 5 \* 6      // &#x8F93;&#x51FA;30
+</code></pre>
+<p><strong>&#x622A;&#x53D6;&#x5B50;&#x5B57;&#x7B26;&#x4E32;:</strong></p>
+<p>&#x7B80;&#x5355;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x622A;&#x53D6;&#xFF1A;</p>
+<pre><code class="lang-shell">#&#x4ECE;&#x5B57;&#x7B26;&#x4E32;&#x7B2C; 1 &#x4E2A;&#x5B57;&#x7B26;&#x5F00;&#x59CB;&#x5F80;&#x540E;&#x622A;&#x53D6; 10 &#x4E2A;&#x5B57;&#x7B26;
+str=&quot;SnailClimb is a great man&quot;
+echo ${str:0:10} #&#x8F93;&#x51FA;:SnailClimb
+</code></pre>
+<p>&#x6839;&#x636E;&#x8868;&#x8FBE;&#x5F0F;&#x622A;&#x53D6;&#xFF1A;</p>
+<pre><code class="lang-shell">#!bin/bash
+#author:amau
+
+var=&quot;http://www.runoob.com/linux/linux-shell-variable.html&quot;
+
+s1=${var%%t*}#h
+s2=${var%t*}#http://www.runoob.com/linux/linux-shell-variable.h
+s3=${var%%.*}#http://www
+s4=${var#*/}#/www.runoob.com/linux/linux-shell-variable.html
+s5=${var##*/}#linux-shell-variable.html
+</code></pre>
+<h3 id="shell-&#x6570;&#x7EC4;">Shell &#x6570;&#x7EC4;</h3>
+<p>bash&#x652F;&#x6301;&#x4E00;&#x7EF4;&#x6570;&#x7EC4;&#xFF08;&#x4E0D;&#x652F;&#x6301;&#x591A;&#x7EF4;&#x6570;&#x7EC4;&#xFF09;&#xFF0C;&#x5E76;&#x4E14;&#x6CA1;&#x6709;&#x9650;&#x5B9A;&#x6570;&#x7EC4;&#x7684;&#x5927;&#x5C0F;&#x3002;&#x6211;&#x4E0B;&#x9762;&#x7ED9;&#x4E86;&#x5927;&#x5BB6;&#x4E00;&#x4E2A;&#x5173;&#x4E8E;&#x6570;&#x7EC4;&#x64CD;&#x4F5C;&#x7684; Shell &#x4EE3;&#x7801;&#x793A;&#x4F8B;&#xFF0C;&#x901A;&#x8FC7;&#x8BE5;&#x793A;&#x4F8B;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x6570;&#x7EC4;&#x3001;&#x83B7;&#x53D6;&#x6570;&#x7EC4;&#x957F;&#x5EA6;&#x3001;&#x83B7;&#x53D6;/&#x5220;&#x9664;&#x7279;&#x5B9A;&#x4F4D;&#x7F6E;&#x7684;&#x6570;&#x7EC4;&#x5143;&#x7D20;&#x3001;&#x5220;&#x9664;&#x6574;&#x4E2A;&#x6570;&#x7EC4;&#x4EE5;&#x53CA;&#x904D;&#x5386;&#x6570;&#x7EC4;&#x3002;</p>
+<pre><code class="lang-shell">#!/bin/bash
+array=(1 2 3 4 5);
+# &#x83B7;&#x53D6;&#x6570;&#x7EC4;&#x957F;&#x5EA6;
+length=${#array[@]}
+# &#x6216;&#x8005;
+length2=${#array[*]}
+#&#x8F93;&#x51FA;&#x6570;&#x7EC4;&#x957F;&#x5EA6;
+echo $length #&#x8F93;&#x51FA;&#xFF1A;5
+echo $length2 #&#x8F93;&#x51FA;&#xFF1A;5
+# &#x8F93;&#x51FA;&#x6570;&#x7EC4;&#x7B2C;&#x4E09;&#x4E2A;&#x5143;&#x7D20;
+echo ${array[2]} #&#x8F93;&#x51FA;&#xFF1A;3
+unset array[1]# &#x5220;&#x9664;&#x4E0B;&#x6807;&#x4E3A;1&#x7684;&#x5143;&#x7D20;&#x4E5F;&#x5C31;&#x662F;&#x5220;&#x9664;&#x7B2C;&#x4E8C;&#x4E2A;&#x5143;&#x7D20;
+for i in ${array[@]};do echo $i ;done # &#x904D;&#x5386;&#x6570;&#x7EC4;&#xFF0C;&#x8F93;&#x51FA;&#xFF1A; 1 3 4 5 
+unset arr_number; # &#x5220;&#x9664;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x5143;&#x7D20;
+for i in ${array[@]};do echo $i ;done # &#x904D;&#x5386;&#x6570;&#x7EC4;&#xFF0C;&#x6570;&#x7EC4;&#x5143;&#x7D20;&#x4E3A;&#x7A7A;&#xFF0C;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x8F93;&#x51FA;&#x5185;&#x5BB9;
+</code></pre>
+<h2 id="shell-&#x57FA;&#x672C;&#x8FD0;&#x7B97;&#x7B26;">Shell &#x57FA;&#x672C;&#x8FD0;&#x7B97;&#x7B26;</h2>
+<blockquote>
+<p>&#x8BF4;&#x660E;&#xFF1A;&#x56FE;&#x7247;&#x6765;&#x81EA;&#x300A;&#x83DC;&#x9E1F;&#x6559;&#x7A0B;&#x300B;</p>
+</blockquote>
+<p> Shell &#x7F16;&#x7A0B;&#x652F;&#x6301;&#x4E0B;&#x9762;&#x51E0;&#x79CD;&#x8FD0;&#x7B97;&#x7B26;</p>
+<ul>
+<li>&#x7B97;&#x6570;&#x8FD0;&#x7B97;&#x7B26;</li>
+<li>&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;</li>
+<li>&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;</li>
+<li>&#x5B57;&#x7B26;&#x4E32;&#x8FD0;&#x7B97;&#x7B26;</li>
+<li>&#x6587;&#x4EF6;&#x6D4B;&#x8BD5;&#x8FD0;&#x7B97;&#x7B26;</li>
+</ul>
+<h3 id="&#x7B97;&#x6570;&#x8FD0;&#x7B97;&#x7B26;">&#x7B97;&#x6570;&#x8FD0;&#x7B97;&#x7B26;</h3>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/4937342.jpg" alt="&#x7B97;&#x6570;&#x8FD0;&#x7B97;&#x7B26;"></p>
+<p>&#x6211;&#x4EE5;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x7B26;&#x505A;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x793A;&#x4F8B;&#xFF08;&#x6CE8;&#x610F;&#xFF1A;&#x4E0D;&#x662F;&#x5355;&#x5F15;&#x53F7;&#xFF0C;&#x662F;&#x53CD;&#x5F15;&#x53F7;&#xFF09;&#xFF1A;</p>
+<pre><code class="lang-shell">#!/bin/bash
+a=3;b=3;
+val=`expr $a + $b`
+#&#x8F93;&#x51FA;&#xFF1A;Total value : 6
+echo &quot;Total value : $val&quot;
+</code></pre>
+<h3 id="&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;">&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;</h3>
+<p>&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;&#x53EA;&#x652F;&#x6301;&#x6570;&#x5B57;&#xFF0C;&#x4E0D;&#x652F;&#x6301;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x9664;&#x975E;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x503C;&#x662F;&#x6570;&#x5B57;&#x3002;</p>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/64391380.jpg" alt="shell&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;"></p>
+<p>&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x793A;&#x4F8B;&#x6F14;&#x793A;&#x5173;&#x7CFB;&#x8FD0;&#x7B97;&#x7B26;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x4E0B;&#x9762;shell&#x7A0B;&#x5E8F;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x5F53;score=100&#x7684;&#x65F6;&#x5019;&#x8F93;&#x51FA;A&#x5426;&#x5219;&#x8F93;&#x51FA;B&#x3002;</p>
+<pre><code class="lang-shell">#!/bin/bash
+score=90;
+maxscore=100;
+if [ $score -eq $maxscore ]
+then
+   echo &quot;A&quot;
+else
+   echo &quot;B&quot;
+fi
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>B
+</code></pre><h3 id="&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7B26;">&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7B26;</h3>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/60545848.jpg" alt="&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7B26;"></p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-shell">#!/bin/bash
+a=$(( 1 &amp;&amp; 0))
+# &#x8F93;&#x51FA;&#xFF1A;0&#xFF1B;&#x903B;&#x8F91;&#x4E0E;&#x8FD0;&#x7B97;&#x53EA;&#x6709;&#x76F8;&#x4E0E;&#x7684;&#x4E24;&#x8FB9;&#x90FD;&#x662F;1&#xFF0C;&#x4E0E;&#x7684;&#x7ED3;&#x679C;&#x624D;&#x662F;1&#xFF1B;&#x5426;&#x5219;&#x4E0E;&#x7684;&#x7ED3;&#x679C;&#x662F;0
+echo $a;
+</code></pre>
+<h3 id="&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;">&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;</h3>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/93961425.jpg" alt="&#x5E03;&#x5C14;&#x8FD0;&#x7B97;&#x7B26;"></p>
+<p>&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x505A;&#x6F14;&#x793A;&#x4E86;&#xFF0C;&#x5E94;&#x8BE5;&#x633A;&#x7B80;&#x5355;&#x7684;&#x3002;</p>
+<h3 id="&#x5B57;&#x7B26;&#x4E32;&#x8FD0;&#x7B97;&#x7B26;">&#x5B57;&#x7B26;&#x4E32;&#x8FD0;&#x7B97;&#x7B26;</h3>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/309094.jpg" alt=" &#x5B57;&#x7B26;&#x4E32;&#x8FD0;&#x7B97;&#x7B26;"></p>
+<p>&#x7B80;&#x5355;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-shell">
+#!/bin/bash
+a=&quot;abc&quot;;
+b=&quot;efg&quot;;
+if [ $a = $b ]
+then
+   echo &quot;a &#x7B49;&#x4E8E; b&quot;
+else
+   echo &quot;a &#x4E0D;&#x7B49;&#x4E8E; b&quot;
+fi
+</code></pre>
+<p>&#x8F93;&#x51FA;&#xFF1A;</p>
+<pre><code>a &#x4E0D;&#x7B49;&#x4E8E; b
+</code></pre><h3 id="&#x6587;&#x4EF6;&#x76F8;&#x5173;&#x8FD0;&#x7B97;&#x7B26;">&#x6587;&#x4EF6;&#x76F8;&#x5173;&#x8FD0;&#x7B97;&#x7B26;</h3>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-11-22/60359774.jpg" alt="&#x6587;&#x4EF6;&#x76F8;&#x5173;&#x8FD0;&#x7B97;&#x7B26;"></p>
+<p>&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x597D;&#x4E86;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;<code>file=&quot;/usr/learnshell/test.sh&quot;</code> &#x5982;&#x679C;&#x6211;&#x4EEC;&#x60F3;&#x5224;&#x65AD;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x53EF;&#x8BFB;&#xFF0C;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;<code>if [ -r $file ]</code> &#x5982;&#x679C;&#x60F3;&#x5224;&#x65AD;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x53EF;&#x5199;&#xFF0C;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;<code>-w $file</code>&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x5F88;&#x7B80;&#x5355;&#x3002;</p>
+<h2 id="shell&#x6D41;&#x7A0B;&#x63A7;&#x5236;">shell&#x6D41;&#x7A0B;&#x63A7;&#x5236;</h2>
+<h3 id="if-&#x6761;&#x4EF6;&#x8BED;&#x53E5;">if &#x6761;&#x4EF6;&#x8BED;&#x53E5;</h3>
+<p>&#x7B80;&#x5355;&#x7684; if else-if else &#x7684;&#x6761;&#x4EF6;&#x8BED;&#x53E5;&#x793A;&#x4F8B;</p>
+<pre><code class="lang-shell">#!/bin/bash
+a=3;
+b=9;
+if [ $a -eq $b ]
+then
+   echo &quot;a &#x7B49;&#x4E8E; b&quot;
+elif [ $a -gt $b ]
+then
+   echo &quot;a &#x5927;&#x4E8E; b&quot;
+else
+   echo &quot;a &#x5C0F;&#x4E8E; b&quot;
+fi
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>a &#x5C0F;&#x4E8E; b
+</code></pre><p>&#x76F8;&#x4FE1;&#x5927;&#x5BB6;&#x901A;&#x8FC7;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x5C31;&#x5DF2;&#x7ECF;&#x638C;&#x63E1;&#x4E86; shell &#x7F16;&#x7A0B;&#x4E2D;&#x7684; if &#x6761;&#x4EF6;&#x8BED;&#x53E5;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x8FD8;&#x8981;&#x63D0;&#x5230;&#x7684;&#x4E00;&#x70B9;&#x662F;&#xFF0C;&#x4E0D;&#x540C;&#x4E8E;&#x6211;&#x4EEC;&#x5E38;&#x89C1;&#x7684; Java &#x4EE5;&#x53CA; PHP &#x4E2D;&#x7684; if &#x6761;&#x4EF6;&#x8BED;&#x53E5;&#xFF0C;shell  if &#x6761;&#x4EF6;&#x8BED;&#x53E5;&#x4E2D;&#x4E0D;&#x80FD;&#x5305;&#x542B;&#x7A7A;&#x8BED;&#x53E5;&#x4E5F;&#x5C31;&#x662F;&#x4EC0;&#x4E48;&#x90FD;&#x4E0D;&#x505A;&#x7684;&#x8BED;&#x53E5;&#x3002;</p>
+<h3 id="for-&#x5FAA;&#x73AF;&#x8BED;&#x53E5;">for &#x5FAA;&#x73AF;&#x8BED;&#x53E5;</h3>
+<p>&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x4E09;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x793A;&#x4F8B;&#x8BA4;&#x8BC6; for &#x5FAA;&#x73AF;&#x8BED;&#x53E5;&#x6700;&#x57FA;&#x672C;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A; for &#x5FAA;&#x73AF;&#x8BED;&#x53E5;&#x7684;&#x529F;&#x80FD;&#x6BD4;&#x4E0B;&#x9762;&#x4F60;&#x770B;&#x5230;&#x7684;&#x793A;&#x4F8B;&#x5C55;&#x73B0;&#x7684;&#x8981;&#x5927;&#x5F97;&#x591A;&#x3002;</p>
+<p><strong>&#x8F93;&#x51FA;&#x5F53;&#x524D;&#x5217;&#x8868;&#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">for loop in 1 2 3 4 5
+do
+    echo &quot;The value is: $loop&quot;
+done
+</code></pre>
+<p><strong>&#x4EA7;&#x751F; 10 &#x4E2A;&#x968F;&#x673A;&#x6570;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">#!/bin/bash
+for i in {0..9};
+do 
+   echo $RANDOM;
+done
+</code></pre>
+<p><strong>&#x8F93;&#x51FA;1&#x5230;5:</strong></p>
+<p>&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B; shell &#x53D8;&#x91CF;&#x8C03;&#x7528;&#x9700;&#x8981;&#x52A0; $,&#x4F46;&#x662F; for &#x7684; (()) &#x4E2D;&#x4E0D;&#x9700;&#x8981;,&#x4E0B;&#x9762;&#x6765;&#x770B;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-shell">#!/bin/bash
+for((i=1;i&lt;=5;i++));do
+    echo $i;
+done;
+</code></pre>
+<h3 id="while-&#x8BED;&#x53E5;">while &#x8BED;&#x53E5;</h3>
+<p><strong>&#x57FA;&#x672C;&#x7684; while &#x5FAA;&#x73AF;&#x8BED;&#x53E5;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">#!/bin/bash
+int=1
+while(( $int&lt;=5 ))
+do
+    echo $int
+    let &quot;int++&quot;
+done
+</code></pre>
+<p><strong>while&#x5FAA;&#x73AF;&#x53EF;&#x7528;&#x4E8E;&#x8BFB;&#x53D6;&#x952E;&#x76D8;&#x4FE1;&#x606F;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">echo &apos;&#x6309;&#x4E0B; &lt;CTRL-D&gt; &#x9000;&#x51FA;&apos;
+echo -n &apos;&#x8F93;&#x5165;&#x4F60;&#x6700;&#x559C;&#x6B22;&#x7684;&#x7535;&#x5F71;: &apos;
+while read FILM
+do
+    echo &quot;&#x662F;&#x7684;&#xFF01;$FILM &#x662F;&#x4E00;&#x4E2A;&#x597D;&#x7535;&#x5F71;&quot;
+done
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5185;&#x5BB9;:</p>
+<pre><code>&#x6309;&#x4E0B; &lt;CTRL-D&gt; &#x9000;&#x51FA;
+&#x8F93;&#x5165;&#x4F60;&#x6700;&#x559C;&#x6B22;&#x7684;&#x7535;&#x5F71;: &#x53D8;&#x5F62;&#x91D1;&#x521A;
+&#x662F;&#x7684;&#xFF01;&#x53D8;&#x5F62;&#x91D1;&#x521A; &#x662F;&#x4E00;&#x4E2A;&#x597D;&#x7535;&#x5F71;
+</code></pre><p><strong>&#x65E0;&#x9650;&#x5FAA;&#x73AF;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">while true
+do
+    command
+done
+</code></pre>
+<h2 id="shell-&#x51FD;&#x6570;">shell &#x51FD;&#x6570;</h2>
+<h3 id="&#x4E0D;&#x5E26;&#x53C2;&#x6570;&#x6CA1;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x51FD;&#x6570;">&#x4E0D;&#x5E26;&#x53C2;&#x6570;&#x6CA1;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x51FD;&#x6570;</h3>
+<pre><code class="lang-shell">#!/bin/bash
+hello(){
+    echo &quot;&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x4E2A; shell &#x51FD;&#x6570;!&quot;
+}
+echo &quot;-----&#x51FD;&#x6570;&#x5F00;&#x59CB;&#x6267;&#x884C;-----&quot;
+hello
+echo &quot;-----&#x51FD;&#x6570;&#x6267;&#x884C;&#x5B8C;&#x6BD5;-----&quot;
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>-----&#x51FD;&#x6570;&#x5F00;&#x59CB;&#x6267;&#x884C;-----
+&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x4E2A; shell &#x51FD;&#x6570;!
+-----&#x51FD;&#x6570;&#x6267;&#x884C;&#x5B8C;&#x6BD5;-----
+</code></pre><h3 id="&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x51FD;&#x6570;">&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x51FD;&#x6570;</h3>
+<p><strong>&#x8F93;&#x5165;&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#x4E4B;&#x540E;&#x76F8;&#x52A0;&#x5E76;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#xFF1A;</strong></p>
+<pre><code class="lang-shell">#!/bin/bash
+funWithReturn(){
+    echo &quot;&#x8F93;&#x5165;&#x7B2C;&#x4E00;&#x4E2A;&#x6570;&#x5B57;: &quot;
+    read aNum
+    echo &quot;&#x8F93;&#x5165;&#x7B2C;&#x4E8C;&#x4E2A;&#x6570;&#x5B57;: &quot;
+    read anotherNum
+    echo &quot;&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#x5206;&#x522B;&#x4E3A; $aNum &#x548C; $anotherNum !&quot;
+    return $(($aNum+$anotherNum))
+}
+funWithReturn
+echo &quot;&#x8F93;&#x5165;&#x7684;&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#x4E4B;&#x548C;&#x4E3A; $?&quot;
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>&#x8F93;&#x5165;&#x7B2C;&#x4E00;&#x4E2A;&#x6570;&#x5B57;: 
+1
+&#x8F93;&#x5165;&#x7B2C;&#x4E8C;&#x4E2A;&#x6570;&#x5B57;: 
+2
+&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#x5206;&#x522B;&#x4E3A; 1 &#x548C; 2 !
+&#x8F93;&#x5165;&#x7684;&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#x4E4B;&#x548C;&#x4E3A; 3
+</code></pre><h3 id="&#x5E26;&#x53C2;&#x6570;&#x7684;&#x51FD;&#x6570;">&#x5E26;&#x53C2;&#x6570;&#x7684;&#x51FD;&#x6570;</h3>
+<pre><code class="lang-shell">#!/bin/bash
+funWithParam(){
+    echo &quot;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; $1 !&quot;
+    echo &quot;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; $2 !&quot;
+    echo &quot;&#x7B2C;&#x5341;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; $10 !&quot;
+    echo &quot;&#x7B2C;&#x5341;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; ${10} !&quot;
+    echo &quot;&#x7B2C;&#x5341;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; ${11} !&quot;
+    echo &quot;&#x53C2;&#x6570;&#x603B;&#x6570;&#x6709; $# &#x4E2A;!&quot;
+    echo &quot;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x8F93;&#x51FA;&#x6240;&#x6709;&#x53C2;&#x6570; $* !&quot;
+}
+funWithParam 1 2 3 4 5 6 7 8 9 34 73
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; 1 !
+&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; 2 !
+&#x7B2C;&#x5341;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; 10 !
+&#x7B2C;&#x5341;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; 34 !
+&#x7B2C;&#x5341;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; 73 !
+&#x53C2;&#x6570;&#x603B;&#x6570;&#x6709; 11 &#x4E2A;!
+&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x8F93;&#x51FA;&#x6240;&#x6709;&#x53C2;&#x6570; 1 2 3 4 5 6 7 8 9 34 73 !
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="后端程序员必备的Linux基础知识.md" class="navigation navigation-prev " aria-label="Previous page: 后端程序员必备的 Linux 基础知识">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../dataStructures-algorithms/数据结构.html" class="navigation navigation-next " aria-label="Next page: 数据结构知识学习与面试">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Shell 编程入门","level":"11.2","depth":1,"next":{"title":"数据结构知识学习与面试","level":"13.1","depth":1,"path":"dataStructures-algorithms/数据结构.md","ref":"dataStructures-algorithms/数据结构.md","articles":[]},"previous":{"title":"后端程序员必备的 Linux 基础知识","level":"11.1","depth":1,"path":"operating-system/后端程序员必备的Linux基础知识.md","ref":"operating-system/后端程序员必备的Linux基础知识.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"operating-system/Shell.md","mtime":"2020-07-23T06:31:40.955Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-24T11:21:30.457Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

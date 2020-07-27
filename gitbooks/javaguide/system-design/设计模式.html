@@ -1,0 +1,1704 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>设计模式系列文章 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="framework/spring/Spring.html" />
+    
+    
+    <link rel="prev" href="../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Java</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../java/Java基础知识.html">
+            
+                <a href="../java/Java基础知识.html">
+            
+                    
+                    Java 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../java/Java疑难点.html">
+            
+                <a href="../java/Java疑难点.html">
+            
+                    
+                    Java 基础知识疑难点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../java/J2EE基础知识.html">
+            
+                <a href="../java/J2EE基础知识.html">
+            
+                    
+                    J2EE 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">容器</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../java/collection/Java集合框架常见面试题.html">
+            
+                <a href="../java/collection/Java集合框架常见面试题.html">
+            
+                    
+                    Java容器常见面试题/知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../java/collection/ArrayList.html">
+            
+                <a href="../java/collection/ArrayList.html">
+            
+                    
+                    ArrayList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../java/collection/LinkedList.html">
+            
+                <a href="../java/collection/LinkedList.html">
+            
+                    
+                    LinkedList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../java/collection/HashMap.html">
+            
+                <a href="../java/collection/HashMap.html">
+            
+                    
+                    HashMap(JDK1.8)源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">并发</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                <a href="../java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                    
+                    Java 并发基础常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                <a href="../java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                    
+                    Java 并发进阶常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../java/Multithread/并发容器总结.html">
+            
+                <a href="../java/Multithread/并发容器总结.html">
+            
+                    
+                    并发容器总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                <a href="../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                    
+                    乐观锁与悲观锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../java/Multithread/Atomic.html">
+            
+                <a href="../java/Multithread/Atomic.html">
+            
+                    
+                    JUC 中的 Atomic 原子类总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../java/Multithread/AQS.html">
+            
+                <a href="../java/Multithread/AQS.html">
+            
+                    
+                    AQS 原理以及 AQS 同步组件总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">JVM</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../java/jvm/Java内存区域.html">
+            
+                <a href="../java/jvm/Java内存区域.html">
+            
+                    
+                    一 Java内存区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../java/jvm/JVM垃圾回收.html">
+            
+                <a href="../java/jvm/JVM垃圾回收.html">
+            
+                    
+                    二 JVM垃圾回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../java/jvm/JDK监控和故障处理工具总结.html">
+            
+                <a href="../java/jvm/JDK监控和故障处理工具总结.html">
+            
+                    
+                    三 JDK 监控和故障处理工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../java/jvm/类文件结构.html">
+            
+                <a href="../java/jvm/类文件结构.html">
+            
+                    
+                    四 类文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../java/jvm/类加载过程.html">
+            
+                <a href="../java/jvm/类加载过程.html">
+            
+                    
+                    五 类加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../java/jvm/类加载器.html">
+            
+                <a href="../java/jvm/类加载器.html">
+            
+                    
+                    六 类加载器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">I/O</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../java/BIO-NIO-AIO.html">
+            
+                <a href="../java/BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../java/Java%20IO与NIO.md">
+            
+                <span>
+            
+                    
+                    Java IO 与 NIO系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Java 8</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../java/What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../java/What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">编程规范</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../java/Java编程规范.html">
+            
+                <a href="../java/Java编程规范.html">
+            
+                    
+                    Java 编程规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网络</li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="../network/计算机网络.html">
+            
+                <a href="../network/计算机网络.html">
+            
+                    
+                    计算机网络常见面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="../network/干货：计算机网络知识总结.html">
+            
+                <a href="../network/干货：计算机网络知识总结.html">
+            
+                    
+                    计算机网络基础知识总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="../network/HTTPS中的TLS.html">
+            
+                <a href="../network/HTTPS中的TLS.html">
+            
+                    
+                    HTTPS中的TLS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">操作系统</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Linux相关</li>
+        
+        
+    
+        <li class="chapter " data-level="11.1" data-path="../operating-system/后端程序员必备的Linux基础知识.md">
+            
+                <span>
+            
+                    
+                    后端程序员必备的 Linux 基础知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="../operating-system/Shell.html">
+            
+                <a href="../operating-system/Shell.html">
+            
+                    
+                    Shell 编程入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据结构与算法</li>
+        
+        
+    
+
+    
+        
+        <li class="header">数据结构</li>
+        
+        
+    
+        <li class="chapter " data-level="13.1" data-path="../dataStructures-algorithms/数据结构.html">
+            
+                <a href="../dataStructures-algorithms/数据结构.html">
+            
+                    
+                    数据结构知识学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">算法</li>
+        
+        
+    
+        <li class="chapter " data-level="14.1" data-path="../dataStructures-algorithms/算法学习资源推荐.html">
+            
+                <a href="../dataStructures-algorithms/算法学习资源推荐.html">
+            
+                    
+                    算法学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.2" data-path="../dataStructures-algorithms/几道常见的子符串算法题.html">
+            
+                <a href="../dataStructures-algorithms/几道常见的子符串算法题.html">
+            
+                    
+                    几道常见的字符串算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.3" data-path="../dataStructures-algorithms/几道常见的链表算法题.html">
+            
+                <a href="../dataStructures-algorithms/几道常见的链表算法题.html">
+            
+                    
+                    几道常见的链表算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.4" data-path="../dataStructures-algorithms/剑指offer部分编程题.html">
+            
+                <a href="../dataStructures-algorithms/剑指offer部分编程题.html">
+            
+                    
+                    剑指offer部分编程题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.5" data-path="../dataStructures-algorithms/公司真题.html">
+            
+                <a href="../dataStructures-algorithms/公司真题.html">
+            
+                    
+                    公司真题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.6" data-path="../dataStructures-algorithms/Backtracking-NQueens.html">
+            
+                <a href="../dataStructures-algorithms/Backtracking-NQueens.html">
+            
+                    
+                    回溯算法经典案例之N皇后问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据库</li>
+        
+        
+    
+
+    
+        
+        <li class="header">MySQL</li>
+        
+        
+    
+        <li class="chapter " data-level="16.1" data-path="../database/MySQL.html">
+            
+                <a href="../database/MySQL.html">
+            
+                    
+                    MySQL 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="../database/一千行MySQL命令.html">
+            
+                <a href="../database/一千行MySQL命令.html">
+            
+                    
+                    一千行MySQL学习笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="../database/MySQL高性能优化规范建议.html">
+            
+                <a href="../database/MySQL高性能优化规范建议.html">
+            
+                    
+                    MySQL高性能优化规范建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="../database/MySQL%20Index.md">
+            
+                <span>
+            
+                    
+                    数据库索引总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="../database/事务隔离级别(图文详解">
+            
+                <span>
+            
+                    
+                    事务隔离级别(图文详解)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.6" data-path="../database/一条sql语句在mysql中如何执行的.html">
+            
+                <a href="../database/一条sql语句在mysql中如何执行的.html">
+            
+                    
+                    一条SQL语句在MySQL中如何执行的
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Redis</li>
+        
+        
+    
+        <li class="chapter " data-level="17.1" data-path="../database/Redis/Redis.md">
+            
+                <span>
+            
+                    
+                    Redis 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.2" data-path="../database/Redis/Redlock分布式锁.html">
+            
+                <a href="../database/Redis/Redlock分布式锁.html">
+            
+                    
+                    Redlock分布式锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.3" data-path="../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                <a href="../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                    
+                    如何做可靠的分布式锁，Redlock真的可行么
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">系统设计</li>
+        
+        
+    
+
+    
+        
+        <li class="header">设计模式</li>
+        
+        
+    
+        <li class="chapter active" data-level="19.1" data-path="设计模式.html">
+            
+                <a href="设计模式.html">
+            
+                    
+                    设计模式系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常用框架</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Spring</li>
+        
+        
+    
+        <li class="chapter " data-level="21.1" data-path="framework/spring/Spring.html">
+            
+                <a href="framework/spring/Spring.html">
+            
+                    
+                    Spring 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.2" data-path="framework/spring/SpringInterviewQuestions.html">
+            
+                <a href="framework/spring/SpringInterviewQuestions.html">
+            
+                    
+                    Spring 常见问题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.3" data-path="framework/spring/SpringBean.html">
+            
+                <a href="framework/spring/SpringBean.html">
+            
+                    
+                    Spring中bean的作用域与生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.4" data-path="framework/spring/SpringMVC-Principle.html">
+            
+                <a href="framework/spring/SpringMVC-Principle.html">
+            
+                    
+                    SpringMVC 工作原理详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.5" data-path="framework/spring/Spring-Design-Patterns.html">
+            
+                <a href="framework/spring/Spring-Design-Patterns.html">
+            
+                    
+                    Spring中都用到了那些设计模式?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">ZooKeeper</li>
+        
+        
+    
+        <li class="chapter " data-level="22.1" data-path="framework/ZooKeeper.html">
+            
+                <a href="framework/ZooKeeper.html">
+            
+                    
+                    ZooKeeper 相关概念总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.2" data-path="framework/ZooKeeper数据模型和常见命令.html">
+            
+                <a href="framework/ZooKeeper数据模型和常见命令.html">
+            
+                    
+                    ZooKeeper 数据模型和常见命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据通信</li>
+        
+        
+    
+        <li class="chapter " data-level="23.1" data-path="data-communication/summary.md">
+            
+                <span>
+            
+                    
+                    数据通信(RESTful、RPC、消息队列)相关知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.2" data-path="data-communication/dubbo.html">
+            
+                <a href="data-communication/dubbo.html">
+            
+                    
+                    Dubbo 总结：关于 Dubbo 的重要知识点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.3" data-path="data-communication/message-queue.html">
+            
+                <a href="data-communication/message-queue.html">
+            
+                    
+                    消息队列总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.4" data-path="data-communication/rabbitmq.html">
+            
+                <a href="data-communication/rabbitmq.html">
+            
+                    
+                    RabbitMQ 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.5" data-path="data-communication/RocketMQ-Questions.html">
+            
+                <a href="data-communication/RocketMQ-Questions.html">
+            
+                    
+                    RocketMQ的几个简单问题与答案
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网站架构</li>
+        
+        
+    
+        <li class="chapter " data-level="24.1" data-path="website-architecture/分布式.html">
+            
+                <a href="website-architecture/分布式.html">
+            
+                    
+                    一文读懂分布式应该学什么
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.2" data-path="website-architecture/8%20张图读懂大型网站技术架构.md">
+            
+                <span>
+            
+                    
+                    8 张图读懂大型网站技术架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.3" data-path="website-architecture/【面试精选】关于大型网站系统架构你不得不懂的10个问题.md">
+            
+                <span>
+            
+                    
+                    【面试精选】关于大型网站系统架构你不得不懂的10个问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面试指南</li>
+        
+        
+    
+
+    
+        
+        <li class="header">备战面试</li>
+        
+        
+    
+        <li class="chapter " data-level="26.1" data-path="../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                    
+                    【备战面试1】程序员的简历就该这样写
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.2" data-path="../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                    
+                    【备战面试2】初出茅庐的程序员该如何准备面试？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.3" data-path="../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                    
+                    【备战面试3】7个大部分程序员在面试前很关心的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.4" data-path="../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                    
+                    【备战面试4】Github上开源的Java面试/学习相关的仓库推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.5" data-path="../essential-content-for-interview/PreparingForInterview/如果面试官问你“你有什么问题问我吗？”时，你该如何回答.md">
+            
+                <span>
+            
+                    
+                    【备战面试5】如果面试官问你“你有什么问题问我吗？”时，你该如何回答
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.6" data-path="../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                    
+                    【备战面试6】美团面试常见问题总结（附详解答案）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常见面试题总结</li>
+        
+        
+    
+        <li class="chapter " data-level="27.1" data-path="../essential-content-for-interview/MostCommonJavaInterviewQuestions/第一周（2018-8-7）.md">
+            
+                <span>
+            
+                    
+                    第一周（2018-8-7）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.2" data-path="../essential-content-for-interview/MostCommonJavaInterviewQuestions/第二周(2018-8-13">
+            
+                <span>
+            
+                    
+                    第二周（2018-8-13）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.3" data-path="../java/collection/Java集合框架常见面试题.html">
+            
+                <a href="../java/collection/Java集合框架常见面试题.html">
+            
+                    
+                    第三周（2018-08-22）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.4" data-path="../essential-content-for-interview/MostCommonJavaInterviewQuestions/第四周(2018-8-30">
+            
+                <span>
+            
+                    
+                    第四周(2018-8-30).md
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面经</li>
+        
+        
+    
+        <li class="chapter " data-level="28.1" data-path="../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                <a href="../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                    
+                    5面阿里,终获offer(2018年秋招)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.2" data-path="../essential-content-for-interview/BATJrealInterviewExperience/蚂蚁金服实习生面经总结(已拿口头offer">
+            
+                <span>
+            
+                    
+                    蚂蚁金服2019实习生面经总结(已拿口头offer)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.3" data-path="../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                <a href="../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                    
+                    2019年蚂蚁金服、头条、拼多多的面试总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">工具</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Git</li>
+        
+        
+    
+        <li class="chapter " data-level="30.1" data-path="../tools/Git.html">
+            
+                <a href="../tools/Git.html">
+            
+                    
+                    Git入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Docker</li>
+        
+        
+    
+        <li class="chapter " data-level="31.1" data-path="../tools/Docker.html">
+            
+                <a href="../tools/Docker.html">
+            
+                    
+                    Docker 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="31.2" data-path="../tools/Docker-Image.html">
+            
+                <a href="../tools/Docker-Image.html">
+            
+                    
+                    一文搞懂 Docker 镜像的常用操作！
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">资料</li>
+        
+        
+    
+
+    
+        
+        <li class="header">书单</li>
+        
+        
+    
+        <li class="chapter " data-level="33.1" data-path="../data/java-recommended-books.md">
+            
+                <span>
+            
+                    
+                    Java程序员必备书单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Github榜单</li>
+        
+        
+    
+        <li class="chapter " data-level="34.1" data-path="../github-trending/JavaGithubTrending.html">
+            
+                <a href="../github-trending/JavaGithubTrending.html">
+            
+                    
+                    Java 项目月榜单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">待办</li>
+        
+        
+    
+        <li class="chapter " data-level="35.1" data-path="../java/What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.2" data-path="../java/What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.3" >
+            
+                <span>
+            
+                    
+                    [ ] Java 多线程类别知识重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.4" data-path="../java/BIO-NIO-AIO.html">
+            
+                <a href="../java/BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.5" >
+            
+                <span>
+            
+                    
+                    [ ] Netty 总结(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.6" >
+            
+                <span>
+            
+                    
+                    [ ] 数据结构总结重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">公众号</li>
+        
+        
+    
+        <li class="chapter " data-level="36.1" >
+            
+                <span>
+            
+                    
+                    如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.2" >
+            
+                <span>
+            
+                    
+                    由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本公众号后台回复  即可免费领取！
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.3" >
+            
+                <span>
+            
+                    
+                    一些Java工程师常用学习资源公众号后台回复关键字  即可免费无套路获取。
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >设计模式系列文章</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="java-&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;">Java &#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</h1>
+<p>&#x4E0B;&#x9762;&#x662F;&#x81EA;&#x5DF1;&#x5B66;&#x4E60;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x65F6;&#x5019;&#x505A;&#x7684;&#x603B;&#x7ED3;&#xFF0C;&#x6709;&#x4E9B;&#x662F;&#x81EA;&#x5DF1;&#x7684;&#x539F;&#x521B;&#x6587;&#x7AE0;&#xFF0C;&#x6709;&#x4E9B;&#x662F;&#x7F51;&#x4E0A;&#x5199;&#x7684;&#x6BD4;&#x8F83;&#x597D;&#x7684;&#x6587;&#x7AE0;&#xFF0C;&#x4FDD;&#x5B58;&#x4E0B;&#x6765;&#x7EC6;&#x7EC6;&#x6D88;&#x5316;&#x5427;&#xFF01;</p>
+<p><strong>&#x7CFB;&#x5217;&#x6587;&#x7AE0;&#x63A8;&#x8350;&#xFF1A;</strong><a href="https://design-patterns.readthedocs.io/zh_CN/latest/index.html" target="_blank">https://design-patterns.readthedocs.io/zh_CN/latest/index.html</a></p>
+<h2 id="&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;">&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;</h2>
+<h3 id="&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;&#x6982;&#x8FF0;">&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;&#x6982;&#x8FF0;</h3>
+<ul>
+<li>&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;(Creational Pattern)&#x5BF9;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x8FC7;&#x7A0B;&#x8FDB;&#x884C;&#x4E86;&#x62BD;&#x8C61;&#xFF0C;&#x80FD;&#x591F;&#x5C06;&#x8F6F;&#x4EF6;&#x6A21;&#x5757;&#x4E2D;&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;&#x548C;&#x5BF9;&#x8C61;&#x7684;&#x4F7F;&#x7528;&#x5206;&#x79BB;&#x3002;&#x4E3A;&#x4E86;&#x4F7F;&#x8F6F;&#x4EF6;&#x7684;&#x7ED3;&#x6784;&#x66F4;&#x52A0;&#x6E05;&#x6670;&#xFF0C;&#x5916;&#x754C;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E9B;&#x5BF9;&#x8C61;&#x53EA;&#x9700;&#x8981;&#x77E5;&#x9053;&#x5B83;&#x4EEC;&#x5171;&#x540C;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x800C;&#x4E0D;&#x6E05;&#x695A;&#x5176;&#x5177;&#x4F53;&#x7684;&#x5B9E;&#x73B0;&#x7EC6;&#x8282;&#xFF0C;&#x4F7F;&#x6574;&#x4E2A;&#x7CFB;&#x7EDF;&#x7684;&#x8BBE;&#x8BA1;&#x66F4;&#x52A0;&#x7B26;&#x5408;&#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;&#x3002;</li>
+<li>&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;&#x5728;&#x521B;&#x5EFA;&#x4EC0;&#x4E48;(What)&#xFF0C;&#x7531;&#x8C01;&#x521B;&#x5EFA;(Who)&#xFF0C;&#x4F55;&#x65F6;&#x521B;&#x5EFA;(When)&#x7B49;&#x65B9;&#x9762;&#x90FD;&#x4E3A;&#x8F6F;&#x4EF6;&#x8BBE;&#x8BA1;&#x8005;&#x63D0;&#x4F9B;&#x4E86;&#x5C3D;&#x53EF;&#x80FD;&#x5927;&#x7684;&#x7075;&#x6D3B;&#x6027;&#x3002;&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;&#x9690;&#x85CF;&#x4E86;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x7684;&#x521B;&#x5EFA;&#x7EC6;&#x8282;&#xFF0C;&#x901A;&#x8FC7;&#x9690;&#x85CF;&#x5BF9;&#x8C61;&#x5982;&#x4F55;&#x88AB;&#x521B;&#x5EFA;&#x548C;&#x7EC4;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x8FBE;&#x5230;&#x4F7F;&#x6574;&#x4E2A;&#x7CFB;&#x7EDF;&#x72EC;&#x7ACB;&#x7684;&#x76EE;&#x7684;&#x3002; </li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/16/1640641afcb7559b?w=491&amp;h=241&amp;f=png&amp;s=51443" alt="&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;"></p>
+<h3 id="&#x5E38;&#x89C1;&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;&#x8BE6;&#x89E3;">&#x5E38;&#x89C1;&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;&#x8BE6;&#x89E3;</h3>
+<ul>
+<li><strong>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="https://blog.csdn.net/qq_34337272/article/details/80455972" target="_blank">&#x6DF1;&#x5165;&#x7406;&#x89E3;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x2014;&#x2014;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;</a></li>
+<li><strong>&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="https://blog.csdn.net/qq_34337272/article/details/80472071" target="_blank">&#x6DF1;&#x5165;&#x7406;&#x89E3;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x2014;&#x2014;&#x7531;&#x5BF9;&#x8C61;&#x5DE5;&#x5382;&#x751F;&#x6210;&#x5BF9;&#x8C61;</a></li>
+<li><strong>&#x5EFA;&#x9020;&#x8005;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="http://blog.csdn.net/qq_34337272/article/details/80540059" target="_blank">&#x6DF1;&#x5165;&#x7406;&#x89E3;&#x5EFA;&#x9020;&#x8005;&#x6A21;&#x5F0F; &#x2014;&#x2014;&#x7EC4;&#x88C5;&#x590D;&#x6742;&#x7684;&#x5B9E;&#x4F8B;</a></li>
+<li><strong>&#x539F;&#x578B;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="https://blog.csdn.net/qq_34337272/article/details/80706444" target="_blank">&#x6DF1;&#x5165;&#x7406;&#x89E3;&#x539F;&#x578B;&#x6A21;&#x5F0F; &#x2014;&#x2014;&#x901A;&#x8FC7;&#x590D;&#x5236;&#x751F;&#x6210;&#x5B9E;&#x4F8B;</a></li>
+</ul>
+<h2 id="&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;">&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;</h2>
+<h3 id="&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x6982;&#x8FF0;">&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x6982;&#x8FF0;</h3>
+<ul>
+<li><strong>&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;(Structural Pattern)&#xFF1A;</strong> &#x63CF;&#x8FF0;&#x5982;&#x4F55;&#x5C06;&#x7C7B;&#x6216;&#x8005;&#x5BF9;&#x8C61;&#x7ED3;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x5F62;&#x6210;&#x66F4;&#x5927;&#x7684;&#x7ED3;&#x6784;&#xFF0C;&#x5C31;&#x50CF;&#x642D;&#x79EF;&#x6728;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7B80;&#x5355;&#x79EF;&#x6728;&#x7684;&#x7EC4;&#x5408;&#x5F62;&#x6210;&#x590D;&#x6742;&#x7684;&#x3001;&#x529F;&#x80FD;&#x66F4;&#x4E3A;&#x5F3A;&#x5927;&#x7684;&#x7ED3;&#x6784;
+<img src="https://user-gold-cdn.xitu.io/2018/6/16/164064d6b3c205e3?w=719&amp;h=233&amp;f=png&amp;s=270293" alt="&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;(Structural Pattern)"></li>
+<li><strong>&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x7C7B;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x548C;&#x5BF9;&#x8C61;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#xFF1A;</strong>  <ul>
+<li>&#x7C7B;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x5173;&#x5FC3;&#x7C7B;&#x7684;&#x7EC4;&#x5408;&#xFF0C;&#x7531;&#x591A;&#x4E2A;&#x7C7B;&#x53EF;&#x4EE5;&#x7EC4;&#x5408;&#x6210;&#x4E00;&#x4E2A;&#x66F4;&#x5927;&#x7684;&#x7CFB;&#x7EDF;&#xFF0C;&#x5728;&#x7C7B;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x4E2D;&#x4E00;&#x822C;&#x53EA;&#x5B58;&#x5728;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#x548C;&#x5B9E;&#x73B0;&#x5173;&#x7CFB;&#x3002;</li>
+<li>&#x5BF9;&#x8C61;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x5173;&#x5FC3;&#x7C7B;&#x4E0E;&#x5BF9;&#x8C61;&#x7684;&#x7EC4;&#x5408;&#xFF0C;&#x901A;&#x8FC7;&#x5173;&#x8054;&#x5173;&#x7CFB;&#x4F7F;&#x5F97;&#x5728;&#x4E00;&#x4E2A;&#x7C7B;&#x4E2D;&#x5B9A;&#x4E49;&#x53E6;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;&#x8BE5;&#x5BF9;&#x8C61;&#x8C03;&#x7528;&#x5176;&#x65B9;&#x6CD5;&#x3002;&#x6839;&#x636E;&#x201C;&#x5408;&#x6210;&#x590D;&#x7528;&#x539F;&#x5219;&#x201D;&#xFF0C;&#x5728;&#x7CFB;&#x7EDF;&#x4E2D;&#x5C3D;&#x91CF;&#x4F7F;&#x7528;&#x5173;&#x8054;&#x5173;&#x7CFB;&#x6765;&#x66FF;&#x4EE3;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#xFF0C;&#x56E0;&#x6B64;&#x5927;&#x90E8;&#x5206;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x90FD;&#x662F;&#x5BF9;&#x8C61;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/16/1640655459d766d2?w=378&amp;h=266&amp;f=png&amp;s=59652" alt="&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;"></p>
+<h3 id="&#x5E38;&#x89C1;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x8BE6;&#x89E3;">&#x5E38;&#x89C1;&#x7ED3;&#x6784;&#x578B;&#x6A21;&#x5F0F;&#x8BE6;&#x89E3;</h3>
+<ul>
+<li><strong>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#xFF1A;</strong><ul>
+<li><a href="https://segmentfault.com/a/1190000011856448" target="_blank">&#x6DF1;&#x5165;&#x7406;&#x89E3;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x2014;&#x2014;&#x52A0;&#x4E2A;&#x201C;&#x9002;&#x914D;&#x5668;&#x201D;&#x4EE5;&#x4FBF;&#x4E8E;&#x590D;&#x7528;</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-adapter-pattern/index.html" target="_blank">&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x4F8B;&#x4ECB;&#x7ECD;-IBM</a></li>
+</ul>
+</li>
+<li><strong>&#x6865;&#x63A5;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="https://blog.csdn.net/yangzl2008/article/details/7670996" target="_blank">&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7B14;&#x8BB0;16&#xFF1A;&#x6865;&#x63A5;&#x6A21;&#x5F0F;(Bridge Pattern)</a></li>
+<li><strong>&#x7EC4;&#x5408;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="https://blog.csdn.net/lmb55/article/details/51039781" target="_blank">&#x5927;&#x8BDD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x2014;&#x7EC4;&#x5408;&#x6A21;&#x5F0F;</a></li>
+<li><strong>&#x88C5;&#x9970;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="https://www.cnblogs.com/chenxing818/p/4705919.html" target="_blank">java&#x6A21;&#x5F0F;&#x2014;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;</a>&#x3001;<a href="https://blog.csdn.net/cauchyweierstrass/article/details/48240147" target="_blank">Java&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;-&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;</a></li>
+<li><strong>&#x5916;&#x89C2;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="https://www.cnblogs.com/lthIU/p/5860607.html" target="_blank">java&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E4B;&#x5916;&#x89C2;&#x6A21;&#x5F0F;&#xFF08;&#x95E8;&#x9762;&#x6A21;&#x5F0F;&#xFF09;</a></li>
+<li><strong>&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="http://www.jasongj.com/design_pattern/flyweight/" target="_blank">&#x4EAB;&#x5143;&#x6A21;&#x5F0F;</a></li>
+<li><strong>&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#xFF1A;</strong><ul>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-proxy-pattern/index.html" target="_blank">&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x539F;&#x7406;&#x53CA;&#x5B9E;&#x4F8B;&#x8BB2;&#x89E3; &#xFF08;IBM&#x51FA;&#x54C1;&#xFF0C;&#x5F88;&#x4E0D;&#x9519;&#xFF09;</a></li>
+<li><a href="https://blog.csdn.net/briblue/article/details/73928350" target="_blank">&#x8F7B;&#x677E;&#x5B66;&#xFF0C;Java &#x4E2D;&#x7684;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x53CA;&#x52A8;&#x6001;&#x4EE3;&#x7406;</a></li>
+<li><a href="https://blog.csdn.net/justloveyou_/article/details/74203025" target="_blank">Java&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x53CA;&#x5176;&#x5E94;&#x7528;</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;">&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;</h2>
+<h3 id="&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x6982;&#x8FF0;">&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x6982;&#x8FF0;</h3>
+<ul>
+<li>&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;(Behavioral Pattern)&#x662F;&#x5BF9;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x5212;&#x5206;&#x8D23;&#x4EFB;&#x548C;&#x7B97;&#x6CD5;&#x7684;&#x62BD;&#x8C61;&#x5316;&#x3002;</li>
+<li>&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x4E0D;&#x4EC5;&#x4EC5;&#x5173;&#x6CE8;&#x7C7B;&#x548C;&#x5BF9;&#x8C61;&#x7684;&#x7ED3;&#x6784;&#xFF0C;&#x800C;&#x4E14;&#x91CD;&#x70B9;&#x5173;&#x6CE8;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4E92;&#x4F5C;&#x7528;&#x3002;</li>
+<li>&#x901A;&#x8FC7;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x52A0;&#x6E05;&#x6670;&#x5730;&#x5212;&#x5206;&#x7C7B;&#x4E0E;&#x5BF9;&#x8C61;&#x7684;&#x804C;&#x8D23;&#xFF0C;&#x5E76;&#x7814;&#x7A76;&#x7CFB;&#x7EDF;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x7684;&#x4EA4;&#x4E92;&#x3002;&#x5728;&#x7CFB;&#x7EDF;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x5BF9;&#x8C61;&#x5E76;&#x4E0D;&#x662F;&#x5B64;&#x7ACB;&#x7684;&#xFF0C;&#x5B83;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x76F8;&#x4E92;&#x901A;&#x4FE1;&#x4E0E;&#x534F;&#x4F5C;&#x5B8C;&#x6210;&#x67D0;&#x4E9B;&#x590D;&#x6742;&#x529F;&#x80FD;&#xFF0C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x4E5F;&#x5C06;&#x5F71;&#x54CD;&#x5230;&#x5176;&#x4ED6;&#x5BF9;&#x8C61;&#x7684;&#x8FD0;&#x884C;&#x3002; </li>
+</ul>
+<p><strong>&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x5206;&#x4E3A;&#x7C7B;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x548C;&#x5BF9;&#x8C61;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x4E24;&#x79CD;&#xFF1A;</strong></p>
+<ul>
+<li><strong>&#x7C7B;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#xFF1A;</strong> &#x7C7B;&#x7684;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#x5728;&#x51E0;&#x4E2A;&#x7C7B;&#x4E4B;&#x95F4;&#x5206;&#x914D;&#x884C;&#x4E3A;&#xFF0C;&#x7C7B;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x4E3B;&#x8981;&#x901A;&#x8FC7;&#x591A;&#x6001;&#x7B49;&#x65B9;&#x5F0F;&#x6765;&#x5206;&#x914D;&#x7236;&#x7C7B;&#x4E0E;&#x5B50;&#x7C7B;&#x7684;&#x804C;&#x8D23;&#x3002;</li>
+<li><strong>&#x5BF9;&#x8C61;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#xFF1A;</strong> &#x5BF9;&#x8C61;&#x7684;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x5219;&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x7684;&#x805A;&#x5408;&#x5173;&#x8054;&#x5173;&#x7CFB;&#x6765;&#x5206;&#x914D;&#x884C;&#x4E3A;&#xFF0C;&#x5BF9;&#x8C61;&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;&#x4E3B;&#x8981;&#x662F;&#x901A;&#x8FC7;&#x5BF9;&#x8C61;&#x5173;&#x8054;&#x7B49;&#x65B9;&#x5F0F;&#x6765;&#x5206;&#x914D;&#x4E24;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x7C7B;&#x7684;&#x804C;&#x8D23;&#x3002;&#x6839;&#x636E;&#x201C;&#x5408;&#x6210;&#x590D;&#x7528;&#x539F;&#x5219;&#x201D;&#xFF0C;&#x7CFB;&#x7EDF;&#x4E2D;&#x8981;&#x5C3D;&#x91CF;&#x4F7F;&#x7528;&#x5173;&#x8054;&#x5173;&#x7CFB;&#x6765;&#x53D6;&#x4EE3;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#xFF0C;&#x56E0;&#x6B64;&#x5927;&#x90E8;&#x5206;&#x884C;&#x4E3A;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x90FD;&#x5C5E;&#x4E8E;&#x5BF9;&#x8C61;&#x884C;&#x4E3A;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/28/164467dd92c6172c?w=453&amp;h=269&amp;f=png&amp;s=63270" alt="&#x884C;&#x4E3A;&#x578B;&#x6A21;&#x5F0F;"></p>
+<ul>
+<li><strong>&#x804C;&#x8D23;&#x94FE;&#x6A21;&#x5F0F;&#xFF1A;</strong></li>
+<li><a href="https://blog.csdn.net/jason0539/article/details/45091639" target="_blank">Java&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E4B;&#x8D23;&#x4EFB;&#x94FE;&#x6A21;&#x5F0F;&#x3001;&#x804C;&#x8D23;&#x94FE;&#x6A21;&#x5F0F;</a></li>
+<li><a href="https://www.cnblogs.com/lizo/p/7503862.html" target="_blank">&#x8D23;&#x4EFB;&#x94FE;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x7684;&#x4E09;&#x79CD;&#x65B9;&#x5F0F;</a></li>
+<li><strong>&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/command.html" target="_blank">https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/command.html</a> &#x5728;&#x8F6F;&#x4EF6;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x9700;&#x8981;&#x5411;&#x67D0;&#x4E9B;&#x5BF9;&#x8C61;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x4F46;&#x662F;&#x5E76;&#x4E0D;&#x77E5;&#x9053;&#x8BF7;&#x6C42;&#x7684;&#x63A5;&#x6536;&#x8005;&#x662F;&#x8C01;&#xFF0C;&#x4E5F;&#x4E0D;&#x77E5;&#x9053;&#x88AB;&#x8BF7;&#x6C42;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x54EA;&#x4E2A;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x65F6;&#x6307;&#x5B9A;&#x5177;&#x4F53;&#x7684;&#x8BF7;&#x6C42;&#x63A5;&#x6536;&#x8005;&#x5373;&#x53EF;&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x6765;&#x8FDB;&#x884C;&#x8BBE;&#x8BA1;&#xFF0C;&#x4F7F;&#x5F97;&#x8BF7;&#x6C42;&#x53D1;&#x9001;&#x8005;&#x4E0E;&#x8BF7;&#x6C42;&#x63A5;&#x6536;&#x8005;&#x6D88;&#x9664;&#x5F7C;&#x6B64;&#x4E4B;&#x95F4;&#x7684;&#x8026;&#x5408;&#xFF0C;&#x8BA9;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x7684;&#x8C03;&#x7528;&#x5173;&#x7CFB;&#x66F4;&#x52A0;&#x7075;&#x6D3B;&#x3002;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x5BF9;&#x53D1;&#x9001;&#x8005;&#x548C;&#x63A5;&#x6536;&#x8005;&#x5B8C;&#x5168;&#x89E3;&#x8026;&#xFF0C;&#x53D1;&#x9001;&#x8005;&#x4E0E;&#x63A5;&#x6536;&#x8005;&#x4E4B;&#x95F4;&#x6CA1;&#x6709;&#x76F4;&#x63A5;&#x5F15;&#x7528;&#x5173;&#x7CFB;&#xFF0C;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x7684;&#x5BF9;&#x8C61;&#x53EA;&#x9700;&#x8981;&#x77E5;&#x9053;&#x5982;&#x4F55;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x800C;&#x4E0D;&#x5FC5;&#x77E5;&#x9053;&#x5982;&#x4F55;&#x5B8C;&#x6210;&#x8BF7;&#x6C42;&#x3002;&#x8FD9;&#x5C31;&#x662F;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x7684;&#x6A21;&#x5F0F;&#x52A8;&#x673A;&#x3002;</li>
+<li><strong>&#x89E3;&#x91CA;&#x5668;&#x6A21;&#x5F0F;&#xFF1A;</strong></li>
+<li><strong>&#x8FED;&#x4EE3;&#x5668;&#x6A21;&#x5F0F;&#xFF1A;</strong></li>
+<li><strong>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/mediator.html" target="_blank">https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/mediator.html</a></li>
+<li><strong>&#x5907;&#x5FD8;&#x5F55;&#x6A21;&#x5F0F;&#xFF1A;</strong></li>
+<li><strong>&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#xFF1A;</strong> <a href="https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html" target="_blank">https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html</a>&#x3001;<a href="https://juejin.im/post/5c712ab56fb9a049a7127114" target="_blank">https://juejin.im/post/5c712ab56fb9a049a7127114</a></li>
+<li><strong>&#x72B6;&#x6001;&#x6A21;&#x5F0F;&#xFF1A;</strong><a href="https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/state.html" target="_blank">https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/state.html</a></li>
+<li><strong>&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#xFF1A;</strong><a href="https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/strategy.html" target="_blank">https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/strategy.html</a></li>
+</ul>
+<p>&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x4F5C;&#x4E3A;&#x8BBE;&#x8BA1;&#x539F;&#x5219;&#x4E2D;&#x5F00;&#x95ED;&#x539F;&#x5219;&#x6700;&#x5178;&#x578B;&#x7684;&#x4F53;&#x73B0;&#xFF0C;&#x4E5F;&#x662F;&#x7ECF;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x3002;&#x4E0B;&#x9762;&#x8FD9;&#x7BC7;&#x535A;&#x5BA2;&#x4ECB;&#x7ECD;&#x4E86;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x4E00;&#x822C;&#x7684;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#x548C;&#x6982;&#x5FF5;&#xFF0C;&#x5E76;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x5C0F;demo&#x53BB;&#x8BF4;&#x660E;&#x4E86;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x7684;&#x5E94;&#x7528;&#x3002;</p>
+<p><a href="https://blog.csdn.net/zlj1217/article/details/81230077" target="_blank">java&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E4B;&#x7B56;&#x7565;&#x6A21;&#x5F0F;</a></p>
+<ul>
+<li><strong>&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;&#xFF1A;</strong></li>
+<li><strong>&#x8BBF;&#x95EE;&#x8005;&#x6A21;&#x5F0F;&#xFF1A;</strong></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html" class="navigation navigation-prev " aria-label="Previous page: 如何做可靠的分布式锁，Redlock真的可行么">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="framework/spring/Spring.html" class="navigation navigation-next " aria-label="Next page: Spring 学习与面试">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"设计模式系列文章","level":"19.1","depth":1,"next":{"title":"Spring 学习与面试","level":"21.1","depth":1,"path":"system-design/framework/spring/Spring.md","ref":"system-design/framework/spring/Spring.md","articles":[]},"previous":{"title":"如何做可靠的分布式锁，Redlock真的可行么","level":"17.3","depth":1,"path":"database/Redis/如何做可靠的分布式锁，Redlock真的可行么.md","ref":"database/Redis/如何做可靠的分布式锁，Redlock真的可行么.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"system-design/设计模式.md","mtime":"2020-07-23T06:31:41.010Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-24T11:21:30.457Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

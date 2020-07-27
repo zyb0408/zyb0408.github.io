@@ -1,0 +1,2235 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>AQS 原理以及 AQS 同步组件总结 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../jvm/Java内存区域.html" />
+    
+    
+    <link rel="prev" href="Atomic.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Java</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../Java基础知识.html">
+            
+                <a href="../Java基础知识.html">
+            
+                    
+                    Java 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../Java疑难点.html">
+            
+                <a href="../Java疑难点.html">
+            
+                    
+                    Java 基础知识疑难点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../J2EE基础知识.html">
+            
+                <a href="../J2EE基础知识.html">
+            
+                    
+                    J2EE 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">容器</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../collection/Java集合框架常见面试题.html">
+            
+                <a href="../collection/Java集合框架常见面试题.html">
+            
+                    
+                    Java容器常见面试题/知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../collection/ArrayList.html">
+            
+                <a href="../collection/ArrayList.html">
+            
+                    
+                    ArrayList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../collection/LinkedList.html">
+            
+                <a href="../collection/LinkedList.html">
+            
+                    
+                    LinkedList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../collection/HashMap.html">
+            
+                <a href="../collection/HashMap.html">
+            
+                    
+                    HashMap(JDK1.8)源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">并发</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                <a href="JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                    
+                    Java 并发基础常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                <a href="JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                    
+                    Java 并发进阶常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="并发容器总结.html">
+            
+                <a href="并发容器总结.html">
+            
+                    
+                    并发容器总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                <a href="../../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                    
+                    乐观锁与悲观锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="Atomic.html">
+            
+                <a href="Atomic.html">
+            
+                    
+                    JUC 中的 Atomic 原子类总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.6" data-path="AQS.html">
+            
+                <a href="AQS.html">
+            
+                    
+                    AQS 原理以及 AQS 同步组件总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">JVM</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../jvm/Java内存区域.html">
+            
+                <a href="../jvm/Java内存区域.html">
+            
+                    
+                    一 Java内存区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../jvm/JVM垃圾回收.html">
+            
+                <a href="../jvm/JVM垃圾回收.html">
+            
+                    
+                    二 JVM垃圾回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../jvm/JDK监控和故障处理工具总结.html">
+            
+                <a href="../jvm/JDK监控和故障处理工具总结.html">
+            
+                    
+                    三 JDK 监控和故障处理工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../jvm/类文件结构.html">
+            
+                <a href="../jvm/类文件结构.html">
+            
+                    
+                    四 类文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../jvm/类加载过程.html">
+            
+                <a href="../jvm/类加载过程.html">
+            
+                    
+                    五 类加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../jvm/类加载器.html">
+            
+                <a href="../jvm/类加载器.html">
+            
+                    
+                    六 类加载器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">I/O</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../BIO-NIO-AIO.html">
+            
+                <a href="../BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../Java%20IO与NIO.md">
+            
+                <span>
+            
+                    
+                    Java IO 与 NIO系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Java 8</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">编程规范</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../Java编程规范.html">
+            
+                <a href="../Java编程规范.html">
+            
+                    
+                    Java 编程规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网络</li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="../../network/计算机网络.html">
+            
+                <a href="../../network/计算机网络.html">
+            
+                    
+                    计算机网络常见面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="../../network/干货：计算机网络知识总结.html">
+            
+                <a href="../../network/干货：计算机网络知识总结.html">
+            
+                    
+                    计算机网络基础知识总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="../../network/HTTPS中的TLS.html">
+            
+                <a href="../../network/HTTPS中的TLS.html">
+            
+                    
+                    HTTPS中的TLS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">操作系统</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Linux相关</li>
+        
+        
+    
+        <li class="chapter " data-level="11.1" data-path="../../operating-system/后端程序员必备的Linux基础知识.md">
+            
+                <span>
+            
+                    
+                    后端程序员必备的 Linux 基础知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="../../operating-system/Shell.html">
+            
+                <a href="../../operating-system/Shell.html">
+            
+                    
+                    Shell 编程入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据结构与算法</li>
+        
+        
+    
+
+    
+        
+        <li class="header">数据结构</li>
+        
+        
+    
+        <li class="chapter " data-level="13.1" data-path="../../dataStructures-algorithms/数据结构.html">
+            
+                <a href="../../dataStructures-algorithms/数据结构.html">
+            
+                    
+                    数据结构知识学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">算法</li>
+        
+        
+    
+        <li class="chapter " data-level="14.1" data-path="../../dataStructures-algorithms/算法学习资源推荐.html">
+            
+                <a href="../../dataStructures-algorithms/算法学习资源推荐.html">
+            
+                    
+                    算法学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.2" data-path="../../dataStructures-algorithms/几道常见的子符串算法题.html">
+            
+                <a href="../../dataStructures-algorithms/几道常见的子符串算法题.html">
+            
+                    
+                    几道常见的字符串算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.3" data-path="../../dataStructures-algorithms/几道常见的链表算法题.html">
+            
+                <a href="../../dataStructures-algorithms/几道常见的链表算法题.html">
+            
+                    
+                    几道常见的链表算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.4" data-path="../../dataStructures-algorithms/剑指offer部分编程题.html">
+            
+                <a href="../../dataStructures-algorithms/剑指offer部分编程题.html">
+            
+                    
+                    剑指offer部分编程题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.5" data-path="../../dataStructures-algorithms/公司真题.html">
+            
+                <a href="../../dataStructures-algorithms/公司真题.html">
+            
+                    
+                    公司真题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.6" data-path="../../dataStructures-algorithms/Backtracking-NQueens.html">
+            
+                <a href="../../dataStructures-algorithms/Backtracking-NQueens.html">
+            
+                    
+                    回溯算法经典案例之N皇后问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据库</li>
+        
+        
+    
+
+    
+        
+        <li class="header">MySQL</li>
+        
+        
+    
+        <li class="chapter " data-level="16.1" data-path="../../database/MySQL.html">
+            
+                <a href="../../database/MySQL.html">
+            
+                    
+                    MySQL 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="../../database/一千行MySQL命令.html">
+            
+                <a href="../../database/一千行MySQL命令.html">
+            
+                    
+                    一千行MySQL学习笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="../../database/MySQL高性能优化规范建议.html">
+            
+                <a href="../../database/MySQL高性能优化规范建议.html">
+            
+                    
+                    MySQL高性能优化规范建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="../../database/MySQL%20Index.md">
+            
+                <span>
+            
+                    
+                    数据库索引总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="../../database/事务隔离级别(图文详解">
+            
+                <span>
+            
+                    
+                    事务隔离级别(图文详解)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.6" data-path="../../database/一条sql语句在mysql中如何执行的.html">
+            
+                <a href="../../database/一条sql语句在mysql中如何执行的.html">
+            
+                    
+                    一条SQL语句在MySQL中如何执行的
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Redis</li>
+        
+        
+    
+        <li class="chapter " data-level="17.1" data-path="../../database/Redis/Redis.md">
+            
+                <span>
+            
+                    
+                    Redis 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.2" data-path="../../database/Redis/Redlock分布式锁.html">
+            
+                <a href="../../database/Redis/Redlock分布式锁.html">
+            
+                    
+                    Redlock分布式锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.3" data-path="../../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                <a href="../../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                    
+                    如何做可靠的分布式锁，Redlock真的可行么
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">系统设计</li>
+        
+        
+    
+
+    
+        
+        <li class="header">设计模式</li>
+        
+        
+    
+        <li class="chapter " data-level="19.1" data-path="../../system-design/设计模式.html">
+            
+                <a href="../../system-design/设计模式.html">
+            
+                    
+                    设计模式系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常用框架</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Spring</li>
+        
+        
+    
+        <li class="chapter " data-level="21.1" data-path="../../system-design/framework/spring/Spring.html">
+            
+                <a href="../../system-design/framework/spring/Spring.html">
+            
+                    
+                    Spring 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.2" data-path="../../system-design/framework/spring/SpringInterviewQuestions.html">
+            
+                <a href="../../system-design/framework/spring/SpringInterviewQuestions.html">
+            
+                    
+                    Spring 常见问题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.3" data-path="../../system-design/framework/spring/SpringBean.html">
+            
+                <a href="../../system-design/framework/spring/SpringBean.html">
+            
+                    
+                    Spring中bean的作用域与生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.4" data-path="../../system-design/framework/spring/SpringMVC-Principle.html">
+            
+                <a href="../../system-design/framework/spring/SpringMVC-Principle.html">
+            
+                    
+                    SpringMVC 工作原理详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.5" data-path="../../system-design/framework/spring/Spring-Design-Patterns.html">
+            
+                <a href="../../system-design/framework/spring/Spring-Design-Patterns.html">
+            
+                    
+                    Spring中都用到了那些设计模式?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">ZooKeeper</li>
+        
+        
+    
+        <li class="chapter " data-level="22.1" data-path="../../system-design/framework/ZooKeeper.html">
+            
+                <a href="../../system-design/framework/ZooKeeper.html">
+            
+                    
+                    ZooKeeper 相关概念总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.2" data-path="../../system-design/framework/ZooKeeper数据模型和常见命令.html">
+            
+                <a href="../../system-design/framework/ZooKeeper数据模型和常见命令.html">
+            
+                    
+                    ZooKeeper 数据模型和常见命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据通信</li>
+        
+        
+    
+        <li class="chapter " data-level="23.1" data-path="../../system-design/data-communication/summary.md">
+            
+                <span>
+            
+                    
+                    数据通信(RESTful、RPC、消息队列)相关知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.2" data-path="../../system-design/data-communication/dubbo.html">
+            
+                <a href="../../system-design/data-communication/dubbo.html">
+            
+                    
+                    Dubbo 总结：关于 Dubbo 的重要知识点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.3" data-path="../../system-design/data-communication/message-queue.html">
+            
+                <a href="../../system-design/data-communication/message-queue.html">
+            
+                    
+                    消息队列总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.4" data-path="../../system-design/data-communication/rabbitmq.html">
+            
+                <a href="../../system-design/data-communication/rabbitmq.html">
+            
+                    
+                    RabbitMQ 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.5" data-path="../../system-design/data-communication/RocketMQ-Questions.html">
+            
+                <a href="../../system-design/data-communication/RocketMQ-Questions.html">
+            
+                    
+                    RocketMQ的几个简单问题与答案
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网站架构</li>
+        
+        
+    
+        <li class="chapter " data-level="24.1" data-path="../../system-design/website-architecture/分布式.html">
+            
+                <a href="../../system-design/website-architecture/分布式.html">
+            
+                    
+                    一文读懂分布式应该学什么
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.2" data-path="../../system-design/website-architecture/8%20张图读懂大型网站技术架构.md">
+            
+                <span>
+            
+                    
+                    8 张图读懂大型网站技术架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.3" data-path="../../system-design/website-architecture/【面试精选】关于大型网站系统架构你不得不懂的10个问题.md">
+            
+                <span>
+            
+                    
+                    【面试精选】关于大型网站系统架构你不得不懂的10个问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面试指南</li>
+        
+        
+    
+
+    
+        
+        <li class="header">备战面试</li>
+        
+        
+    
+        <li class="chapter " data-level="26.1" data-path="../../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                <a href="../../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                    
+                    【备战面试1】程序员的简历就该这样写
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.2" data-path="../../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                <a href="../../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                    
+                    【备战面试2】初出茅庐的程序员该如何准备面试？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.3" data-path="../../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                <a href="../../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                    
+                    【备战面试3】7个大部分程序员在面试前很关心的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.4" data-path="../../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                <a href="../../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                    
+                    【备战面试4】Github上开源的Java面试/学习相关的仓库推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.5" data-path="../../essential-content-for-interview/PreparingForInterview/如果面试官问你“你有什么问题问我吗？”时，你该如何回答.md">
+            
+                <span>
+            
+                    
+                    【备战面试5】如果面试官问你“你有什么问题问我吗？”时，你该如何回答
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.6" data-path="../../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                <a href="../../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                    
+                    【备战面试6】美团面试常见问题总结（附详解答案）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常见面试题总结</li>
+        
+        
+    
+        <li class="chapter " data-level="27.1" data-path="../../essential-content-for-interview/MostCommonJavaInterviewQuestions/第一周（2018-8-7）.md">
+            
+                <span>
+            
+                    
+                    第一周（2018-8-7）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.2" data-path="../../essential-content-for-interview/MostCommonJavaInterviewQuestions/第二周(2018-8-13">
+            
+                <span>
+            
+                    
+                    第二周（2018-8-13）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.3" data-path="../collection/Java集合框架常见面试题.html">
+            
+                <a href="../collection/Java集合框架常见面试题.html">
+            
+                    
+                    第三周（2018-08-22）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.4" data-path="../../essential-content-for-interview/MostCommonJavaInterviewQuestions/第四周(2018-8-30">
+            
+                <span>
+            
+                    
+                    第四周(2018-8-30).md
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面经</li>
+        
+        
+    
+        <li class="chapter " data-level="28.1" data-path="../../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                <a href="../../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                    
+                    5面阿里,终获offer(2018年秋招)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.2" data-path="../../essential-content-for-interview/BATJrealInterviewExperience/蚂蚁金服实习生面经总结(已拿口头offer">
+            
+                <span>
+            
+                    
+                    蚂蚁金服2019实习生面经总结(已拿口头offer)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.3" data-path="../../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                <a href="../../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                    
+                    2019年蚂蚁金服、头条、拼多多的面试总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">工具</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Git</li>
+        
+        
+    
+        <li class="chapter " data-level="30.1" data-path="../../tools/Git.html">
+            
+                <a href="../../tools/Git.html">
+            
+                    
+                    Git入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Docker</li>
+        
+        
+    
+        <li class="chapter " data-level="31.1" data-path="../../tools/Docker.html">
+            
+                <a href="../../tools/Docker.html">
+            
+                    
+                    Docker 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="31.2" data-path="../../tools/Docker-Image.html">
+            
+                <a href="../../tools/Docker-Image.html">
+            
+                    
+                    一文搞懂 Docker 镜像的常用操作！
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">资料</li>
+        
+        
+    
+
+    
+        
+        <li class="header">书单</li>
+        
+        
+    
+        <li class="chapter " data-level="33.1" data-path="../../data/java-recommended-books.md">
+            
+                <span>
+            
+                    
+                    Java程序员必备书单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Github榜单</li>
+        
+        
+    
+        <li class="chapter " data-level="34.1" data-path="../../github-trending/JavaGithubTrending.html">
+            
+                <a href="../../github-trending/JavaGithubTrending.html">
+            
+                    
+                    Java 项目月榜单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">待办</li>
+        
+        
+    
+        <li class="chapter " data-level="35.1" data-path="../What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.2" data-path="../What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.3" >
+            
+                <span>
+            
+                    
+                    [ ] Java 多线程类别知识重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.4" data-path="../BIO-NIO-AIO.html">
+            
+                <a href="../BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.5" >
+            
+                <span>
+            
+                    
+                    [ ] Netty 总结(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.6" >
+            
+                <span>
+            
+                    
+                    [ ] 数据结构总结重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">公众号</li>
+        
+        
+    
+        <li class="chapter " data-level="36.1" >
+            
+                <span>
+            
+                    
+                    如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.2" >
+            
+                <span>
+            
+                    
+                    由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本公众号后台回复  即可免费领取！
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.3" >
+            
+                <span>
+            
+                    
+                    一些Java工程师常用学习资源公众号后台回复关键字  即可免费无套路获取。
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >AQS 原理以及 AQS 同步组件总结</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>&#x70B9;&#x51FB;&#x5173;&#x6CE8;<a href="#&#x516C;&#x4F17;&#x53F7;" title="&#x516C;&#x4F17;&#x53F7;">&#x516C;&#x4F17;&#x53F7;</a>&#x53CA;&#x65F6;&#x83B7;&#x53D6;&#x7B14;&#x4E3B;&#x6700;&#x65B0;&#x66F4;&#x65B0;&#x6587;&#x7AE0;&#xFF0C;&#x5E76;&#x53EF;&#x514D;&#x8D39;&#x9886;&#x53D6;&#x672C;&#x6587;&#x6863;&#x914D;&#x5957;&#x7684;&#x300A;Java &#x9762;&#x8BD5;&#x7A81;&#x51FB;&#x300B;&#x4EE5;&#x53CA; Java &#x5DE5;&#x7A0B;&#x5E08;&#x5FC5;&#x5907;&#x5B66;&#x4E60;&#x8D44;&#x6E90;&#x3002;</p>
+<!-- TOC -->
+<ul>
+<li><a href="#1-aqs-&#x7B80;&#x5355;&#x4ECB;&#x7ECD;">1 AQS &#x7B80;&#x5355;&#x4ECB;&#x7ECD;</a></li>
+<li><a href="#2-aqs-&#x539F;&#x7406;">2 AQS &#x539F;&#x7406;</a><ul>
+<li><a href="#21-aqs-&#x539F;&#x7406;&#x6982;&#x89C8;">2.1 AQS &#x539F;&#x7406;&#x6982;&#x89C8;</a></li>
+<li><a href="#22-aqs-&#x5BF9;&#x8D44;&#x6E90;&#x7684;&#x5171;&#x4EAB;&#x65B9;&#x5F0F;">2.2 AQS &#x5BF9;&#x8D44;&#x6E90;&#x7684;&#x5171;&#x4EAB;&#x65B9;&#x5F0F;</a></li>
+<li><a href="#23-aqs-&#x5E95;&#x5C42;&#x4F7F;&#x7528;&#x4E86;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;">2.3 AQS &#x5E95;&#x5C42;&#x4F7F;&#x7528;&#x4E86;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;</a></li>
+</ul>
+</li>
+<li><a href="#3-semaphore&#x4FE1;&#x53F7;&#x91CF;-&#x5141;&#x8BB8;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x8BBF;&#x95EE;">3 Semaphore(&#x4FE1;&#x53F7;&#x91CF;)-&#x5141;&#x8BB8;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x8BBF;&#x95EE;</a></li>
+<li><a href="#4-countdownlatch-&#x5012;&#x8BA1;&#x65F6;&#x5668;">4 CountDownLatch &#xFF08;&#x5012;&#x8BA1;&#x65F6;&#x5668;&#xFF09;</a><ul>
+<li><a href="#41-countdownlatch-&#x7684;&#x4E09;&#x79CD;&#x5178;&#x578B;&#x7528;&#x6CD5;">4.1 CountDownLatch &#x7684;&#x4E09;&#x79CD;&#x5178;&#x578B;&#x7528;&#x6CD5;</a></li>
+<li><a href="#42-countdownlatch-&#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;">4.2 CountDownLatch &#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;</a></li>
+<li><a href="#43-countdownlatch-&#x7684;&#x4E0D;&#x8DB3;">4.3 CountDownLatch &#x7684;&#x4E0D;&#x8DB3;</a></li>
+<li><a href="#44-countdownlatch-&#x76F8;&#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;">4.4 CountDownLatch &#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;</a></li>
+</ul>
+</li>
+<li><a href="#5-cyclicbarrier&#x5FAA;&#x73AF;&#x6805;&#x680F;">5 CyclicBarrier(&#x5FAA;&#x73AF;&#x6805;&#x680F;)</a><ul>
+<li><a href="#51-cyclicbarrier-&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;">5.1 CyclicBarrier &#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;</a></li>
+<li><a href="#52-cyclicbarrier-&#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;">5.2 CyclicBarrier &#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;</a></li>
+<li><a href="#53-cyclicbarrier&#x6E90;&#x7801;&#x5206;&#x6790;">5.3 <code>CyclicBarrier</code>&#x6E90;&#x7801;&#x5206;&#x6790;</a></li>
+<li><a href="#54-cyclicbarrier-&#x548C;-countdownlatch-&#x7684;&#x533A;&#x522B;">5.4 CyclicBarrier &#x548C; CountDownLatch &#x7684;&#x533A;&#x522B;</a></li>
+</ul>
+</li>
+<li><a href="#6-reentrantlock-&#x548C;-reentrantreadwritelock">6 ReentrantLock &#x548C; ReentrantReadWriteLock</a></li>
+<li><a href="#&#x53C2;&#x8003;">&#x53C2;&#x8003;</a></li>
+<li><a href="#&#x516C;&#x4F17;&#x53F7;">&#x516C;&#x4F17;&#x53F7;</a></li>
+</ul>
+<!-- /TOC -->
+<blockquote>
+<p>&#x5E38;&#x89C1;&#x95EE;&#x9898;&#xFF1A;AQS &#x539F;&#x7406;&#xFF1F;;CountDownLatch &#x548C; CyclicBarrier &#x4E86;&#x89E3;&#x5417;,&#x4E24;&#x8005;&#x7684;&#x533A;&#x522B;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;&#x7528;&#x8FC7; Semaphore &#x5417;&#xFF1F;</p>
+</blockquote>
+<h3 id="1-aqs-&#x7B80;&#x5355;&#x4ECB;&#x7ECD;">1 AQS &#x7B80;&#x5355;&#x4ECB;&#x7ECD;</h3>
+<p>AQS &#x7684;&#x5168;&#x79F0;&#x4E3A;&#xFF08;AbstractQueuedSynchronizer&#xFF09;&#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x5728; java.util.concurrent.locks &#x5305;&#x4E0B;&#x9762;&#x3002;</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/Java%20%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%EF%BC%9A%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/AQS.png" alt="enter image description here"></p>
+<p>AQS &#x662F;&#x4E00;&#x4E2A;&#x7528;&#x6765;&#x6784;&#x5EFA;&#x9501;&#x548C;&#x540C;&#x6B65;&#x5668;&#x7684;&#x6846;&#x67B6;&#xFF0C;&#x4F7F;&#x7528; AQS &#x80FD;&#x7B80;&#x5355;&#x4E14;&#x9AD8;&#x6548;&#x5730;&#x6784;&#x9020;&#x51FA;&#x5E94;&#x7528;&#x5E7F;&#x6CDB;&#x7684;&#x5927;&#x91CF;&#x7684;&#x540C;&#x6B65;&#x5668;&#xFF0C;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x7684; ReentrantLock&#xFF0C;Semaphore&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x8BF8;&#x5982; ReentrantReadWriteLock&#xFF0C;SynchronousQueue&#xFF0C;FutureTask(jdk1.7) &#x7B49;&#x7B49;&#x7686;&#x662F;&#x57FA;&#x4E8E; AQS &#x7684;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x4E5F;&#x80FD;&#x5229;&#x7528; AQS &#x975E;&#x5E38;&#x8F7B;&#x677E;&#x5BB9;&#x6613;&#x5730;&#x6784;&#x9020;&#x51FA;&#x7B26;&#x5408;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x9700;&#x6C42;&#x7684;&#x540C;&#x6B65;&#x5668;&#x3002;</p>
+<h3 id="2-aqs-&#x539F;&#x7406;">2 AQS &#x539F;&#x7406;</h3>
+<blockquote>
+<p>&#x5728;&#x9762;&#x8BD5;&#x4E2D;&#x88AB;&#x95EE;&#x5230;&#x5E76;&#x53D1;&#x77E5;&#x8BC6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5927;&#x591A;&#x90FD;&#x4F1A;&#x88AB;&#x95EE;&#x5230;&#x201C;&#x8BF7;&#x4F60;&#x8BF4;&#x4E00;&#x4E0B;&#x81EA;&#x5DF1;&#x5BF9;&#x4E8E; AQS &#x539F;&#x7406;&#x7684;&#x7406;&#x89E3;&#x201D;&#x3002;&#x4E0B;&#x9762;&#x7ED9;&#x5927;&#x5BB6;&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#x4F9B;&#x5927;&#x5BB6;&#x53C2;&#x8003;&#xFF0C;&#x9762;&#x8BD5;&#x4E0D;&#x662F;&#x80CC;&#x9898;&#xFF0C;&#x5927;&#x5BB6;&#x4E00;&#x5B9A;&#x8981;&#x52A0;&#x5165;&#x81EA;&#x5DF1;&#x7684;&#x601D;&#x60F3;&#xFF0C;&#x5373;&#x4F7F;&#x52A0;&#x5165;&#x4E0D;&#x4E86;&#x81EA;&#x5DF1;&#x7684;&#x601D;&#x60F3;&#x4E5F;&#x8981;&#x4FDD;&#x8BC1;&#x81EA;&#x5DF1;&#x80FD;&#x591F;&#x901A;&#x4FD7;&#x7684;&#x8BB2;&#x51FA;&#x6765;&#x800C;&#x4E0D;&#x662F;&#x80CC;&#x51FA;&#x6765;&#x3002;</p>
+</blockquote>
+<p>&#x4E0B;&#x9762;&#x5927;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x5176;&#x5B9E;&#x5728; AQS &#x7C7B;&#x6CE8;&#x91CA;&#x4E0A;&#x5DF2;&#x7ECF;&#x7ED9;&#x51FA;&#x4E86;&#xFF0C;&#x4E0D;&#x8FC7;&#x662F;&#x82F1;&#x8BED;&#x770B;&#x7740;&#x6BD4;&#x8F83;&#x5403;&#x529B;&#x4E00;&#x70B9;&#xFF0C;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x8BDD;&#x53EF;&#x4EE5;&#x770B;&#x770B;&#x6E90;&#x7801;&#x3002;</p>
+<h4 id="21-aqs-&#x539F;&#x7406;&#x6982;&#x89C8;">2.1 AQS &#x539F;&#x7406;&#x6982;&#x89C8;</h4>
+<p><strong>AQS &#x6838;&#x5FC3;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x88AB;&#x8BF7;&#x6C42;&#x7684;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x7A7A;&#x95F2;&#xFF0C;&#x5219;&#x5C06;&#x5F53;&#x524D;&#x8BF7;&#x6C42;&#x8D44;&#x6E90;&#x7684;&#x7EBF;&#x7A0B;&#x8BBE;&#x7F6E;&#x4E3A;&#x6709;&#x6548;&#x7684;&#x5DE5;&#x4F5C;&#x7EBF;&#x7A0B;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x8BBE;&#x7F6E;&#x4E3A;&#x9501;&#x5B9A;&#x72B6;&#x6001;&#x3002;&#x5982;&#x679C;&#x88AB;&#x8BF7;&#x6C42;&#x7684;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x9700;&#x8981;&#x4E00;&#x5957;&#x7EBF;&#x7A0B;&#x963B;&#x585E;&#x7B49;&#x5F85;&#x4EE5;&#x53CA;&#x88AB;&#x5524;&#x9192;&#x65F6;&#x9501;&#x5206;&#x914D;&#x7684;&#x673A;&#x5236;&#xFF0C;&#x8FD9;&#x4E2A;&#x673A;&#x5236; AQS &#x662F;&#x7528; CLH &#x961F;&#x5217;&#x9501;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x5373;&#x5C06;&#x6682;&#x65F6;&#x83B7;&#x53D6;&#x4E0D;&#x5230;&#x9501;&#x7684;&#x7EBF;&#x7A0B;&#x52A0;&#x5165;&#x5230;&#x961F;&#x5217;&#x4E2D;&#x3002;</strong></p>
+<blockquote>
+<p>CLH(Craig,Landin,and Hagersten)&#x961F;&#x5217;&#x662F;&#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x7684;&#x53CC;&#x5411;&#x961F;&#x5217;&#xFF08;&#x865A;&#x62DF;&#x7684;&#x53CC;&#x5411;&#x961F;&#x5217;&#x5373;&#x4E0D;&#x5B58;&#x5728;&#x961F;&#x5217;&#x5B9E;&#x4F8B;&#xFF0C;&#x4EC5;&#x5B58;&#x5728;&#x7ED3;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x8054;&#x5173;&#x7CFB;&#xFF09;&#x3002;AQS &#x662F;&#x5C06;&#x6BCF;&#x6761;&#x8BF7;&#x6C42;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x7684;&#x7EBF;&#x7A0B;&#x5C01;&#x88C5;&#x6210;&#x4E00;&#x4E2A; CLH &#x9501;&#x961F;&#x5217;&#x7684;&#x4E00;&#x4E2A;&#x7ED3;&#x70B9;&#xFF08;Node&#xFF09;&#x6765;&#x5B9E;&#x73B0;&#x9501;&#x7684;&#x5206;&#x914D;&#x3002;</p>
+</blockquote>
+<p>&#x770B;&#x4E2A; AQS(AbstractQueuedSynchronizer)&#x539F;&#x7406;&#x56FE;&#xFF1A;</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/Java%20%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%EF%BC%9A%E5%B9%B6%E5%8F%91%E7%9F%A5%E8%AF%86%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/CLH.png" alt="enter image description here"></p>
+<p>AQS &#x4F7F;&#x7528;&#x4E00;&#x4E2A; int &#x6210;&#x5458;&#x53D8;&#x91CF;&#x6765;&#x8868;&#x793A;&#x540C;&#x6B65;&#x72B6;&#x6001;&#xFF0C;&#x901A;&#x8FC7;&#x5185;&#x7F6E;&#x7684; FIFO &#x961F;&#x5217;&#x6765;&#x5B8C;&#x6210;&#x83B7;&#x53D6;&#x8D44;&#x6E90;&#x7EBF;&#x7A0B;&#x7684;&#x6392;&#x961F;&#x5DE5;&#x4F5C;&#x3002;AQS &#x4F7F;&#x7528; CAS &#x5BF9;&#x8BE5;&#x540C;&#x6B65;&#x72B6;&#x6001;&#x8FDB;&#x884C;&#x539F;&#x5B50;&#x64CD;&#x4F5C;&#x5B9E;&#x73B0;&#x5BF9;&#x5176;&#x503C;&#x7684;&#x4FEE;&#x6539;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">int</span> state;<span class="hljs-comment">//&#x5171;&#x4EAB;&#x53D8;&#x91CF;&#xFF0C;&#x4F7F;&#x7528;volatile&#x4FEE;&#x9970;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x53EF;&#x89C1;&#x6027;</span>
+</code></pre>
+<p>&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x901A;&#x8FC7; protected &#x7C7B;&#x578B;&#x7684;<code>getState</code>&#xFF0C;<code>setState</code>&#xFF0C;<code>compareAndSetState</code>&#x8FDB;&#x884C;&#x64CD;&#x4F5C;</p>
+<pre><code class="lang-java"><span class="hljs-comment">//&#x8FD4;&#x56DE;&#x540C;&#x6B65;&#x72B6;&#x6001;&#x7684;&#x5F53;&#x524D;&#x503C;</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getState</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> state;
+}
+ <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x540C;&#x6B65;&#x72B6;&#x6001;&#x7684;&#x503C;</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setState</span><span class="hljs-params">(<span class="hljs-keyword">int</span> newState)</span> </span>{
+        state = newState;
+}
+<span class="hljs-comment">//&#x539F;&#x5B50;&#x5730;&#xFF08;CAS&#x64CD;&#x4F5C;&#xFF09;&#x5C06;&#x540C;&#x6B65;&#x72B6;&#x6001;&#x503C;&#x8BBE;&#x7F6E;&#x4E3A;&#x7ED9;&#x5B9A;&#x503C;update&#x5982;&#x679C;&#x5F53;&#x524D;&#x540C;&#x6B65;&#x72B6;&#x6001;&#x7684;&#x503C;&#x7B49;&#x4E8E;expect&#xFF08;&#x671F;&#x671B;&#x503C;&#xFF09;</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">compareAndSetState</span><span class="hljs-params">(<span class="hljs-keyword">int</span> expect, <span class="hljs-keyword">int</span> update)</span> </span>{
+        <span class="hljs-keyword">return</span> unsafe.compareAndSwapInt(<span class="hljs-keyword">this</span>, stateOffset, expect, update);
+}
+</code></pre>
+<h4 id="22-aqs-&#x5BF9;&#x8D44;&#x6E90;&#x7684;&#x5171;&#x4EAB;&#x65B9;&#x5F0F;">2.2 AQS &#x5BF9;&#x8D44;&#x6E90;&#x7684;&#x5171;&#x4EAB;&#x65B9;&#x5F0F;</h4>
+<p><strong>AQS &#x5B9A;&#x4E49;&#x4E24;&#x79CD;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#x65B9;&#x5F0F;</strong></p>
+<p><strong>1)Exclusive</strong>&#xFF08;&#x72EC;&#x5360;&#xFF09;</p>
+<p>&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x80FD;&#x6267;&#x884C;&#xFF0C;&#x5982; ReentrantLock&#x3002;&#x53C8;&#x53EF;&#x5206;&#x4E3A;&#x516C;&#x5E73;&#x9501;&#x548C;&#x975E;&#x516C;&#x5E73;&#x9501;,ReentrantLock &#x540C;&#x65F6;&#x652F;&#x6301;&#x4E24;&#x79CD;&#x9501;,&#x4E0B;&#x9762;&#x4EE5; ReentrantLock &#x5BF9;&#x8FD9;&#x4E24;&#x79CD;&#x9501;&#x7684;&#x5B9A;&#x4E49;&#x505A;&#x4ECB;&#x7ECD;&#xFF1A;</p>
+<ul>
+<li>&#x516C;&#x5E73;&#x9501;&#xFF1A;&#x6309;&#x7167;&#x7EBF;&#x7A0B;&#x5728;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x6392;&#x961F;&#x987A;&#x5E8F;&#xFF0C;&#x5148;&#x5230;&#x8005;&#x5148;&#x62FF;&#x5230;&#x9501;</li>
+<li>&#x975E;&#x516C;&#x5E73;&#x9501;&#xFF1A;&#x5F53;&#x7EBF;&#x7A0B;&#x8981;&#x83B7;&#x53D6;&#x9501;&#x65F6;&#xFF0C;&#x5148;&#x901A;&#x8FC7;&#x4E24;&#x6B21; CAS &#x64CD;&#x4F5C;&#x53BB;&#x62A2;&#x9501;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x62A2;&#x5230;&#xFF0C;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x518D;&#x52A0;&#x5165;&#x5230;&#x961F;&#x5217;&#x4E2D;&#x7B49;&#x5F85;&#x5524;&#x9192;&#x3002;</li>
+</ul>
+<blockquote>
+<p>&#x8BF4;&#x660E;&#xFF1A;&#x4E0B;&#x9762;&#x8FD9;&#x90E8;&#x5206;&#x5173;&#x4E8E; <code>ReentrantLock</code> &#x6E90;&#x4EE3;&#x7801;&#x5185;&#x5BB9;&#x8282;&#x9009;&#x81EA;&#xFF1A;<a href="https://www.javadoop.com/post/AbstractQueuedSynchronizer-2" target="_blank">https://www.javadoop.com/post/AbstractQueuedSynchronizer-2</a> &#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x7BC7;&#x5F88;&#x4E0D;&#x9519;&#x6587;&#x7AE0;&#xFF0C;&#x63A8;&#x8350;&#x9605;&#x8BFB;&#x3002;</p>
+</blockquote>
+<p><strong>&#x4E0B;&#x9762;&#x6765;&#x770B; ReentrantLock &#x4E2D;&#x76F8;&#x5173;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#xFF1A;</strong></p>
+<p>ReentrantLock &#x9ED8;&#x8BA4;&#x91C7;&#x7528;&#x975E;&#x516C;&#x5E73;&#x9501;&#xFF0C;&#x56E0;&#x4E3A;&#x8003;&#x8651;&#x83B7;&#x5F97;&#x66F4;&#x597D;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x901A;&#x8FC7; boolean &#x6765;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x7528;&#x516C;&#x5E73;&#x9501;&#xFF08;&#x4F20;&#x5165; true &#x7528;&#x516C;&#x5E73;&#x9501;&#xFF09;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/** Synchronizer providing all implementation mechanics */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Sync sync;
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ReentrantLock</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// &#x9ED8;&#x8BA4;&#x975E;&#x516C;&#x5E73;&#x9501;</span>
+    sync = <span class="hljs-keyword">new</span> NonfairSync();
+}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ReentrantLock</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> fair)</span> </span>{
+    sync = fair ? <span class="hljs-keyword">new</span> FairSync() : <span class="hljs-keyword">new</span> NonfairSync();
+}
+</code></pre>
+<p>ReentrantLock &#x4E2D;&#x516C;&#x5E73;&#x9501;&#x7684; <code>lock</code> &#x65B9;&#x6CD5;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FairSync</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sync</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lock</span><span class="hljs-params">()</span> </span>{
+        acquire(<span class="hljs-number">1</span>);
+    }
+    <span class="hljs-comment">// AbstractQueuedSynchronizer.acquire(int arg)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">acquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arg)</span> </span>{
+        <span class="hljs-keyword">if</span> (!tryAcquire(arg) &amp;&amp;
+            acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
+            selfInterrupt();
+    }
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">tryAcquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> acquires)</span> </span>{
+        <span class="hljs-keyword">final</span> Thread current = Thread.currentThread();
+        <span class="hljs-keyword">int</span> c = getState();
+        <span class="hljs-keyword">if</span> (c == <span class="hljs-number">0</span>) {
+            <span class="hljs-comment">// 1. &#x548C;&#x975E;&#x516C;&#x5E73;&#x9501;&#x76F8;&#x6BD4;&#xFF0C;&#x8FD9;&#x91CC;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x5224;&#x65AD;&#xFF1A;&#x662F;&#x5426;&#x6709;&#x7EBF;&#x7A0B;&#x5728;&#x7B49;&#x5F85;</span>
+            <span class="hljs-keyword">if</span> (!hasQueuedPredecessors() &amp;&amp;
+                compareAndSetState(<span class="hljs-number">0</span>, acquires)) {
+                setExclusiveOwnerThread(current);
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            }
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (current == getExclusiveOwnerThread()) {
+            <span class="hljs-keyword">int</span> nextc = c + acquires;
+            <span class="hljs-keyword">if</span> (nextc &lt; <span class="hljs-number">0</span>)
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&quot;Maximum lock count exceeded&quot;</span>);
+            setState(nextc);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+}
+</code></pre>
+<p>&#x975E;&#x516C;&#x5E73;&#x9501;&#x7684; lock &#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NonfairSync</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sync</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lock</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// 2. &#x548C;&#x516C;&#x5E73;&#x9501;&#x76F8;&#x6BD4;&#xFF0C;&#x8FD9;&#x91CC;&#x4F1A;&#x76F4;&#x63A5;&#x5148;&#x8FDB;&#x884C;&#x4E00;&#x6B21;CAS&#xFF0C;&#x6210;&#x529F;&#x5C31;&#x8FD4;&#x56DE;&#x4E86;</span>
+        <span class="hljs-keyword">if</span> (compareAndSetState(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>))
+            setExclusiveOwnerThread(Thread.currentThread());
+        <span class="hljs-keyword">else</span>
+            acquire(<span class="hljs-number">1</span>);
+    }
+    <span class="hljs-comment">// AbstractQueuedSynchronizer.acquire(int arg)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">acquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> arg)</span> </span>{
+        <span class="hljs-keyword">if</span> (!tryAcquire(arg) &amp;&amp;
+            acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
+            selfInterrupt();
+    }
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">tryAcquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> acquires)</span> </span>{
+        <span class="hljs-keyword">return</span> nonfairTryAcquire(acquires);
+    }
+}
+<span class="hljs-comment">/**
+ * Performs non-fair tryLock.  tryAcquire is implemented in
+ * subclasses, but both need nonfair try for trylock method.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">nonfairTryAcquire</span><span class="hljs-params">(<span class="hljs-keyword">int</span> acquires)</span> </span>{
+    <span class="hljs-keyword">final</span> Thread current = Thread.currentThread();
+    <span class="hljs-keyword">int</span> c = getState();
+    <span class="hljs-keyword">if</span> (c == <span class="hljs-number">0</span>) {
+        <span class="hljs-comment">// &#x8FD9;&#x91CC;&#x6CA1;&#x6709;&#x5BF9;&#x963B;&#x585E;&#x961F;&#x5217;&#x8FDB;&#x884C;&#x5224;&#x65AD;</span>
+        <span class="hljs-keyword">if</span> (compareAndSetState(<span class="hljs-number">0</span>, acquires)) {
+            setExclusiveOwnerThread(current);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (current == getExclusiveOwnerThread()) {
+        <span class="hljs-keyword">int</span> nextc = c + acquires;
+        <span class="hljs-keyword">if</span> (nextc &lt; <span class="hljs-number">0</span>) <span class="hljs-comment">// overflow</span>
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(<span class="hljs-string">&quot;Maximum lock count exceeded&quot;</span>);
+        setState(nextc);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+}
+</code></pre>
+<p>&#x603B;&#x7ED3;&#xFF1A;&#x516C;&#x5E73;&#x9501;&#x548C;&#x975E;&#x516C;&#x5E73;&#x9501;&#x53EA;&#x6709;&#x4E24;&#x5904;&#x4E0D;&#x540C;&#xFF1A;</p>
+<ol>
+<li>&#x975E;&#x516C;&#x5E73;&#x9501;&#x5728;&#x8C03;&#x7528; lock &#x540E;&#xFF0C;&#x9996;&#x5148;&#x5C31;&#x4F1A;&#x8C03;&#x7528; CAS &#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x62A2;&#x9501;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x6070;&#x5DE7;&#x9501;&#x6CA1;&#x6709;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x90A3;&#x4E48;&#x76F4;&#x63A5;&#x5C31;&#x83B7;&#x53D6;&#x5230;&#x9501;&#x8FD4;&#x56DE;&#x4E86;&#x3002;</li>
+<li>&#x975E;&#x516C;&#x5E73;&#x9501;&#x5728; CAS &#x5931;&#x8D25;&#x540E;&#xFF0C;&#x548C;&#x516C;&#x5E73;&#x9501;&#x4E00;&#x6837;&#x90FD;&#x4F1A;&#x8FDB;&#x5165;&#x5230; tryAcquire &#x65B9;&#x6CD5;&#xFF0C;&#x5728; tryAcquire &#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x53D1;&#x73B0;&#x9501;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x88AB;&#x91CA;&#x653E;&#x4E86;&#xFF08;state == 0&#xFF09;&#xFF0C;&#x975E;&#x516C;&#x5E73;&#x9501;&#x4F1A;&#x76F4;&#x63A5; CAS &#x62A2;&#x9501;&#xFF0C;&#x4F46;&#x662F;&#x516C;&#x5E73;&#x9501;&#x4F1A;&#x5224;&#x65AD;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x662F;&#x5426;&#x6709;&#x7EBF;&#x7A0B;&#x5904;&#x4E8E;&#x7B49;&#x5F85;&#x72B6;&#x6001;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x5219;&#x4E0D;&#x53BB;&#x62A2;&#x9501;&#xFF0C;&#x4E56;&#x4E56;&#x6392;&#x5230;&#x540E;&#x9762;&#x3002;</li>
+</ol>
+<p>&#x516C;&#x5E73;&#x9501;&#x548C;&#x975E;&#x516C;&#x5E73;&#x9501;&#x5C31;&#x8FD9;&#x4E24;&#x70B9;&#x533A;&#x522B;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E24;&#x6B21; CAS &#x90FD;&#x4E0D;&#x6210;&#x529F;&#xFF0C;&#x90A3;&#x4E48;&#x540E;&#x9762;&#x975E;&#x516C;&#x5E73;&#x9501;&#x548C;&#x516C;&#x5E73;&#x9501;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x90FD;&#x8981;&#x8FDB;&#x5165;&#x5230;&#x963B;&#x585E;&#x961F;&#x5217;&#x7B49;&#x5F85;&#x5524;&#x9192;&#x3002;</p>
+<p>&#x76F8;&#x5BF9;&#x6765;&#x8BF4;&#xFF0C;&#x975E;&#x516C;&#x5E73;&#x9501;&#x4F1A;&#x6709;&#x66F4;&#x597D;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x7684;&#x541E;&#x5410;&#x91CF;&#x6BD4;&#x8F83;&#x5927;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x975E;&#x516C;&#x5E73;&#x9501;&#x8BA9;&#x83B7;&#x53D6;&#x9501;&#x7684;&#x65F6;&#x95F4;&#x53D8;&#x5F97;&#x66F4;&#x52A0;&#x4E0D;&#x786E;&#x5B9A;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x5728;&#x963B;&#x585E;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x7EBF;&#x7A0B;&#x957F;&#x671F;&#x5904;&#x4E8E;&#x9965;&#x997F;&#x72B6;&#x6001;&#x3002;</p>
+<p><strong>2)Share</strong>&#xFF08;&#x5171;&#x4EAB;&#xFF09;</p>
+<p>&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x53EF;&#x540C;&#x65F6;&#x6267;&#x884C;&#xFF0C;&#x5982; Semaphore/CountDownLatch&#x3002;Semaphore&#x3001;CountDownLatCh&#x3001; CyclicBarrier&#x3001;ReadWriteLock &#x6211;&#x4EEC;&#x90FD;&#x4F1A;&#x5728;&#x540E;&#x9762;&#x8BB2;&#x5230;&#x3002;</p>
+<p>ReentrantReadWriteLock &#x53EF;&#x4EE5;&#x770B;&#x6210;&#x662F;&#x7EC4;&#x5408;&#x5F0F;&#xFF0C;&#x56E0;&#x4E3A; ReentrantReadWriteLock &#x4E5F;&#x5C31;&#x662F;&#x8BFB;&#x5199;&#x9501;&#x5141;&#x8BB8;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x5BF9;&#x67D0;&#x4E00;&#x8D44;&#x6E90;&#x8FDB;&#x884C;&#x8BFB;&#x3002;</p>
+<p>&#x4E0D;&#x540C;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x540C;&#x6B65;&#x5668;&#x4E89;&#x7528;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x7684;&#x65B9;&#x5F0F;&#x4E5F;&#x4E0D;&#x540C;&#x3002;&#x81EA;&#x5B9A;&#x4E49;&#x540C;&#x6B65;&#x5668;&#x5728;&#x5B9E;&#x73B0;&#x65F6;&#x53EA;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x5171;&#x4EAB;&#x8D44;&#x6E90; state &#x7684;&#x83B7;&#x53D6;&#x4E0E;&#x91CA;&#x653E;&#x65B9;&#x5F0F;&#x5373;&#x53EF;&#xFF0C;&#x81F3;&#x4E8E;&#x5177;&#x4F53;&#x7EBF;&#x7A0B;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x7684;&#x7EF4;&#x62A4;&#xFF08;&#x5982;&#x83B7;&#x53D6;&#x8D44;&#x6E90;&#x5931;&#x8D25;&#x5165;&#x961F;/&#x5524;&#x9192;&#x51FA;&#x961F;&#x7B49;&#xFF09;&#xFF0C;AQS &#x5DF2;&#x7ECF;&#x5728;&#x4E0A;&#x5C42;&#x5DF2;&#x7ECF;&#x5E2E;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;&#x597D;&#x4E86;&#x3002;</p>
+<h4 id="23-aqs-&#x5E95;&#x5C42;&#x4F7F;&#x7528;&#x4E86;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;">2.3 AQS &#x5E95;&#x5C42;&#x4F7F;&#x7528;&#x4E86;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;</h4>
+<p>&#x540C;&#x6B65;&#x5668;&#x7684;&#x8BBE;&#x8BA1;&#x662F;&#x57FA;&#x4E8E;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x81EA;&#x5B9A;&#x4E49;&#x540C;&#x6B65;&#x5668;&#x4E00;&#x822C;&#x7684;&#x65B9;&#x5F0F;&#x662F;&#x8FD9;&#x6837;&#xFF08;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;&#x5F88;&#x7ECF;&#x5178;&#x7684;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#xFF09;&#xFF1A;</p>
+<ol>
+<li>&#x4F7F;&#x7528;&#x8005;&#x7EE7;&#x627F; AbstractQueuedSynchronizer &#x5E76;&#x91CD;&#x5199;&#x6307;&#x5B9A;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#xFF08;&#x8FD9;&#x4E9B;&#x91CD;&#x5199;&#x65B9;&#x6CD5;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x65E0;&#x975E;&#x662F;&#x5BF9;&#x4E8E;&#x5171;&#x4EAB;&#x8D44;&#x6E90; state &#x7684;&#x83B7;&#x53D6;&#x548C;&#x91CA;&#x653E;&#xFF09;</li>
+<li>&#x5C06; AQS &#x7EC4;&#x5408;&#x5728;&#x81EA;&#x5B9A;&#x4E49;&#x540C;&#x6B65;&#x7EC4;&#x4EF6;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x5E76;&#x8C03;&#x7528;&#x5176;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x4F1A;&#x8C03;&#x7528;&#x4F7F;&#x7528;&#x8005;&#x91CD;&#x5199;&#x7684;&#x65B9;&#x6CD5;&#x3002;</li>
+</ol>
+<p>&#x8FD9;&#x548C;&#x6211;&#x4EEC;&#x4EE5;&#x5F80;&#x901A;&#x8FC7;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#x7684;&#x65B9;&#x5F0F;&#x6709;&#x5F88;&#x5927;&#x533A;&#x522B;&#xFF0C;&#x8FD9;&#x662F;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;&#x5F88;&#x7ECF;&#x5178;&#x7684;&#x4E00;&#x4E2A;&#x8FD0;&#x7528;&#xFF0C;&#x4E0B;&#x9762;&#x7B80;&#x5355;&#x7684;&#x7ED9;&#x5927;&#x5BB6;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;&#xFF0C;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E4B;&#x4E00;&#x3002;</p>
+<blockquote>
+<p>&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;&#x662F;&#x57FA;&#x4E8E;&#x201D;&#x7EE7;&#x627F;&#x201C;&#x7684;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x5728;&#x4E0D;&#x6539;&#x53D8;&#x6A21;&#x677F;&#x7ED3;&#x6784;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x5728;&#x5B50;&#x7C7B;&#x4E2D;&#x91CD;&#x65B0;&#x5B9A;&#x4E49;&#x6A21;&#x677F;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x4EE5;&#x5B9E;&#x73B0;&#x590D;&#x7528;&#x4EE3;&#x7801;&#x3002;&#x4E3E;&#x4E2A;&#x5F88;&#x7B80;&#x5355;&#x7684;&#x4F8B;&#x5B50;&#x5047;&#x5982;&#x6211;&#x4EEC;&#x8981;&#x53BB;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#x7684;&#x6B65;&#x9AA4;&#x662F;&#xFF1A;&#x8D2D;&#x7968;<code>buyTicket()</code>-&gt;&#x5B89;&#x68C0;<code>securityCheck()</code>-&gt;&#x4E58;&#x5750;&#x67D0;&#x67D0;&#x5DE5;&#x5177;&#x56DE;&#x5BB6;<code>ride()</code>-&gt;&#x5230;&#x8FBE;&#x76EE;&#x7684;&#x5730;<code>arrive()</code>&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x4E58;&#x5750;&#x4E0D;&#x540C;&#x7684;&#x4EA4;&#x901A;&#x5DE5;&#x5177;&#x56DE;&#x5BB6;&#x6BD4;&#x5982;&#x98DE;&#x673A;&#x6216;&#x8005;&#x706B;&#x8F66;&#xFF0C;&#x6240;&#x4EE5;&#x9664;&#x4E86;<code>ride()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x4ED6;&#x65B9;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#x51E0;&#x4E4E;&#x76F8;&#x540C;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x4E86;&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x7684;&#x62BD;&#x8C61;&#x7C7B;&#xFF0C;&#x7136;&#x540E;&#x7528;&#x6237;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x9700;&#x8981;&#x7EE7;&#x627F;&#x8BE5;&#x62BD;&#x8C61;&#x7C7B;&#x7136;&#x540E;&#x4FEE;&#x6539; <code>ride()</code>&#x65B9;&#x6CD5;&#x3002;</p>
+</blockquote>
+<p><strong>AQS &#x4F7F;&#x7528;&#x4E86;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;&#x540C;&#x6B65;&#x5668;&#x65F6;&#x9700;&#x8981;&#x91CD;&#x5199;&#x4E0B;&#x9762;&#x51E0;&#x4E2A; AQS &#x63D0;&#x4F9B;&#x7684;&#x6A21;&#x677F;&#x65B9;&#x6CD5;&#xFF1A;</strong></p>
+<pre><code class="lang-java">isHeldExclusively()<span class="hljs-comment">//&#x8BE5;&#x7EBF;&#x7A0B;&#x662F;&#x5426;&#x6B63;&#x5728;&#x72EC;&#x5360;&#x8D44;&#x6E90;&#x3002;&#x53EA;&#x6709;&#x7528;&#x5230;condition&#x624D;&#x9700;&#x8981;&#x53BB;&#x5B9E;&#x73B0;&#x5B83;&#x3002;</span>
+tryAcquire(<span class="hljs-keyword">int</span>)<span class="hljs-comment">//&#x72EC;&#x5360;&#x65B9;&#x5F0F;&#x3002;&#x5C1D;&#x8BD5;&#x83B7;&#x53D6;&#x8D44;&#x6E90;&#xFF0C;&#x6210;&#x529F;&#x5219;&#x8FD4;&#x56DE;true&#xFF0C;&#x5931;&#x8D25;&#x5219;&#x8FD4;&#x56DE;false&#x3002;</span>
+tryRelease(<span class="hljs-keyword">int</span>)<span class="hljs-comment">//&#x72EC;&#x5360;&#x65B9;&#x5F0F;&#x3002;&#x5C1D;&#x8BD5;&#x91CA;&#x653E;&#x8D44;&#x6E90;&#xFF0C;&#x6210;&#x529F;&#x5219;&#x8FD4;&#x56DE;true&#xFF0C;&#x5931;&#x8D25;&#x5219;&#x8FD4;&#x56DE;false&#x3002;</span>
+tryAcquireShared(<span class="hljs-keyword">int</span>)<span class="hljs-comment">//&#x5171;&#x4EAB;&#x65B9;&#x5F0F;&#x3002;&#x5C1D;&#x8BD5;&#x83B7;&#x53D6;&#x8D44;&#x6E90;&#x3002;&#x8D1F;&#x6570;&#x8868;&#x793A;&#x5931;&#x8D25;&#xFF1B;0&#x8868;&#x793A;&#x6210;&#x529F;&#xFF0C;&#x4F46;&#x6CA1;&#x6709;&#x5269;&#x4F59;&#x53EF;&#x7528;&#x8D44;&#x6E90;&#xFF1B;&#x6B63;&#x6570;&#x8868;&#x793A;&#x6210;&#x529F;&#xFF0C;&#x4E14;&#x6709;&#x5269;&#x4F59;&#x8D44;&#x6E90;&#x3002;</span>
+tryReleaseShared(<span class="hljs-keyword">int</span>)<span class="hljs-comment">//&#x5171;&#x4EAB;&#x65B9;&#x5F0F;&#x3002;&#x5C1D;&#x8BD5;&#x91CA;&#x653E;&#x8D44;&#x6E90;&#xFF0C;&#x6210;&#x529F;&#x5219;&#x8FD4;&#x56DE;true&#xFF0C;&#x5931;&#x8D25;&#x5219;&#x8FD4;&#x56DE;false&#x3002;</span>
+</code></pre>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6BCF;&#x4E2A;&#x65B9;&#x6CD5;&#x90FD;&#x629B;&#x51FA; <code>UnsupportedOperationException</code>&#x3002; &#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#x5FC5;&#x987B;&#x662F;&#x5185;&#x90E8;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x5E38;&#x5E94;&#x8BE5;&#x7B80;&#x77ED;&#x800C;&#x4E0D;&#x662F;&#x963B;&#x585E;&#x3002;AQS &#x7C7B;&#x4E2D;&#x7684;&#x5176;&#x4ED6;&#x65B9;&#x6CD5;&#x90FD;&#x662F; final &#xFF0C;&#x6240;&#x4EE5;&#x65E0;&#x6CD5;&#x88AB;&#x5176;&#x4ED6;&#x7C7B;&#x4F7F;&#x7528;&#xFF0C;&#x53EA;&#x6709;&#x8FD9;&#x51E0;&#x4E2A;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x88AB;&#x5176;&#x4ED6;&#x7C7B;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x4EE5; ReentrantLock &#x4E3A;&#x4F8B;&#xFF0C;state &#x521D;&#x59CB;&#x5316;&#x4E3A; 0&#xFF0C;&#x8868;&#x793A;&#x672A;&#x9501;&#x5B9A;&#x72B6;&#x6001;&#x3002;A &#x7EBF;&#x7A0B; lock()&#x65F6;&#xFF0C;&#x4F1A;&#x8C03;&#x7528; tryAcquire()&#x72EC;&#x5360;&#x8BE5;&#x9501;&#x5E76;&#x5C06; state+1&#x3002;&#x6B64;&#x540E;&#xFF0C;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x518D; tryAcquire()&#x65F6;&#x5C31;&#x4F1A;&#x5931;&#x8D25;&#xFF0C;&#x76F4;&#x5230; A &#x7EBF;&#x7A0B; unlock()&#x5230; state=0&#xFF08;&#x5373;&#x91CA;&#x653E;&#x9501;&#xFF09;&#x4E3A;&#x6B62;&#xFF0C;&#x5176;&#x5B83;&#x7EBF;&#x7A0B;&#x624D;&#x6709;&#x673A;&#x4F1A;&#x83B7;&#x53D6;&#x8BE5;&#x9501;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x91CA;&#x653E;&#x9501;&#x4E4B;&#x524D;&#xFF0C;A &#x7EBF;&#x7A0B;&#x81EA;&#x5DF1;&#x662F;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#x83B7;&#x53D6;&#x6B64;&#x9501;&#x7684;&#xFF08;state &#x4F1A;&#x7D2F;&#x52A0;&#xFF09;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x53EF;&#x91CD;&#x5165;&#x7684;&#x6982;&#x5FF5;&#x3002;&#x4F46;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x83B7;&#x53D6;&#x591A;&#x5C11;&#x6B21;&#x5C31;&#x8981;&#x91CA;&#x653E;&#x591A;&#x4E48;&#x6B21;&#xFF0C;&#x8FD9;&#x6837;&#x624D;&#x80FD;&#x4FDD;&#x8BC1; state &#x662F;&#x80FD;&#x56DE;&#x5230;&#x96F6;&#x6001;&#x7684;&#x3002;</p>
+<p>&#x518D;&#x4EE5; CountDownLatch &#x4EE5;&#x4F8B;&#xFF0C;&#x4EFB;&#x52A1;&#x5206;&#x4E3A; N &#x4E2A;&#x5B50;&#x7EBF;&#x7A0B;&#x53BB;&#x6267;&#x884C;&#xFF0C;state &#x4E5F;&#x521D;&#x59CB;&#x5316;&#x4E3A; N&#xFF08;&#x6CE8;&#x610F; N &#x8981;&#x4E0E;&#x7EBF;&#x7A0B;&#x4E2A;&#x6570;&#x4E00;&#x81F4;&#xFF09;&#x3002;&#x8FD9; N &#x4E2A;&#x5B50;&#x7EBF;&#x7A0B;&#x662F;&#x5E76;&#x884C;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x6BCF;&#x4E2A;&#x5B50;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x5B8C;&#x540E; countDown()&#x4E00;&#x6B21;&#xFF0C;state &#x4F1A; CAS(Compare and Swap)&#x51CF; 1&#x3002;&#x7B49;&#x5230;&#x6240;&#x6709;&#x5B50;&#x7EBF;&#x7A0B;&#x90FD;&#x6267;&#x884C;&#x5B8C;&#x540E;(&#x5373; state=0)&#xFF0C;&#x4F1A; unpark()&#x4E3B;&#x8C03;&#x7528;&#x7EBF;&#x7A0B;&#xFF0C;&#x7136;&#x540E;&#x4E3B;&#x8C03;&#x7528;&#x7EBF;&#x7A0B;&#x5C31;&#x4F1A;&#x4ECE; await()&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#xFF0C;&#x7EE7;&#x7EED;&#x540E;&#x4F59;&#x52A8;&#x4F5C;&#x3002;</p>
+<p>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;&#x540C;&#x6B65;&#x5668;&#x8981;&#x4E48;&#x662F;&#x72EC;&#x5360;&#x65B9;&#x6CD5;&#xFF0C;&#x8981;&#x4E48;&#x662F;&#x5171;&#x4EAB;&#x65B9;&#x5F0F;&#xFF0C;&#x4ED6;&#x4EEC;&#x4E5F;&#x53EA;&#x9700;&#x5B9E;&#x73B0;<code>tryAcquire-tryRelease</code>&#x3001;<code>tryAcquireShared-tryReleaseShared</code>&#x4E2D;&#x7684;&#x4E00;&#x79CD;&#x5373;&#x53EF;&#x3002;&#x4F46; AQS &#x4E5F;&#x652F;&#x6301;&#x81EA;&#x5B9A;&#x4E49;&#x540C;&#x6B65;&#x5668;&#x540C;&#x65F6;&#x5B9E;&#x73B0;&#x72EC;&#x5360;&#x548C;&#x5171;&#x4EAB;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;<code>ReentrantReadWriteLock</code>&#x3002;</p>
+<p>&#x63A8;&#x8350;&#x4E24;&#x7BC7; AQS &#x539F;&#x7406;&#x548C;&#x76F8;&#x5173;&#x6E90;&#x7801;&#x5206;&#x6790;&#x7684;&#x6587;&#x7AE0;&#xFF1A;</p>
+<ul>
+<li><a href="http://www.cnblogs.com/waterystone/p/4920797.html" target="_blank">http://www.cnblogs.com/waterystone/p/4920797.html</a></li>
+<li><a href="https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html" target="_blank">https://www.cnblogs.com/chengxiao/archive/2017/07/24/7141160.html</a></li>
+</ul>
+<h3 id="3-semaphore&#x4FE1;&#x53F7;&#x91CF;-&#x5141;&#x8BB8;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x8BBF;&#x95EE;">3 Semaphore(&#x4FE1;&#x53F7;&#x91CF;)-&#x5141;&#x8BB8;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x8BBF;&#x95EE;</h3>
+<p><strong>synchronized &#x548C; ReentrantLock &#x90FD;&#x662F;&#x4E00;&#x6B21;&#x53EA;&#x5141;&#x8BB8;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x8BBF;&#x95EE;&#x67D0;&#x4E2A;&#x8D44;&#x6E90;&#xFF0C;Semaphore(&#x4FE1;&#x53F7;&#x91CF;)&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x8BBF;&#x95EE;&#x67D0;&#x4E2A;&#x8D44;&#x6E90;&#x3002;</strong> </p>
+<p>&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ *
+ * <span class="hljs-doctag">@author</span> Snailclimb
+ * <span class="hljs-doctag">@date</span> 2018&#x5E74;9&#x6708;30&#x65E5;
+ * <span class="hljs-doctag">@Description</span>: &#x9700;&#x8981;&#x4E00;&#x6B21;&#x6027;&#x62FF;&#x4E00;&#x4E2A;&#x8BB8;&#x53EF;&#x7684;&#x60C5;&#x51B5;
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SemaphoreExample1</span> </span>{
+  <span class="hljs-comment">// &#x8BF7;&#x6C42;&#x7684;&#x6570;&#x91CF;</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> threadCount = <span class="hljs-number">550</span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5177;&#x6709;&#x56FA;&#x5B9A;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x7684;&#x7EBF;&#x7A0B;&#x6C60;&#x5BF9;&#x8C61;&#xFF08;&#x5982;&#x679C;&#x8FD9;&#x91CC;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x7ED9;&#x592A;&#x5C11;&#x7684;&#x8BDD;&#x4F60;&#x4F1A;&#x53D1;&#x73B0;&#x6267;&#x884C;&#x7684;&#x5F88;&#x6162;&#xFF09;</span>
+    ExecutorService threadPool = Executors.newFixedThreadPool(<span class="hljs-number">300</span>);
+    <span class="hljs-comment">// &#x4E00;&#x6B21;&#x53EA;&#x80FD;&#x5141;&#x8BB8;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x3002;</span>
+    <span class="hljs-keyword">final</span> Semaphore semaphore = <span class="hljs-keyword">new</span> Semaphore(<span class="hljs-number">20</span>);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; threadCount; i++) {
+      <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> threadnum = i;
+      threadPool.execute(() -&gt; {<span class="hljs-comment">// Lambda &#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x8FD0;&#x7528;</span>
+        <span class="hljs-keyword">try</span> {
+          semaphore.acquire();<span class="hljs-comment">// &#x83B7;&#x53D6;&#x4E00;&#x4E2A;&#x8BB8;&#x53EF;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x8FD0;&#x884C;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x4E3A;20/1=20</span>
+          test(threadnum);
+          semaphore.release();<span class="hljs-comment">// &#x91CA;&#x653E;&#x4E00;&#x4E2A;&#x8BB8;&#x53EF;</span>
+        } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+          <span class="hljs-comment">// TODO Auto-generated catch block</span>
+          e.printStackTrace();
+        }
+
+      });
+    }
+    threadPool.shutdown();
+    System.out.println(<span class="hljs-string">&quot;finish&quot;</span>);
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-keyword">int</span> threadnum)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+    Thread.sleep(<span class="hljs-number">1000</span>);<span class="hljs-comment">// &#x6A21;&#x62DF;&#x8BF7;&#x6C42;&#x7684;&#x8017;&#x65F6;&#x64CD;&#x4F5C;</span>
+    System.out.println(<span class="hljs-string">&quot;threadnum:&quot;</span> + threadnum);
+    Thread.sleep(<span class="hljs-number">1000</span>);<span class="hljs-comment">// &#x6A21;&#x62DF;&#x8BF7;&#x6C42;&#x7684;&#x8017;&#x65F6;&#x64CD;&#x4F5C;</span>
+  }
+}
+</code></pre>
+<p>&#x6267;&#x884C; <code>acquire</code> &#x65B9;&#x6CD5;&#x963B;&#x585E;&#xFF0C;&#x76F4;&#x5230;&#x6709;&#x4E00;&#x4E2A;&#x8BB8;&#x53EF;&#x8BC1;&#x53EF;&#x4EE5;&#x83B7;&#x5F97;&#x7136;&#x540E;&#x62FF;&#x8D70;&#x4E00;&#x4E2A;&#x8BB8;&#x53EF;&#x8BC1;&#xFF1B;&#x6BCF;&#x4E2A; <code>release</code> &#x65B9;&#x6CD5;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x8BB8;&#x53EF;&#x8BC1;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x4F1A;&#x91CA;&#x653E;&#x4E00;&#x4E2A;&#x963B;&#x585E;&#x7684; acquire &#x65B9;&#x6CD5;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x5176;&#x5B9E;&#x5E76;&#x6CA1;&#x6709;&#x5B9E;&#x9645;&#x7684;&#x8BB8;&#x53EF;&#x8BC1;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;Semaphore &#x53EA;&#x662F;&#x7EF4;&#x6301;&#x4E86;&#x4E00;&#x4E2A;&#x53EF;&#x83B7;&#x5F97;&#x8BB8;&#x53EF;&#x8BC1;&#x7684;&#x6570;&#x91CF;&#x3002; Semaphore &#x7ECF;&#x5E38;&#x7528;&#x4E8E;&#x9650;&#x5236;&#x83B7;&#x53D6;&#x67D0;&#x79CD;&#x8D44;&#x6E90;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x3002;</p>
+<p>&#x5F53;&#x7136;&#x4E00;&#x6B21;&#x4E5F;&#x53EF;&#x4EE5;&#x4E00;&#x6B21;&#x62FF;&#x53D6;&#x548C;&#x91CA;&#x653E;&#x591A;&#x4E2A;&#x8BB8;&#x53EF;&#xFF0C;&#x4E0D;&#x8FC7;&#x4E00;&#x822C;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x8FD9;&#x6837;&#x505A;&#xFF1A;</p>
+<pre><code class="lang-java">semaphore.acquire(<span class="hljs-number">5</span>);<span class="hljs-comment">// &#x83B7;&#x53D6;5&#x4E2A;&#x8BB8;&#x53EF;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x8FD0;&#x884C;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x4E3A;20/5=4</span>
+test(threadnum);
+semaphore.release(<span class="hljs-number">5</span>);<span class="hljs-comment">// &#x83B7;&#x53D6;5&#x4E2A;&#x8BB8;&#x53EF;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x8FD0;&#x884C;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x4E3A;20/5=4</span>
+</code></pre>
+<p>&#x9664;&#x4E86; <code>acquire</code>&#x65B9;&#x6CD5;&#x4E4B;&#x5916;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x5E38;&#x7528;&#x7684;&#x4E0E;&#x4E4B;&#x5BF9;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x662F;<code>tryAcquire</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x5982;&#x679C;&#x83B7;&#x53D6;&#x4E0D;&#x5230;&#x8BB8;&#x53EF;&#x5C31;&#x7ACB;&#x5373;&#x8FD4;&#x56DE; false&#x3002;</p>
+<p>Semaphore &#x6709;&#x4E24;&#x79CD;&#x6A21;&#x5F0F;&#xFF0C;&#x516C;&#x5E73;&#x6A21;&#x5F0F;&#x548C;&#x975E;&#x516C;&#x5E73;&#x6A21;&#x5F0F;&#x3002;</p>
+<ul>
+<li><strong>&#x516C;&#x5E73;&#x6A21;&#x5F0F;&#xFF1A;</strong> &#x8C03;&#x7528; acquire &#x7684;&#x987A;&#x5E8F;&#x5C31;&#x662F;&#x83B7;&#x53D6;&#x8BB8;&#x53EF;&#x8BC1;&#x7684;&#x987A;&#x5E8F;&#xFF0C;&#x9075;&#x5FAA; FIFO&#xFF1B;</li>
+<li><strong>&#x975E;&#x516C;&#x5E73;&#x6A21;&#x5F0F;&#xFF1A;</strong> &#x62A2;&#x5360;&#x5F0F;&#x7684;&#x3002;</li>
+</ul>
+<p><strong>Semaphore &#x5BF9;&#x5E94;&#x7684;&#x4E24;&#x4E2A;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</strong></p>
+<pre><code class="lang-java">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Semaphore</span><span class="hljs-params">(<span class="hljs-keyword">int</span> permits)</span> </span>{
+        sync = <span class="hljs-keyword">new</span> NonfairSync(permits);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Semaphore</span><span class="hljs-params">(<span class="hljs-keyword">int</span> permits, <span class="hljs-keyword">boolean</span> fair)</span> </span>{
+        sync = fair ? <span class="hljs-keyword">new</span> FairSync(permits) : <span class="hljs-keyword">new</span> NonfairSync(permits);
+    }
+</code></pre>
+<p><strong>&#x8FD9;&#x4E24;&#x4E2A;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x90FD;&#x5FC5;&#x987B;&#x63D0;&#x4F9B;&#x8BB8;&#x53EF;&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x662F;&#x516C;&#x5E73;&#x6A21;&#x5F0F;&#x8FD8;&#x662F;&#x975E;&#x516C;&#x5E73;&#x6A21;&#x5F0F;&#xFF0C;&#x9ED8;&#x8BA4;&#x975E;&#x516C;&#x5E73;&#x6A21;&#x5F0F;&#x3002;</strong></p>
+<p><a href="https://github.com/Snailclimb/JavaGuide/issues/645" target="_blank">issue645&#x8865;&#x5145;&#x5185;&#x5BB9;</a> &#xFF1A;Semaphore&#x4E0E;CountDownLatch&#x4E00;&#x6837;&#xFF0C;&#x4E5F;&#x662F;&#x5171;&#x4EAB;&#x9501;&#x7684;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;&#x3002;&#x5B83;&#x9ED8;&#x8BA4;&#x6784;&#x9020;AQS&#x7684;state&#x4E3A;permits&#x3002;&#x5F53;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x8D85;&#x51FA;permits,&#x90A3;&#x4E48;&#x591A;&#x4F59;&#x7684;&#x7EBF;&#x7A0B;&#x5C06;&#x4F1A;&#x88AB;&#x653E;&#x5165;&#x963B;&#x585E;&#x961F;&#x5217;Park,&#x5E76;&#x81EA;&#x65CB;&#x5224;&#x65AD;state&#x662F;&#x5426;&#x5927;&#x4E8E;0&#x3002;&#x53EA;&#x6709;&#x5F53;state&#x5927;&#x4E8E;0&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x963B;&#x585E;&#x7684;&#x7EBF;&#x7A0B;&#x624D;&#x80FD;&#x7EE7;&#x7EED;&#x6267;&#x884C;,&#x6B64;&#x65F6;&#x5148;&#x524D;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x7684;&#x7EBF;&#x7A0B;&#x7EE7;&#x7EED;&#x6267;&#x884C;release&#x65B9;&#x6CD5;&#xFF0C;release&#x65B9;&#x6CD5;&#x4F7F;&#x5F97;state&#x7684;&#x53D8;&#x91CF;&#x4F1A;&#x52A0;1&#xFF0C;&#x90A3;&#x4E48;&#x81EA;&#x65CB;&#x7684;&#x7EBF;&#x7A0B;&#x4FBF;&#x4F1A;&#x5224;&#x65AD;&#x6210;&#x529F;&#x3002;
+&#x5982;&#x6B64;&#xFF0C;&#x6BCF;&#x6B21;&#x53EA;&#x6709;&#x6700;&#x591A;&#x4E0D;&#x8D85;&#x8FC7;permits&#x6570;&#x91CF;&#x7684;&#x7EBF;&#x7A0B;&#x80FD;&#x81EA;&#x65CB;&#x6210;&#x529F;&#xFF0C;&#x4FBF;&#x9650;&#x5236;&#x4E86;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x7EBF;&#x7A0B;&#x7684;&#x6570;&#x91CF;&#x3002;</p>
+<p>&#x7531;&#x4E8E;&#x7BC7;&#x5E45;&#x95EE;&#x9898;&#xFF0C;&#x5982;&#x679C;&#x5BF9; Semaphore &#x6E90;&#x7801;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x670B;&#x53CB;&#x53EF;&#x4EE5;&#x770B;&#x4E0B;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#xFF1A;<a href="https://juejin.im/post/5ae755366fb9a07ab508adc6" target="_blank">https://juejin.im/post/5ae755366fb9a07ab508adc6</a></p>
+<h3 id="4-countdownlatch-&#xFF08;&#x5012;&#x8BA1;&#x65F6;&#x5668;&#xFF09;">4 CountDownLatch &#xFF08;&#x5012;&#x8BA1;&#x65F6;&#x5668;&#xFF09;</h3>
+<p>CountDownLatch&#x5141;&#x8BB8; count &#x4E2A;&#x7EBF;&#x7A0B;&#x963B;&#x585E;&#x5728;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#xFF0C;&#x76F4;&#x81F3;&#x6240;&#x6709;&#x7EBF;&#x7A0B;&#x7684;&#x4EFB;&#x52A1;&#x90FD;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x3002;&#x5728; Java &#x5E76;&#x53D1;&#x4E2D;&#xFF0C;countdownlatch &#x7684;&#x6982;&#x5FF5;&#x662F;&#x4E00;&#x4E2A;&#x5E38;&#x89C1;&#x7684;&#x9762;&#x8BD5;&#x9898;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x5B9A;&#x8981;&#x786E;&#x4FDD;&#x4F60;&#x5F88;&#x597D;&#x7684;&#x7406;&#x89E3;&#x4E86;&#x5B83;&#x3002;</p>
+<p>CountDownLatch&#x662F;&#x5171;&#x4EAB;&#x9501;&#x7684;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;,&#x5B83;&#x9ED8;&#x8BA4;&#x6784;&#x9020; AQS &#x7684; state &#x503C;&#x4E3A; count&#x3002;&#x5F53;&#x7EBF;&#x7A0B;&#x4F7F;&#x7528;countDown&#x65B9;&#x6CD5;&#x65F6;,&#x5176;&#x5B9E;&#x4F7F;&#x7528;&#x4E86;<code>tryReleaseShared</code>&#x65B9;&#x6CD5;&#x4EE5;CAS&#x7684;&#x64CD;&#x4F5C;&#x6765;&#x51CF;&#x5C11;state,&#x76F4;&#x81F3;state&#x4E3A;0&#x5C31;&#x4EE3;&#x8868;&#x6240;&#x6709;&#x7684;&#x7EBF;&#x7A0B;&#x90FD;&#x8C03;&#x7528;&#x4E86;countDown&#x65B9;&#x6CD5;&#x3002;&#x5F53;&#x8C03;&#x7528;await&#x65B9;&#x6CD5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x679C;state&#x4E0D;&#x4E3A;0&#xFF0C;&#x5C31;&#x4EE3;&#x8868;&#x4ECD;&#x7136;&#x6709;&#x7EBF;&#x7A0B;&#x6CA1;&#x6709;&#x8C03;&#x7528;countDown&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x628A;&#x5DF2;&#x7ECF;&#x8C03;&#x7528;&#x8FC7;countDown&#x7684;&#x7EBF;&#x7A0B;&#x90FD;&#x653E;&#x5165;&#x963B;&#x585E;&#x961F;&#x5217;Park,&#x5E76;&#x81EA;&#x65CB;CAS&#x5224;&#x65AD;state == 0&#xFF0C;&#x76F4;&#x81F3;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x8C03;&#x7528;&#x4E86;countDown&#xFF0C;&#x4F7F;&#x5F97;state == 0&#xFF0C;&#x4E8E;&#x662F;&#x963B;&#x585E;&#x7684;&#x7EBF;&#x7A0B;&#x4FBF;&#x5224;&#x65AD;&#x6210;&#x529F;&#xFF0C;&#x5168;&#x90E8;&#x5F80;&#x4E0B;&#x6267;&#x884C;&#x3002;</p>
+<h4 id="41-countdownlatch-&#x7684;&#x4E24;&#x79CD;&#x5178;&#x578B;&#x7528;&#x6CD5;">4.1 CountDownLatch &#x7684;&#x4E24;&#x79CD;&#x5178;&#x578B;&#x7528;&#x6CD5;</h4>
+<ol>
+<li>&#x67D0;&#x4E00;&#x7EBF;&#x7A0B;&#x5728;&#x5F00;&#x59CB;&#x8FD0;&#x884C;&#x524D;&#x7B49;&#x5F85; n &#x4E2A;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x3002;&#x5C06; CountDownLatch &#x7684;&#x8BA1;&#x6570;&#x5668;&#x521D;&#x59CB;&#x5316;&#x4E3A; n &#xFF1A;<code>new CountDownLatch(n)</code>&#xFF0C;&#x6BCF;&#x5F53;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF0C;&#x5C31;&#x5C06;&#x8BA1;&#x6570;&#x5668;&#x51CF; 1 <code>countdownlatch.countDown()</code>&#xFF0C;&#x5F53;&#x8BA1;&#x6570;&#x5668;&#x7684;&#x503C;&#x53D8;&#x4E3A; 0 &#x65F6;&#xFF0C;&#x5728;<code>CountDownLatch&#x4E0A; await()</code> &#x7684;&#x7EBF;&#x7A0B;&#x5C31;&#x4F1A;&#x88AB;&#x5524;&#x9192;&#x3002;&#x4E00;&#x4E2A;&#x5178;&#x578B;&#x5E94;&#x7528;&#x573A;&#x666F;&#x5C31;&#x662F;&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x65F6;&#xFF0C;&#x4E3B;&#x7EBF;&#x7A0B;&#x9700;&#x8981;&#x7B49;&#x5F85;&#x591A;&#x4E2A;&#x7EC4;&#x4EF6;&#x52A0;&#x8F7D;&#x5B8C;&#x6BD5;&#xFF0C;&#x4E4B;&#x540E;&#x518D;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x3002;</li>
+<li>&#x5B9E;&#x73B0;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x7684;&#x6700;&#x5927;&#x5E76;&#x884C;&#x6027;&#x3002;&#x6CE8;&#x610F;&#x662F;&#x5E76;&#x884C;&#x6027;&#xFF0C;&#x4E0D;&#x662F;&#x5E76;&#x53D1;&#xFF0C;&#x5F3A;&#x8C03;&#x7684;&#x662F;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x5728;&#x67D0;&#x4E00;&#x65F6;&#x523B;&#x540C;&#x65F6;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x3002;&#x7C7B;&#x4F3C;&#x4E8E;&#x8D5B;&#x8DD1;&#xFF0C;&#x5C06;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x653E;&#x5230;&#x8D77;&#x70B9;&#xFF0C;&#x7B49;&#x5F85;&#x53D1;&#x4EE4;&#x67AA;&#x54CD;&#xFF0C;&#x7136;&#x540E;&#x540C;&#x65F6;&#x5F00;&#x8DD1;&#x3002;&#x505A;&#x6CD5;&#x662F;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x5171;&#x4EAB;&#x7684; <code>CountDownLatch</code> &#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x5176;&#x8BA1;&#x6570;&#x5668;&#x521D;&#x59CB;&#x5316;&#x4E3A; 1 &#xFF1A;<code>new CountDownLatch(1)</code>&#xFF0C;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x5728;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x524D;&#x9996;&#x5148; <code>coundownlatch.await()</code>&#xFF0C;&#x5F53;&#x4E3B;&#x7EBF;&#x7A0B;&#x8C03;&#x7528; countDown() &#x65F6;&#xFF0C;&#x8BA1;&#x6570;&#x5668;&#x53D8;&#x4E3A; 0&#xFF0C;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x88AB;&#x5524;&#x9192;&#x3002;</li>
+</ol>
+<h4 id="42-countdownlatch-&#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;">4.2 CountDownLatch &#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;</h4>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ *
+ * <span class="hljs-doctag">@author</span> SnailClimb
+ * <span class="hljs-doctag">@date</span> 2018&#x5E74;10&#x6708;1&#x65E5;
+ * <span class="hljs-doctag">@Description</span>: CountDownLatch &#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x793A;&#x4F8B;
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CountDownLatchExample1</span> </span>{
+  <span class="hljs-comment">// &#x8BF7;&#x6C42;&#x7684;&#x6570;&#x91CF;</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> threadCount = <span class="hljs-number">550</span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5177;&#x6709;&#x56FA;&#x5B9A;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x7684;&#x7EBF;&#x7A0B;&#x6C60;&#x5BF9;&#x8C61;&#xFF08;&#x5982;&#x679C;&#x8FD9;&#x91CC;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x7ED9;&#x592A;&#x5C11;&#x7684;&#x8BDD;&#x4F60;&#x4F1A;&#x53D1;&#x73B0;&#x6267;&#x884C;&#x7684;&#x5F88;&#x6162;&#xFF09;</span>
+    ExecutorService threadPool = Executors.newFixedThreadPool(<span class="hljs-number">300</span>);
+    <span class="hljs-keyword">final</span> CountDownLatch countDownLatch = <span class="hljs-keyword">new</span> CountDownLatch(threadCount);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; threadCount; i++) {
+      <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> threadnum = i;
+      threadPool.execute(() -&gt; {<span class="hljs-comment">// Lambda &#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x8FD0;&#x7528;</span>
+        <span class="hljs-keyword">try</span> {
+          test(threadnum);
+        } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+          <span class="hljs-comment">// TODO Auto-generated catch block</span>
+          e.printStackTrace();
+        } <span class="hljs-keyword">finally</span> {
+          countDownLatch.countDown();<span class="hljs-comment">// &#x8868;&#x793A;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#x5DF2;&#x7ECF;&#x88AB;&#x5B8C;&#x6210;</span>
+        }
+
+      });
+    }
+    countDownLatch.await();
+    threadPool.shutdown();
+    System.out.println(<span class="hljs-string">&quot;finish&quot;</span>);
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-keyword">int</span> threadnum)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+    Thread.sleep(<span class="hljs-number">1000</span>);<span class="hljs-comment">// &#x6A21;&#x62DF;&#x8BF7;&#x6C42;&#x7684;&#x8017;&#x65F6;&#x64CD;&#x4F5C;</span>
+    System.out.println(<span class="hljs-string">&quot;threadnum:&quot;</span> + threadnum);
+    Thread.sleep(<span class="hljs-number">1000</span>);<span class="hljs-comment">// &#x6A21;&#x62DF;&#x8BF7;&#x6C42;&#x7684;&#x8017;&#x65F6;&#x64CD;&#x4F5C;</span>
+  }
+}
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x4E86;&#x8BF7;&#x6C42;&#x7684;&#x6570;&#x91CF;&#x4E3A; 550&#xFF0C;&#x5F53;&#x8FD9; 550 &#x4E2A;&#x8BF7;&#x6C42;&#x88AB;&#x5904;&#x7406;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#xFF0C;&#x624D;&#x4F1A;&#x6267;&#x884C;<code>System.out.println(&quot;finish&quot;);</code>&#x3002;</p>
+<p>&#x4E0E; CountDownLatch &#x7684;&#x7B2C;&#x4E00;&#x6B21;&#x4EA4;&#x4E92;&#x662F;&#x4E3B;&#x7EBF;&#x7A0B;&#x7B49;&#x5F85;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x3002;&#x4E3B;&#x7EBF;&#x7A0B;&#x5FC5;&#x987B;&#x5728;&#x542F;&#x52A8;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x540E;&#x7ACB;&#x5373;&#x8C03;&#x7528; <code>CountDownLatch.await()</code> &#x65B9;&#x6CD5;&#x3002;&#x8FD9;&#x6837;&#x4E3B;&#x7EBF;&#x7A0B;&#x7684;&#x64CD;&#x4F5C;&#x5C31;&#x4F1A;&#x5728;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4E0A;&#x963B;&#x585E;&#xFF0C;&#x76F4;&#x5230;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x5B8C;&#x6210;&#x5404;&#x81EA;&#x7684;&#x4EFB;&#x52A1;&#x3002;</p>
+<p>&#x5176;&#x4ED6; N &#x4E2A;&#x7EBF;&#x7A0B;&#x5FC5;&#x987B;&#x5F15;&#x7528;&#x95ED;&#x9501;&#x5BF9;&#x8C61;&#xFF0C;&#x56E0;&#x4E3A;&#x4ED6;&#x4EEC;&#x9700;&#x8981;&#x901A;&#x77E5; <code>CountDownLatch</code> &#x5BF9;&#x8C61;&#xFF0C;&#x4ED6;&#x4EEC;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#x4E86;&#x5404;&#x81EA;&#x7684;&#x4EFB;&#x52A1;&#x3002;&#x8FD9;&#x79CD;&#x901A;&#x77E5;&#x673A;&#x5236;&#x662F;&#x901A;&#x8FC7; <code>CountDownLatch.countDown()</code>&#x65B9;&#x6CD5;&#x6765;&#x5B8C;&#x6210;&#x7684;&#xFF1B;&#x6BCF;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x521D;&#x59CB;&#x5316;&#x7684; count &#x503C;&#x5C31;&#x51CF; 1&#x3002;&#x6240;&#x4EE5;&#x5F53; N &#x4E2A;&#x7EBF;&#x7A0B;&#x90FD;&#x8C03; &#x7528;&#x4E86;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;count &#x7684;&#x503C;&#x7B49;&#x4E8E; 0&#xFF0C;&#x7136;&#x540E;&#x4E3B;&#x7EBF;&#x7A0B;&#x5C31;&#x80FD;&#x901A;&#x8FC7; <code>await()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x6062;&#x590D;&#x6267;&#x884C;&#x81EA;&#x5DF1;&#x7684;&#x4EFB;&#x52A1;&#x3002;</p>
+<p>&#x518D;&#x63D2;&#x4E00;&#x5634;&#xFF1A;<code>CountDownLatch</code> &#x7684;  <code>await()</code> &#x65B9;&#x6CD5;&#x4F7F;&#x7528;&#x4E0D;&#x5F53;&#x5F88;&#x5BB9;&#x6613;&#x4EA7;&#x751F;&#x6B7B;&#x9501;&#xFF0C;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x4E2D;&#x7684; for &#x5FAA;&#x73AF;&#x6539;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; threadCount-<span class="hljs-number">1</span>; i++) {
+.......
+}
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x5C31;&#x5BFC;&#x81F4;  <code>count</code> &#x7684;&#x503C;&#x6CA1;&#x529E;&#x6CD5;&#x7B49;&#x4E8E; 0&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x4E00;&#x76F4;&#x7B49;&#x5F85;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5BF9;CountDownLatch&#x6E90;&#x7801;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x670B;&#x53CB;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#xFF1A; <a href="https://www.cnblogs.com/leesf456/p/5406191.html" target="_blank">&#x3010;JUC&#x3011;JDK1.8&#x6E90;&#x7801;&#x5206;&#x6790;&#x4E4B;CountDownLatch&#xFF08;&#x4E94;&#xFF09;</a></p>
+<h4 id="43-countdownlatch-&#x7684;&#x4E0D;&#x8DB3;">4.3 CountDownLatch &#x7684;&#x4E0D;&#x8DB3;</h4>
+<p>CountDownLatch &#x662F;&#x4E00;&#x6B21;&#x6027;&#x7684;&#xFF0C;&#x8BA1;&#x6570;&#x5668;&#x7684;&#x503C;&#x53EA;&#x80FD;&#x5728;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E2D;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x6B21;&#xFF0C;&#x4E4B;&#x540E;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x673A;&#x5236;&#x518D;&#x6B21;&#x5BF9;&#x5176;&#x8BBE;&#x7F6E;&#x503C;&#xFF0C;&#x5F53; CountDownLatch &#x4F7F;&#x7528;&#x5B8C;&#x6BD5;&#x540E;&#xFF0C;&#x5B83;&#x4E0D;&#x80FD;&#x518D;&#x6B21;&#x88AB;&#x4F7F;&#x7528;&#x3002;</p>
+<h4 id="44-countdownlatch-&#x76F8;&#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;">4.4 CountDownLatch &#x76F8;&#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;</h4>
+<p>&#x89E3;&#x91CA;&#x4E00;&#x4E0B; CountDownLatch &#x6982;&#x5FF5;&#xFF1F;</p>
+<p>CountDownLatch &#x548C; CyclicBarrier &#x7684;&#x4E0D;&#x540C;&#x4E4B;&#x5904;&#xFF1F;</p>
+<p>&#x7ED9;&#x51FA;&#x4E00;&#x4E9B; CountDownLatch &#x4F7F;&#x7528;&#x7684;&#x4F8B;&#x5B50;&#xFF1F;</p>
+<p>CountDownLatch &#x7C7B;&#x4E2D;&#x4E3B;&#x8981;&#x7684;&#x65B9;&#x6CD5;&#xFF1F;</p>
+<h3 id="5-cyclicbarrier&#x5FAA;&#x73AF;&#x6805;&#x680F;">5 CyclicBarrier(&#x5FAA;&#x73AF;&#x6805;&#x680F;)</h3>
+<p>CyclicBarrier &#x548C; CountDownLatch &#x975E;&#x5E38;&#x7C7B;&#x4F3C;&#xFF0C;&#x5B83;&#x4E5F;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x7EBF;&#x7A0B;&#x95F4;&#x7684;&#x6280;&#x672F;&#x7B49;&#x5F85;&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x7684;&#x529F;&#x80FD;&#x6BD4; CountDownLatch &#x66F4;&#x52A0;&#x590D;&#x6742;&#x548C;&#x5F3A;&#x5927;&#x3002;&#x4E3B;&#x8981;&#x5E94;&#x7528;&#x573A;&#x666F;&#x548C; CountDownLatch &#x7C7B;&#x4F3C;&#x3002;</p>
+<blockquote>
+<p>CountDownLatch&#x7684;&#x5B9E;&#x73B0;&#x662F;&#x57FA;&#x4E8E;AQS&#x7684;&#xFF0C;&#x800C;CycliBarrier&#x662F;&#x57FA;&#x4E8E; ReentrantLock(ReentrantLock&#x4E5F;&#x5C5E;&#x4E8E;AQS&#x540C;&#x6B65;&#x5668;)&#x548C; Condition &#x7684;.</p>
+</blockquote>
+<p>CyclicBarrier &#x7684;&#x5B57;&#x9762;&#x610F;&#x601D;&#x662F;&#x53EF;&#x5FAA;&#x73AF;&#x4F7F;&#x7528;&#xFF08;Cyclic&#xFF09;&#x7684;&#x5C4F;&#x969C;&#xFF08;Barrier&#xFF09;&#x3002;&#x5B83;&#x8981;&#x505A;&#x7684;&#x4E8B;&#x60C5;&#x662F;&#xFF0C;&#x8BA9;&#x4E00;&#x7EC4;&#x7EBF;&#x7A0B;&#x5230;&#x8FBE;&#x4E00;&#x4E2A;&#x5C4F;&#x969C;&#xFF08;&#x4E5F;&#x53EF;&#x4EE5;&#x53EB;&#x540C;&#x6B65;&#x70B9;&#xFF09;&#x65F6;&#x88AB;&#x963B;&#x585E;&#xFF0C;&#x76F4;&#x5230;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5230;&#x8FBE;&#x5C4F;&#x969C;&#x65F6;&#xFF0C;&#x5C4F;&#x969C;&#x624D;&#x4F1A;&#x5F00;&#x95E8;&#xFF0C;&#x6240;&#x6709;&#x88AB;&#x5C4F;&#x969C;&#x62E6;&#x622A;&#x7684;&#x7EBF;&#x7A0B;&#x624D;&#x4F1A;&#x7EE7;&#x7EED;&#x5E72;&#x6D3B;&#x3002;CyclicBarrier &#x9ED8;&#x8BA4;&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x662F; <code>CyclicBarrier(int parties)</code>&#xFF0C;&#x5176;&#x53C2;&#x6570;&#x8868;&#x793A;&#x5C4F;&#x969C;&#x62E6;&#x622A;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#xFF0C;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x8C03;&#x7528;<code>await</code>&#x65B9;&#x6CD5;&#x544A;&#x8BC9; CyclicBarrier &#x6211;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E86;&#x5C4F;&#x969C;&#xFF0C;&#x7136;&#x540E;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x88AB;&#x963B;&#x585E;&#x3002;</p>
+<p>&#x518D;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x5B83;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CyclicBarrier</span><span class="hljs-params">(<span class="hljs-keyword">int</span> parties)</span> </span>{
+    <span class="hljs-keyword">this</span>(parties, <span class="hljs-keyword">null</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CyclicBarrier</span><span class="hljs-params">(<span class="hljs-keyword">int</span> parties, Runnable barrierAction)</span> </span>{
+    <span class="hljs-keyword">if</span> (parties &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException();
+    <span class="hljs-keyword">this</span>.parties = parties;
+    <span class="hljs-keyword">this</span>.count = parties;
+    <span class="hljs-keyword">this</span>.barrierCommand = barrierAction;
+}
+</code></pre>
+<p>&#x5176;&#x4E2D;&#xFF0C;parties &#x5C31;&#x4EE3;&#x8868;&#x4E86;&#x6709;&#x62E6;&#x622A;&#x7684;&#x7EBF;&#x7A0B;&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x5F53;&#x62E6;&#x622A;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x8FBE;&#x5230;&#x8FD9;&#x4E2A;&#x503C;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x6253;&#x5F00;&#x6805;&#x680F;&#xFF0C;&#x8BA9;&#x6240;&#x6709;&#x7EBF;&#x7A0B;&#x901A;&#x8FC7;&#x3002;</p>
+<h4 id="51-cyclicbarrier-&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;">5.1 CyclicBarrier &#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;</h4>
+<p>CyclicBarrier &#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x591A;&#x7EBF;&#x7A0B;&#x8BA1;&#x7B97;&#x6570;&#x636E;&#xFF0C;&#x6700;&#x540E;&#x5408;&#x5E76;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;&#x3002;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x7528;&#x4E00;&#x4E2A; Excel &#x4FDD;&#x5B58;&#x4E86;&#x7528;&#x6237;&#x6240;&#x6709;&#x94F6;&#x884C;&#x6D41;&#x6C34;&#xFF0C;&#x6BCF;&#x4E2A; Sheet &#x4FDD;&#x5B58;&#x4E00;&#x4E2A;&#x5E10;&#x6237;&#x8FD1;&#x4E00;&#x5E74;&#x7684;&#x6BCF;&#x7B14;&#x94F6;&#x884C;&#x6D41;&#x6C34;&#xFF0C;&#x73B0;&#x5728;&#x9700;&#x8981;&#x7EDF;&#x8BA1;&#x7528;&#x6237;&#x7684;&#x65E5;&#x5747;&#x94F6;&#x884C;&#x6D41;&#x6C34;&#xFF0C;&#x5148;&#x7528;&#x591A;&#x7EBF;&#x7A0B;&#x5904;&#x7406;&#x6BCF;&#x4E2A; sheet &#x91CC;&#x7684;&#x94F6;&#x884C;&#x6D41;&#x6C34;&#xFF0C;&#x90FD;&#x6267;&#x884C;&#x5B8C;&#x4E4B;&#x540E;&#xFF0C;&#x5F97;&#x5230;&#x6BCF;&#x4E2A; sheet &#x7684;&#x65E5;&#x5747;&#x94F6;&#x884C;&#x6D41;&#x6C34;&#xFF0C;&#x6700;&#x540E;&#xFF0C;&#x518D;&#x7528; barrierAction &#x7528;&#x8FD9;&#x4E9B;&#x7EBF;&#x7A0B;&#x7684;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;&#xFF0C;&#x8BA1;&#x7B97;&#x51FA;&#x6574;&#x4E2A; Excel &#x7684;&#x65E5;&#x5747;&#x94F6;&#x884C;&#x6D41;&#x6C34;&#x3002;</p>
+<h4 id="52-cyclicbarrier-&#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;">5.2 CyclicBarrier &#x7684;&#x4F7F;&#x7528;&#x793A;&#x4F8B;</h4>
+<p>&#x793A;&#x4F8B; 1&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ *
+ * <span class="hljs-doctag">@author</span> Snailclimb
+ * <span class="hljs-doctag">@date</span> 2018&#x5E74;10&#x6708;1&#x65E5;
+ * <span class="hljs-doctag">@Description</span>: &#x6D4B;&#x8BD5; CyclicBarrier &#x7C7B;&#x4E2D;&#x5E26;&#x53C2;&#x6570;&#x7684; await() &#x65B9;&#x6CD5;
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CyclicBarrierExample2</span> </span>{
+  <span class="hljs-comment">// &#x8BF7;&#x6C42;&#x7684;&#x6570;&#x91CF;</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> threadCount = <span class="hljs-number">550</span>;
+  <span class="hljs-comment">// &#x9700;&#x8981;&#x540C;&#x6B65;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> CyclicBarrier cyclicBarrier = <span class="hljs-keyword">new</span> CyclicBarrier(<span class="hljs-number">5</span>);
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x6C60;</span>
+    ExecutorService threadPool = Executors.newFixedThreadPool(<span class="hljs-number">10</span>);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; threadCount; i++) {
+      <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> threadNum = i;
+      Thread.sleep(<span class="hljs-number">1000</span>);
+      threadPool.execute(() -&gt; {
+        <span class="hljs-keyword">try</span> {
+          test(threadNum);
+        } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+          <span class="hljs-comment">// TODO Auto-generated catch block</span>
+          e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (BrokenBarrierException e) {
+          <span class="hljs-comment">// TODO Auto-generated catch block</span>
+          e.printStackTrace();
+        }
+      });
+    }
+    threadPool.shutdown();
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-keyword">int</span> threadnum)</span> <span class="hljs-keyword">throws</span> InterruptedException, BrokenBarrierException </span>{
+    System.out.println(<span class="hljs-string">&quot;threadnum:&quot;</span> + threadnum + <span class="hljs-string">&quot;is ready&quot;</span>);
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-comment">/**&#x7B49;&#x5F85;60&#x79D2;&#xFF0C;&#x4FDD;&#x8BC1;&#x5B50;&#x7EBF;&#x7A0B;&#x5B8C;&#x5168;&#x6267;&#x884C;&#x7ED3;&#x675F;*/</span>
+      cyclicBarrier.await(<span class="hljs-number">60</span>, TimeUnit.SECONDS);
+    } <span class="hljs-keyword">catch</span> (Exception e) {
+      System.out.println(<span class="hljs-string">&quot;-----CyclicBarrierException------&quot;</span>);
+    }
+    System.out.println(<span class="hljs-string">&quot;threadnum:&quot;</span> + threadnum + <span class="hljs-string">&quot;is finish&quot;</span>);
+  }
+
+}
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>threadnum:0is ready
+threadnum:1is ready
+threadnum:2is ready
+threadnum:3is ready
+threadnum:4is ready
+threadnum:4is finish
+threadnum:0is finish
+threadnum:1is finish
+threadnum:2is finish
+threadnum:3is finish
+threadnum:5is ready
+threadnum:6is ready
+threadnum:7is ready
+threadnum:8is ready
+threadnum:9is ready
+threadnum:9is finish
+threadnum:5is finish
+threadnum:8is finish
+threadnum:7is finish
+threadnum:6is finish
+......
+</code></pre><p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5F53;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x4E5F;&#x5C31;&#x662F;&#x8BF7;&#x6C42;&#x6570;&#x91CF;&#x8FBE;&#x5230;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x7684; 5 &#x4E2A;&#x7684;&#x65F6;&#x5019;&#xFF0C; <code>await</code>&#x65B9;&#x6CD5;&#x4E4B;&#x540E;&#x7684;&#x65B9;&#x6CD5;&#x624D;&#x88AB;&#x6267;&#x884C;&#x3002;</p>
+<p>&#x53E6;&#x5916;&#xFF0C;CyclicBarrier &#x8FD8;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x66F4;&#x9AD8;&#x7EA7;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;<code>CyclicBarrier(int parties, Runnable barrierAction)</code>&#xFF0C;&#x7528;&#x4E8E;&#x5728;&#x7EBF;&#x7A0B;&#x5230;&#x8FBE;&#x5C4F;&#x969C;&#x65F6;&#xFF0C;&#x4F18;&#x5148;&#x6267;&#x884C;<code>barrierAction</code>&#xFF0C;&#x65B9;&#x4FBF;&#x5904;&#x7406;&#x66F4;&#x590D;&#x6742;&#x7684;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#x3002;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ *
+ * <span class="hljs-doctag">@author</span> SnailClimb
+ * <span class="hljs-doctag">@date</span> 2018&#x5E74;10&#x6708;1&#x65E5;
+ * <span class="hljs-doctag">@Description</span>: &#x65B0;&#x5EFA; CyclicBarrier &#x7684;&#x65F6;&#x5019;&#x6307;&#x5B9A;&#x4E00;&#x4E2A; Runnable
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CyclicBarrierExample3</span> </span>{
+  <span class="hljs-comment">// &#x8BF7;&#x6C42;&#x7684;&#x6570;&#x91CF;</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> threadCount = <span class="hljs-number">550</span>;
+  <span class="hljs-comment">// &#x9700;&#x8981;&#x540C;&#x6B65;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> CyclicBarrier cyclicBarrier = <span class="hljs-keyword">new</span> CyclicBarrier(<span class="hljs-number">5</span>, () -&gt; {
+    System.out.println(<span class="hljs-string">&quot;------&#x5F53;&#x7EBF;&#x7A0B;&#x6570;&#x8FBE;&#x5230;&#x4E4B;&#x540E;&#xFF0C;&#x4F18;&#x5148;&#x6267;&#x884C;------&quot;</span>);
+  });
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+    <span class="hljs-comment">// &#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x6C60;</span>
+    ExecutorService threadPool = Executors.newFixedThreadPool(<span class="hljs-number">10</span>);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; threadCount; i++) {
+      <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> threadNum = i;
+      Thread.sleep(<span class="hljs-number">1000</span>);
+      threadPool.execute(() -&gt; {
+        <span class="hljs-keyword">try</span> {
+          test(threadNum);
+        } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+          <span class="hljs-comment">// TODO Auto-generated catch block</span>
+          e.printStackTrace();
+        } <span class="hljs-keyword">catch</span> (BrokenBarrierException e) {
+          <span class="hljs-comment">// TODO Auto-generated catch block</span>
+          e.printStackTrace();
+        }
+      });
+    }
+    threadPool.shutdown();
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-keyword">int</span> threadnum)</span> <span class="hljs-keyword">throws</span> InterruptedException, BrokenBarrierException </span>{
+    System.out.println(<span class="hljs-string">&quot;threadnum:&quot;</span> + threadnum + <span class="hljs-string">&quot;is ready&quot;</span>);
+    cyclicBarrier.await();
+    System.out.println(<span class="hljs-string">&quot;threadnum:&quot;</span> + threadnum + <span class="hljs-string">&quot;is finish&quot;</span>);
+  }
+
+}
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>threadnum:0is ready
+threadnum:1is ready
+threadnum:2is ready
+threadnum:3is ready
+threadnum:4is ready
+------&#x5F53;&#x7EBF;&#x7A0B;&#x6570;&#x8FBE;&#x5230;&#x4E4B;&#x540E;&#xFF0C;&#x4F18;&#x5148;&#x6267;&#x884C;------
+threadnum:4is finish
+threadnum:0is finish
+threadnum:2is finish
+threadnum:1is finish
+threadnum:3is finish
+threadnum:5is ready
+threadnum:6is ready
+threadnum:7is ready
+threadnum:8is ready
+threadnum:9is ready
+------&#x5F53;&#x7EBF;&#x7A0B;&#x6570;&#x8FBE;&#x5230;&#x4E4B;&#x540E;&#xFF0C;&#x4F18;&#x5148;&#x6267;&#x884C;------
+threadnum:9is finish
+threadnum:5is finish
+threadnum:6is finish
+threadnum:8is finish
+threadnum:7is finish
+......
+</code></pre><h4 id="53-cyclicbarrier&#x6E90;&#x7801;&#x5206;&#x6790;">5.3 <code>CyclicBarrier</code>&#x6E90;&#x7801;&#x5206;&#x6790;</h4>
+<p>&#x5F53;&#x8C03;&#x7528; <code>CyclicBarrier</code> &#x5BF9;&#x8C61;&#x8C03;&#x7528; <code>await()</code> &#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x8C03;&#x7528;&#x7684;&#x662F;<code>dowait(false, 0L)</code>&#x65B9;&#x6CD5;&#x3002; <code>await()</code> &#x65B9;&#x6CD5;&#x5C31;&#x50CF;&#x6811;&#x7ACB;&#x8D77;&#x4E00;&#x4E2A;&#x6805;&#x680F;&#x7684;&#x884C;&#x4E3A;&#x4E00;&#x6837;&#xFF0C;&#x5C06;&#x7EBF;&#x7A0B;&#x6321;&#x4F4F;&#x4E86;&#xFF0C;&#x5F53;&#x62E6;&#x4F4F;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x8FBE;&#x5230; parties &#x7684;&#x503C;&#x65F6;&#xFF0C;&#x6805;&#x680F;&#x624D;&#x4F1A;&#x6253;&#x5F00;&#xFF0C;&#x7EBF;&#x7A0B;&#x624D;&#x5F97;&#x4EE5;&#x901A;&#x8FC7;&#x6267;&#x884C;&#x3002;</p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">await</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException, BrokenBarrierException </span>{
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">return</span> dowait(<span class="hljs-keyword">false</span>, <span class="hljs-number">0L</span>);
+        } <span class="hljs-keyword">catch</span> (TimeoutException toe) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Error(toe); <span class="hljs-comment">// cannot happen</span>
+        }
+    }
+</code></pre>
+<p><code>dowait(false, 0L)</code>&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-comment">// &#x5F53;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x6216;&#x8005;&#x8BF7;&#x6C42;&#x6570;&#x91CF;&#x8FBE;&#x5230; count &#x65F6; await &#x4E4B;&#x540E;&#x7684;&#x65B9;&#x6CD5;&#x624D;&#x4F1A;&#x88AB;&#x6267;&#x884C;&#x3002;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4E2D; count &#x7684;&#x503C;&#x5C31;&#x4E3A; 5&#x3002;</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> count;
+    <span class="hljs-comment">/**
+     * Main barrier code, covering the various policies.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">dowait</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> timed, <span class="hljs-keyword">long</span> nanos)</span>
+        <span class="hljs-keyword">throws</span> InterruptedException, BrokenBarrierException,
+               TimeoutException </span>{
+        <span class="hljs-keyword">final</span> ReentrantLock lock = <span class="hljs-keyword">this</span>.lock;
+        <span class="hljs-comment">// &#x9501;&#x4F4F;</span>
+        lock.lock();
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">final</span> Generation g = generation;
+
+            <span class="hljs-keyword">if</span> (g.broken)
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> BrokenBarrierException();
+
+            <span class="hljs-comment">// &#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x4E2D;&#x65AD;&#x4E86;&#xFF0C;&#x629B;&#x51FA;&#x5F02;&#x5E38;</span>
+            <span class="hljs-keyword">if</span> (Thread.interrupted()) {
+                breakBarrier();
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InterruptedException();
+            }
+            <span class="hljs-comment">// cout&#x51CF;1</span>
+            <span class="hljs-keyword">int</span> index = --count;
+            <span class="hljs-comment">// &#x5F53; count &#x6570;&#x91CF;&#x51CF;&#x4E3A; 0 &#x4E4B;&#x540E;&#x8BF4;&#x660E;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x6805;&#x680F;&#x4E86;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8FBE;&#x5230;&#x4E86;&#x53EF;&#x4EE5;&#x6267;&#x884C;await &#x65B9;&#x6CD5;&#x4E4B;&#x540E;&#x7684;&#x6761;&#x4EF6;</span>
+            <span class="hljs-keyword">if</span> (index == <span class="hljs-number">0</span>) {  <span class="hljs-comment">// tripped</span>
+                <span class="hljs-keyword">boolean</span> ranAction = <span class="hljs-keyword">false</span>;
+                <span class="hljs-keyword">try</span> {
+                    <span class="hljs-keyword">final</span> Runnable command = barrierCommand;
+                    <span class="hljs-keyword">if</span> (command != <span class="hljs-keyword">null</span>)
+                        command.run();
+                    ranAction = <span class="hljs-keyword">true</span>;
+                    <span class="hljs-comment">// &#x5C06; count &#x91CD;&#x7F6E;&#x4E3A; parties &#x5C5E;&#x6027;&#x7684;&#x521D;&#x59CB;&#x5316;&#x503C;</span>
+                    <span class="hljs-comment">// &#x5524;&#x9192;&#x4E4B;&#x524D;&#x7B49;&#x5F85;&#x7684;&#x7EBF;&#x7A0B;</span>
+                    <span class="hljs-comment">// &#x4E0B;&#x4E00;&#x6CE2;&#x6267;&#x884C;&#x5F00;&#x59CB;</span>
+                    nextGeneration();
+                    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+                } <span class="hljs-keyword">finally</span> {
+                    <span class="hljs-keyword">if</span> (!ranAction)
+                        breakBarrier();
+                }
+            }
+
+            <span class="hljs-comment">// loop until tripped, broken, interrupted, or timed out</span>
+            <span class="hljs-keyword">for</span> (;;) {
+                <span class="hljs-keyword">try</span> {
+                    <span class="hljs-keyword">if</span> (!timed)
+                        trip.await();
+                    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nanos &gt; <span class="hljs-number">0L</span>)
+                        nanos = trip.awaitNanos(nanos);
+                } <span class="hljs-keyword">catch</span> (InterruptedException ie) {
+                    <span class="hljs-keyword">if</span> (g == generation &amp;&amp; ! g.broken) {
+                        breakBarrier();
+                        <span class="hljs-keyword">throw</span> ie;
+                    } <span class="hljs-keyword">else</span> {
+                        <span class="hljs-comment">// We&apos;re about to finish waiting even if we had not</span>
+                        <span class="hljs-comment">// been interrupted, so this interrupt is deemed to</span>
+                        <span class="hljs-comment">// &quot;belong&quot; to subsequent execution.</span>
+                        Thread.currentThread().interrupt();
+                    }
+                }
+
+                <span class="hljs-keyword">if</span> (g.broken)
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> BrokenBarrierException();
+
+                <span class="hljs-keyword">if</span> (g != generation)
+                    <span class="hljs-keyword">return</span> index;
+
+                <span class="hljs-keyword">if</span> (timed &amp;&amp; nanos &lt;= <span class="hljs-number">0L</span>) {
+                    breakBarrier();
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> TimeoutException();
+                }
+            }
+        } <span class="hljs-keyword">finally</span> {
+            lock.unlock();
+        }
+    }
+</code></pre>
+<p>&#x603B;&#x7ED3;&#xFF1A;<code>CyclicBarrier</code> &#x5185;&#x90E8;&#x901A;&#x8FC7;&#x4E00;&#x4E2A; count &#x53D8;&#x91CF;&#x4F5C;&#x4E3A;&#x8BA1;&#x6570;&#x5668;&#xFF0C;cout &#x7684;&#x521D;&#x59CB;&#x503C;&#x4E3A; parties &#x5C5E;&#x6027;&#x7684;&#x521D;&#x59CB;&#x5316;&#x503C;&#xFF0C;&#x6BCF;&#x5F53;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5230;&#x4E86;&#x6805;&#x680F;&#x8FD9;&#x91CC;&#x4E86;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x5C06;&#x8BA1;&#x6570;&#x5668;&#x51CF;&#x4E00;&#x3002;&#x5982;&#x679C; count &#x503C;&#x4E3A; 0 &#x4E86;&#xFF0C;&#x8868;&#x793A;&#x8FD9;&#x662F;&#x8FD9;&#x4E00;&#x4EE3;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5230;&#x8FBE;&#x6805;&#x680F;&#xFF0C;&#x5C31;&#x5C1D;&#x8BD5;&#x6267;&#x884C;&#x6211;&#x4EEC;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E2D;&#x8F93;&#x5165;&#x7684;&#x4EFB;&#x52A1;&#x3002;</p>
+<h4 id="54-cyclicbarrier-&#x548C;-countdownlatch-&#x7684;&#x533A;&#x522B;">5.4 CyclicBarrier &#x548C; CountDownLatch &#x7684;&#x533A;&#x522B;</h4>
+<p><strong>&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x662F;&#x56FD;&#x5916;&#x4E00;&#x4E2A;&#x5927;&#x4F6C;&#x7684;&#x56DE;&#x7B54;&#xFF1A;</strong></p>
+<p>CountDownLatch &#x662F;&#x8BA1;&#x6570;&#x5668;&#xFF0C;&#x53EA;&#x80FD;&#x4F7F;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x800C; CyclicBarrier &#x7684;&#x8BA1;&#x6570;&#x5668;&#x63D0;&#x4F9B; reset &#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x591A;&#x6B21;&#x4F7F;&#x7528;&#x3002;&#x4F46;&#x662F;&#x6211;&#x4E0D;&#x90A3;&#x4E48;&#x8BA4;&#x4E3A;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;&#x533A;&#x522B;&#x4EC5;&#x4EC5;&#x5C31;&#x662F;&#x8FD9;&#x4E48;&#x7B80;&#x5355;&#x7684;&#x4E00;&#x70B9;&#x3002;&#x6211;&#x4EEC;&#x6765;&#x4ECE; jdk &#x4F5C;&#x8005;&#x8BBE;&#x8BA1;&#x7684;&#x76EE;&#x7684;&#x6765;&#x770B;&#xFF0C;javadoc &#x662F;&#x8FD9;&#x4E48;&#x63CF;&#x8FF0;&#x5B83;&#x4EEC;&#x7684;&#xFF1A;</p>
+<blockquote>
+<p>CountDownLatch: A synchronization aid that allows one or more threads to wait until a set of operations being performed in other threads completes.(CountDownLatch: &#x4E00;&#x4E2A;&#x6216;&#x8005;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x7B49;&#x5F85;&#x5176;&#x4ED6;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x5B8C;&#x6210;&#x67D0;&#x4EF6;&#x4E8B;&#x60C5;&#x4E4B;&#x540E;&#x624D;&#x80FD;&#x6267;&#x884C;&#xFF1B;)
+CyclicBarrier : A synchronization aid that allows a set of threads to all wait for each other to reach a common barrier point.(CyclicBarrier : &#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E92;&#x76F8;&#x7B49;&#x5F85;&#xFF0C;&#x76F4;&#x5230;&#x5230;&#x8FBE;&#x540C;&#x4E00;&#x4E2A;&#x540C;&#x6B65;&#x70B9;&#xFF0C;&#x518D;&#x7EE7;&#x7EED;&#x4E00;&#x8D77;&#x6267;&#x884C;&#x3002;)</p>
+</blockquote>
+<p>&#x5BF9;&#x4E8E; CountDownLatch &#x6765;&#x8BF4;&#xFF0C;&#x91CD;&#x70B9;&#x662F;&#x201C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF08;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF09;&#x7B49;&#x5F85;&#x201D;&#xFF0C;&#x800C;&#x5176;&#x4ED6;&#x7684; N &#x4E2A;&#x7EBF;&#x7A0B;&#x5728;&#x5B8C;&#x6210;&#x201C;&#x67D0;&#x4EF6;&#x4E8B;&#x60C5;&#x201D;&#x4E4B;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x7EC8;&#x6B62;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x7B49;&#x5F85;&#x3002;&#x800C;&#x5BF9;&#x4E8E; CyclicBarrier&#xFF0C;&#x91CD;&#x70B9;&#x662F;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x5728;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x6CA1;&#x6709;&#x5B8C;&#x6210;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x7EBF;&#x7A0B;&#x90FD;&#x5FC5;&#x987B;&#x7B49;&#x5F85;&#x3002;</p>
+<p>CountDownLatch &#x662F;&#x8BA1;&#x6570;&#x5668;&#xFF0C;&#x7EBF;&#x7A0B;&#x5B8C;&#x6210;&#x4E00;&#x4E2A;&#x8BB0;&#x5F55;&#x4E00;&#x4E2A;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x8BA1;&#x6570;&#x4E0D;&#x662F;&#x9012;&#x589E;&#x800C;&#x662F;&#x9012;&#x51CF;&#xFF0C;&#x800C; CyclicBarrier &#x66F4;&#x50CF;&#x662F;&#x4E00;&#x4E2A;&#x9600;&#x95E8;&#xFF0C;&#x9700;&#x8981;&#x6240;&#x6709;&#x7EBF;&#x7A0B;&#x90FD;&#x5230;&#x8FBE;&#xFF0C;&#x9600;&#x95E8;&#x624D;&#x80FD;&#x6253;&#x5F00;&#xFF0C;&#x7136;&#x540E;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x3002;</p>
+<h3 id="6-reentrantlock-&#x548C;-reentrantreadwritelock">6 ReentrantLock &#x548C; ReentrantReadWriteLock</h3>
+<p>ReentrantLock &#x548C; synchronized &#x7684;&#x533A;&#x522B;&#x5728;&#x4E0A;&#x9762;&#x5DF2;&#x7ECF;&#x8BB2;&#x8FC7;&#x4E86;&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x591A;&#x505A;&#x8BB2;&#x89E3;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF1A;&#x8BFB;&#x5199;&#x9501; ReentrantReadWriteLock &#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x8BFB;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x8BFB;&#x64CD;&#x4F5C;&#x8FDC;&#x5927;&#x4E8E;&#x5199;&#x64CD;&#x4F5C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8BFB;&#x5199;&#x9501;&#x5C31;&#x975E;&#x5E38;&#x6709;&#x7528;&#x4E86;&#x3002;</p>
+<h3 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h3>
+<ul>
+<li><a href="https://juejin.im/post/5ae755256fb9a07ac3634067" target="_blank">https://juejin.im/post/5ae755256fb9a07ac3634067</a></li>
+<li><a href="https://blog.csdn.net/u010185262/article/details/54692886" target="_blank">https://blog.csdn.net/u010185262/article/details/54692886</a></li>
+<li><a href="https://blog.csdn.net/tolcf/article/details/50925145?utm_source=blogxgwz0" target="_blank">https://blog.csdn.net/tolcf/article/details/50925145?utm_source=blogxgwz0</a></li>
+</ul>
+<h3 id="&#x516C;&#x4F17;&#x53F7;">&#x516C;&#x4F17;&#x53F7;</h3>
+<p>&#x5982;&#x679C;&#x5927;&#x5BB6;&#x60F3;&#x8981;&#x5B9E;&#x65F6;&#x5173;&#x6CE8;&#x6211;&#x66F4;&#x65B0;&#x7684;&#x6587;&#x7AE0;&#x4EE5;&#x53CA;&#x5206;&#x4EAB;&#x7684;&#x5E72;&#x8D27;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x5173;&#x6CE8;&#x6211;&#x7684;&#x516C;&#x4F17;&#x53F7;&#x3002;</p>
+<p><strong>&#x300A;Java &#x9762;&#x8BD5;&#x7A81;&#x51FB;&#x300B;:</strong> &#x7531;&#x672C;&#x6587;&#x6863;&#x884D;&#x751F;&#x7684;&#x4E13;&#x4E3A;&#x9762;&#x8BD5;&#x800C;&#x751F;&#x7684;&#x300A;Java &#x9762;&#x8BD5;&#x7A81;&#x51FB;&#x300B;V2.0 PDF &#x7248;&#x672C;<a href="#&#x516C;&#x4F17;&#x53F7;" title="&#x516C;&#x4F17;&#x53F7;">&#x516C;&#x4F17;&#x53F7;</a>&#x540E;&#x53F0;&#x56DE;&#x590D; <strong>&quot;&#x9762;&#x8BD5;&#x7A81;&#x51FB;&quot;</strong> &#x5373;&#x53EF;&#x514D;&#x8D39;&#x9886;&#x53D6;&#xFF01;</p>
+<p><strong>Java &#x5DE5;&#x7A0B;&#x5E08;&#x5FC5;&#x5907;&#x5B66;&#x4E60;&#x8D44;&#x6E90;:</strong> &#x4E00;&#x4E9B; Java &#x5DE5;&#x7A0B;&#x5E08;&#x5E38;&#x7528;&#x5B66;&#x4E60;&#x8D44;&#x6E90;&#x516C;&#x4F17;&#x53F7;&#x540E;&#x53F0;&#x56DE;&#x590D;&#x5173;&#x952E;&#x5B57; <strong>&#x201C;1&#x201D;</strong> &#x5373;&#x53EF;&#x514D;&#x8D39;&#x65E0;&#x5957;&#x8DEF;&#x83B7;&#x53D6;&#x3002;</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/167598cd2e17b8ec.png" alt="&#x6211;&#x7684;&#x516C;&#x4F17;&#x53F7;"></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Atomic.html" class="navigation navigation-prev " aria-label="Previous page: JUC 中的 Atomic 原子类总结">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../jvm/Java内存区域.html" class="navigation navigation-next " aria-label="Next page: 一 Java内存区域">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"AQS 原理以及 AQS 同步组件总结","level":"4.6","depth":1,"next":{"title":"一 Java内存区域","level":"5.1","depth":1,"path":"java/jvm/Java内存区域.md","ref":"java/jvm/Java内存区域.md","articles":[]},"previous":{"title":"JUC 中的 Atomic 原子类总结","level":"4.5","depth":1,"path":"java/Multithread/Atomic.md","ref":"java/Multithread/Atomic.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"java/Multithread/AQS.md","mtime":"2020-07-23T06:31:40.785Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-24T11:21:30.457Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

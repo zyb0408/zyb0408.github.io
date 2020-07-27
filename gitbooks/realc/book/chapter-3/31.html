@@ -1,0 +1,828 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>套接字编程(1) · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="32.html" />
+    
+    
+    <link rel="prev" href="30.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter-0/Seperate-0.html">
+            
+                <a href="../chapter-0/Seperate-0.html">
+            
+                    
+                    第一部分
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../chapter-0/00.html">
+            
+                <a href="../chapter-0/00.html">
+            
+                    
+                    前序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../chapter-0/01.html">
+            
+                <a href="../chapter-0/01.html">
+            
+                    
+                    序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../chapter-0/02.html">
+            
+                <a href="../chapter-0/02.html">
+            
+                    
+                    C代码风格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../chapter-0/04.html">
+            
+                <a href="../chapter-0/04.html">
+            
+                    
+                    C代码规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../chapter-0/03.html">
+            
+                <a href="../chapter-0/03.html">
+            
+                    
+                    变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter-1/Seperate-1.html">
+            
+                <a href="../chapter-1/Seperate-1.html">
+            
+                    
+                    第二部分
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../chapter-1/10.html">
+            
+                <a href="../chapter-1/10.html">
+            
+                    
+                    指针(上)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../chapter-1/11.html">
+            
+                <a href="../chapter-1/11.html">
+            
+                    
+                    指针(下)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../chapter-1/12.html">
+            
+                <a href="../chapter-1/12.html">
+            
+                    
+                    预处理器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../chapter-1/13.html">
+            
+                <a href="../chapter-1/13.html">
+            
+                    
+                    效率至上(上)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../chapter-1/14.html">
+            
+                <a href="../chapter-1/14.html">
+            
+                    
+                    效率至上(下)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../chapter-1/15.html">
+            
+                <a href="../chapter-1/15.html">
+            
+                    
+                    未曾领略的新风景
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../chapter-1/16.html">
+            
+                <a href="../chapter-1/16.html">
+            
+                    
+                    C线程和Glib的视角
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter-2/Seperate-2.html">
+            
+                <a href="../chapter-2/Seperate-2.html">
+            
+                    
+                    第三部分
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../chapter-2/20.html">
+            
+                <a href="../chapter-2/20.html">
+            
+                    
+                    错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../chapter-2/21.html">
+            
+                <a href="../chapter-2/21.html">
+            
+                    
+                    开始行动
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../chapter-2/22.html">
+            
+                <a href="../chapter-2/22.html">
+            
+                    
+                    单线程备份(上)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../chapter-2/23.html">
+            
+                <a href="../chapter-2/23.html">
+            
+                    
+                    单线程备份(下)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../chapter-2/24.html">
+            
+                <a href="../chapter-2/24.html">
+            
+                    
+                    多线程备份
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../chapter-2/25.html">
+            
+                <a href="../chapter-2/25.html">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Seperate-3.html">
+            
+                <a href="Seperate-3.html">
+            
+                    
+                    第四部分
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="30.html">
+            
+                <a href="30.html">
+            
+                    
+                    网络的世界
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.2" data-path="31.html">
+            
+                <a href="31.html">
+            
+                    
+                    套接字编程(1)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="32.html">
+            
+                <a href="32.html">
+            
+                    
+                    套接字编程(2)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="33.html">
+            
+                <a href="33.html">
+            
+                    
+                    并发HTTP服务器(1)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="34.html">
+            
+                <a href="34.html">
+            
+                    
+                    并发HTTP服务器(2)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="35.html">
+            
+                <a href="35.html">
+            
+                    
+                    并发HTTP服务器(3)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="36.html">
+            
+                <a href="36.html">
+            
+                    
+                    并发HTTP服务器(4)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="37.html">
+            
+                <a href="37.html">
+            
+                    
+                    并发HTTP服务器(5)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >套接字编程(1)</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h4 id="0x11-&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;-1">0x11-&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;-1</h4>
+<h2 id="&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;">&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;</h2>
+<ul>
+<li>&#x4E24;&#x79CD;&#x534F;&#x8BAE; <code>TCP</code> &#x548C; <code>UDP</code><ul>
+<li>&#x524D;&#x8005;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x6709;&#x4FDD;&#x8BC1;&#x7684;&#x8FDE;&#x63A5;&#xFF0C;&#x540E;&#x8005;&#x662F;&#x8FFD;&#x6C42;&#x5FEB;&#x901F;&#x7684;&#x8FDE;&#x63A5;</li>
+<li>&#x5F53;&#x7136;&#x6700;&#x540E;&#x4E00;&#x70B9;&#x6709;&#x4E9B; <strong>&#x592A;&#x8FC7;&#x7EDD;&#x5BF9;</strong> &#xFF0C;&#x4F46;&#x662F;&#x73B0;&#x5728;&#x4E0D;&#x9700;&#x71AC;&#x8003;&#x8651;&#x592A;&#x591A;&#xFF0C;&#x56E0;&#x4E3A;&#x521D;&#x5165;&#x5957;&#x63A5;&#x5B57;&#x7F16;&#x7A0B;&#xFF0C;&#x4E00;&#x5207;&#x4ECE;&#x7B80;</li>
+<li>&#x7A0D;&#x5FAE;&#x8BD5;&#x60F3;&#x4FBF;&#x80FD;&#x591F;&#x5927;&#x81F4;&#x7406;&#x89E3;&#xFF0C; <code>TCP</code> &#x8FFD;&#x6C42;&#x7684;&#x662F;&#x53EF;&#x9760;&#x7684;&#x4F20;&#x8F93;&#x6570;&#x636E;&#xFF0C; <code>UDP</code> &#x8FFD;&#x6C42;&#x7684;&#x5219;&#x662F;&#x5FEB;&#x901F;&#x7684;&#x4F20;&#x8F93;&#x6570;&#x636E;</li>
+<li>&#x524D;&#x8005;&#x6709;&#x7E41;&#x7410;&#x7684;&#x8FDE;&#x63A5;&#x8FC7;&#x7A0B;&#xFF0C;&#x540E;&#x8005;&#x5219;&#x662F;&#x6839;&#x672C;&#x4E0D;&#x5EFA;&#x7ACB;&#x53EF;&#x9760;&#x8FDE;&#x63A5;(&#x4E0D;&#x662F;&#x7EDD;&#x5BF9;)&#xFF0C;&#x53EA;&#x662F;&#x5C06;&#x6570;&#x636E;&#x53D1;&#x9001;&#x800C;&#x4E0D;&#x8003;&#x8651;&#x662F;&#x5426;&#x5230;&#x8FBE;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>&#x4EE5;&#x4E0B;&#x4F8B;&#x5B50;&#x4EE5; <code>*nix</code> &#x5E73;&#x53F0;&#x7684;&#x4FBF;&#x51C6;&#x4E3A;&#x4F8B;&#xFF0C;&#x56E0;&#x4E3A; <code>Windows</code>&#x5E73;&#x53F0;&#x9700;&#x8981;&#x8003;&#x8651;&#x989D;&#x5916;&#x7684;&#x52A0;&#x8F7D;&#x95EE;&#x9898;&#xFF0C;&#x7A0D;&#x4F5C;&#x6DFB;&#x52A0;&#x5C31;&#x80FD;&#x5728; Windows &#x5E73;&#x53F0;&#x4E0A;&#x8FD0;&#x884C;</p>
+</blockquote>
+<h3 id="udp">UDP</h3>
+<ul>
+<li><p><code>UDP</code></p>
+<ul>
+<li>&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5341;&#x5206;&#x7B80;&#x6D01;&#x7684;&#x8FDE;&#x63A5;&#x65B9;&#x5F0F;&#xFF0C;&#x5047;&#x8BBE;&#x6709;&#x4E24;&#x53F0;&#x4E3B;&#x673A;&#x8FDB;&#x884C;&#x901A;&#x4FE1;&#xFF0C;&#x4E00;&#x53F0;&#x53EA;&#x53D1;&#x9001;&#xFF0C;&#x4E00;&#x53F0;&#x53EA;&#x63A5;&#x6536;&#x3002;</li>
+<li><p>&#x63A5;&#x6536;&#x7AEF;&#xFF1A;</p>
+<pre><code>    int sock; /* &#x5957;&#x63A5;&#x5B57; */
+    socklen_t addr_len; /* &#x53D1;&#x9001;&#x7AEF;&#x7684;&#x5730;&#x5740;&#x957F;&#x5EA6;&#xFF0C;&#x7528;&#x4E8E; recvfrom */
+    char mess[15];
+    char get_mess[GET_MAX]; /* &#x540E;&#x7EED;&#x7248;&#x672C;&#x4F7F;&#x7528; */
+    struct sockaddr_in recv_host, send_host;
+
+    /* &#x521B;&#x5EFA;&#x5957;&#x63A5;&#x5B57; */
+    sock = socket(PF_INET, SOCK_DGRAM, 0);
+
+    /* &#x628A;IP &#x548C; &#x7AEF;&#x53E3;&#x53F7;&#x4FE1;&#x606F;&#x7ED1;&#x5B9A;&#x5728;&#x5957;&#x63A5;&#x5B57;&#x4E0A; */
+    memset(&amp;recv_host, 0, sizeof(recv_host));
+    recv_host.sin_family = AF_INET;
+    recv_host.sin_addr.s_addr = htonl(INADDR_ANY);/* &#x63A5;&#x6536;&#x4EFB;&#x610F;&#x7684;IP */
+    recv_host.sin_port = htons(6000); /* &#x4F7F;&#x7528;6000 &#x7AEF;&#x53E3;&#x53F7; */
+    bind(sock, (struct sockaddr *)&amp;recv_host, sizeof(recv_host));
+
+    /* &#x8FDB;&#x5165;&#x63A5;&#x6536;&#x4FE1;&#x606F;&#x7684;&#x72B6;&#x6001; */
+    recvfrom(sock, mess, 15, 0, (struct sockaddr *)&amp;send_host, &amp;addr_len);
+
+    /* &#x63A5;&#x6536;&#x5B8C;&#x6210;&#xFF0C;&#x5173;&#x95ED;&#x5957;&#x63A5;&#x5B57; */
+    close(sock);
+</code></pre><p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x7701;&#x7565;&#x4E86;&#x8BB8;&#x591A;&#x5FC5;&#x8981;&#x7684; <strong>&#x9519;&#x8BEF;&#x68C0;&#x67E5;</strong> &#xFF0C;&#x5728;&#x5B9E;&#x9645;&#x7F16;&#x5199;&#x65F6;&#x8981;&#x6DFB;&#x52A0;</p>
+</li>
+<li>&#x4EE3;&#x7801;&#x89E3;&#x91CA;&#xFF1A;<ol>
+<li><strong>PF_INET</strong> &#x4EE3;&#x8868;&#x534F;&#x8BAE;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x6B64;&#x5904;&#x4EE3;&#x8868; <strong>IPv4</strong> &#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x65CF;&#xFF0C; &#x540C;&#x6837; <strong>PF_INET6</strong> &#x4EE3;&#x8868; <strong>IPv6</strong> &#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x65CF;&#xFF0C;&#x8FD9;&#x4E2A;&#x8303;&#x56F4;&#x5728;&#x540E;&#x65B9;&#x5355;&#x72EC;&#x8BB0;&#x5F55;&#xFF0C;&#x4E0D;&#x4E0E;IPv4&#x6DF7;&#x5728;&#x4E00;&#x8D77;(&#x5E76;&#x4E0D;&#x610F;&#x5473;&#x7740;&#x66F4;&#x590D;&#x6742;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x66F4;&#x7B80;&#x4FBF;)&#x3002;</li>
+<li><strong>AF_INET</strong> &#x4EE3;&#x8868;&#x5730;&#x5740;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x6B64;&#x5904;&#x4EE3;&#x8868; <strong>IPv4</strong> &#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x4F7F;&#x7528;&#x7684;&#x5730;&#x5740;&#x65CF;&#xFF0C; &#x540C;&#x6837;&#x6709; <strong>AF_INET6</strong> (&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5B9E;&#x73B0;&#x4E2D; PF_INET &#x548C; AF_INET &#x7684;&#x503C;&#x4E00;&#x6837;&#xFF0C;<strong>&#x4F46;&#x662F;&#x8FD8;&#x662F;&#x8981;&#x5199;&#x5B8F;&#x66F4;&#x597D;&#xFF0C;&#x800C;&#x4E0D;&#x5E94;&#x8BE5;&#x76F4;&#x63A5;&#x7528;&#x6570;&#x5B57;&#x6216;&#x8005;&#xFF0C;&#x6DF7;&#x6DC6;&#x4F7F;&#x7528;</strong>)</li>
+<li><code>htonl</code> &#x548C; <code>htons</code> &#x4E24;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x4F7F;&#x7528;&#x6D89;&#x53CA;&#x5230; <strong>&#x5927;&#x7AEF;&#x5C0F;&#x7AEF;&#x95EE;&#x9898;</strong>&#xFF0C; &#x8FD9;&#x91CC;&#x4E0D;&#x53D9;&#x8FF0;&#xFF0C;&#x9700;&#x8981;&#x8BB0;&#x4F4F;&#x7684;&#x662F;&#x5728;&#x7F51;&#x7EDC;&#x7F16;&#x7A0B;&#x65F6;&#x4E00;&#x5B9A;&#x8981;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x51FD;&#x6570;&#x5C06;&#x5FC5;&#x8981;&#x4FE1;&#x606F;&#x8F6C;&#x4E3A; <strong>&#x5927;&#x7AEF;&#x8868;&#x793A;&#x6CD5;</strong> &#x3002;</li>
+<li><code>(struct sockaddr *)</code> &#x8FD9;&#x4E2A;&#x5F3A;&#x5236;&#x8F6C;&#x6362;&#x662F;&#x4E3A;&#x4E86;&#x53C2;&#x6570;&#x7684;&#x5FC5;&#x987B;&#xFF0C;&#x4F46;&#x4E0D;&#x4F1A;&#x51FA;&#x9519;&#xFF0C;&#x56E0;&#x4E3A; <code>sizeof(struct sockaddr_in) == sizeof(struct sockaddr)</code> &#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x67E5;&#x8BE2;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF0C;&#x4E4B;&#x6240;&#x4EE5;&#x8FD9;&#x4E48;&#x505A;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x7F16;&#x5199;&#x5957;&#x63A5;&#x5B57;&#x7A0B;&#x5E8F;&#x7684;&#x7A0B;&#x5E8F;&#x5458;&#x3002;</li>
+</ol>
+</li>
+<li><p>&#x53D1;&#x9001;&#x7AEF;&#xFF1A;</p>
+<pre><code>    int sock;
+    const char* mess = &quot;Hello Server!&quot;;
+    char get_mess[GET_MAX]; /* &#x540E;&#x7EED;&#x7248;&#x672C;&#x4F7F;&#x7528; */
+    struct sockaddr_in recv_host;
+    socklen_t addr_len;
+    /* &#x521B;&#x5EFA;&#x5957;&#x63A5;&#x5B57; */
+    sock = socket(PF_INET, SOCK_DGRAM, 0);
+    /* &#x7ED1;&#x5B9A; */
+    memset(&amp;recv_host, 0, sizeof(recv_host));
+    recv_host.sin_family = AF_INET;
+    recv_host.sin_addr.s_addr = inet_addr(&quot;127.0.0.1&quot;);
+    recv_host.sin_port = htons(6000);
+    /* &#x53D1;&#x9001;&#x4FE1;&#x606F; */
+    /* &#x5728;&#x6B64;&#x5904;&#xFF0C;&#x53D1;&#x9001;&#x7AEF;&#x7684;IP&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#x53F7;&#x7B49;&#x5404;&#x7C7B;&#x4FE1;&#x606F;&#xFF0C;&#x968F;&#x7740;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#xFF0C;&#x81EA;&#x52A8;&#x7ED1;&#x5B9A;&#x5728;&#x4E86;&#x5957;&#x63A5;&#x5B57;&#x4E0A; */
+    sendto(sock, mess, strlen(mess), 0, (struct sockaddr *)&amp;recv_host, sizeof(recv_host));
+    /* &#x5B8C;&#x6210;&#xFF0C;&#x5173;&#x95ED; */
+    close(sock);
+</code></pre><p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x662F;&#x53D1;&#x9001;&#x7AEF;&#x3002;</p>
+</li>
+<li>&#x4EE3;&#x7801;&#x89E3;&#x91CA;&#xFF1A;<ol>
+<li><code>inet_addr</code> &#x51FD;&#x6570;&#x662F;&#x7528;&#x4E8E;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x683C;&#x5F0F;&#x7684; <strong>IP&#x5730;&#x5740;</strong> &#x8F6C;&#x6362;&#x4E3A; &#x5927;&#x7AEF;&#x8868;&#x793A;&#x6CD5;&#x7684; &#x5730;&#x5740;&#x7C7B;&#x578B;&#xFF0C;&#x5373; <code>s_addr</code> &#x7684;&#x7C7B;&#x578B; <code>in_addr_t</code></li>
+<li>&#x4E0E;&#x4E4B;&#x76F8;&#x53CD;&#xFF0C;&#x540C;&#x6837;&#x4E5F;&#x6709;&#x529F;&#x80FD;&#x76F8;&#x53CD;&#x7684;&#x51FD;&#x6570; <code>inet_ntoa</code> &#x7528;&#x4E8E;&#x5C06; <code>in_addr_t</code> &#x7C7B;&#x578B;&#x8F6C;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4F46;&#x662F;&#x4F7F;&#x7528;&#x65F6;&#x4E00;&#x5B9A;&#x8981;&#x8BB0;&#x4F4F;&#x53CA;&#x65F6;&#x62F7;&#x8D1D;&#x8FD4;&#x56DE;&#x503C;<pre><code>char addr[16];
+recv_host.sin_addr.s_addr = inet_addr(&quot;127.0.0.1&quot;);
+strcpy(addr, inet_ntoa(recv_host.sin_addr.s_addr));
+</code></pre></li>
+</ol>
+</li>
+<li>&#x4ECE;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x770B;&#x51FA;&#xFF0C; <code>UDP</code> &#x534F;&#x8BAE;&#x7684;&#x4F7F;&#x7528;&#x5341;&#x5206;&#x7B80;&#x6D01;&#xFF0C;&#x51E0;&#x4E4E;&#x5C31;&#x662F; <strong>&#x521B;&#x5EFA;&#x5957;&#x63A5;&#x5B57;-&gt;&#x51C6;&#x5907;&#x6570;&#x636E;-&gt;&#x88C5;&#x5907;&#x5957;&#x63A5;&#x5B57;-&gt;&#x53D1;&#x9001;/&#x63A5;&#x6536;-&gt;&#x7ED3;&#x675F;</strong></li>
+<li>&#x5176;&#x4E2D;&#xFF0C;&#x90FD;&#x6CA1;&#x6709;&#x8FDE;&#x63A5;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x4F46;&#x662F;&#x5B9E;&#x9645;&#x4E0A;&#x8FD9;&#x662F;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF; <code>UDP</code> &#x968F;&#x65F6;&#x548C; <strong>&#x4E0D;&#x540C;&#x7684;&#x4E3B;&#x673A;</strong> &#x8FDB;&#x884C;&#x901A;&#x4FE1;&#x6240;&#x9ED8;&#x8BA4;&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x548C;&#x76F8;&#x540C;&#x4E3B;&#x673A;&#x4E00;&#x76F4;&#x901A;&#x4FE1;&#x5462;&#xFF1F;</li>
+<li>&#x6B64;&#x4E2D;&#x7684;&#x539F;&#x7531;<strong>&#x6682;&#x65F6;&#x4E0D;&#x9700;&#x8981;</strong>&#x77E5;&#x9053;&#xFF0C;&#x8BB0;&#x5F55;&#x65B9;&#x6CD5;&#xFF0C;&#x5373;&#x957F;&#x65F6;&#x95F4;&#x4F7F;&#x7528; <code>UDP</code> &#x548C;&#x540C;&#x4E00;&#x4E3B;&#x673A;&#x901A;&#x4FE1;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>connect</code> &#x51FD;&#x6570;&#x6765;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#x81EA;&#x8EAB;&#x3002;&#x6B64;&#x65F6; <strong>&#x5047;&#x8BBE;&#x4E24;&#x53F0;&#x4E3B;&#x673A;&#x7684;&#x5B9E;&#x9645;&#x529F;&#x80FD;&#x4E00;&#x81F4;&#xFF0C;&#x65E2;&#x63A5;&#x6536;&#x4E5F;&#x53D1;&#x9001;</strong></li>
+<li><p>&#x53D1;&#x9001;&#x7AEF;&#xFF1A;</p>
+<pre><code>    /* &#x524D;&#x65B9;&#x9AD8;&#x5EA6;&#x4E00;&#x81F4;&#xFF0C;&#x5C06; bind&#x51FD;&#x6570;&#x66FF;&#x6362;&#x4E3A; */
+    connect(sock, (struct sockaddr *)&amp;recv_host, sizeof(recv_host); // &#x5C06;&#x5BF9;&#x65B9;&#x7684; IP&#x5730;&#x5740;&#x548C; &#x7AEF;&#x53E3;&#x53F7;&#x4FE1;&#x606F; &#x6CE8;&#x518C;&#x8FDB;UDP&#x7684;&#x5957;&#x63A5;&#x5B57;&#x4E2D;)
+    while(1) /* &#x5FAA;&#x73AF;&#x7684;&#x53D1;&#x9001;&#x548C;&#x63A5;&#x6536;&#x4FE1;&#x606F; */
+    {
+      size_t read_len = 0;
+      /* &#x539F;&#x5148;&#x4F7F;&#x7528;&#x7684; sendto &#x51FD;&#x6570;&#xFF0C;&#x5148;&#x62E9;&#x6539;&#x4E3A;&#x4F7F;&#x7528; write &#x51FD;&#x6570;&#xFF0C; Windows&#x5E73;&#x53F0;&#x4E3A; send &#x51FD;&#x6570; */
+      write(sock, mess, strlen(mess));            /* send(sock, mess, strlen(mess), 0) FOR Windows Platform */
+      read_len = read(sock, get_mess, GET_MAX-1); /* recv(sock, mess, strlen(mess)-1, 0) FOR Windows Platform */
+      get_mess[read_len-1] = &apos;\0&apos;;
+      printf(&quot;In Client like Host Recvive From Other Host : %s\n&quot;, get_mess);
+    }
+    /* &#x540E;&#x65B9;&#x9AD8;&#x5EA6;&#x4E00;&#x81F4; */
+</code></pre></li>
+<li><p>&#x63A5;&#x6536;&#x7AEF;&#xFF1A;</p>
+<pre><code>    /* &#x524D;&#x65B9;&#x4E00;&#x81F4;&#xFF0C; &#x6DFB;&#x52A0;&#x989D;&#x5916;&#x7684; struct sockaddr_in send_host; &#x5E76;&#x6DFB;&#x52A0;&#x5FAA;&#x73AF;&#xFF0C;&#x6784;&#x9020;&#x6536;&#x53D1;&#x7684;&#x73B0;&#x8C61;*/
+        while(1)
+        {
+          size_t read_len = 0;
+          char sent_mess[15] = &quot;Hello Sender!&quot;; /* &#x7528;&#x4E8E;&#x53D1;&#x9001;&#x7684;&#x4FE1;&#x606F;     */
+          sendto(sock, mess, strlen(sent_mess), 0, (struct sockaddr *)&amp;recv_host, sizeof(recv_host));
+          read_len = recvfrom(sock, mess, 15, 0, (struct sockaddr *)&amp;send_host, &amp;addr_len)
+          mess[read_len-1] = &apos;\0&apos;;
+          printf(&quot;In Sever like Host Recvive From other Host : %s\n&quot;, mess);
+        }
+        /* &#x540E;&#x65B9;&#x9AD8;&#x5EA6;&#x4E00;&#x81F4; */
+        /*
+        * &#x4E4B;&#x6240;&#x4EE5;&#x53EA;&#x5728;&#x63A5;&#x6536;&#x7AEF;&#x4F7F;&#x7528; connect &#x7684;&#x539F;&#x56E0;&#xFF0C;&#x4FBF;&#x5728;&#x4E8E;&#x6211;&#x4EEC;&#x6A21;&#x62DF;&#x7684;&#x662F; &#x5BA2;&#x6237;&#x7AEF;-&#x670D;&#x52A1;&#x5668; &#x7684;&#x6A21;&#x578B;&#xFF0C;&#x800C;&#x670D;&#x52A1;&#x5668;&#x7684;&#x5404;&#x9879;&#x4FE1;&#x606F;&#x662F;&#x4E0D;&#x4F1A;&#x968F;&#x610F;&#x53D8;&#x66F4;&#x7684;
+        * &#x4F46;&#x662F; &#x5BA2;&#x6237;&#x7AEF;&#x5C31;&#x4E0D;&#x540C;&#x4E86;&#xFF0C;&#x53EF;&#x80FD;&#x7531;&#x4E8E; ISP(Internet Server Provider) &#x7684;&#x539F;&#x56E0;&#xFF0C;&#x4F60;&#x7684;IP&#x5730;&#x5740;&#x4E0D;&#x53EF;&#x80FD;&#x603B;&#x662F;&#x56FA;&#x5B9A;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x80FD;
+        * &#x4FDD;&#x8BC1; &#x5728;&#x5BA2;&#x6237;&#x7AEF; &#x90E8;&#x5206;&#x6CE8;&#x518C;&#x4E86; &#x670D;&#x52A1;&#x5668; &#x7684;&#x5404;&#x7C7B;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x4E0D;&#x80FD;&#x5728; &#x670D;&#x52A1;&#x5668;&#x7AEF; &#x6CE8;&#x518C; &#x5BA2;&#x6237;&#x7AEF; &#x7684;&#x4FE1;&#x606F;&#x3002;
+        * &#x5F53;&#x7136;&#x4E5F;&#x6709;&#x4F8B;&#x5916;&#xFF0C;&#x4F8B;&#x5982;&#x4F60;&#x5C31;&#x60F3;&#x8FD9;&#x4E2A;&#x8F6F;&#x4EF6;&#x4F5C;&#x4E3A;&#x79C1;&#x5BC6;&#x8F6F;&#x4EF6;&#xFF0C;&#x4EC5;&#x4F9B;&#x4E24;&#x4E2A;&#x4EBA;&#x4F7F;&#x7528;&#xFF0C; &#x4E14;&#x4F60;&#x6709;&#x56FA;&#x5B9A;&#x7684; IP&#x5730;&#x5740;&#xFF0C;&#x90A3;&#x4E48;&#x4F60;&#x53EF;&#x4EE5;&#x4E24;&#x8FB9;&#x90FD;connect&#xFF0C;&#x4F46;&#x662F;
+        * &#x4E00;&#x5B9A;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x53EA;&#x8981;&#x6709;&#x4E00;&#x70B9;&#x4FE1;&#x606F;&#x53D8;&#x52A8;&#xFF0C;&#x8FD9;&#x4E2A;&#x8F6F;&#x4EF6;&#x5C31;&#x53EF;&#x80FD;&#x65E0;&#x6CD5;&#x6B63;&#x5E38;&#x7684;&#x6536;&#x53D1;&#x4FE1;&#x606F;&#x4E86;&#x3002;
+        */
+</code></pre></li>
+</ul>
+</li>
+<li>&#x4EE3;&#x7801;&#x89E3;&#x91CA;<ul>
+<li>&#x6545;&#x800C;&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x867D;&#x7136;&#x524D;&#x65B9;&#x7684;&#x8868;&#x683C;&#x663E;&#x793A;&#xFF0C;<code>UDP</code> &#x4F3C;&#x4E4E;&#x5E76;&#x6CA1;&#x6709; <code>connect</code> &#x7684;&#x4F7F;&#x7528;&#x5FC5;&#x8981;&#xFF0C;&#x4F46;&#x662F;&#x5B9E;&#x9645;&#x4E0A;&#x8FD8;&#x662F;&#x6709;&#x7528;&#x5230;&#x7684;&#x5730;&#x65B9;&#x3002;</li>
+<li>&#x5C31; <code>*nix</code> &#x7684; <strong>API</strong> &#x6765;&#x8BF4;&#xFF0C;<code>sendto</code> &#x548C;  <code>write</code> &#x7684;&#x533A;&#x522B;&#x5341;&#x5206;&#x660E;&#x663E;&#xFF0C;&#x4FBF;&#x662F;&#x4E00;&#x4E2A;&#x9700;&#x8981;&#x5728;&#x53C2;&#x6570;&#x4E2D;&#x63D0;&#x4F9B;&#x76EE;&#x6807;&#x4E3B;&#x673A;&#x7684;&#x5404;&#x7C7B;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x540E;&#x8005;&#x5219;&#x4E0D;&#x9700;&#x8981;&#x63D0;&#x4F9B;&#x3002;&#x540C;&#x6837;&#x7684;&#x9053;&#x7406;<code>recvfrom</code>&#x548C;<code>read</code>&#x4E5F;&#x662F;&#x5982;&#x6B64;&#x3002;</li>
+<li>&#x8FD9;&#x4E2A;&#x4EE3;&#x7801;&#x53EA;&#x662F;&#x505A;&#x6F14;&#x793A;&#x800C;&#x5DF2;&#xFF0C;&#x6240;&#x4EE5;&#x5C06;&#x4EE3;&#x7801;&#x7F6E;&#x4E8E;&#x65E0;&#x9650;&#x5FAA;&#x73AF;&#x5F53;&#x4E2D;&#xFF0C;&#x73B0;&#x5B9E;&#x4E2D;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x5B9A;&#x4E49;&#x51FA;&#x53E3;&#x6761;&#x4EF6;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>&#x4EE5;&#x4E0A;&#x662F; UDP &#x7684;&#x4E00;&#x4E9B;&#x7B80;&#x5355;&#x8BF4;&#x660E;&#xFF0C;&#x5165;&#x95E8;&#x8DB3;&#x77E3;&#xFF0C;&#x5E76;&#x672A;&#x8BE6;&#x7EC6;&#x53D9;&#x8FF0;&#x67D0;&#x4E9B; &#x51FD;&#x6570; &#x7684;&#x5177;&#x4F53;&#x7528;&#x6CD5;&#xFF0C;&#x800C;&#x662F;&#x7528;&#x5B9E;&#x9645;&#x4F8B;&#x5B50;&#x6765;&#x4F53;&#x73B0;&#x3002;
+&#x5728; &#x8BB0;&#x5F55; TCP &#x4E4B;&#x524D;&#xFF0C;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x8BB2;&#x4E00;&#x4E2A;&#x51FD;&#x6570; shutdown</p>
+</blockquote>
+<ul>
+<li><p><code>shutdown</code> &#x4E0E; <code>close(closesocket)</code></p>
+<ul>
+<li>&#x9996;&#x5148;&#x8981;&#x77E5;&#x9053;&#xFF0C;&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#x4E00;&#x822C;&#x800C;&#x8A00;&#x662F;&#x53CC;&#x65B9;&#x7684;&#x5171;&#x540C;&#x8FDB;&#x884C;&#x7684;&#xFF0C;&#x6362;&#x800C;&#x8A00;&#x4E4B;&#x5C31;&#x662F;&#x53CC;&#x5411;&#x7684;&#xFF0C;&#x4E00;&#x4E2A;&#x65B9;&#x5411;&#x53EA;&#x7528;&#x6765;&#x53D1;&#x9001;&#x6D88;&#x606F;&#xFF0C;&#x4E00;&#x4E2A;&#x65B9;&#x5411;&#x53EA;&#x7528;&#x6765;&#x8BFB;&#x53D6;&#x6D88;&#x606F;&#x3002;</li>
+<li>&#x8FD9;&#x5C31;&#x5BFC;&#x81F4;&#x4E86;&#xFF0C;&#x5728;&#x7ED3;&#x675F;&#x5957;&#x63A5;&#x5B57;&#x901A;&#x4FE1;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9700;&#x8981;&#x5173;&#x95ED;&#x4E24;&#x4E2A;&#x65B9;&#x5411;&#x7684;&#x901A;&#x9053;(&#x6682;&#x65F6;&#x53EB;&#x5B83;&#x4EEC;&#x901A;&#x9053;)&#xFF0C;&#x90A3;&#x540C;&#x65F6;&#x5173;&#x95ED;&#x4E0D;&#x884C;&#x5417;&#xFF1F;&#x53EF;&#x4EE5;&#x554A;<ul>
+<li><code>close(sock); // closesocket(sock); FOR Windows PlatForm</code> &#x5C31;&#x662F;&#x8FD9;&#x4E48;&#x5E72;&#x7684;&#xFF0C;&#x540C;&#x65F6;&#x65AD;&#x5F00;&#x4E24;&#x4E2A;&#x65B9;&#x5411;&#x7684;&#x8FDE;&#x63A5;&#x3002;</li>
+<li>&#x7B80;&#x5355;&#x7684;&#x901A;&#x4FE1;&#x7A0B;&#x5E8F;&#x6216;&#x8005;&#x5355;&#x5411;&#x901A;&#x4FE1;&#x7A0B;&#x5E8F;&#x8FD9;&#x4E48;&#x505A;&#x7684;&#x786E;&#x65E0;&#x751A;&#x5927;&#x788D;&#xFF0C;&#x4F46;&#x662F;&#x4E07;&#x4E00;&#x5728;&#x7ED3;&#x675F;&#x901A;&#x4FE1;&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x63A5;&#x6536;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x4FE1;&#x606F;&#x90A3;&#x8BE5;&#x600E;&#x4E48;&#x529E;&#xFF1F;<ul>
+<li>&#x5047;&#x8BBE;&#x901A;&#x4FE1;&#x7ED3;&#x675F;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001; &quot;Thank you&quot;</li>
+<li>&#x670D;&#x52A1;&#x5668;&#x9700;&#x8981;&#x63A5;&#x6536;&#x8FD9;&#x4E2A;&#x4FE1;&#x606F;&#xFF0C;&#x4E4B;&#x540E;&#x624D;&#x80FD;&#x5173;&#x95ED;&#x901A;&#x4FE1;</li>
+<li>&#x95EE;&#x9898;&#x5C31;&#x5728;&#x8FD9;&#x4E4B;&#x95F4;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x5E76;&#x4E0D;&#x77E5;&#x9053;&#x5BA2;&#x6237;&#x7AEF;&#x4F1A;&#x5728;&#x901A;&#x4FE1;&#x7ED3;&#x675F;&#x540E;&#x7684;&#x4EC0;&#x4E48;&#x65F6;&#x523B;&#x4F20;&#x6765;&#x4FE1;&#x606F;</li>
+<li>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x9009;&#x62E9;&#x5728;&#x901A;&#x4FE1;&#x5B8C;&#x6210;&#x540E;&#x5148;&#x5173;&#x95ED; &#x670D;&#x52A1;&#x5668;&#x7684; &#x53D1;&#x9001;&#x901A;&#x9053;(&#x5199;&#x6D41;)&#xFF0C;&#x7B49;&#x5F85;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x6765;&#x6D88;&#x606F;&#x540E;&#xFF0C;&#x5173;&#x95ED;&#x5269;&#x4E0B;&#x7684; &#x63A5;&#x6536;&#x901A;&#x9053;(&#x8BFB;&#x6D41;)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>&#x53D1;&#x9001;&#x7AEF;&#xFF1A;</p>
+<pre><code>    /* &#x5047;&#x8BBE;&#x6709;&#x4E00;&#x4E2A; TCP &#x7684;&#x8FDE;&#x63A5;&#xFF0C;&#x6B64;&#x4E3A;&#x5BA2;&#x6237;&#x7AEF; */
+    write(sock, &quot;Thank you&quot;, 10);
+    close(sock); // &#x5199;&#x5B8C;&#x76F4;&#x63A5;&#x5173;&#x95ED;&#x901A;&#x4FE1;
+</code></pre></li>
+<li><p>&#x63A5;&#x6536;&#x7AEF;&#xFF1A;</p>
+<pre><code>    /* &#x6B64;&#x4E3A;&#x670D;&#x52A1;&#x5668; */
+    /* &#x9996;&#x5148;&#x5173;&#x95ED;&#x5199;&#x6D41; */
+    shutdown(sock_c, SHUT_WR);
+    read(sock_c, get_mess, GET_MAX);
+    printf(&quot;Message : %s\n&quot;, get_mess);
+    close(sock_c);
+    close(sock_s); // &#x5173;&#x95ED;&#x4E24;&#x4E2A;&#x5957;&#x63A5;&#x5B57;&#x662F;&#x56E0;&#x4E3A; TCP &#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x540E;&#x7EED;&#x4F1A;&#x8BB0;&#x5F55;
+</code></pre></li>
+<li>&#x4EE3;&#x7801;&#x89E3;&#x91CA;<ul>
+<li><code>shutdown</code> &#x51FD;&#x6570;&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F; &#x53EF;&#x9009;&#x62E9;&#x7684;&#x5173;&#x95ED;&#x90A3;&#x4E2A;&#x65B9;&#x5411;&#x7684;&#x8F93;&#x51FA;<ul>
+<li><code>int shutdown(int sock, int howto);</code></li>
+<li><code>sock</code> &#x4EE3;&#x8868;&#x8981;&#x64CD;&#x4F5C;&#x7684;&#x5957;&#x63A5;&#x5B57;</li>
+<li><code>howto</code>&#x6709;&#x51E0;&#x4E2A;&#x9009;&#x62E9;  <ul>
+<li><strong> *nix </strong> : <code>SHUT_RD</code> <code>SHUT_WR</code> <code>SHUT_RDWR</code></li>
+<li><strong> Windows </strong> : <code>SD_RECEIVE</code> <code>SD_SEND</code> <code>SD_BOTH</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="&#x505C;&#x4E0B;&#x6765;">&#x505C;&#x4E0B;&#x6765;</h3>
+<ol>
+<li>&#x7A0B;&#x5E8F;&#x5458;&#x5E94;&#x8BE5;&#x8D8A;&#x6765;&#x8D8A;&#x6765;&#xFF0C;&#x505A;&#x7684;&#x4E8B;&#x60C5;&#x5E94;&#x8BE5;&#x8D8A;&#x6765;&#x8D8A;&#x5C11;&#xFF0C;&#x4F46;&#x662F;&#x80FD;&#x8FBE;&#x5230;&#x7684;&#x6210;&#x5C31;&#x5E94;&#x8BE5;&#x8D8A;&#x6765;&#x8D8A;&#x591A;</li>
+<li>&#x5728; IPv6 &#x51FA;&#x73B0;&#x7684;&#x4ECA;&#x5929;&#xFF0C;&#x7F51;&#x7EDC;&#x7F16;&#x7A0B;&#x5DF2;&#x7ECF;&#x5F00;&#x59CB;&#x5411;&#x7B80;&#x6D01;&#x548C;&#x5F3A;&#x5927;&#x9760;&#x8FD1;&#xFF0C;&#x5373;&#x4FBF;&#x662F;&#x8EAB;&#x4E3A;&#x5E95;&#x5C42;&#x8BED;&#x8A00;&#x7684; C&#x8BED;&#x8A00;</li>
+<li>&#x5B9E;&#x9645;&#x4E0A;&#x7531;&#x4E8E; C&#x8BED;&#x8A00; &#x5E76;&#x6CA1;&#x6709;&#x81EA;&#x5DF1;&#x7684;<strong>&#x7F51;&#x7EDC;&#x5E93;</strong>&#xFF0C; &#x6545;&#x4E3A;&#x4E86;&#x80FD;&#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x7F16;&#x7A0B;&#xFF0C;&#x4E0D;&#x5F97;&#x4E0D;&#x4F9D;&#x8D56;&#x4E8E;&#x7CFB;&#x7EDF;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;<strong>&#x7CFB;&#x7EDF;&#x7F16;&#x7A0B;</strong>&#xFF0C; &#x4F60;&#x5DF2;&#x7ECF;&#x662F;&#x4E00;&#x4E2A;&#x7CFB;&#x7EDF;&#x7A0B;&#x5E8F;&#x5458;&#x4E86;&#x3002;</li>
+<li>&#x800C; &#x7CFB;&#x7EDF;&#x51FD;&#x6570; &#x968F;&#x7740;&#x65F6;&#x4EE3;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x6B63;&#x5728;&#x4E0D;&#x65AD;&#x5B8C;&#x5584;&#xFF0C;&#x589E;&#x52A0;(&#x51E0;&#x4E4E;&#x6CA1;&#x6709;&#x5E9F;&#x9664;&#x7684;&#x5148;&#x4F8B;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x7528;&#x62C5;&#x5FC3;&#x4E4B;&#x524D;&#x7684;&#x7A0B;&#x5E8F;&#x65E0;&#x6CD5;&#x8FD0;&#x884C;)&#x3002;</li>
+<li>&#x76F8;&#x5E94;&#x7684;&#xFF0C;&#x7531;&#x4E8E;&#x4EE5;&#x524D;&#x7684;&#x7F51;&#x7EDC;&#x7F16;&#x7A0B;&#x53EA;&#x9002;&#x5408;&#x4E8E; IPv4 &#x7684;&#x5730;&#x5740;&#xFF0C;&#x81EA;&#x4ECE;&#x51FA;&#x73B0;&#x4E86; IPv6, &#x6211;&#x4EEC;&#x9700;&#x8981;&#x4E00;&#x5957;&#x5168;&#x65B0;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6B63;&#x597D;&#x4ED6;&#x6765;&#x4E86;&#x3002;</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="30.html" class="navigation navigation-prev " aria-label="Previous page: 网络的世界">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="32.html" class="navigation navigation-next " aria-label="Next page: 套接字编程(2)">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"套接字编程(1)","level":"1.5.2","depth":2,"next":{"title":"套接字编程(2)","level":"1.5.3","depth":2,"path":"book/chapter-3/32.md","ref":"book/chapter-3/32.md","articles":[]},"previous":{"title":"网络的世界","level":"1.5.1","depth":2,"path":"book/chapter-3/30.md","ref":"book/chapter-3/30.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"book/chapter-3/31.md","mtime":"2020-07-27T02:34:56.750Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-27T02:35:50.450Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

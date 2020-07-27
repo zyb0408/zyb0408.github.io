@@ -1,0 +1,2022 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>几道常见的字符串算法题总结  · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="几道常见的链表算法题.html" />
+    
+    
+    <link rel="prev" href="算法学习资源推荐.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Java</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../java/Java基础知识.html">
+            
+                <a href="../java/Java基础知识.html">
+            
+                    
+                    Java 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../java/Java疑难点.html">
+            
+                <a href="../java/Java疑难点.html">
+            
+                    
+                    Java 基础知识疑难点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../java/J2EE基础知识.html">
+            
+                <a href="../java/J2EE基础知识.html">
+            
+                    
+                    J2EE 基础知识回顾
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">容器</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../java/collection/Java集合框架常见面试题.html">
+            
+                <a href="../java/collection/Java集合框架常见面试题.html">
+            
+                    
+                    Java容器常见面试题/知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../java/collection/ArrayList.html">
+            
+                <a href="../java/collection/ArrayList.html">
+            
+                    
+                    ArrayList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../java/collection/LinkedList.html">
+            
+                <a href="../java/collection/LinkedList.html">
+            
+                    
+                    LinkedList 源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../java/collection/HashMap.html">
+            
+                <a href="../java/collection/HashMap.html">
+            
+                    
+                    HashMap(JDK1.8)源码学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">并发</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                <a href="../java/Multithread/JavaConcurrencyBasicsCommonInterviewQuestionsSummary.html">
+            
+                    
+                    Java 并发基础常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                <a href="../java/Multithread/JavaConcurrencyAdvancedCommonInterviewQuestions.html">
+            
+                    
+                    Java 并发进阶常见面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../java/Multithread/并发容器总结.html">
+            
+                <a href="../java/Multithread/并发容器总结.html">
+            
+                    
+                    并发容器总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                <a href="../essential-content-for-interview/面试必备之乐观锁与悲观锁.html">
+            
+                    
+                    乐观锁与悲观锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../java/Multithread/Atomic.html">
+            
+                <a href="../java/Multithread/Atomic.html">
+            
+                    
+                    JUC 中的 Atomic 原子类总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../java/Multithread/AQS.html">
+            
+                <a href="../java/Multithread/AQS.html">
+            
+                    
+                    AQS 原理以及 AQS 同步组件总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">JVM</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../java/jvm/Java内存区域.html">
+            
+                <a href="../java/jvm/Java内存区域.html">
+            
+                    
+                    一 Java内存区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../java/jvm/JVM垃圾回收.html">
+            
+                <a href="../java/jvm/JVM垃圾回收.html">
+            
+                    
+                    二 JVM垃圾回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../java/jvm/JDK监控和故障处理工具总结.html">
+            
+                <a href="../java/jvm/JDK监控和故障处理工具总结.html">
+            
+                    
+                    三 JDK 监控和故障处理工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../java/jvm/类文件结构.html">
+            
+                <a href="../java/jvm/类文件结构.html">
+            
+                    
+                    四 类文件结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../java/jvm/类加载过程.html">
+            
+                <a href="../java/jvm/类加载过程.html">
+            
+                    
+                    五 类加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../java/jvm/类加载器.html">
+            
+                <a href="../java/jvm/类加载器.html">
+            
+                    
+                    六 类加载器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">I/O</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../java/BIO-NIO-AIO.html">
+            
+                <a href="../java/BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../java/Java%20IO与NIO.md">
+            
+                <span>
+            
+                    
+                    Java IO 与 NIO系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Java 8</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../java/What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../java/What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">编程规范</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../java/Java编程规范.html">
+            
+                <a href="../java/Java编程规范.html">
+            
+                    
+                    Java 编程规范
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网络</li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="../network/计算机网络.html">
+            
+                <a href="../network/计算机网络.html">
+            
+                    
+                    计算机网络常见面试题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="../network/干货：计算机网络知识总结.html">
+            
+                <a href="../network/干货：计算机网络知识总结.html">
+            
+                    
+                    计算机网络基础知识总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="../network/HTTPS中的TLS.html">
+            
+                <a href="../network/HTTPS中的TLS.html">
+            
+                    
+                    HTTPS中的TLS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">操作系统</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Linux相关</li>
+        
+        
+    
+        <li class="chapter " data-level="11.1" data-path="../operating-system/后端程序员必备的Linux基础知识.md">
+            
+                <span>
+            
+                    
+                    后端程序员必备的 Linux 基础知识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="../operating-system/Shell.html">
+            
+                <a href="../operating-system/Shell.html">
+            
+                    
+                    Shell 编程入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据结构与算法</li>
+        
+        
+    
+
+    
+        
+        <li class="header">数据结构</li>
+        
+        
+    
+        <li class="chapter " data-level="13.1" data-path="数据结构.html">
+            
+                <a href="数据结构.html">
+            
+                    
+                    数据结构知识学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">算法</li>
+        
+        
+    
+        <li class="chapter " data-level="14.1" data-path="算法学习资源推荐.html">
+            
+                <a href="算法学习资源推荐.html">
+            
+                    
+                    算法学习资源推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="14.2" data-path="几道常见的子符串算法题.html">
+            
+                <a href="几道常见的子符串算法题.html">
+            
+                    
+                    几道常见的字符串算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.3" data-path="几道常见的链表算法题.html">
+            
+                <a href="几道常见的链表算法题.html">
+            
+                    
+                    几道常见的链表算法题总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.4" data-path="剑指offer部分编程题.html">
+            
+                <a href="剑指offer部分编程题.html">
+            
+                    
+                    剑指offer部分编程题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.5" data-path="公司真题.html">
+            
+                <a href="公司真题.html">
+            
+                    
+                    公司真题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.6" data-path="Backtracking-NQueens.html">
+            
+                <a href="Backtracking-NQueens.html">
+            
+                    
+                    回溯算法经典案例之N皇后问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据库</li>
+        
+        
+    
+
+    
+        
+        <li class="header">MySQL</li>
+        
+        
+    
+        <li class="chapter " data-level="16.1" data-path="../database/MySQL.html">
+            
+                <a href="../database/MySQL.html">
+            
+                    
+                    MySQL 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="../database/一千行MySQL命令.html">
+            
+                <a href="../database/一千行MySQL命令.html">
+            
+                    
+                    一千行MySQL学习笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="../database/MySQL高性能优化规范建议.html">
+            
+                <a href="../database/MySQL高性能优化规范建议.html">
+            
+                    
+                    MySQL高性能优化规范建议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="../database/MySQL%20Index.md">
+            
+                <span>
+            
+                    
+                    数据库索引总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="../database/事务隔离级别(图文详解">
+            
+                <span>
+            
+                    
+                    事务隔离级别(图文详解)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.6" data-path="../database/一条sql语句在mysql中如何执行的.html">
+            
+                <a href="../database/一条sql语句在mysql中如何执行的.html">
+            
+                    
+                    一条SQL语句在MySQL中如何执行的
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Redis</li>
+        
+        
+    
+        <li class="chapter " data-level="17.1" data-path="../database/Redis/Redis.md">
+            
+                <span>
+            
+                    
+                    Redis 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.2" data-path="../database/Redis/Redlock分布式锁.html">
+            
+                <a href="../database/Redis/Redlock分布式锁.html">
+            
+                    
+                    Redlock分布式锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.3" data-path="../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                <a href="../database/Redis/如何做可靠的分布式锁，Redlock真的可行么.html">
+            
+                    
+                    如何做可靠的分布式锁，Redlock真的可行么
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">系统设计</li>
+        
+        
+    
+
+    
+        
+        <li class="header">设计模式</li>
+        
+        
+    
+        <li class="chapter " data-level="19.1" data-path="../system-design/设计模式.html">
+            
+                <a href="../system-design/设计模式.html">
+            
+                    
+                    设计模式系列文章
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常用框架</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Spring</li>
+        
+        
+    
+        <li class="chapter " data-level="21.1" data-path="../system-design/framework/spring/Spring.html">
+            
+                <a href="../system-design/framework/spring/Spring.html">
+            
+                    
+                    Spring 学习与面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.2" data-path="../system-design/framework/spring/SpringInterviewQuestions.html">
+            
+                <a href="../system-design/framework/spring/SpringInterviewQuestions.html">
+            
+                    
+                    Spring 常见问题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.3" data-path="../system-design/framework/spring/SpringBean.html">
+            
+                <a href="../system-design/framework/spring/SpringBean.html">
+            
+                    
+                    Spring中bean的作用域与生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.4" data-path="../system-design/framework/spring/SpringMVC-Principle.html">
+            
+                <a href="../system-design/framework/spring/SpringMVC-Principle.html">
+            
+                    
+                    SpringMVC 工作原理详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.5" data-path="../system-design/framework/spring/Spring-Design-Patterns.html">
+            
+                <a href="../system-design/framework/spring/Spring-Design-Patterns.html">
+            
+                    
+                    Spring中都用到了那些设计模式?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">ZooKeeper</li>
+        
+        
+    
+        <li class="chapter " data-level="22.1" data-path="../system-design/framework/ZooKeeper.html">
+            
+                <a href="../system-design/framework/ZooKeeper.html">
+            
+                    
+                    ZooKeeper 相关概念总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.2" data-path="../system-design/framework/ZooKeeper数据模型和常见命令.html">
+            
+                <a href="../system-design/framework/ZooKeeper数据模型和常见命令.html">
+            
+                    
+                    ZooKeeper 数据模型和常见命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据通信</li>
+        
+        
+    
+        <li class="chapter " data-level="23.1" data-path="../system-design/data-communication/summary.md">
+            
+                <span>
+            
+                    
+                    数据通信(RESTful、RPC、消息队列)相关知识点总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.2" data-path="../system-design/data-communication/dubbo.html">
+            
+                <a href="../system-design/data-communication/dubbo.html">
+            
+                    
+                    Dubbo 总结：关于 Dubbo 的重要知识点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.3" data-path="../system-design/data-communication/message-queue.html">
+            
+                <a href="../system-design/data-communication/message-queue.html">
+            
+                    
+                    消息队列总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.4" data-path="../system-design/data-communication/rabbitmq.html">
+            
+                <a href="../system-design/data-communication/rabbitmq.html">
+            
+                    
+                    RabbitMQ 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.5" data-path="../system-design/data-communication/RocketMQ-Questions.html">
+            
+                <a href="../system-design/data-communication/RocketMQ-Questions.html">
+            
+                    
+                    RocketMQ的几个简单问题与答案
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">网站架构</li>
+        
+        
+    
+        <li class="chapter " data-level="24.1" data-path="../system-design/website-architecture/分布式.html">
+            
+                <a href="../system-design/website-architecture/分布式.html">
+            
+                    
+                    一文读懂分布式应该学什么
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.2" data-path="../system-design/website-architecture/8%20张图读懂大型网站技术架构.md">
+            
+                <span>
+            
+                    
+                    8 张图读懂大型网站技术架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.3" data-path="../system-design/website-architecture/【面试精选】关于大型网站系统架构你不得不懂的10个问题.md">
+            
+                <span>
+            
+                    
+                    【面试精选】关于大型网站系统架构你不得不懂的10个问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面试指南</li>
+        
+        
+    
+
+    
+        
+        <li class="header">备战面试</li>
+        
+        
+    
+        <li class="chapter " data-level="26.1" data-path="../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/程序员的简历之道.html">
+            
+                    
+                    【备战面试1】程序员的简历就该这样写
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.2" data-path="../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/interviewPrepare.html">
+            
+                    
+                    【备战面试2】初出茅庐的程序员该如何准备面试？
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.3" data-path="../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/JavaProgrammerNeedKnow.html">
+            
+                    
+                    【备战面试3】7个大部分程序员在面试前很关心的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.4" data-path="../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/JavaInterviewLibrary.html">
+            
+                    
+                    【备战面试4】Github上开源的Java面试/学习相关的仓库推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.5" data-path="../essential-content-for-interview/PreparingForInterview/如果面试官问你“你有什么问题问我吗？”时，你该如何回答.md">
+            
+                <span>
+            
+                    
+                    【备战面试5】如果面试官问你“你有什么问题问我吗？”时，你该如何回答
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.6" data-path="../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                <a href="../essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.html">
+            
+                    
+                    【备战面试6】美团面试常见问题总结（附详解答案）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">常见面试题总结</li>
+        
+        
+    
+        <li class="chapter " data-level="27.1" data-path="../essential-content-for-interview/MostCommonJavaInterviewQuestions/第一周（2018-8-7）.md">
+            
+                <span>
+            
+                    
+                    第一周（2018-8-7）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.2" data-path="../essential-content-for-interview/MostCommonJavaInterviewQuestions/第二周(2018-8-13">
+            
+                <span>
+            
+                    
+                    第二周（2018-8-13）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.3" data-path="../java/collection/Java集合框架常见面试题.html">
+            
+                <a href="../java/collection/Java集合框架常见面试题.html">
+            
+                    
+                    第三周（2018-08-22）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.4" data-path="../essential-content-for-interview/MostCommonJavaInterviewQuestions/第四周(2018-8-30">
+            
+                <span>
+            
+                    
+                    第四周(2018-8-30).md
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">面经</li>
+        
+        
+    
+        <li class="chapter " data-level="28.1" data-path="../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                <a href="../essential-content-for-interview/BATJrealInterviewExperience/5面阿里,终获offer.html">
+            
+                    
+                    5面阿里,终获offer(2018年秋招)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.2" data-path="../essential-content-for-interview/BATJrealInterviewExperience/蚂蚁金服实习生面经总结(已拿口头offer">
+            
+                <span>
+            
+                    
+                    蚂蚁金服2019实习生面经总结(已拿口头offer)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="28.3" data-path="../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                <a href="../essential-content-for-interview/BATJrealInterviewExperience/2019alipay-pinduoduo-toutiao.html">
+            
+                    
+                    2019年蚂蚁金服、头条、拼多多的面试总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">工具</li>
+        
+        
+    
+
+    
+        
+        <li class="header">Git</li>
+        
+        
+    
+        <li class="chapter " data-level="30.1" data-path="../tools/Git.html">
+            
+                <a href="../tools/Git.html">
+            
+                    
+                    Git入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Docker</li>
+        
+        
+    
+        <li class="chapter " data-level="31.1" data-path="../tools/Docker.html">
+            
+                <a href="../tools/Docker.html">
+            
+                    
+                    Docker 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="31.2" data-path="../tools/Docker-Image.html">
+            
+                <a href="../tools/Docker-Image.html">
+            
+                    
+                    一文搞懂 Docker 镜像的常用操作！
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">资料</li>
+        
+        
+    
+
+    
+        
+        <li class="header">书单</li>
+        
+        
+    
+        <li class="chapter " data-level="33.1" data-path="../data/java-recommended-books.md">
+            
+                <span>
+            
+                    
+                    Java程序员必备书单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Github榜单</li>
+        
+        
+    
+        <li class="chapter " data-level="34.1" data-path="../github-trending/JavaGithubTrending.html">
+            
+                <a href="../github-trending/JavaGithubTrending.html">
+            
+                    
+                    Java 项目月榜单
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">待办</li>
+        
+        
+    
+        <li class="chapter " data-level="35.1" data-path="../java/What's%20New%20in%20JDK8/Java8Tutorial.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.2" data-path="../java/What's%20New%20in%20JDK8/Java8教程推荐.md">
+            
+                <span>
+            
+                    
+                    Java 8 新特性详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.3" >
+            
+                <span>
+            
+                    
+                    [ ] Java 多线程类别知识重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.4" data-path="../java/BIO-NIO-AIO.html">
+            
+                <a href="../java/BIO-NIO-AIO.html">
+            
+                    
+                    BIO,NIO,AIO 总结 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.5" >
+            
+                <span>
+            
+                    
+                    [ ] Netty 总结(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="35.6" >
+            
+                <span>
+            
+                    
+                    [ ] 数据结构总结重构(---正在进行中---)
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">公众号</li>
+        
+        
+    
+        <li class="chapter " data-level="36.1" >
+            
+                <span>
+            
+                    
+                    如果大家想要实时关注我更新的文章以及分享的干货的话，可以关注我的公众号。
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.2" >
+            
+                <span>
+            
+                    
+                    由本文档衍生的专为面试而生的《Java面试突击》V2.0 PDF 版本公众号后台回复  即可免费领取！
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="36.3" >
+            
+                <span>
+            
+                    
+                    一些Java工程师常用学习资源公众号后台回复关键字  即可免费无套路获取。
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >几道常见的字符串算法题总结 </a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!-- MarkdownTOC -->
+<ul>
+<li><a href="#&#x8BF4;&#x660E;">&#x8BF4;&#x660E;</a></li>
+<li><a href="#1-kmp-&#x7B97;&#x6CD5;">1. KMP &#x7B97;&#x6CD5;</a></li>
+<li><a href="#2-&#x66FF;&#x6362;&#x7A7A;&#x683C;">2. &#x66FF;&#x6362;&#x7A7A;&#x683C;</a></li>
+<li><a href="#3-&#x6700;&#x957F;&#x516C;&#x5171;&#x524D;&#x7F00;">3. &#x6700;&#x957F;&#x516C;&#x5171;&#x524D;&#x7F00;</a></li>
+<li><a href="#4-&#x56DE;&#x6587;&#x4E32;">4. &#x56DE;&#x6587;&#x4E32;</a><ul>
+<li><a href="#41-&#x6700;&#x957F;&#x56DE;&#x6587;&#x4E32;">4.1. &#x6700;&#x957F;&#x56DE;&#x6587;&#x4E32;</a></li>
+<li><a href="#42-&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x4E32;">4.2. &#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x4E32;</a></li>
+<li><a href="#43-&#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x4E32;">4.3. &#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x4E32;</a></li>
+<li><a href="#44-&#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x5E8F;&#x5217;">4.4. &#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x5E8F;&#x5217;</a></li>
+</ul>
+</li>
+<li><a href="#5-&#x62EC;&#x53F7;&#x5339;&#x914D;&#x6DF1;&#x5EA6;">5. &#x62EC;&#x53F7;&#x5339;&#x914D;&#x6DF1;&#x5EA6;</a></li>
+<li><a href="#6-&#x628A;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x6210;&#x6574;&#x6570;">6. &#x628A;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x6210;&#x6574;&#x6570;</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+<blockquote>
+<p>&#x6388;&#x6743;&#x8F6C;&#x8F7D;&#xFF01;</p>
+<ul>
+<li>&#x672C;&#x6587;&#x4F5C;&#x8005;&#xFF1A;wwwxmu</li>
+<li>&#x539F;&#x6587;&#x5730;&#x5740;:<a href="https://www.weiweiblog.cn/13string/" target="_blank">https://www.weiweiblog.cn/13string/</a></li>
+</ul>
+</blockquote>
+<p>&#x8003;&#x8651;&#x5230;&#x7BC7;&#x5E45;&#x95EE;&#x9898;&#xFF0C;&#x6211;&#x4F1A;&#x5206;&#x4E24;&#x6B21;&#x66F4;&#x65B0;&#x8FD9;&#x4E2A;&#x5185;&#x5BB9;&#x3002;&#x672C;&#x7BC7;&#x6587;&#x7AE0;&#x53EA;&#x662F;&#x539F;&#x6587;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x6211;&#x5728;&#x539F;&#x6587;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#x589E;&#x52A0;&#x4E86;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#x4EE5;&#x53CA;&#x4FEE;&#x6539;&#x4E86;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x548C;&#x6CE8;&#x91CA;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x6211;&#x589E;&#x52A0;&#x4E86;&#x7231;&#x5947;&#x827A; 2018 &#x79CB;&#x62DB; Java&#xFF1A;<code>&#x6C42;&#x7ED9;&#x5B9A;&#x5408;&#x6CD5;&#x62EC;&#x53F7;&#x5E8F;&#x5217;&#x7684;&#x6DF1;&#x5EA6;</code> &#x8FD9;&#x9053;&#x9898;&#x3002;&#x6240;&#x6709;&#x4EE3;&#x7801;&#x5747;&#x7F16;&#x8BD1;&#x6210;&#x529F;&#xFF0C;&#x5E76;&#x5E26;&#x6709;&#x6CE8;&#x91CA;&#xFF0C;&#x6B22;&#x8FCE;&#x5404;&#x4F4D;&#x4EAB;&#x7528;&#xFF01;</p>
+<h2 id="1-kmp-&#x7B97;&#x6CD5;">1. KMP &#x7B97;&#x6CD5;</h2>
+<p>&#x8C08;&#x5230;&#x5B57;&#x7B26;&#x4E32;&#x95EE;&#x9898;&#xFF0C;&#x4E0D;&#x5F97;&#x4E0D;&#x63D0;&#x7684;&#x5C31;&#x662F; KMP &#x7B97;&#x6CD5;&#xFF0C;&#x5B83;&#x662F;&#x7528;&#x6765;&#x89E3;&#x51B3;&#x5B57;&#x7B26;&#x4E32;&#x67E5;&#x627E;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF08;S&#xFF09;&#x4E2D;&#x67E5;&#x627E;&#x4E00;&#x4E2A;&#x5B50;&#x4E32;&#xFF08;W&#xFF09;&#x51FA;&#x73B0;&#x7684;&#x4F4D;&#x7F6E;&#x3002;KMP &#x7B97;&#x6CD5;&#x628A;&#x5B57;&#x7B26;&#x5339;&#x914D;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x7F29;&#x5C0F;&#x5230; O(m+n) ,&#x800C;&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E5F;&#x53EA;&#x6709;O(m)&#x3002;&#x56E0;&#x4E3A;&#x201C;&#x66B4;&#x529B;&#x641C;&#x7D22;&#x201D;&#x7684;&#x65B9;&#x6CD5;&#x4F1A;&#x53CD;&#x590D;&#x56DE;&#x6EAF;&#x4E3B;&#x4E32;&#xFF0C;&#x5BFC;&#x81F4;&#x6548;&#x7387;&#x4F4E;&#x4E0B;&#xFF0C;&#x800C;KMP&#x7B97;&#x6CD5;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x5DF2;&#x7ECF;&#x90E8;&#x5206;&#x5339;&#x914D;&#x8FD9;&#x4E2A;&#x6709;&#x6548;&#x4FE1;&#x606F;&#xFF0C;&#x4FDD;&#x6301;&#x4E3B;&#x4E32;&#x4E0A;&#x7684;&#x6307;&#x9488;&#x4E0D;&#x56DE;&#x6EAF;&#xFF0C;&#x901A;&#x8FC7;&#x4FEE;&#x6539;&#x5B50;&#x4E32;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x8BA9;&#x6A21;&#x5F0F;&#x4E32;&#x5C3D;&#x91CF;&#x5730;&#x79FB;&#x52A8;&#x5230;&#x6709;&#x6548;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x7B97;&#x6CD5;&#x7EC6;&#x8282;&#x8BF7;&#x53C2;&#x8003;&#xFF1A;</p>
+<ul>
+<li><strong>&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;&#x7684;KMP&#x7B97;&#x6CD5;:</strong> <a href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html" target="_blank">http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html</a></li>
+<li><strong>&#x4ECE;&#x5934;&#x5230;&#x5C3E;&#x5F7B;&#x5E95;&#x7406;&#x89E3;KMP:</strong> <a href="https://blog.csdn.net/v_july_v/article/details/7041827" target="_blank">https://blog.csdn.net/v_july_v/article/details/7041827</a></li>
+<li><strong>&#x5982;&#x4F55;&#x66F4;&#x597D;&#x7684;&#x7406;&#x89E3;&#x548C;&#x638C;&#x63E1; KMP &#x7B97;&#x6CD5;?:</strong> <a href="https://www.zhihu.com/question/21923021" target="_blank">https://www.zhihu.com/question/21923021</a></li>
+<li><strong>KMP &#x7B97;&#x6CD5;&#x8BE6;&#x7EC6;&#x89E3;&#x6790;:</strong>  <a href="https://blog.sengxian.com/algorithms/kmp" target="_blank">https://blog.sengxian.com/algorithms/kmp</a></li>
+<li><strong>&#x56FE;&#x89E3; KMP &#x7B97;&#x6CD5;:</strong> <a href="http://blog.jobbole.com/76611/" target="_blank">http://blog.jobbole.com/76611/</a></li>
+<li><strong>&#x6C6A;&#x90FD;&#x80FD;&#x542C;&#x61C2;&#x7684;KMP&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;&#x7B97;&#x6CD5;&#x3010;&#x53CC;&#x8BED;&#x5B57;&#x5E55;&#x3011;:</strong> <a href="https://www.bilibili.com/video/av3246487/?from=search&amp;seid=17173603269940723925" target="_blank">https://www.bilibili.com/video/av3246487/?from=search&amp;seid=17173603269940723925</a></li>
+<li><strong>KMP&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;&#x7B97;&#x6CD5;1:</strong> <a href="https://www.bilibili.com/video/av11866460?from=search&amp;seid=12730654434238709250" target="_blank">https://www.bilibili.com/video/av11866460?from=search&amp;seid=12730654434238709250</a></li>
+</ul>
+<p><strong>&#x9664;&#x6B64;&#x4E4B;&#x5916;&#xFF0C;&#x518D;&#x6765;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;BM&#x7B97;&#x6CD5;&#xFF01;</strong></p>
+<blockquote>
+<p>BM&#x7B97;&#x6CD5;&#x4E5F;&#x662F;&#x4E00;&#x79CD;&#x7CBE;&#x786E;&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;&#x7B97;&#x6CD5;&#xFF0C;&#x5B83;&#x91C7;&#x7528;&#x4ECE;&#x53F3;&#x5411;&#x5DE6;&#x6BD4;&#x8F83;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x540C;&#x65F6;&#x5E94;&#x7528;&#x5230;&#x4E86;&#x4E24;&#x79CD;&#x542F;&#x53D1;&#x5F0F;&#x89C4;&#x5219;&#xFF0C;&#x5373;&#x574F;&#x5B57;&#x7B26;&#x89C4;&#x5219; &#x548C;&#x597D;&#x540E;&#x7F00;&#x89C4;&#x5219; &#xFF0C;&#x6765;&#x51B3;&#x5B9A;&#x5411;&#x53F3;&#x8DF3;&#x8DC3;&#x7684;&#x8DDD;&#x79BB;&#x3002;&#x57FA;&#x672C;&#x601D;&#x8DEF;&#x5C31;&#x662F;&#x4ECE;&#x53F3;&#x5F80;&#x5DE6;&#x8FDB;&#x884C;&#x5B57;&#x7B26;&#x5339;&#x914D;&#xFF0C;&#x9047;&#x5230;&#x4E0D;&#x5339;&#x914D;&#x7684;&#x5B57;&#x7B26;&#x540E;&#x4ECE;&#x574F;&#x5B57;&#x7B26;&#x8868;&#x548C;&#x597D;&#x540E;&#x7F00;&#x8868;&#x627E;&#x4E00;&#x4E2A;&#x6700;&#x5927;&#x7684;&#x53F3;&#x79FB;&#x503C;&#xFF0C;&#x5C06;&#x6A21;&#x5F0F;&#x4E32;&#x53F3;&#x79FB;&#x7EE7;&#x7EED;&#x5339;&#x914D;&#x3002;
+&#x300A;&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;&#x7684;KMP&#x7B97;&#x6CD5;&#x300B;:<a href="http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html" target="_blank">http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html</a></p>
+</blockquote>
+<h2 id="2-&#x66FF;&#x6362;&#x7A7A;&#x683C;">2. &#x66FF;&#x6362;&#x7A7A;&#x683C;</h2>
+<blockquote>
+<p>&#x5251;&#x6307;offer&#xFF1A;&#x8BF7;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x5C06;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x7A7A;&#x683C;&#x66FF;&#x6362;&#x6210;&#x201C;%20&#x201D;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5F53;&#x5B57;&#x7B26;&#x4E32;&#x4E3A;We Are Happy.&#x5219;&#x7ECF;&#x8FC7;&#x66FF;&#x6362;&#x4E4B;&#x540E;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E3A;We%20Are%20Happy&#x3002;</p>
+</blockquote>
+<p>&#x8FD9;&#x91CC;&#x6211;&#x63D0;&#x4F9B;&#x4E86;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#xFF1A;&#x2460;&#x5E38;&#x89C4;&#x65B9;&#x6CD5;&#xFF1B;&#x2461;&#x5229;&#x7528; API &#x89E3;&#x51B3;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">//https://www.weiweiblog.cn/replacespace/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+
+  <span class="hljs-comment">/**
+   * &#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#xFF1A;&#x5E38;&#x89C4;&#x65B9;&#x6CD5;&#x3002;&#x5229;&#x7528;String.charAt(i)&#x4EE5;&#x53CA;String.valueOf(char).equals(&quot; &quot;
+   * )&#x904D;&#x5386;&#x5B57;&#x7B26;&#x4E32;&#x5E76;&#x5224;&#x65AD;&#x5143;&#x7D20;&#x662F;&#x5426;&#x4E3A;&#x7A7A;&#x683C;&#x3002;&#x662F;&#x5219;&#x66FF;&#x6362;&#x4E3A;&quot;%20&quot;,&#x5426;&#x5219;&#x4E0D;&#x66FF;&#x6362;
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">replaceSpace</span><span class="hljs-params">(StringBuffer str)</span> </span>{
+
+    <span class="hljs-keyword">int</span> length = str.length();
+    <span class="hljs-comment">// System.out.println(&quot;length=&quot; + length);</span>
+    StringBuffer result = <span class="hljs-keyword">new</span> StringBuffer();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+      <span class="hljs-keyword">char</span> b = str.charAt(i);
+      <span class="hljs-keyword">if</span> (String.valueOf(b).equals(<span class="hljs-string">&quot; &quot;</span>)) {
+        result.append(<span class="hljs-string">&quot;%20&quot;</span>);
+      } <span class="hljs-keyword">else</span> {
+        result.append(b);
+      }
+    }
+    <span class="hljs-keyword">return</span> result.toString();
+
+  }
+
+  <span class="hljs-comment">/**
+   * &#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x6CD5;&#xFF1A;&#x5229;&#x7528;API&#x66FF;&#x6362;&#x6389;&#x6240;&#x7528;&#x7A7A;&#x683C;&#xFF0C;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#x89E3;&#x51B3;&#x95EE;&#x9898;
+   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">replaceSpace2</span><span class="hljs-params">(StringBuffer str)</span> </span>{
+
+    <span class="hljs-keyword">return</span> str.toString().replaceAll(<span class="hljs-string">&quot;\\s&quot;</span>, <span class="hljs-string">&quot;%20&quot;</span>);
+  }
+}
+</code></pre>
+<h2 id="3-&#x6700;&#x957F;&#x516C;&#x5171;&#x524D;&#x7F00;">3. &#x6700;&#x957F;&#x516C;&#x5171;&#x524D;&#x7F00;</h2>
+<blockquote>
+<p>Leetcode:  &#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x6765;&#x67E5;&#x627E;&#x5B57;&#x7B26;&#x4E32;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x6700;&#x957F;&#x516C;&#x5171;&#x524D;&#x7F00;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#x516C;&#x5171;&#x524D;&#x7F00;&#xFF0C;&#x8FD4;&#x56DE;&#x7A7A;&#x5B57;&#x7B26;&#x4E32; &quot;&quot;&#x3002;</p>
+</blockquote>
+<p>&#x793A;&#x4F8B; 1:</p>
+<pre><code>&#x8F93;&#x5165;: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
+&#x8F93;&#x51FA;: &quot;fl&quot;
+</code></pre><p>&#x793A;&#x4F8B; 2:</p>
+<pre><code>&#x8F93;&#x5165;: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]
+&#x8F93;&#x51FA;: &quot;&quot;
+&#x89E3;&#x91CA;: &#x8F93;&#x5165;&#x4E0D;&#x5B58;&#x5728;&#x516C;&#x5171;&#x524D;&#x7F00;&#x3002;
+</code></pre><p>&#x601D;&#x8DEF;&#x5F88;&#x7B80;&#x5355;&#xFF01;&#x5148;&#x5229;&#x7528;Arrays.sort(strs)&#x4E3A;&#x6570;&#x7EC4;&#x6392;&#x5E8F;&#xFF0C;&#x518D;&#x5C06;&#x6570;&#x7EC4;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x548C;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x5B57;&#x7B26;&#x4ECE;&#x524D;&#x5F80;&#x540E;&#x5BF9;&#x6BD4;&#x5373;&#x53EF;&#xFF01;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">replaceSpace</span><span class="hljs-params">(String[] strs)</span> </span>{
+
+        <span class="hljs-comment">// &#x5982;&#x679C;&#x68C0;&#x67E5;&#x503C;&#x4E0D;&#x5408;&#x6CD5;&#x53CA;&#x5C31;&#x8FD4;&#x56DE;&#x7A7A;&#x4E32;</span>
+        <span class="hljs-keyword">if</span> (!checkStrs(strs)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;
+        }
+        <span class="hljs-comment">// &#x6570;&#x7EC4;&#x957F;&#x5EA6;</span>
+        <span class="hljs-keyword">int</span> len = strs.length;
+        <span class="hljs-comment">// &#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x7ED3;&#x679C;</span>
+        StringBuilder res = <span class="hljs-keyword">new</span> StringBuilder();
+        <span class="hljs-comment">// &#x7ED9;&#x5B57;&#x7B26;&#x4E32;&#x6570;&#x7EC4;&#x7684;&#x5143;&#x7D20;&#x6309;&#x7167;&#x5347;&#x5E8F;&#x6392;&#x5E8F;(&#x5305;&#x542B;&#x6570;&#x5B57;&#x7684;&#x8BDD;&#xFF0C;&#x6570;&#x5B57;&#x4F1A;&#x6392;&#x5728;&#x524D;&#x9762;)</span>
+        Arrays.sort(strs);
+        <span class="hljs-keyword">int</span> m = strs[<span class="hljs-number">0</span>].length();
+        <span class="hljs-keyword">int</span> n = strs[len - <span class="hljs-number">1</span>].length();
+        <span class="hljs-keyword">int</span> num = Math.min(m, n);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++) {
+            <span class="hljs-keyword">if</span> (strs[<span class="hljs-number">0</span>].charAt(i) == strs[len - <span class="hljs-number">1</span>].charAt(i)) {
+                res.append(strs[<span class="hljs-number">0</span>].charAt(i));
+            } <span class="hljs-keyword">else</span>
+                <span class="hljs-keyword">break</span>;
+
+        }
+        <span class="hljs-keyword">return</span> res.toString();
+
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">chechStrs</span><span class="hljs-params">(String[] strs)</span> </span>{
+        <span class="hljs-keyword">boolean</span> flag = <span class="hljs-keyword">false</span>;
+        <span class="hljs-keyword">if</span> (strs != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// &#x904D;&#x5386;strs&#x68C0;&#x67E5;&#x5143;&#x7D20;&#x503C;</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; strs.length; i++) {
+                <span class="hljs-keyword">if</span> (strs[i] != <span class="hljs-keyword">null</span> &amp;&amp; strs[i].length() != <span class="hljs-number">0</span>) {
+                    flag = <span class="hljs-keyword">true</span>;
+                } <span class="hljs-keyword">else</span> {
+                    flag = <span class="hljs-keyword">false</span>;
+                    <span class="hljs-keyword">break</span>;
+                }
+            }
+        }
+        <span class="hljs-keyword">return</span> flag;
+    }
+
+    <span class="hljs-comment">// &#x6D4B;&#x8BD5;</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        String[] strs = { <span class="hljs-string">&quot;customer&quot;</span>, <span class="hljs-string">&quot;car&quot;</span>, <span class="hljs-string">&quot;cat&quot;</span> };
+        <span class="hljs-comment">// String[] strs = { &quot;customer&quot;, &quot;car&quot;, null };//&#x7A7A;&#x4E32;</span>
+        <span class="hljs-comment">// String[] strs = {};//&#x7A7A;&#x4E32;</span>
+        <span class="hljs-comment">// String[] strs = null;//&#x7A7A;&#x4E32;</span>
+        System.out.println(Main.replaceSpace(strs));<span class="hljs-comment">// c</span>
+    }
+}
+</code></pre>
+<h2 id="4-&#x56DE;&#x6587;&#x4E32;">4. &#x56DE;&#x6587;&#x4E32;</h2>
+<h3 id="41-&#x6700;&#x957F;&#x56DE;&#x6587;&#x4E32;">4.1. &#x6700;&#x957F;&#x56DE;&#x6587;&#x4E32;</h3>
+<blockquote>
+<p>LeetCode:  &#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x5927;&#x5199;&#x5B57;&#x6BCD;&#x548C;&#x5C0F;&#x5199;&#x5B57;&#x6BCD;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x627E;&#x5230;&#x901A;&#x8FC7;&#x8FD9;&#x4E9B;&#x5B57;&#x6BCD;&#x6784;&#x9020;&#x6210;&#x7684;&#x6700;&#x957F;&#x7684;&#x56DE;&#x6587;&#x4E32;&#x3002;&#x5728;&#x6784;&#x9020;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x8BF7;&#x6CE8;&#x610F;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x3002;&#x6BD4;&#x5982;<code>&quot;Aa&quot;</code>&#x4E0D;&#x80FD;&#x5F53;&#x505A;&#x4E00;&#x4E2A;&#x56DE;&#x6587;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x6CE8;
+&#x610F;:&#x5047;&#x8BBE;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x957F;&#x5EA6;&#x4E0D;&#x4F1A;&#x8D85;&#x8FC7; 1010&#x3002;</p>
+<p>&#x56DE;&#x6587;&#x4E32;&#xFF1A;&#x201C;&#x56DE;&#x6587;&#x4E32;&#x201D;&#x662F;&#x4E00;&#x4E2A;&#x6B63;&#x8BFB;&#x548C;&#x53CD;&#x8BFB;&#x90FD;&#x4E00;&#x6837;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6BD4;&#x5982;&#x201C;level&#x201D;&#x6216;&#x8005;&#x201C;noon&#x201D;&#x7B49;&#x7B49;&#x5C31;&#x662F;&#x56DE;&#x6587;&#x4E32;&#x3002;&#x2014;&#x2014;&#x767E;&#x5EA6;&#x767E;&#x79D1;  &#x5730;&#x5740;&#xFF1A;<a href="https://baike.baidu.com/item/%E5%9B%9E%E6%96%87%E4%B8%B2/1274921?fr=aladdin" target="_blank">https://baike.baidu.com/item/%E5%9B%9E%E6%96%87%E4%B8%B2/1274921?fr=aladdin</a></p>
+</blockquote>
+<p>&#x793A;&#x4F8B; 1:</p>
+<pre><code>&#x8F93;&#x5165;:
+&quot;abccccdd&quot;
+
+&#x8F93;&#x51FA;:
+7
+
+&#x89E3;&#x91CA;:
+&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6784;&#x9020;&#x7684;&#x6700;&#x957F;&#x7684;&#x56DE;&#x6587;&#x4E32;&#x662F;&quot;dccaccd&quot;, &#x5B83;&#x7684;&#x957F;&#x5EA6;&#x662F; 7&#x3002;
+</code></pre><p>&#x6211;&#x4EEC;&#x4E0A;&#x9762;&#x5DF2;&#x7ECF;&#x77E5;&#x9053;&#x4E86;&#x4EC0;&#x4E48;&#x662F;&#x56DE;&#x6587;&#x4E32;&#xFF1F;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x8003;&#x8651;&#x4E00;&#x4E0B;&#x53EF;&#x4EE5;&#x6784;&#x6210;&#x56DE;&#x6587;&#x4E32;&#x7684;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;</p>
+<ul>
+<li>&#x5B57;&#x7B26;&#x51FA;&#x73B0;&#x6B21;&#x6570;&#x4E3A;&#x53CC;&#x6570;&#x7684;&#x7EC4;&#x5408;</li>
+<li><strong>&#x5B57;&#x7B26;&#x51FA;&#x73B0;&#x6B21;&#x6570;&#x4E3A;&#x5076;&#x6570;&#x7684;&#x7EC4;&#x5408;+&#x5355;&#x4E2A;&#x5B57;&#x7B26;&#x4E2D;&#x51FA;&#x73B0;&#x6B21;&#x6570;&#x6700;&#x591A;&#x4E14;&#x4E3A;&#x5947;&#x6570;&#x6B21;&#x7684;&#x5B57;&#x7B26;</strong> &#xFF08;&#x53C2;&#x89C1; <strong><a href="https://github.com/Snailclimb/JavaGuide/issues/665" target="_blank">issue665</a></strong> &#xFF09;</li>
+</ul>
+<p>&#x7EDF;&#x8BA1;&#x5B57;&#x7B26;&#x51FA;&#x73B0;&#x7684;&#x6B21;&#x6570;&#x5373;&#x53EF;&#xFF0C;&#x53CC;&#x6570;&#x624D;&#x80FD;&#x6784;&#x6210;&#x56DE;&#x6587;&#x3002;&#x56E0;&#x4E3A;&#x5141;&#x8BB8;&#x4E2D;&#x95F4;&#x4E00;&#x4E2A;&#x6570;&#x5355;&#x72EC;&#x51FA;&#x73B0;&#xFF0C;&#x6BD4;&#x5982;&#x201C;abcba&#x201D;&#xFF0C;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x6700;&#x540E;&#x6709;&#x5B57;&#x6BCD;&#x843D;&#x5355;&#xFF0C;&#x603B;&#x957F;&#x5EA6;&#x53EF;&#x4EE5;&#x52A0; 1&#x3002;&#x9996;&#x5148;&#x5C06;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x53D8;&#x4E3A;&#x5B57;&#x7B26;&#x6570;&#x7EC4;&#x3002;&#x7136;&#x540E;&#x904D;&#x5386;&#x8BE5;&#x6570;&#x7EC4;&#xFF0C;&#x5224;&#x65AD;&#x5BF9;&#x5E94;&#x5B57;&#x7B26;&#x662F;&#x5426;&#x5728;hashset&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5728;&#x5C31;&#x52A0;&#x8FDB;&#x53BB;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x5C31;&#x8BA9;count++&#xFF0C;&#x7136;&#x540E;&#x79FB;&#x9664;&#x8BE5;&#x5B57;&#x7B26;&#xFF01;&#x8FD9;&#x6837;&#x5C31;&#x80FD;&#x627E;&#x5230;&#x51FA;&#x73B0;&#x6B21;&#x6570;&#x4E3A;&#x53CC;&#x6570;&#x7684;&#x5B57;&#x7B26;&#x4E2A;&#x6570;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">//https://leetcode-cn.com/problems/longest-palindrome/description/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">int</span> <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(String s)</span> </span>{
+    <span class="hljs-keyword">if</span> (s.length() == <span class="hljs-number">0</span>)
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// &#x7528;&#x4E8E;&#x5B58;&#x653E;&#x5B57;&#x7B26;</span>
+    HashSet&lt;Character&gt; hashset = <span class="hljs-keyword">new</span> HashSet&lt;Character&gt;();
+    <span class="hljs-keyword">char</span>[] chars = s.toCharArray();
+    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; chars.length; i++) {
+      <span class="hljs-keyword">if</span> (!hashset.contains(chars[i])) {<span class="hljs-comment">// &#x5982;&#x679C;hashset&#x6CA1;&#x6709;&#x8BE5;&#x5B57;&#x7B26;&#x5C31;&#x4FDD;&#x5B58;&#x8FDB;&#x53BB;</span>
+        hashset.add(chars[i]);
+      } <span class="hljs-keyword">else</span> {<span class="hljs-comment">// &#x5982;&#x679C;&#x6709;,&#x5C31;&#x8BA9;count++&#xFF08;&#x8BF4;&#x660E;&#x627E;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x6210;&#x5BF9;&#x7684;&#x5B57;&#x7B26;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x8BE5;&#x5B57;&#x7B26;&#x79FB;&#x9664;</span>
+        hashset.remove(chars[i]);
+        count++;
+      }
+    }
+    <span class="hljs-keyword">return</span> hashset.isEmpty() ? count * <span class="hljs-number">2</span> : count * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;
+  }
+}
+</code></pre>
+<h3 id="42-&#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x4E32;">4.2. &#x9A8C;&#x8BC1;&#x56DE;&#x6587;&#x4E32;</h3>
+<blockquote>
+<p>LeetCode: &#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x9A8C;&#x8BC1;&#x5B83;&#x662F;&#x5426;&#x662F;&#x56DE;&#x6587;&#x4E32;&#xFF0C;&#x53EA;&#x8003;&#x8651;&#x5B57;&#x6BCD;&#x548C;&#x6570;&#x5B57;&#x5B57;&#x7B26;&#xFF0C;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x5B57;&#x6BCD;&#x7684;&#x5927;&#x5C0F;&#x5199;&#x3002; &#x8BF4;&#x660E;&#xFF1A;&#x672C;&#x9898;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;&#x5B9A;&#x4E49;&#x4E3A;&#x6709;&#x6548;&#x7684;&#x56DE;&#x6587;&#x4E32;&#x3002;</p>
+</blockquote>
+<p>&#x793A;&#x4F8B; 1:</p>
+<pre><code>&#x8F93;&#x5165;: &quot;A man, a plan, a canal: Panama&quot;
+&#x8F93;&#x51FA;: true
+</code></pre><p>&#x793A;&#x4F8B; 2:</p>
+<pre><code>&#x8F93;&#x5165;: &quot;race a car&quot;
+&#x8F93;&#x51FA;: false
+</code></pre><pre><code class="lang-java"><span class="hljs-comment">//https://leetcode-cn.com/problems/valid-palindrome/description/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">boolean</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(String s)</span> </span>{
+    <span class="hljs-keyword">if</span> (s.length() == <span class="hljs-number">0</span>)
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = s.length() - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (l &lt; r) {
+      <span class="hljs-comment">// &#x4ECE;&#x5934;&#x548C;&#x5C3E;&#x5F00;&#x59CB;&#x5411;&#x4E2D;&#x95F4;&#x904D;&#x5386;</span>
+      <span class="hljs-keyword">if</span> (!Character.isLetterOrDigit(s.charAt(l))) {<span class="hljs-comment">// &#x5B57;&#x7B26;&#x4E0D;&#x662F;&#x5B57;&#x6BCD;&#x548C;&#x6570;&#x5B57;&#x7684;&#x60C5;&#x51B5;</span>
+        l++;
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!Character.isLetterOrDigit(s.charAt(r))) {<span class="hljs-comment">// &#x5B57;&#x7B26;&#x4E0D;&#x662F;&#x5B57;&#x6BCD;&#x548C;&#x6570;&#x5B57;&#x7684;&#x60C5;&#x51B5;</span>
+        r--;
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// &#x5224;&#x65AD;&#x4E8C;&#x8005;&#x662F;&#x5426;&#x76F8;&#x7B49;</span>
+        <span class="hljs-keyword">if</span> (Character.toLowerCase(s.charAt(l)) != Character.toLowerCase(s.charAt(r)))
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        l++;
+        r--;
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+  }
+}
+</code></pre>
+<h3 id="43-&#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x4E32;">4.3. &#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x4E32;</h3>
+<blockquote>
+<p>Leetcode: LeetCode: &#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x4E32; &#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32; s&#xFF0C;&#x627E;&#x5230; s &#x4E2D;&#x6700;&#x957F;&#x7684;&#x56DE;&#x6587;&#x5B50;&#x4E32;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x5047;&#x8BBE; s &#x7684;&#x6700;&#x5927;&#x957F;&#x5EA6;&#x4E3A;1000&#x3002;</p>
+</blockquote>
+<p>&#x793A;&#x4F8B; 1&#xFF1A;</p>
+<pre><code>&#x8F93;&#x5165;: &quot;babad&quot;
+&#x8F93;&#x51FA;: &quot;bab&quot;
+&#x6CE8;&#x610F;: &quot;aba&quot;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x6709;&#x6548;&#x7B54;&#x6848;&#x3002;
+</code></pre><p>&#x793A;&#x4F8B; 2&#xFF1A;</p>
+<pre><code>&#x8F93;&#x5165;: &quot;cbbd&quot;
+&#x8F93;&#x51FA;: &quot;bb&quot;
+</code></pre><p>&#x4EE5;&#x67D0;&#x4E2A;&#x5143;&#x7D20;&#x4E3A;&#x4E2D;&#x5FC3;&#xFF0C;&#x5206;&#x522B;&#x8BA1;&#x7B97;&#x5076;&#x6570;&#x957F;&#x5EA6;&#x7684;&#x56DE;&#x6587;&#x6700;&#x5927;&#x957F;&#x5EA6;&#x548C;&#x5947;&#x6570;&#x957F;&#x5EA6;&#x7684;&#x56DE;&#x6587;&#x6700;&#x5927;&#x957F;&#x5EA6;&#x3002;&#x7ED9;&#x5927;&#x5BB6;&#x5927;&#x81F4;&#x82B1;&#x4E86;&#x4E2A;&#x8349;&#x56FE;&#xFF0C;&#x4E0D;&#x8981;&#x5ACC;&#x5F03;&#xFF01;</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/9/165bc32f6f1833ff?w=723&amp;h=371&amp;f=png&amp;s=9305" alt=""></p>
+<pre><code class="lang-java"><span class="hljs-comment">//https://leetcode-cn.com/problems/longest-palindromic-substring/description/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> index, len;
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(String s)</span> </span>{
+    <span class="hljs-keyword">if</span> (s.length() &lt; <span class="hljs-number">2</span>)
+      <span class="hljs-keyword">return</span> s;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.length() - <span class="hljs-number">1</span>; i++) {
+      PalindromeHelper(s, i, i);
+      PalindromeHelper(s, i, i + <span class="hljs-number">1</span>);
+    }
+    <span class="hljs-keyword">return</span> s.substring(index, index + len);
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">PalindromeHelper</span><span class="hljs-params">(String s, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span> </span>{
+    <span class="hljs-keyword">while</span> (l &gt;= <span class="hljs-number">0</span> &amp;&amp; r &lt; s.length() &amp;&amp; s.charAt(l) == s.charAt(r)) {
+      l--;
+      r++;
+    }
+    <span class="hljs-keyword">if</span> (len &lt; r - l - <span class="hljs-number">1</span>) {
+      index = l + <span class="hljs-number">1</span>;
+      len = r - l - <span class="hljs-number">1</span>;
+    }
+  }
+}
+</code></pre>
+<h3 id="44-&#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x5E8F;&#x5217;">4.4. &#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x5E8F;&#x5217;</h3>
+<blockquote>
+<p>LeetCode: &#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x5E8F;&#x5217;
+&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;s&#xFF0C;&#x627E;&#x5230;&#x5176;&#x4E2D;&#x6700;&#x957F;&#x7684;&#x56DE;&#x6587;&#x5B50;&#x5E8F;&#x5217;&#x3002;&#x53EF;&#x4EE5;&#x5047;&#x8BBE;s&#x7684;&#x6700;&#x5927;&#x957F;&#x5EA6;&#x4E3A;1000&#x3002;
+<strong>&#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x5E8F;&#x5217;&#x548C;&#x4E0A;&#x4E00;&#x9898;&#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x4E32;&#x7684;&#x533A;&#x522B;&#x662F;&#xFF0C;&#x5B50;&#x4E32;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x8FDE;&#x7EED;&#x7684;&#x4E00;&#x4E2A;&#x5E8F;&#x5217;&#xFF0C;&#x800C;&#x5B50;&#x5E8F;&#x5217;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x4FDD;&#x6301;&#x76F8;&#x5BF9;&#x4F4D;&#x7F6E;&#x7684;&#x5B57;&#x7B26;&#x5E8F;&#x5217;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&quot;bbbb&quot;&#x53EF;&#x4EE5;&#x662F;&#x5B57;&#x7B26;&#x4E32;&quot;bbbab&quot;&#x7684;&#x5B50;&#x5E8F;&#x5217;&#x4F46;&#x4E0D;&#x662F;&#x5B50;&#x4E32;&#x3002;</strong></p>
+</blockquote>
+<p>&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;s&#xFF0C;&#x627E;&#x5230;&#x5176;&#x4E2D;&#x6700;&#x957F;&#x7684;&#x56DE;&#x6587;&#x5B50;&#x5E8F;&#x5217;&#x3002;&#x53EF;&#x4EE5;&#x5047;&#x8BBE;s&#x7684;&#x6700;&#x5927;&#x957F;&#x5EA6;&#x4E3A;1000&#x3002;</p>
+<p>&#x793A;&#x4F8B; 1:</p>
+<pre><code>&#x8F93;&#x5165;:
+&quot;bbbab&quot;
+&#x8F93;&#x51FA;:
+4
+</code></pre><p>&#x4E00;&#x4E2A;&#x53EF;&#x80FD;&#x7684;&#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x5E8F;&#x5217;&#x4E3A; &quot;bbbb&quot;&#x3002;</p>
+<p>&#x793A;&#x4F8B; 2:</p>
+<pre><code>&#x8F93;&#x5165;:
+&quot;cbbd&quot;
+&#x8F93;&#x51FA;:
+2
+</code></pre><p>&#x4E00;&#x4E2A;&#x53EF;&#x80FD;&#x7684;&#x6700;&#x957F;&#x56DE;&#x6587;&#x5B50;&#x5E8F;&#x5217;&#x4E3A; &quot;bb&quot;&#x3002;</p>
+<p><strong>&#x52A8;&#x6001;&#x89C4;&#x5212;&#xFF1A;</strong>  dp[i][j] = dp[i+1][j-1] + 2 if s.charAt(i) == s.charAt(j) otherwise, dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1])</p>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">longestPalindromeSubseq</span><span class="hljs-params">(String s)</span> </span>{
+        <span class="hljs-keyword">int</span> len = s.length();
+        <span class="hljs-keyword">int</span> [][] dp = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[len][len];
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = len - <span class="hljs-number">1</span>; i&gt;=<span class="hljs-number">0</span>; i--){
+            dp[i][i] = <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i+<span class="hljs-number">1</span>; j &lt; len; j++){
+                <span class="hljs-keyword">if</span>(s.charAt(i) == s.charAt(j))
+                    dp[i][j] = dp[i+<span class="hljs-number">1</span>][j-<span class="hljs-number">1</span>] + <span class="hljs-number">2</span>;
+                <span class="hljs-keyword">else</span>
+                    dp[i][j] = Math.max(dp[i+<span class="hljs-number">1</span>][j], dp[i][j-<span class="hljs-number">1</span>]);
+            }
+        }
+        <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][len-<span class="hljs-number">1</span>];
+    }
+}
+</code></pre>
+<h2 id="5-&#x62EC;&#x53F7;&#x5339;&#x914D;&#x6DF1;&#x5EA6;">5. &#x62EC;&#x53F7;&#x5339;&#x914D;&#x6DF1;&#x5EA6;</h2>
+<blockquote>
+<p>&#x7231;&#x5947;&#x827A; 2018 &#x79CB;&#x62DB; Java&#xFF1A;
+&#x4E00;&#x4E2A;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5339;&#x914D;&#x5E8F;&#x5217;&#x6709;&#x4EE5;&#x4E0B;&#x5B9A;&#x4E49;:</p>
+<ol>
+<li>&#x7A7A;&#x4E32;&quot;&quot;&#x662F;&#x4E00;&#x4E2A;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5339;&#x914D;&#x5E8F;&#x5217;</li>
+<li>&#x5982;&#x679C;&quot;X&quot;&#x548C;&quot;Y&quot;&#x90FD;&#x662F;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5339;&#x914D;&#x5E8F;&#x5217;,&quot;XY&quot;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5339;&#x914D;&#x5E8F;&#x5217;</li>
+<li>&#x5982;&#x679C;&quot;X&quot;&#x662F;&#x4E00;&#x4E2A;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5339;&#x914D;&#x5E8F;&#x5217;,&#x90A3;&#x4E48;&quot;(X)&quot;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5339;&#x914D;&#x5E8F;&#x5217;</li>
+<li>&#x6BCF;&#x4E2A;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5E8F;&#x5217;&#x90FD;&#x53EF;&#x4EE5;&#x7531;&#x4EE5;&#x4E0A;&#x89C4;&#x5219;&#x751F;&#x6210;&#x3002;</li>
+</ol>
+<p>&#x4F8B;&#x5982;: &quot;&quot;,&quot;()&quot;,&quot;()()&quot;,&quot;((()))&quot;&#x90FD;&#x662F;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5E8F;&#x5217;
+&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5E8F;&#x5217;&#x6211;&#x4EEC;&#x53C8;&#x6709;&#x4EE5;&#x4E0B;&#x5B9A;&#x4E49;&#x5B83;&#x7684;&#x6DF1;&#x5EA6;:</p>
+<ol>
+<li>&#x7A7A;&#x4E32;&quot;&quot;&#x7684;&#x6DF1;&#x5EA6;&#x662F;0</li>
+<li>&#x5982;&#x679C;&#x5B57;&#x7B26;&#x4E32;&quot;X&quot;&#x7684;&#x6DF1;&#x5EA6;&#x662F;x,&#x5B57;&#x7B26;&#x4E32;&quot;Y&quot;&#x7684;&#x6DF1;&#x5EA6;&#x662F;y,&#x90A3;&#x4E48;&#x5B57;&#x7B26;&#x4E32;&quot;XY&quot;&#x7684;&#x6DF1;&#x5EA6;&#x4E3A;max(x,y)   </li>
+<li>&#x5982;&#x679C;&quot;X&quot;&#x7684;&#x6DF1;&#x5EA6;&#x662F;x,&#x90A3;&#x4E48;&#x5B57;&#x7B26;&#x4E32;&quot;(X)&quot;&#x7684;&#x6DF1;&#x5EA6;&#x662F;x+1</li>
+</ol>
+<p>&#x4F8B;&#x5982;: &quot;()()()&quot;&#x7684;&#x6DF1;&#x5EA6;&#x662F;1,&quot;((()))&quot;&#x7684;&#x6DF1;&#x5EA6;&#x662F;3&#x3002;&#x725B;&#x725B;&#x73B0;&#x5728;&#x7ED9;&#x4F60;&#x4E00;&#x4E2A;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5E8F;&#x5217;,&#x9700;&#x8981;&#x4F60;&#x8BA1;&#x7B97;&#x51FA;&#x5176;&#x6DF1;&#x5EA6;&#x3002; </p>
+</blockquote>
+<pre><code>&#x8F93;&#x5165;&#x63CF;&#x8FF0;:
+&#x8F93;&#x5165;&#x5305;&#x62EC;&#x4E00;&#x4E2A;&#x5408;&#x6CD5;&#x7684;&#x62EC;&#x53F7;&#x5E8F;&#x5217;s,s&#x957F;&#x5EA6;length(2 &#x2264; length &#x2264; 50),&#x5E8F;&#x5217;&#x4E2D;&#x53EA;&#x5305;&#x542B;&apos;(&apos;&#x548C;&apos;)&apos;&#x3002;
+
+&#x8F93;&#x51FA;&#x63CF;&#x8FF0;:
+&#x8F93;&#x51FA;&#x4E00;&#x4E2A;&#x6B63;&#x6574;&#x6570;,&#x5373;&#x8FD9;&#x4E2A;&#x5E8F;&#x5217;&#x7684;&#x6DF1;&#x5EA6;&#x3002;
+</code></pre><p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code>&#x8F93;&#x5165;:
+(())
+&#x8F93;&#x51FA;:
+2
+</code></pre><p>&#x601D;&#x8DEF;&#x8349;&#x56FE;&#xFF1A;</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/9/165bc6fca94ef278?w=792&amp;h=324&amp;f=png&amp;s=15868" alt=""></p>
+<p>&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">import</span> java.util.Scanner;
+
+<span class="hljs-comment">/**
+ * https://www.nowcoder.com/test/8246651/summary
+ * 
+ * <span class="hljs-doctag">@author</span> Snailclimb
+ * <span class="hljs-doctag">@date</span> 2018&#x5E74;9&#x6708;6&#x65E5;
+ * <span class="hljs-doctag">@Description</span>: TODO &#x6C42;&#x7ED9;&#x5B9A;&#x5408;&#x6CD5;&#x62EC;&#x53F7;&#x5E8F;&#x5217;&#x7684;&#x6DF1;&#x5EA6;
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+    Scanner sc = <span class="hljs-keyword">new</span> Scanner(System.in);
+    String s = sc.nextLine();
+    <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>, max = <span class="hljs-number">0</span>, i;
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; s.length(); ++i) {
+      <span class="hljs-keyword">if</span> (s.charAt(i) == <span class="hljs-string">&apos;(&apos;</span>)
+        cnt++;
+      <span class="hljs-keyword">else</span>
+        cnt--;
+      max = Math.max(max, cnt);
+    }
+    sc.close();
+    System.out.println(max);
+  }
+}
+</code></pre>
+<h2 id="6-&#x628A;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x6210;&#x6574;&#x6570;">6. &#x628A;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x6210;&#x6574;&#x6570;</h2>
+<blockquote>
+<p>&#x5251;&#x6307;offer:  &#x5C06;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x6210;&#x4E00;&#x4E2A;&#x6574;&#x6570;(&#x5B9E;&#x73B0;Integer.valueOf(string)&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4F46;&#x662F;string&#x4E0D;&#x7B26;&#x5408;&#x6570;&#x5B57;&#x8981;&#x6C42;&#x65F6;&#x8FD4;&#x56DE;0)&#xFF0C;&#x8981;&#x6C42;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x6574;&#x6570;&#x7684;&#x5E93;&#x51FD;&#x6570;&#x3002; &#x6570;&#x503C;&#x4E3A;0&#x6216;&#x8005;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5408;&#x6CD5;&#x7684;&#x6570;&#x503C;&#x5219;&#x8FD4;&#x56DE;0&#x3002;</p>
+</blockquote>
+<pre><code class="lang-java"><span class="hljs-comment">//https://www.weiweiblog.cn/strtoint/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>{
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">StrToInt</span><span class="hljs-params">(String str)</span> </span>{
+    <span class="hljs-keyword">if</span> (str.length() == <span class="hljs-number">0</span>)
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">char</span>[] chars = str.toCharArray();
+    <span class="hljs-comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x5B58;&#x5728;&#x7B26;&#x53F7;&#x4F4D;</span>
+    <span class="hljs-keyword">int</span> flag = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span> (chars[<span class="hljs-number">0</span>] == <span class="hljs-string">&apos;+&apos;</span>)
+      flag = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (chars[<span class="hljs-number">0</span>] == <span class="hljs-string">&apos;-&apos;</span>)
+      flag = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">int</span> start = flag &gt; <span class="hljs-number">0</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;<span class="hljs-comment">// &#x4FDD;&#x5B58;&#x7ED3;&#x679C;</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = start; i &lt; chars.length; i++) {
+      <span class="hljs-keyword">if</span> (Character.isDigit(chars[i])) {<span class="hljs-comment">// &#x8C03;&#x7528;Character.isDigit(char)&#x65B9;&#x6CD5;&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;&#x6570;&#x5B57;&#xFF0C;&#x662F;&#x8FD4;&#x56DE;True&#xFF0C;&#x5426;&#x5219;False</span>
+        <span class="hljs-keyword">int</span> temp = chars[i] - <span class="hljs-string">&apos;0&apos;</span>;
+        res = res * <span class="hljs-number">10</span> + temp;
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+    }
+   <span class="hljs-keyword">return</span> flag != <span class="hljs-number">2</span> ? res : -res;
+
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+    <span class="hljs-comment">// TODO Auto-generated method stub</span>
+    String s = <span class="hljs-string">&quot;-12312312&quot;</span>;
+    System.out.println(<span class="hljs-string">&quot;&#x4F7F;&#x7528;&#x5E93;&#x51FD;&#x6570;&#x8F6C;&#x6362;&#xFF1A;&quot;</span> + Integer.valueOf(s));
+    <span class="hljs-keyword">int</span> res = Main.StrToInt(s);
+    System.out.println(<span class="hljs-string">&quot;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x5199;&#x7684;&#x65B9;&#x6CD5;&#x8F6C;&#x6362;&#xFF1A;&quot;</span> + res);
+
+  }
+
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="算法学习资源推荐.html" class="navigation navigation-prev " aria-label="Previous page: 算法学习资源推荐">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="几道常见的链表算法题.html" class="navigation navigation-next " aria-label="Next page: 几道常见的链表算法题总结 ">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"几道常见的字符串算法题总结 ","level":"14.2","depth":1,"next":{"title":"几道常见的链表算法题总结 ","level":"14.3","depth":1,"path":"dataStructures-algorithms/几道常见的链表算法题.md","ref":"dataStructures-algorithms/几道常见的链表算法题.md","articles":[]},"previous":{"title":"算法学习资源推荐","level":"14.1","depth":1,"path":"dataStructures-algorithms/算法学习资源推荐.md","ref":"dataStructures-algorithms/算法学习资源推荐.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dataStructures-algorithms/几道常见的子符串算法题.md","mtime":"2020-07-23T06:31:40.758Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-24T11:21:30.457Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
