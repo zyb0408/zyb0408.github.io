@@ -1,0 +1,9 @@
+.keyboard {
+    width: 822px;
+    /* margin: 50px auto; */
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    margin-left: -420px;
+    z-index: 1000;
+}
