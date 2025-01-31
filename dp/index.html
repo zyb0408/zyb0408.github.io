@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek 提示词生成器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>DeepSeek 提示词生成器</h1>
+        <div class="form-group">
+            <label for="role">角色:</label>
+            <div class="card-container" id="roleContainer">
+                <button class="card" data-value="程序员">程序员</button>
+                <button class="card" data-value="设计师">设计师</button>
+                <button class="card" data-value="作家">作家</button>
+                <button class="card add-card" onclick="addCustomItem('roleContainer')">+</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="background">背景:</label>
+            <div class="card-container" id="backgroundContainer">
+                <button class="card" data-value="科技公司">科技公司</button>
+                <button class="card" data-value="广告公司">广告公司</button>
+                <button class="card" data-value="出版社">出版社</button>
+                <button class="card add-card" onclick="addCustomItem('backgroundContainer')">+</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="skill">技能:</label>
+            <div class="card-container" id="skillContainer">
+                <button class="card" data-value="编程">编程</button>
+                <button class="card" data-value="设计">设计</button>
+                <button class="card" data-value="写作">写作</button>
+                <button class="card add-card" onclick="addCustomItem('skillContainer')">+</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="proficiency">技能熟练度:</label>
+            <div class="card-container" id="proficiencyContainer">
+                <button class="card" data-value="初学者">初学者</button>
+                <button class="card" data-value="中级">中级</button>
+                <button class="card" data-value="高级">高级</button>
+                <button class="card add-card" onclick="addCustomItem('proficiencyContainer')">+</button>
+            </div>
+        </div>
+        <button id="generatePrompt">生成提示词</button>
+        <p id="prompt"></p>
+    </div>
+
+    <!-- Modal -->
+    <div id="promptModal" class="modal">
+        <div class="modal-content">
+            <p id="modalPrompt"></p>
+            <div class="modal-buttons">
+                <button id="copyButton">复制</button>
+                <button id="confirmButton">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
