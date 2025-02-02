@@ -6,43 +6,104 @@
     <title>1000个真心话</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; // 修改: 更换字体
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: center; // 修改: 改为center以使内容居中
+            min-height: 100vh;
             flex-direction: column;
+            padding: 20px;
+            margin: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f9; // 修改: 添加背景颜色
+            color: #333; // 修改: 添加文字颜色
+        }
+        #truth-container {
+            margin-bottom: 20px;
+            text-align: center;
+            height: 150px; /* 修改: 固定高度 */
+            overflow: hidden; /* 修改: 隐藏溢出内容 */
         }
         #truth {
             font-size: 2em;
-            margin-bottom: 20px;
+            width: 100%;
+            padding: 0 15px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            line-height: 1.2em; // 修改: 设置行高
+            height: 2.4em; // 修改: 设置高度为两个文本行高
+        }
+        #button-container {
+            text-align: center; // 修改: 按钮居中
         }
         button {
             padding: 10px 20px;
             font-size: 1em;
+            margin-bottom: 20px;
+            background-color: #007bff; // 修改: 添加按钮背景颜色
+            color: white; // 修改: 添加按钮文字颜色
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s; // 修改: 添加过渡效果
+        }
+        button:hover {
+            background-color: #0056b3; // 修改: 添加按钮悬停效果
+        }
+        #truthList-container {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            max-height: calc(100vh - 300px);
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto; // 修改: 使容器居中
         }
         ul {
             list-style-type: none;
             padding: 0;
-            width: 50%;
-            text-align: left;
+            width: 100%;
+            text-align: center; // 修改: 文字居中
         }
         li {
-            background-color: #f0f0f0;
+            background-color: #add8e6;
+            color: #ffffff;
             margin: 5px 0;
             padding: 10px;
             border-radius: 5px;
+            word-break: break-word;
+        }
+
+        @media (max-width: 768px) {
+            #truth {
+                font-size: 1.5em;
+            }
+            ul {
+                max-width: 90%;
+            }
+            button {
+                width: 100%;
+                max-width: 200px;
+            }
+            #truthList-container {
+                max-height: calc(100vh - 200px);
+            }
         }
     </style>
 </head>
 <body>
-    <div id="truth">真心话将会在这里显示</div>
-    <button id="pauseButton">暂停</button>
-    <h3>已回答</h3> <!-- 添加标题 -->
-    <ul id="truthList"></ul>
+    <div id="truth-container">
+        <div id="truth">真心话将会在这里显示</div>
+    </div>
+    <div id="button-container">
+        <button id="pauseButton">暂停</button>
+        <h3>已回答</h3>
+    </div>
+    <div id="truthList-container">
+        <ul id="truthList"></ul>
+    </div>
 
     <script>
-        const truths = ["1. 你曾经暗恋过谁？",
+         const truths = ["1. 你曾经暗恋过谁？",
 "2. 你最喜欢自己哪个部位？",
 "3. 你有没有玩过撒谎游戏？说出你最大的一个谎言。",
 "4. 你曾经偷偷看过哪个异性的聊天记录？",
@@ -999,6 +1060,7 @@
 "998. 你曾经因为某个人而感到非常失望和绝望吗？",
 "999. 你最喜欢的一首流行歌曲是哪一首？",
 "1000. 你曾经因为什么原因感到很害怕和恐惧？"];
+
 
         let intervalId;
 
