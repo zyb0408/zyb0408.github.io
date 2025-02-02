@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸运大转盘</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">有种你就来转一下，转不死你</h1>
+        <div class="control-panel">
+            <label>份数：</label>
+            <input type="number" id="sectionsInput" min="2" max="50" value="30" placeholder="请输入分区数量(2-50)">
+            <label>目标值：</label>
+            <input type="number" id="targetNumber" min="1" max="100" value="50" placeholder="请输入目标数字">
+            <button id="startButton">开始</button>
+        </div>
+        
+        <div class="wheel-container">
+            <canvas id="wheel"></canvas>
+            <div class="pointer"></div>
+        </div>
+
+        <div id="result" class="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
