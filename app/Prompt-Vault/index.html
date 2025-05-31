@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Vault (提示词秘库) - 管理大模型提示词的好帮手</title>
+    <meta name="description" content="Prompt Vault (提示词秘库) 是一款帮助您高效管理和组织AI提示词及API密钥的本地工具，支持iPhone, iPad和macOS。">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            margin: 0;
+            padding: 0;
+            background-color: #fffaf0; /* 温暖的米白色背景 */
+            color: #4A4A4A; /* 深灰色文字，易于阅读 */
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background-color: #FFEBCD; /* 较浅的暖色，如桃色或浅橙 */
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            color: #D2691E; /* 巧克力色或深橙色 */
+            margin-bottom: 10px;
+        }
+
+        header .app-icon-placeholder {
+            width: 120px;
+            height: 120px;
+            background-color: #ddd;
+            border-radius: 22.5%; /* iOS 图标圆角 */
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            color: #777;
+            /* 提醒：请替换为你的App图标图片 */
+            border: 1px solid #ccc;
+        }
+
+        header .tagline {
+            font-size: 1.5em;
+            color: #SADDLEBROWN; /* 鞍褐色 */
+            margin-bottom: 20px;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            color: #7A7A7A;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .app-store-badge {
+            display: inline-block;
+            margin-top: 20px;
+            /* 你需要替换成实际的 App Store 徽章图片和链接 */
+        }
+
+        .app-store-badge img {
+            height: 50px; /* 根据你的徽章调整 */
+        }
+        
+        nav {
+            background-color: #D2691E; /* 巧克力色或深橙色 */
+            padding: 10px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #F0E68C; /* 淡卡其色分隔线 */
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        section h2 {
+            font-size: 2.2em;
+            color: #D2691E;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .feature-item {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .feature-item h3 {
+            font-size: 1.3em;
+            color: #SADDLEBROWN;
+            margin-top: 0;
+        }
+        
+        .feature-item .icon { /* 简单的 Unicode 图标示例 */
+            font-size: 1.5em;
+            margin-right: 10px;
+            color: #D2691E;
+        }
+
+        .screenshots-gallery {
+            margin-top: 30px;
+        }
+        
+        .screenshots-gallery h3 {
+            font-size: 1.8em;
+            color: #SADDLEBROWN;
+            margin-bottom: 20px;
+        }
+
+        .platform-screenshots {
+            display: flex;
+            flex-wrap: wrap; /* 允许换行 */
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .platform-screenshots img, .platform-screenshots .img-placeholder {
+            /* iPhone: 1320x2868, macOS: 1280x800 */
+            /* 按比例缩小显示 */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            object-fit: contain; /* 保持图片比例 */
+        }
+        
+        .iphone-screenshot img, .iphone-screenshot .img-placeholder {
+             width: calc(100%  - 20px); /* 每行最多显示3个，并考虑间隙 */
+             max-width: 400px; /* 最大宽度，防止过大 */
+             /* 高度将按比例自动调整 */
+        }
+
+        .mac-screenshot img, .mac-screenshot .img-placeholder {
+            width: calc(100% - 20px); /* 每行最多显示2个 */
+            max-width: 400px;
+        }
+        
+        .img-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            color: #888;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .iphone-screenshot .img-placeholder { height: 434px; /* 示例高度，基于200px宽度和1320x2868比例 */}
+        .mac-screenshot .img-placeholder { height: 250px; /* 示例高度，基于400px宽度和1280x800比例 */}
+
+
+        .testimonials blockquote {
+            background-color: #FFF8DC; /* 玉米色，非常浅的黄色 */
+            border-left: 5px solid #FFD700; /* 金色 */
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 600px;
+            font-style: italic;
+        }
+
+        .testimonials cite {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #D2691E;
+        }
+
+        .cta-section {
+            background-color: #FFEBCD; /* 与 header 呼应 */
+            padding: 50px 20px;
+        }
+
+        .about-developer {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .about-developer p {
+            margin-bottom: 15px;
+        }
+        .about-developer a {
+            color: #D2691E;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .about-developer a:hover {
+            text-decoration: underline;
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #4A4A4A;
+            color: #f0f0f0;
+            font-size: 0.9em;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2em; }
+            header .tagline { font-size: 1.2em; }
+            section h2 { font-size: 1.8em; }
+            .features-grid { grid-template-columns: 1fr; } /* 单列显示 */
+            .iphone-screenshot img, .iphone-screenshot .img-placeholder { width: calc(100% / 2 - 10px); max-width: 150px; }
+            .mac-screenshot img, .mac-screenshot .img-placeholder { width: 100%; max-width: 300px; }
+
+        }
+        @media (max-width: 480px) {
+            nav a { margin: 0 8px; font-size: 0.9em;}
+            .iphone-screenshot img, .iphone-screenshot .img-placeholder { width: 100%; max-width: 220px; } /* iPhone上单列显示 */
+            .iphone-screenshot .img-placeholder { height: auto; aspect-ratio: 1320 / 2868; } /* 保持比例 */
+
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="app-icon-placeholder"><img src="./assets/mc128.jpg" alt="Prompt Vault App Icon" style="width:120px; height:120px; border-radius: 22.5%;"></div>
+            <h1>Prompt Vault (提示词秘库)</h1>
+            <p class="tagline">管理大模型提示词的好帮手</p>
+            <p class="subtitle">
+                无论是AI绘画的灵感、创新的营销文案、复杂的编程指令，还是日常学习笔记，Prompt Vault 都能帮你妥善保存、轻松管理，让你的每一个好点子都能快速取用！
+            </p>
+            <a href="https://apps.apple.com/cn/app/prompt-vault/id6746560097" target="_blank" class="app-store-badge">
+                <img src="./assets/mc128.jpg" alt="Download on the App Store">
+            </a>
+            <p style="font-size: 0.9em; margin-top: 15px;">支持 iPhone, iPad 和 macOS</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <a href="#features">核心功能</a>
+            <a href="#screenshots">应用截图</a>
+            <a href="#testimonials">用户评价</a>
+            <a href="#about-dev">关于开发者</a>
+        </div>
+    </nav>
+
+    <section id="overview">
+        <div class="container">
+            <h2>还在为散落各处的提示词烦恼吗？</h2>
+            <p style="max-width: 700px; margin: 0 auto 20px;">
+                你是否也曾因为找不到之前用过的某个绝妙提示词而懊恼？或者因为API密钥管理混乱而头大？Prompt Vault 致力于解决这些痛点，为你提供一个私密、高效、跨平台的本地存储和管理方案。
+            </p>
+        </div>
+    </section>
+
+    <section id="features" style="background-color: #FFF8DC;"> <div class="container">
+            <h2>核心功能一览</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3><span class="icon">✍️</span> 提示词管理</h3>
+                    <p>轻松创建、编辑、归类您的AI提示词。支持自定义名称、类别、多个标签，并存储详细的多行文本内容。</p>
+                </div>
+                <div class="feature-item">
+                    <h3><span class="icon">🔑</span> API密钥管理</h3>
+                    <p>安全记录您的API密钥，包括名称、所属平台和密钥内容。需要时可一键复制，方便快捷。</p>
+                </div>
+                <div class="feature-item">
+                    <h3><span class="icon">🔒</span> 本地存储与隐私</h3>
+                    <p>所有数据完全存储在您的设备本地，我们不收集或上传任何您的个人数据，确保您的隐私安全。</p>
+                </div>
+                <div class="feature-item">
+                    <h3><span class="icon">🔍</span> 快速搜索与排序</h3>
+                    <p>强大的全文搜索功能，覆盖名称、类别、标签等，帮您迅速定位所需内容。支持按创建或修改日期排序。</p>
+                </div>
+                <div class="feature-item">
+                    <h3><span class="icon">🎨</span> 个性化主题</h3>
+                    <p>内置“温馨简约”浅色主题与“黑色护眼”深色主题，适应不同环境下的使用需求，带来舒适体验。</p>
+                </div>
+                <div class="feature-item">
+                    <h3><span class="icon">📊</span> 数据统计</h3>
+                    <p>清晰展示您已存储的提示词和API密钥数量，让您对自己的“宝库”了如指掌。</p>
+                </div>
+                <div class="feature-item">
+                    <h3><span class="icon">🗂️</span> 高级管理</h3>
+                    <p>灵活管理自定义的提示词类别、标签以及API密钥的平台信息，支持重命名和删除操作。</p>
+                </div>
+                <div class="feature-item">
+                    <h3><span class="icon">📱💻</span> 跨平台支持（1.0版本暂不支持iCloud同步）</h3>
+                    <p>即可在您的 iPhone, iPad 和 macOS 设备上无缝使用，满足您在不同场景下的需求。</p>
+                </div>
+                 <div class="feature-item">
+                    <h3><span class="icon">✨</span> 上手即用</h3>
+                    <p>内置若干实用默认提示词，助您快速熟悉应用功能，激发您的使用灵感。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="screenshots">
+        <div class="container">
+            <h2>应用截图展示</h2>
+            <div class="screenshots-gallery">
+                <h3>iPhone & iPad 截图</h3>
+                <div class="platform-screenshots">
+                    <div class="iphone-screenshot"><img src="./assets/IMG_7802.JPG" alt="Prompt Vault iPhone Screenshot 1"></div>
+                    <div class="iphone-screenshot"><img src="./assets/IMG_7803.JPG" alt="Prompt Vault iPhone Screenshot 2"></div>
+                    <div class="iphone-screenshot"><img src="./assets/IMG_7804.JPG" alt="Prompt Vault iPhone Screenshot 3"></div>
+                    <div class="iphone-screenshot"><img src="./assets/IMG_7805.JPG" alt="Prompt Vault iPhone Screenshot 4"></div>
+                </div>
+
+                <h3>macOS 截图</h3>
+                <div class="platform-screenshots">
+                    <div class="mac-screenshot"><img src="./assets/IMG_7844.JPG" alt="Prompt Vault macOS Screenshot 1"></div>
+                    <div class="mac-screenshot"><img src="./assets/IMG_7845.JPG" alt="Prompt Vault macOS Screenshot 2"></div>
+                    <div class="mac-screenshot"><img src="./assets/IMG_7846.JPG" alt="Prompt Vault macOS Screenshot 3"></div>
+                    <div class="mac-screenshot"><img src="./assets/IMG_7847.JPG" alt="Prompt Vault macOS Screenshot 4"></div>
+                </div>
+            </div>
+             <p style="margin-top: 30px; font-size: 1.1em;">为内容创作者、开发者和AI爱好者量身打造，让管理提示词和API密钥变得前所未有地简单高效。</p>
+        </div>
+    </section>
+
+    <section id="testimonials" style="background-color: #FFF5EE;"> <div class="container">
+            <h2>听听用户怎么说</h2>
+            <div class="testimonials">
+                <blockquote>
+                    <p>"自从用了提示词秘库，我的创作效率大大提升！无论是写文章还是构思视频脚本，再也不用在各种文档里翻找那些珍贵的提示词了，分类和标签功能太棒了！"</p>
+                    <cite>– 李明, 内容创作者</cite>
+                </blockquote>
+                <blockquote>
+                    <p>"管理API密钥和那些复杂的AI绘画提示词一直是个头疼事，Prompt Vault完美解决了我的需求。所有数据都在本地，不用担心隐私泄露，非常安心。Mac版和iPhone版能同步就更完美了（期待未来iCloud同步）。"</p>
+                    <cite>– 王芳, AI绘画爱好者 & 独立开发者</cite>
+                </blockquote>
+                <blockquote>
+                    <p>"界面清爽，操作简单，深色主题在晚上用起来眼睛很舒服。现在我工作中用到的各种指令、模板都有了安家之所，查找起来也方便多了！绝对是提高生产力的好帮手。"</p>
+                    <cite>– 张伟, 市场运营</cite>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="cta-section">
+        <div class="container">
+            <h2>立即体验 Prompt Vault</h2>
+            <p>释放您的创造力，高效管理您的数字资产。现在就从 App Store 下载 Prompt Vault (提示词秘库)！</p>
+            <a href="https://apps.apple.com/cn/app/prompt-vault/id6746560097" target="_blank" class="app-store-badge">
+                <img src="./assets/mc128.jpg" alt="Download on the App Store">
+            </a>
+        </div>
+    </section>
+    
+    <section id="about-dev">
+        <div class="container about-developer">
+            <h2>关于开发者</h2>
+            <p>Prompt Vault 由独立开发者 <strong>沪上码仔</strong> 精心打造。Ta热衷于通过技术解决实际问题，提升个人和团队的工作效率。</p>
+            <p>
+                关注Ta的更多动态：
+                <br>
+                <a href="https://zyb0408.github.io" target="_blank">个人博客</a> | 
+                <a href="https://github.com/zyb0408" target="_blank">GitHub</a> | 
+                抖音: 沪上码仔
+            </p>
+            <p>如果您在使用过程中有任何建议或问题，欢迎通过以上渠道联系开发者。</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024-2025 [沪上码仔]. 保留所有权利。</p>
+            </div>
+    </footer>
+
+</body>
+</html>
