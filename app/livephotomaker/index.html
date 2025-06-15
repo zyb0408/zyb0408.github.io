@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LivePhotoMaker - Create Amazing Live Photos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Language Switcher -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="langSwitch" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+            <span class="en">中文</span>
+            <span class="zh hidden">English</span>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+        <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                <span class="en">Create Amazing Live Photos</span>
+                <span class="zh hidden">打造精彩动态照片</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8">
+                <span class="en">Transform your videos into stunning live photos with just a few taps</span>
+                <span class="zh hidden">只需轻点几下，即可将视频转换为精美的动态照片</span>
+            </p>
+            <a href="#features" class="bg-white text-blue-500 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors">
+                <span class="en">Explore Features</span>
+                <span class="zh hidden">探索功能</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span class="en">Core Features</span>
+                    <span class="zh hidden">核心功能</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    <span class="en">Professional video and image processing tools</span>
+                    <span class="zh hidden">专业的视频和图片处理工具</span>
+                </p>
+            </div>
+
+            <!-- Video Processing Section -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold mb-8 text-center">
+                    <span class="en">Video Processing</span>
+                    <span class="zh hidden">视频处理</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Video Trimmer -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up">
+                        <div class="relative w-full flex justify-center items-center">
+                            <img src="assets/images/视频剪辑.png" alt="Video Duration Trimmer" class="w-[40%] object-contain rounded-[3rem]">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-4">
+                                <span class="en">Video Duration Trimmer</span>
+                                <span class="zh hidden">视频时长裁剪</span>
+                            </h3>
+                            <p class="text-gray-600">
+                                <span class="en">Precise video duration trimming with frame-by-frame control</span>
+                                <span class="zh hidden">精确的视频时长裁剪，支持逐帧控制</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Live Wallpaper -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative w-full flex justify-center items-center">
+                            <img src="assets/images/动态壁纸.png" alt="Live Wallpaper" class="w-[40%] object-contain rounded-[3rem]">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-4">
+                                <span class="en">Live Wallpaper Creator</span>
+                                <span class="zh hidden">动态壁纸制作</span>
+                            </h3>
+                            <p class="text-gray-600">
+                                <span class="en">Create stunning live wallpapers for your device</span>
+                                <span class="zh hidden">为您的设备创建精美的动态壁纸</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Processing Section -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold mb-8 text-center">
+                    <span class="en">Image Processing</span>
+                    <span class="zh hidden">图片处理</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Image Generation -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up">
+                        <div class="relative w-full flex justify-center items-center">
+                            <img src="assets/images/生成图片.png" alt="Image Creator" class="w-[40%] object-contain rounded-[3rem]">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-4">
+                                <span class="en">Pixel Image Creator</span>
+                                <span class="zh hidden">像素图片创建器</span>
+                            </h3>
+                            <p class="text-gray-600">
+                                <span class="en">Create custom pixel-perfect images with precise dimensions, colors, gradients, and patterns</span>
+                                <span class="zh hidden">创建自定义像素级图片，支持精确尺寸、颜色、渐变色和图案</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Image Generation 2 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="50">
+                        <div class="relative w-full flex justify-center items-center">
+                            <img src="assets/images/生成图片2.png" alt="Image Creator 2" class="w-[40%] object-contain rounded-[3rem]">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-4">
+                                <span class="en">Gradient & Pattern Creator</span>
+                                <span class="zh hidden">渐变与图案创建</span>
+                            </h3>
+                            <p class="text-gray-600">
+                                <span class="en">Create beautiful gradients and patterns with customizable options</span>
+                                <span class="zh hidden">创建精美的渐变色和图案，支持自定义选项</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Image Generation 3 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative w-full flex justify-center items-center">
+                            <img src="assets/images/生成图片3.png" alt="Image Creator 3" class="w-[40%] object-contain rounded-[3rem]">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-4">
+                                <span class="en">Advanced Pattern Designer</span>
+                                <span class="zh hidden">高级图案设计</span>
+                            </h3>
+                            <p class="text-gray-600">
+                                <span class="en">Design complex patterns with multiple styles and effects</span>
+                                <span class="zh hidden">设计复杂的图案，支持多种样式和效果</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Apple Icon Generator -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="150">
+                        <div class="relative w-full flex justify-center items-center">
+                            <img src="assets/images/Apple图标生成器.png" alt="Apple Icon Generator" class="w-[40%] object-contain rounded-[3rem]">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-4">
+                                <span class="en">Apple Icon Generator</span>
+                                <span class="zh hidden">Apple 图标生成器</span>
+                            </h3>
+                            <p class="text-gray-600">
+                                <span class="en">Generate a complete set of iOS app icons in 7 different sizes: 1x1, 32x32, 64x64, 128x128, 256x256, 512x512, and 1024x1024 pixels, perfectly matching Apple's specifications</span>
+                                <span class="zh hidden">生成完整的 iOS 应用图标集，包含 7 种不同尺寸：1x1、32x32、64x64、128x128、256x256、512x512 和 1024x1024 像素，完美符合 Apple 规范</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <h2 class="text-2xl font-bold mb-4">LivePhotoMaker</h2>
+                    <p class="text-gray-400">
+                        <span class="en">Professional video and image processing tools</span>
+                        <span class="zh hidden">专业的视频和图片处理工具</span>
+                    </p>
+                </div>
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex space-x-6 mb-4">
+                        <a href="mailto:zyb0408@gmail.com" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="en">Contact</span>
+                            <span class="zh hidden">联系我们</span>
+                        </a>
+                        <a href="privacy.html" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="en">Privacy Policy</span>
+                            <span class="zh hidden">隐私政策</span>
+                        </a>
+                        <a href="terms.html" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="en">Terms of Service</span>
+                            <span class="zh hidden">服务条款</span>
+                        </a>
+                        <a href="agreement.html" class="text-gray-400 hover:text-white transition-colors">
+                            <span class="en">User Agreement</span>
+                            <span class="zh hidden">用户协议</span>
+                        </a>
+                    </div>
+                    <p class="text-gray-500 text-sm">
+                        © 2024 LivePhotoMaker. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html> 
