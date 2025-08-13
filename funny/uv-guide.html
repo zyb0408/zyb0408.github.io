@@ -1,0 +1,699 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UV Python 工具使用指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1E293B',
+                        light: '#F8FAFC',
+                        accent: '#8B5CF6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-cubes text-primary text-2xl"></i>
+                <h1 class="text-xl font-bold text-dark">UV 工具指南</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#installation" class="text-gray-600 hover:text-primary transition-colors">安装</a>
+                <a href="#initialization" class="text-gray-600 hover:text-primary transition-colors">初始化</a>
+                <a href="#venv" class="text-gray-600 hover:text-primary transition-colors">虚拟环境</a>
+                <a href="#dependencies" class="text-gray-600 hover:text-primary transition-colors">依赖管理</a>
+                <a href="#conversion" class="text-gray-600 hover:text-primary transition-colors">转换指南</a>
+                <a href="#additional" class="text-gray-600 hover:text-primary transition-colors">补充内容</a>
+            </nav>
+            <button class="md:hidden text-gray-600" id="menuToggle">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#installation" class="py-2 text-gray-600 hover:text-primary">安装</a>
+                <a href="#initialization" class="py-2 text-gray-600 hover:text-primary">初始化</a>
+                <a href="#venv" class="py-2 text-gray-600 hover:text-primary">虚拟环境</a>
+                <a href="#dependencies" class="py-2 text-gray-600 hover:text-primary">依赖管理</a>
+                <a href="#conversion" class="py-2 text-gray-600 hover:text-primary">转换指南</a>
+                <a href="#additional" class="py-2 text-gray-600 hover:text-primary">补充内容</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="bg-gradient-to-br from-dark to-gray-800 text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">UV Python 工具</h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+                快速、现代的 Python 包管理器和虚拟环境工具，让依赖管理更高效
+            </p>
+            <div class="mt-10">
+                <a href="#installation" class="bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-lg inline-flex items-center transition-all shadow-lg hover:shadow-primary/30">
+                    <i class="fa fa-download mr-2"></i> 开始使用
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- 简介卡片 -->
+        <section class="mb-16">
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+                <h2 class="text-2xl font-bold mb-4 text-dark">什么是 UV？</h2>
+                <p class="text-gray-700 mb-4">
+                    UV 是一个用 Rust 编写的快速 Python 包管理器和虚拟环境工具，旨在提供比 pip 和 venv 更快的速度和更简洁的体验。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                    <div class="bg-blue-50 p-5 rounded-lg card-hover">
+                        <div class="text-primary text-3xl mb-3">
+                            <i class="fa fa-bolt"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">速度极快</h3>
+                        <p class="text-gray-600">比 pip 快 10-100 倍，尤其在处理大量依赖时</p>
+                    </div>
+                    <div class="bg-green-50 p-5 rounded-lg card-hover">
+                        <div class="text-secondary text-3xl mb-3">
+                            <i class="fa fa-cogs"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">自动管理</h3>
+                        <p class="text-gray-600">无需手动创建和激活虚拟环境，简化工作流</p>
+                    </div>
+                    <div class="bg-purple-50 p-5 rounded-lg card-hover">
+                        <div class="text-accent text-3xl mb-3">
+                            <i class="fa fa-shield"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">确定性构建</h3>
+                        <p class="text-gray-600">通过 uv.lock 确保环境一致性，消除"在我机器上能运行"问题</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 安装部分 -->
+        <section id="installation" class="mb-16 scroll-mt-20">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-download text-primary"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-dark">安装 UV</h2>
+            </div>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 md:p-8">
+                    <p class="text-gray-700 mb-6">UV 提供了多种安装方式，适用于不同操作系统：</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">通用安装脚本（推荐）</h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                curl -LsSf https://astral.sh/uv/install.sh | sh
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">使用 pip 安装（备用）</h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                pip install uv
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">Windows 系统（PowerShell）</h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                irm https://astral.sh/uv/install.ps1 | iex
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="font-semibold text-lg mb-3 text-gray-800">验证安装</h3>
+                        <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                            uv --version
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <h3 class="font-semibold text-lg mb-3 text-gray-800">升级 UV 到最新版本</h3>
+                        <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                            uv self-update
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 初始化项目 -->
+        <section id="initialization" class="mb-16 scroll-mt-20">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-file-code-o text-primary"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-dark">初始化项目</h2>
+            </div>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 md:p-8">
+                    <p class="text-gray-700 mb-6">创建并初始化一个新的 Python 项目：</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-medium text-gray-800 mb-2">创建项目目录并进入</h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                mkdir my_project &amp;&amp; cd my_project
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-medium text-gray-800 mb-2">初始化项目（生成 pyproject.toml）</h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                uv init
+                            </div>
+                            <p class="mt-2 text-gray-600 text-sm">该命令会生成基础的 pyproject.toml 文件，包含项目元信息和依赖管理配置。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="font-semibold text-lg mb-3 text-gray-800">设置镜像源（index-url）</h3>
+                        <p class="text-gray-700 mb-4">为了加速包下载，可以配置国内镜像源：</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">临时使用</h4>
+                                <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                    uv add &lt;package&gt; --index-url https://pypi.tuna.tsinghua.edu.cn/simple
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">全局配置（推荐）</h4>
+                                <p class="text-gray-700 mb-2">通过环境变量设置：</p>
+                                
+                                <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto mb-4">
+                                    # Linux/macOS（bash/zsh）临时生效<br>
+                                    export UV_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple<br><br>
+                                    # Linux/macOS（bash/zsh）永久生效<br>
+                                    echo 'export UV_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple' >> ~/.bashrc<br>
+                                    source ~/.bashrc
+                                </div>
+                                
+                                <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                    # Windows PowerShell 临时生效<br>
+                                    $env:UV_INDEX_URL = "https://pypi.tuna.tsinghua.edu.cn/simple"<br><br>
+                                    # Windows PowerShell 永久生效<br>
+                                    [Environment]::SetEnvironmentVariable("UV_INDEX_URL", "https://pypi.tuna.tsinghua.edu.cn/simple", "User")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 虚拟环境管理 -->
+        <section id="venv" class="mb-16 scroll-mt-20">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-cube text-primary"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-dark">虚拟环境管理</h2>
+            </div>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 md:p-8">
+                    <p class="text-gray-700 mb-6">UV 会自动管理虚拟环境，无需手动创建：</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">创建虚拟环境</h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto mb-4">
+                                # 创建默认 Python 版本的虚拟环境<br>
+                                uv venv<br><br>
+                                # 创建指定大版本的虚拟环境（会使用该系列最新版本）<br>
+                                uv venv --python 3.11<br><br>
+                                # 创建指定精确版本的虚拟环境<br>
+                                uv venv --python 3.10.12
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">激活虚拟环境</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Linux/macOS</h4>
+                                    <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                        source .venv/bin/activate
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800 mb-2">Windows (PowerShell)</h4>
+                                    <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                        .venv\Scripts\Activate.ps1
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">退出虚拟环境</h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                deactivate
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">查看虚拟环境信息</h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                # 查看当前环境的 Python 版本<br>
+                                uv run python --version<br><br>
+                                # 查看虚拟环境详细信息<br>
+                                uv venv --info
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 依赖管理 -->
+        <section id="dependencies" class="mb-16 scroll-mt-20">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-puzzle-piece text-primary"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-dark">依赖管理</h2>
+            </div>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 md:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800 flex items-center">
+                                <i class="fa fa-plus-circle text-green-500 mr-2"></i> 添加依赖
+                            </h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto mb-4">
+                                # 添加生产依赖（写入 pyproject.toml）<br>
+                                uv add requests  # 最新版本<br>
+                                uv add pandas==2.1.0  # 指定版本<br>
+                                uv add "flask&gt;=2.0.0"  # 版本范围<br><br>
+                                # 添加开发依赖（仅开发环境使用）<br>
+                                uv add --dev pytest<br>
+                                uv add --dev black isort  # 同时添加多个
+                            </div>
+                            <p class="text-gray-600 text-sm">注意：增加依赖时不需要激活环境，UV会自动使用项目的虚拟环境。</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800 flex items-center">
+                                <i class="fa fa-minus-circle text-red-500 mr-2"></i> 移除依赖
+                            </h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto mb-4">
+                                # 移除生产依赖<br>
+                                uv remove requests<br><br>
+                                # 移除开发依赖<br>
+                                uv remove --dev pytest
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800 flex items-center">
+                                <i class="fa fa-refresh text-blue-500 mr-2"></i> 同步依赖
+                            </h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto mb-4">
+                                # 确保当前环境与锁文件一致<br>
+                                uv sync<br><br>
+                                # 强制重新生成锁文件并同步<br>
+                                uv sync --force
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800 flex items-center">
+                                <i class="fa fa-export text-purple-500 mr-2"></i> 导出依赖（兼容 pip）
+                            </h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto mb-4">
+                                # 导出依赖到 requirements.txt<br>
+                                uv export &gt; requirements.txt<br><br>
+                                # 导出开发依赖<br>
+                                uv export --dev &gt; requirements-dev.txt
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="font-semibold text-lg mb-3 text-gray-800">查看已安装的依赖</h3>
+                        <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto mb-4">
+                            # 查看项目所有已安装依赖<br>
+                            uv list<br><br>
+                            # 查看特定依赖的详细信息<br>
+                            uv list requests<br><br>
+                            # 以树形结构查看依赖关系<br>
+                            uv tree
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="font-semibold text-lg mb-3 text-gray-800">常用命令补充</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <code class="bg-gray-200 px-2 py-1 rounded text-sm mr-3 font-mono">uv install</code>
+                                    <span>安装锁文件中的所有依赖</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <code class="bg-gray-200 px-2 py-1 rounded text-sm mr-3 font-mono">uv update</code>
+                                    <span>更新所有依赖</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <code class="bg-gray-200 px-2 py-1 rounded text-sm mr-3 font-mono">uv update requests</code>
+                                    <span>更新指定依赖</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <code class="bg-gray-200 px-2 py-1 rounded text-sm mr-3 font-mono">uv check</code>
+                                    <span>检查依赖冲突</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <code class="bg-gray-200 px-2 py-1 rounded text-sm mr-3 font-mono">uv cache clean</code>
+                                    <span>清理缓存</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 转换指南 -->
+        <section id="conversion" class="mb-16 scroll-mt-20">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-exchange text-primary"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-dark">从 requirements.txt 转换为 pyproject.toml</h2>
+            </div>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 md:p-8">
+                    <p class="text-gray-700 mb-6">
+                        将现有的 requirements.txt 转换为 UV 所使用的 pyproject.toml 格式非常简单，UV 提供了专门的命令来实现这一转换。
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">1. 准备工作</h3>
+                            <p class="text-gray-700">
+                                确保你已经在项目目录中（如果是新项目，可先通过 <code class="bg-gray-100 px-1 py-0.5 rounded text-sm">uv init</code> 初始化生成基础的 pyproject.toml），并将 requirements.txt 放在项目根目录下。
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">2. 导入生产依赖</h3>
+                            <p class="text-gray-700 mb-2">使用 <code class="bg-gray-100 px-1 py-0.5 rounded text-sm">uv add</code> 命令直接从 requirements.txt 导入依赖：</p>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                uv add -r requirements.txt
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">3. 导入开发依赖</h3>
+                            <p class="text-gray-700 mb-2">如果有单独的开发环境依赖文件（如 requirements-dev.txt）：</p>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                uv add --dev -r requirements-dev.txt
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">4. 验证转换结果</h3>
+                            <p class="text-gray-700 mb-2">打开 pyproject.toml 查看是否正确导入：</p>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                [project]<br>
+                                name = "my_project"<br>
+                                version = "0.1.0"<br>
+                                dependencies = [<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"requests==2.31.0",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"pandas&gt;=2.0.0",<br>
+                                ]<br><br>
+                                [project.optional-dependencies]<br>
+                                dev = [<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"pytest==7.4.0",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;"black&gt;=23.0",<br>
+                                ]
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-3 text-gray-800">5. 生成锁文件并同步环境</h3>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                uv sync
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                        <h3 class="font-semibold text-yellow-800 mb-2 flex items-center">
+                            <i class="fa fa-info-circle mr-2"></i> 注意事项
+                        </h3>
+                        <ul class="list-disc pl-5 space-y-2 text-yellow-700 text-sm">
+                            <li>如果 requirements.txt 中包含 URL 形式的依赖（如 git 仓库地址），UV 也能正确识别并导入。</li>
+                            <li>若依赖项存在版本冲突，UV 会在转换过程中提示错误，需手动解决冲突后再重新执行导入命令。</li>
+                            <li>转换后，建议删除原 requirements.txt 或标记为过时（如重命名为 requirements.txt.old），避免后续维护时出现两份依赖清单不一致的问题。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 补充内容 -->
+        <section id="additional" class="mb-16 scroll-mt-20">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-plus-square text-primary"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-dark">补充内容</h2>
+            </div>
+            
+            <!-- 运行Python脚本 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                <div class="p-6 md:p-8">
+                    <h3 class="font-semibold text-lg mb-4 text-gray-800">使用 UV 运行 Python 脚本</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">方法一：使用 <code class="bg-gray-100 px-1 py-0.5 rounded text-sm">uv run</code> 命令（推荐）</h4>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                # 在项目虚拟环境中运行 main.py<br>
+                                uv run main.py<br><br>
+                                # 传递命令行参数<br>
+                                uv run main.py --arg1 value1 --arg2 value2<br><br>
+                                # 运行模块（如 Python 的 -m 选项）<br>
+                                uv run -m mymodule.submodule
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">方法二：手动调用虚拟环境中的 Python 解释器</h4>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                # Linux/macOS<br>
+                                .venv/bin/python main.py<br><br>
+                                # Windows (PowerShell)<br>
+                                .venv\Scripts\python.exe main.py
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 创建多个不同版本的虚拟环境 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                <div class="p-6 md:p-8">
+                    <h3 class="font-semibold text-lg mb-4 text-gray-800">创建多个不同版本的虚拟环境</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">1. 为不同项目创建不同版本的虚拟环境</h4>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                # 项目 A 使用 Python 3.10<br>
+                                mkdir project-a && cd project-a<br>
+                                uv venv --python 3.10  # 创建 Python 3.10 的虚拟环境<br>
+                                cd ..<br><br>
+                                # 项目 B 使用 Python 3.12<br>
+                                mkdir project-b && cd project-b<br>
+                                uv venv --python 3.12  # 创建 Python 3.12 的虚拟环境<br>
+                                cd ..
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">2. 为同一项目创建多个不同版本的虚拟环境（指定路径）</h4>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                # 进入项目目录<br>
+                                cd my-project<br><br>
+                                # 创建 Python 3.10 的虚拟环境（路径为 .venv-3.10）<br>
+                                uv venv --python 3.10 .venv-3.10<br><br>
+                                # 创建 Python 3.11 的虚拟环境（路径为 .venv-3.11）<br>
+                                uv venv --python 3.11 .venv-3.11<br><br>
+                                # 创建 Python 3.12 的虚拟环境（路径为 .venv-3.12）<br>
+                                uv venv --python 3.12 .venv-3.12
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">3. 使用指定版本的虚拟环境</h4>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                # 使用 Python 3.10 环境运行脚本<br>
+                                uv run --venv .venv-3.10 main.py<br><br>
+                                # 使用 Python 3.12 环境安装依赖<br>
+                                uv add requests --venv .venv-3.12
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 删除虚拟环境 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 md:p-8">
+                    <h3 class="font-semibold text-lg mb-4 text-gray-800">删除虚拟环境</h3>
+                    
+                    <p class="text-gray-700 mb-4">UV 生成的虚拟环境本质上是项目目录中的一个文件夹，只需删除对应的文件夹即可：</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">删除默认虚拟环境（.venv）</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-medium text-gray-800 mb-2">Linux/macOS 终端</h5>
+                                    <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                        # 进入项目目录<br>
+                                        cd your-project<br><br>
+                                        # 删除默认虚拟环境文件夹<br>
+                                        rm -rf .venv
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-medium text-gray-800 mb-2">Windows PowerShell</h5>
+                                    <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                        # 进入项目目录<br>
+                                        cd your-project<br><br>
+                                        # 删除默认虚拟环境文件夹<br>
+                                        Remove-Item -Recurse -Force .venv
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">删除自定义路径的虚拟环境</h4>
+                            <div class="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                # 删除名为 .venv-3.11 的虚拟环境（Linux/macOS）<br>
+                                rm -rf .venv-3.11<br><br>
+                                # 删除名为 py312-env 的虚拟环境（Windows PowerShell）<br>
+                                Remove-Item -Recurse -Force py312-env
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                        <h4 class="font-semibold text-yellow-800 mb-2 flex items-center">
+                            <i class="fa fa-exclamation-triangle mr-2"></i> 注意事项
+                        </h4>
+                        <p class="text-yellow-700 text-sm">
+                            删除虚拟环境会彻底清除该环境中安装的所有依赖和 Python 解释器，操作不可逆，请谨慎执行。
+                            如果需要重新使用该环境，只需重新创建即可。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <i class="fa fa-cubes text-primary text-xl"></i>
+                        <span class="font-bold text-lg">UV 工具指南</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">快速、现代的 Python 包管理器和虚拟环境工具</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fa fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fa fa-globe text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-sm">© 2025 UV 工具指南. 基于 UV 官方文档整理.</div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动菜单（如果打开）
+                document.getElementById('mobileMenu').classList.add('hidden');
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+    </script>
+
+
+</body></html>
