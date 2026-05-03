@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Screen Mirror —— 把 Mac 桌面像素级镜像到 iPhone。基于 WebRTC,零账户,零云端。">
+<meta property="og:title" content="Screen Mirror">
+<meta property="og:description" content="把 Mac 桌面像素级镜像到 iPhone。零账户,零云端。">
+<meta property="og:type" content="website">
+<title>Screen Mirror — Mirror your Mac to iPhone</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,30..100&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0a0908;
+  --bg-elev: #14110f;
+  --fg: #faf8f3;
+  --fg-mute: #8a857c;
+  --fg-dim: #524d44;
+  --accent: #d4a574;
+  --accent-soft: #f0d9a8;
+  --line: #1f1d1a;
+  --line-bright: #2d2925;
+
+  --font-display: 'Fraunces', 'Times New Roman', Georgia, serif;
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace;
+
+  --max-w: 1080px;
+  --gutter: clamp(1.5rem, 4vw, 3rem);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'ss01', 'cv11';
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+/* Subtle noise overlay for warmth */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* === Navigation === */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 1.5rem var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(20px) saturate(180%);
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+nav.scrolled {
+  border-bottom-color: var(--line);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  font-variation-settings: 'opsz' 14, 'SOFT' 30;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-mark {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 1.5px solid var(--accent);
+  position: relative;
+}
+.brand-mark::after {
+  content: '';
+  position: absolute;
+  inset: 25%;
+  background: var(--accent);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+nav a {
+  color: var(--fg-mute);
+  text-decoration: none;
+  transition: color 0.25s ease;
+  position: relative;
+}
+
+nav a:hover {
+  color: var(--fg);
+}
+
+@media (max-width: 640px) {
+  nav ul { display: none; }
+}
+
+/* === Hero === */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem var(--gutter) 6rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero::before {
+  content: 'MMXXVI';
+  position: absolute;
+  top: 6rem;
+  right: var(--gutter);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--fg-dim);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.1s ease forwards;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+h1.display {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 11vw, 9.5rem);
+  font-weight: 350;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 50;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 1.1s 0.25s ease forwards;
+}
+
+h1.display em {
+  font-style: italic;
+  font-weight: 350;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  color: var(--accent-soft);
+  letter-spacing: -0.04em;
+}
+
+.lede {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.75vw, 1.5rem);
+  line-height: 1.45;
+  font-weight: 350;
+  font-variation-settings: 'opsz' 36;
+  color: var(--fg);
+  max-width: 32em;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.45s ease forwards;
+}
+
+.lede em {
+  font-style: italic;
+  color: var(--fg-mute);
+}
+
+.sub-lede {
+  color: var(--fg-mute);
+  font-size: 0.95rem;
+  max-width: 32em;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.6s ease forwards;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.75s ease forwards;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.95rem 1.6rem;
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: -0.005em;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  border: 1px solid var(--accent);
+}
+.btn-primary:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px -8px color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--line-bright);
+}
+.btn-secondary:hover {
+  border-color: var(--fg-mute);
+  background: var(--bg-elev);
+}
+
+.btn .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.btn:hover .arrow { transform: translateX(3px); }
+
+.hero-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--fg-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.9s ease forwards;
+}
+
+.hero-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hero-meta span::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--fg-dim);
+  border-radius: 50%;
+}
+
+/* === Section Header === */
+.section {
+  padding: 6rem var(--gutter);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  align-items: baseline;
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 380;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'opsz' 60, 'SOFT' 40;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+/* === Why Section === */
+.about-body {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 1rem 2rem;
+}
+.about-body p {
+  grid-column: 2;
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 30;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  font-weight: 360;
+  line-height: 1.55;
+  color: var(--fg);
+  max-width: 38em;
+  margin-bottom: 1.5rem;
+}
+.about-body p:last-child { margin-bottom: 0; }
+.about-body p .accent {
+  color: var(--accent);
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .about-body {
+    grid-template-columns: 1fr;
+  }
+  .about-body p { grid-column: 1; }
+}
+
+/* === Features === */
+.features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: 6rem 1fr 1.4fr;
+  gap: 2rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+  transition: padding 0.4s ease;
+}
+
+.feature:hover {
+  padding-left: 1rem;
+}
+
+.feature-num {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--fg-dim);
+  letter-spacing: 0.1em;
+  padding-top: 0.4rem;
+}
+
+.feature-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+  font-weight: 380;
+  line-height: 1.15;
+  font-variation-settings: 'opsz' 60, 'SOFT' 50;
+  letter-spacing: -0.015em;
+}
+
+.feature-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.feature-desc {
+  color: var(--fg-mute);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  max-width: 30em;
+}
+
+.feature-desc strong {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+@media (max-width: 860px) {
+  .feature {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 2.5rem 0;
+  }
+  .feature-num { padding-top: 0; }
+  .feature:hover { padding-left: 0; }
+}
+
+/* === Specs === */
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.spec {
+  padding: 1.5rem 1.75rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: background 0.3s ease;
+}
+.spec:hover { background: var(--bg-elev); }
+
+.spec-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+.spec-value {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 380;
+  font-variation-settings: 'opsz' 36, 'SOFT' 40;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+  font-feature-settings: 'tnum';
+}
+
+.spec-value .unit {
+  color: var(--fg-mute);
+  font-size: 0.85em;
+  margin-left: 0.2em;
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .specs { grid-template-columns: 1fr; }
+}
+
+/* === Closing CTA === */
+.closing {
+  padding: 8rem var(--gutter);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.closing-text {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-weight: 350;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 70;
+  margin-bottom: 2.5rem;
+}
+
+.closing-text em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.email-link {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 0.15rem;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.email-link:hover {
+  color: var(--accent);
+}
+
+/* === Footer === */
+footer {
+  padding: 3rem var(--gutter);
+  border-top: 1px solid var(--line);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--fg-dim);
+  letter-spacing: 0.02em;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.footer-links a {
+  color: var(--fg-mute);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.footer-links a:hover { color: var(--accent); }
+
+/* === Animations === */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Scroll-reveal */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <span>Screen Mirror</span>
+  </div>
+  <ul>
+    <li><a href="#about">关于</a></li>
+    <li><a href="#features">特性</a></li>
+    <li><a href="#specs">规格</a></li>
+    <li><a href="mailto:zyb0408@gmail.com">联系</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <p class="eyebrow">v 1.0 · 局域网屏幕镜像</p>
+    <h1 class="display">Screen<br><em>Mirror</em>.</h1>
+    <p class="lede">把 Mac 的桌面像素级镜像到 iPhone 屏幕上 <em>—— 在同一张 Wi-Fi 内,与世界无关。</em></p>
+    <p class="sub-lede">基于 WebRTC 的端到端连接。零账户,零云端,零服务器。一切发生在你的局域网内。</p>
+    <div class="actions">
+      <a href="#features" class="btn btn-primary">了解特性 <span class="arrow">→</span></a>
+      <a href="mailto:zyb0408@gmail.com" class="btn btn-secondary">联系作者</a>
+    </div>
+    <p class="hero-meta">
+      <span>macOS 15+</span>
+      <span>iOS 17+</span>
+      <span>WebRTC + Bonjour</span>
+    </p>
+  </section>
+
+  <section class="section reveal" id="about">
+    <div class="section-head">
+      <span class="section-num">— I.</span>
+      <h2 class="section-title">关于这件 <em>小事</em></h2>
+    </div>
+    <div class="about-body">
+      <p>
+        Screen Mirror 解决一个具体问题:把你的 Mac 桌面投到手边的 iPhone 上,
+        作为<span class="accent">第二屏幕</span>、教学演示、远程旁观或仅仅是片刻方便。
+      </p>
+      <p>
+        没有第三方账户,没有云端中转,没有视频回传给任何服务器。
+        macOS 端通过 Bonjour 广播服务,iPhone 在同一 Wi-Fi 内即可发现并发起 WebRTC 连接。
+      </p>
+      <p>
+        从你点击"允许"到画面落到 iPhone 屏幕,整条数据通路都在<span class="accent">你的 LAN 内</span>。
+      </p>
+    </div>
+  </section>
+
+  <section class="section reveal" id="features">
+    <div class="section-head">
+      <span class="section-num">— II.</span>
+      <h2 class="section-title">三个 <em>核心</em></h2>
+    </div>
+    <ol class="features">
+      <li class="feature">
+        <span class="feature-num">01</span>
+        <h3 class="feature-name">原生级 <em>清晰度</em></h3>
+        <p class="feature-desc">
+          硬件 H.264 编码,2K@60fps,峰值 <strong>20 Mbps</strong>。
+          ScreenCaptureKit 直采桌面,无中间帧缓冲。文字、图标、动画
+          —— 你看到的就是 Mac 看到的。
+        </p>
+      </li>
+      <li class="feature">
+        <span class="feature-num">02</span>
+        <h3 class="feature-name">同 Wi-Fi <em>即用</em></h3>
+        <p class="feature-desc">
+          Bonjour mDNS 服务广播,iPhone 自动发现附近的 Mac。
+          无需手动输入 IP、端口或扫描二维码。<strong>点击主机名即开始</strong>。
+        </p>
+      </li>
+      <li class="feature">
+        <span class="feature-num">03</span>
+        <h3 class="feature-name">纯 <em>端到端</em></h3>
+        <p class="feature-desc">
+          WebRTC 的 ICE + SRTP 让两台设备直接对话。
+          数据不经过任何第三方服务器。<strong>断网也能用,只要你们在一张 Wi-Fi 里</strong>。
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section reveal" id="specs">
+    <div class="section-head">
+      <span class="section-num">— III.</span>
+      <h2 class="section-title">技术 <em>规格</em></h2>
+    </div>
+    <dl class="specs">
+      <div class="spec">
+        <dt class="spec-label">视频编码</dt>
+        <dd class="spec-value">H.264 <span class="unit">/ HW</span></dd>
+      </div>
+      <div class="spec">
+        <dt class="spec-label">采集分辨率</dt>
+        <dd class="spec-value">2560 × 1440</dd>
+      </div>
+      <div class="spec">
+        <dt class="spec-label">最大帧率</dt>
+        <dd class="spec-value">60 <span class="unit">fps</span></dd>
+      </div>
+      <div class="spec">
+        <dt class="spec-label">峰值码率</dt>
+        <dd class="spec-value">20 <span class="unit">Mbps</span></dd>
+      </div>
+      <div class="spec">
+        <dt class="spec-label">服务发现</dt>
+        <dd class="spec-value">Bonjour <span class="unit">/ mDNS</span></dd>
+      </div>
+      <div class="spec">
+        <dt class="spec-label">传输协议</dt>
+        <dd class="spec-value">WebRTC <span class="unit">/ SRTP</span></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="section closing reveal">
+    <p class="closing-text">想到了什么<br>或<em>遇到了什么?</em></p>
+    <a href="mailto:zyb0408@gmail.com" class="email-link">zyb0408@gmail.com</a>
+  </section>
+
+</main>
+
+<footer>
+  <span>© 2026 沪上码仔AI</span>
+  <ul class="footer-links">
+    <li><a href="privacy.html">隐私政策</a></li>
+    <li><a href="terms.html">服务条款</a></li>
+    <li><a href="mailto:zyb0408@gmail.com">联系</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Nav border on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 24) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Reveal sections on scroll (IntersectionObserver)
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
