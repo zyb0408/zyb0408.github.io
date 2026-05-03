@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隐私政策 — Screen Mirror</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Geist:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #fbfaf7;
+  --fg: #14110f;
+  --fg-mute: #6b6660;
+  --line: #e7e3dc;
+  --accent: #8b6a3a;
+  --font-display: 'Fraunces', 'Times New Roman', Georgia, serif;
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem;
+}
+
+.back {
+  font-size: 0.9rem;
+  color: var(--fg-mute);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 4rem;
+  transition: color 0.2s;
+}
+.back:hover { color: var(--accent); }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--fg-mute);
+  margin-bottom: 3.5rem;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--fg);
+}
+
+p + p { margin-top: -0.25rem; }
+
+ul {
+  margin: 0.5rem 0 1.25rem 1.25rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+strong { font-weight: 600; }
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 3rem 0;
+}
+
+footer {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--fg-mute);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <a href="index.html" class="back">← 返回首页</a>
+
+  <h1>隐私政策</h1>
+  <p class="subtitle">最后更新:2026 年 5 月 4 日</p>
+
+  <p>Screen Mirror（以下简称"本应用"）是一个局域网内的屏幕镜像工具，由沪上码仔AI 开发并发布。本应用尊重用户隐私，本政策旨在透明地说明：本应用<strong>不收集、不存储、不上传任何用户数据</strong>。</p>
+
+  <h2>一、信息收集</h2>
+  <p>本应用<strong>不收集任何个人信息</strong>。具体包括但不限于：</p>
+  <ul>
+    <li>不收集姓名、邮箱、电话或任何身份信息；</li>
+    <li>不要求注册账户、不使用第三方登录；</li>
+    <li>不收集设备识别码（IDFA、MAC 地址等）；</li>
+    <li>不收集位置信息；</li>
+    <li>不收集使用习惯、点击行为或崩溃日志。</li>
+  </ul>
+
+  <h2>二、数据传输</h2>
+  <p>本应用的核心功能是把 macOS 桌面画面传输到 iOS 设备。数据传输具有如下特征：</p>
+  <ul>
+    <li><strong>仅在本地局域网内进行</strong>：基于 Bonjour 服务发现 + WebRTC 点对点连接；</li>
+    <li><strong>不经过任何第三方服务器</strong>：包括开发者本人也无法获取用户的画面；</li>
+    <li><strong>不进行任何持久化存储</strong>：画面数据仅在内存中实时编解码后展示。</li>
+  </ul>
+
+  <h2>三、权限说明</h2>
+
+  <h3>本地网络权限（iOS 端）</h3>
+  <p>本应用需要本地网络权限以发现局域网内的 Mac 主机。该权限仅用于 Bonjour 服务搜索与点对点连接，不会用于任何其他目的。</p>
+
+  <h3>屏幕录制权限（macOS 端）</h3>
+  <p>本应用需要屏幕录制权限以捕获用户主动选择的显示器画面，并通过加密通道实时传输给已配对的 iOS 端。</p>
+
+  <h2>四、第三方组件</h2>
+  <p>本应用使用了 <a href="https://webrtc.org" target="_blank" rel="noopener">WebRTC-SDK</a>（BSD 3-Clause License）作为底层音视频传输引擎。WebRTC 在本应用的使用中<strong>不上报任何遥测数据</strong>。</p>
+
+  <h2>五、儿童隐私</h2>
+  <p>本应用不针对 13 岁以下儿童设计，且不会主动收集任何用户的个人信息（包括儿童信息）。</p>
+
+  <h2>六、政策变更</h2>
+  <p>若本政策有更新，将在本页面发布最新版本。重大变更会通过应用内更新通告或邮件方式告知。</p>
+
+  <h2>七、联系我们</h2>
+  <p>如对本隐私政策有任何疑问，欢迎邮件联系：<a href="mailto:zyb0408@gmail.com">zyb0408@gmail.com</a></p>
+
+  <footer>
+    <p>© 2026 沪上码仔AI · <a href="index.html">首页</a> · <a href="terms.html">服务条款</a></p>
+  </footer>
+
+</div>
+
+</body>
+</html>
